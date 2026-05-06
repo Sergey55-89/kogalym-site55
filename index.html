@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Открой Когалым — премиальный туристический портал</title>
+<meta name="description" content="Когалым: история города, юбилей 50 лет, памятные монеты Банка России, туристические маршруты, Яндекс.Карта, достопримечательности и контакты проекта.">
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ff341636-aa95-4dfa-96f7-4f8b8f2ad18f&lang=ru_RU"></script>
+<style>
+:root{
+  --bg:#06101d;--bg2:#0a192a;--card:#0e2035;--glass:rgba(255,255,255,.085);
+  --text:#f5fbff;--muted:#a9bdcf;--blue:#45c8ff;--gold:#f5c95d;--green:#7cf0c4;
+  --line:rgba(255,255,255,.14);--shadow:0 30px 90px rgba(0,0,0,.38);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:
+  radial-gradient(circle at 12% 0%,rgba(69,200,255,.24),transparent 36%),
+  radial-gradient(circle at 88% 4%,rgba(245,201,93,.15),transparent 28%),
+  linear-gradient(180deg,#050b14,#081827 42%,#040810);
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:auto;padding:0 22px}
+header{position:sticky;top:0;z-index:40;background:rgba(4,10,18,.74);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:74px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.logo{display:flex;gap:12px;align-items:center;font-weight:950;letter-spacing:-.04em;font-size:22px}
+.logo-mark{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--gold));display:grid;place-items:center;color:#05101c;font-weight:950}
+.navlinks{display:flex;gap:16px;font-size:14px;color:#d9e8f5;flex-wrap:wrap}
+.navlinks a{opacity:.82}.navlinks a:hover{opacity:1;color:var(--blue)}
+.navphone{padding:12px 15px;border:1px solid var(--line);border-radius:999px;background:var(--glass);font-weight:900}
+.hero{
+  min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(2,7,14,.95),rgba(2,7,14,.50),rgba(2,7,14,.88)),
+    url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1800&auto=format&fit=crop') center/cover;
+}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:190px;background:linear-gradient(0deg,#06101d,transparent)}
+.hero-content{position:relative;z-index:2;max-width:980px;padding:92px 0}
+.kicker{display:inline-flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.1);font-weight:850;color:#e2f8ff}
+h1{font-size:clamp(46px,7.4vw,108px);line-height:.89;letter-spacing:-.078em;margin:26px 0 24px}
+.lead{font-size:clamp(18px,2vw,24px);line-height:1.55;color:#d6e6f4;max-width:800px}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:18px;padding:15px 21px;background:var(--blue);color:#03111c;font-weight:950;cursor:pointer;box-shadow:0 18px 45px rgba(69,200,255,.24)}
+.btn.secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid var(--line);box-shadow:none}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:54px;max-width:940px}
+.stat{padding:19px;border-radius:23px;background:rgba(255,255,255,.1);border:1px solid var(--line);backdrop-filter:blur(14px)}
+.stat b{display:block;font-size:28px;color:#fff}.stat span{color:var(--muted);font-size:13px}
+section{padding:94px 0;border-top:1px solid rgba(255,255,255,.06)}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:36px}
+h2{font-size:clamp(33px,4.3vw,64px);line-height:.95;letter-spacing:-.057em;margin:0}
+.sub{color:var(--muted);font-size:18px;line-height:1.65;max-width:740px;margin:0}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.043));border:1px solid var(--line);border-radius:30px;padding:28px;box-shadow:var(--shadow)}
+.card h3{font-size:24px;letter-spacing:-.03em;margin:0 0 12px}.card p,.card li{color:var(--muted);line-height:1.68}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.story{columns:2;column-gap:34px;color:#c2d5e5;font-size:17px;line-height:1.82}
+.quote{font-size:27px;line-height:1.34;border-left:4px solid var(--blue);padding-left:24px;margin:30px 0;color:#fff}
+.timeline{display:grid;gap:14px;margin-top:26px}
+.time{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:20px;border-radius:24px;background:rgba(255,255,255,.062);border:1px solid var(--line)}
+.year{font-size:20px;font-weight:950;color:var(--gold)}
+.jubilee{position:relative;overflow:hidden;border-radius:38px;border:1px solid rgba(245,201,93,.28);background:
+  radial-gradient(circle at 10% 0%,rgba(245,201,93,.28),transparent 34%),
+  linear-gradient(135deg,rgba(245,201,93,.16),rgba(69,200,255,.11),rgba(255,255,255,.045));padding:38px;box-shadow:var(--shadow)}
+.coin-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.coin{display:flex;gap:18px;align-items:center;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:28px;padding:22px}
+.coin-icon{min-width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#fff7c8,#f0b429 52%,#7c4a03);color:#3b2400;font-size:26px;font-weight:950;box-shadow:inset 0 0 18px rgba(255,255,255,.32)}
+.coin.silver .coin-icon{background:radial-gradient(circle,#ffffff,#cfd9e6 55%,#64748b);color:#172033}
+.badge{display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid var(--line);font-size:13px;color:#e7f6ff;font-weight:850;margin:4px 6px 4px 0}
+.photo-card{padding:0;overflow:hidden}.photo-card img{width:100%;height:255px;object-fit:cover;filter:saturate(1.05) contrast(1.02)}.photo-card div{padding:24px}
+.route-layout{display:grid;grid-template-columns:400px 1fr;gap:22px}
+.route-list{display:grid;gap:12px;align-content:start}
+.route-card{padding:18px;border-radius:24px;background:rgba(255,255,255,.064);border:1px solid var(--line);cursor:pointer;transition:.18s}
+.route-card:hover,.route-card.active{background:rgba(69,200,255,.135);border-color:rgba(69,200,255,.82);transform:translateY(-2px)}
+.route-card small{display:block;color:var(--gold);font-weight:900;margin-bottom:8px}.route-card strong{font-size:17px;display:block;margin-bottom:6px}.route-card span{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+#map{height:720px;border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#10243b}
+.route-detail{margin-top:16px;padding:21px;border-radius:24px;border:1px solid var(--line);background:rgba(255,255,255,.055)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chip{padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid var(--line);color:#e3f3ff;font-size:13px;font-weight:850}
+.gallery{display:grid;grid-template-columns:1.1fr .9fr 1fr;gap:16px}
+.gallery img{width:100%;height:250px;border-radius:28px;border:1px solid var(--line);object-fit:cover}.gallery img:first-child{height:516px;grid-row:span 2}
+.partner{background:linear-gradient(135deg,rgba(69,200,255,.18),rgba(245,201,93,.13));border:1px solid var(--line);border-radius:36px;padding:36px;display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center}
+input,textarea{width:100%;padding:16px;border-radius:18px;border:1px solid var(--line);background:#071526;color:#fff;margin-bottom:12px;font:inherit}
+.footer{padding:40px 0;background:#030813;border-top:1px solid var(--line);color:var(--muted)}.sources{font-size:13px;color:#8198ad;line-height:1.55;margin-top:16px}
+@media(max-width:980px){
+  .navlinks{display:none}.stats,.grid-3,.grid-2,.route-layout,.partner,.coin-row{grid-template-columns:1fr}.section-head{display:block}.story{columns:1}#map{height:520px}.gallery{grid-template-columns:1fr}.gallery img,.gallery img:first-child{height:260px}.time{grid-template-columns:1fr}.coin{align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#"><span class="logo-mark">К</span><span>Открой Когалым</span></a>
+    <div class="navlinks">
+      <a href="#history">История</a><a href="#jubilee">50 лет</a><a href="#places">Места</a><a href="#routes">Маршруты</a><a href="#partners">Реклама</a>
+    </div>
+    <a class="navphone" href="tel:+79088825323">+7 908 882-53-23</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-content">
+    <div class="kicker">Когалым · Югра · 50-летие города · туристические маршруты</div>
+    <h1>Город, который построили характером.</h1>
+    <p class="lead">Когалым — северный город с нефтяной судьбой, сильной историей и современным туристическим потенциалом. Это место, где первопроходцы начинали с палаток у Ингу-Ягуна, а сегодня гости находят музеи, парки, «Галактику», маршруты и живую городскую атмосферу.</p>
+    <div class="actions"><a class="btn" href="#routes">Выбрать маршрут</a><a class="btn secondary" href="#jubilee">Юбилей 50 лет</a></div>
+    <div class="stats">
+      <div class="stat"><b>1975</b><span>точка отсчёта истории</span></div>
+      <div class="stat"><b>1985</b><span>статус города</span></div>
+      <div class="stat"><b>2025</b><span>50-летие Когалыма</span></div>
+      <div class="stat"><b>7</b><span>маршрутов на карте</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="history">
+  <div class="container">
+    <div class="section-head">
+      <h2>История, за которую не стыдно</h2>
+      <p class="sub">Когалым нельзя описывать двумя сухими предложениями. Его история — это геологи, гидрологи, железная дорога, нефть, северный труд и люди, которые приехали строить город там, где раньше не было привычного городского комфорта.</p>
+    </div>
+    <div class="story">
+      <p>Точкой отсчёта истории Когалыма считается лето 1975 года. Тогда геологическая партия и гидрологи проектного института «Сибгипротранс» высадились на высоком берегу реки Ингу-Ягун — в районе будущей станции Коголымская и современной Фестивальной улицы. Так появилось первое поселение на территории будущего города.</p>
+      <p>Первые годы были не романтикой из буклета, а тяжёлой северной работой: палатки, временное жильё, техника, болотистая местность, морозы и огромная логистика. Люди строили не просто дома — они создавали опорный пункт нефтяного освоения Западной Сибири.</p>
+      <p>В 1978 году был образован Когалымский поселковый Совет. Это стало административной опорой для дальнейшего роста. В 1980-е город быстро набирал силу: появлялись капитальные дома, дороги, социальные объекты, школы, медицинские учреждения и новая городская среда.</p>
+      <p>15 августа 1985 года Когалым получил статус города окружного подчинения. С этого момента он перестал быть только рабочим поселением и стал полноценным северным городом, чья судьба тесно связана с нефтяной отраслью, Югрой и людьми труда.</p>
+      <p>Сегодня Когалым — это уже не просто «город нефтяников». Это современная городская среда, культурные события, семейный отдых, спорт, СКК «Галактика», музейные проекты, благоустроенные улицы, парки и маршруты, которые можно превращать в полноценный туристический продукт.</p>
+    </div>
+    <div class="quote">“Сильный туристический сайт про Когалым должен показывать не только места, но и смысл: почему этот город появился, кто его строил и почему 50-летие стало важной точкой городской истории.”</div>
+    <div class="timeline">
+      <div class="time"><div class="year">Лето 1975</div><div>Высадка геологической партии и гидрологов «Сибгипротранса» на берегу Ингу-Ягуна. Формируется первое поселение на территории будущего города.</div></div>
+      <div class="time"><div class="year">1978</div><div>Образован Когалымский поселковый Совет — важный этап административного становления.</div></div>
+      <div class="time"><div class="year">1980-е</div><div>Активное строительство жилья, инфраструктуры и объектов социальной сферы. Когалым становится центром северного роста.</div></div>
+      <div class="time"><div class="year">15.08.1985</div><div>Когалым получает статус города окружного подчинения.</div></div>
+      <div class="time"><div class="year">2025</div><div>Когалым отмечает 50-летие со дня основания. Банк России выпускает памятные монеты серии «Города».</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="jubilee">
+  <div class="container">
+    <div class="jubilee">
+      <div class="section-head">
+        <div>
+          <h2>Когалым — 50 лет. Юбилей, закреплённый в монетах</h2>
+          <p class="sub">В 2025 году Когалым отметил 50-летие со дня основания. Это событие вышло за рамки городского праздника: Банк России выпустил памятные монеты «50-летие основания Когалыма» серии «Города».</p>
+        </div>
+      </div>
+      <div class="coin-row">
+        <div class="coin silver">
+          <div class="coin-icon">3₽</div>
+          <div>
+            <h3>Серебряная монета</h3>
+            <p>Номинал 3 рубля, серебро 925 пробы. На реверсе — скульптурная композиция «Слава труду», посвящённая первооткрывателям когалымской нефти и первопроходцам Тюменского Севера, на фоне нефтяной вышки и станка-качалки.</p>
+            <span class="badge">серия «Города»</span><span class="badge">дата выпуска: 19.08.2025</span>
+          </div>
+        </div>
+        <div class="coin">
+          <div class="coin-icon">100₽</div>
+          <div>
+            <h3>Золотая монета</h3>
+            <p>Номинал 100 рублей, золото 999 пробы. На реверсе — «Капля жизни», храм святой мученицы Татианы и городские дома; внизу — юбилейная отметка «50 лет».</p>
+            <span class="badge">золото 999</span><span class="badge">Санкт-Петербургский монетный двор</span>
+          </div>
+        </div>
+      </div>
+      <p class="sub" style="margin-top:24px">Этот блок стоит оставить на главной странице: он сразу показывает, что проект не поверхностный, а привязан к реальному городскому событию и официальной истории.</p>
+    </div>
+  </div>
+</section>
+
+<section id="places">
+  <div class="container">
+    <div class="section-head">
+      <h2>Что смотреть в городе</h2>
+      <p class="sub">Сайт должен вести гостя по городу, а не бросать список мест. Поэтому каждое место — это не просто карточка, а часть маршрута и истории.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card photo-card"><img src="https://images.unsplash.com/photo-1519452575417-564c1401ecc0?q=80&w=1200&auto=format&fit=crop"><div><h3>СКК «Галактика»</h3><p>Современная визитная карточка семейного отдыха: развлечения, вода, спорт, кино и яркая архитектура.</p></div></article>
+      <article class="card photo-card"><img src="https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?q=80&w=1200&auto=format&fit=crop"><div><h3>Музейно-выставочный центр</h3><p>Здесь раскрывается история города, коренных народов Югры, нефтяников и первопроходцев.</p></div></article>
+      <article class="card photo-card"><img src="https://images.unsplash.com/photo-1516546453174-5e1098a4b4af?q=80&w=1200&auto=format&fit=crop"><div><h3>Парк Победы</h3><p>Прогулочная и памятная зона, хорошая точка для спокойного маршрута и фото.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="routes">
+  <div class="container">
+    <div class="section-head">
+      <h2>Маршруты на Яндекс.Карте</h2>
+      <p class="sub">Выбираешь маршрут — карта показывает точки, порядок и линию движения. Для финального запуска координаты можно уточнить по реальным адресам и добавить ещё кафе, отели, фото-точки и события.</p>
+    </div>
+    <div class="route-layout">
+      <div>
+        <div class="route-list">
+          <div class="route-card active" onclick="buildRoute('day', this)"><small>6–8 часов · первый визит</small><strong>Когалым за один день</strong><span>Центр → музей → Парк Победы → «Галактика» → вечерний город.</span></div>
+          <div class="route-card" onclick="buildRoute('jubilee', this)"><small>3–4 часа · 50-летие</small><strong>Юбилейный маршрут</strong><span>История основания, городские символы, «Слава труду», памятные точки.</span></div>
+          <div class="route-card" onclick="buildRoute('family', this)"><small>1 день · дети и родители</small><strong>Семейный Когалым</strong><span>Галактика, прогулка, кафе, мягкий темп без перегруза.</span></div>
+          <div class="route-card" onclick="buildRoute('history', this)"><small>4–5 часов · смысл города</small><strong>Нефть, Север и первопроходцы</strong><span>Музей, памятные места, центр, история труда.</span></div>
+          <div class="route-card" onclick="buildRoute('photo', this)"><small>2–3 часа · красивые кадры</small><strong>Фото-маршрут</strong><span>Вечерний центр, парк, современная архитектура и городские виды.</span></div>
+          <div class="route-card" onclick="buildRoute('winter', this)"><small>3–4 часа · атмосфера</small><strong>Зимний Когалым</strong><span>Северная прогулка, снег, тёплый финиш и фото.</span></div>
+          <div class="route-card" onclick="buildRoute('weekend', this)"><small>2 дня · без спешки</small><strong>Выходные в Когалыме</strong><span>История, отдых, гастро-точки, вечерняя программа.</span></div>
+        </div>
+        <div class="route-detail" id="routeDetail"></div>
+      </div>
+      <div id="map"></div>
+    </div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="container">
+    <div class="section-head">
+      <h2>Люди города</h2>
+      <p class="sub">Без этого раздела сайт выглядит пустым. Когалым построили люди: геологи, строители, нефтяники, водители, учителя, врачи, работники культуры и спорта.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>Первопроходцы</h3><p>Люди, которые приехали в 1970-е и начинали будущий город с временных стоянок, техники и тяжёлой северной работы.</p></div>
+      <div class="card"><h3>Нефтяники</h3><p>Профессия, вокруг которой сформировались экономика, ритм и характер города.</p></div>
+      <div class="card"><h3>Новые поколения</h3><p>Семьи, предприниматели, педагоги, спортсмены и молодёжь, которые делают Когалым современным.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Город в кадре</h2>
+      <p class="sub">Для публикации вместо этих атмосферных заглушек лучше поставить реальные фото: «Галактика», музей, парк, Фестивальная улица, юбилейные события, зимний город, люди и городские праздники.</p>
+    </div>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1483664852095-d6cc6870702d?q=80&w=1200&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=1200&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1200&auto=format&fit=crop">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop">
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="container">
+    <div class="partner">
+      <div>
+        <h2>Реклама без мусора</h2>
+        <p class="sub">Монетизация должна выглядеть аккуратно: не баннерная помойка, а полезные размещения — кафе, гостиницы, экскурсии, события, услуги и партнёрские маршруты.</p>
+        <div class="chips"><span class="chip">Премиум-карточки</span><span class="chip">Реклама маршрута</span><span class="chip">Городские события</span><span class="chip">Партнёрские статьи</span></div>
+      </div>
+      <div class="card">
+        <h3>Связь с разработчиком</h3>
+        <p><b>Spartak5589</b></p>
+        <p>Телефон: <a href="tel:+79088825323">+7 908 882-53-23</a></p>
+        <p>Размещение бизнеса, реклама, партнёрство, развитие портала, подключение домена и аналитики.</p>
+        <a class="btn" href="tel:+79088825323">Позвонить</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="container grid-2">
+    <div>
+      <h2>Написать по проекту</h2>
+      <p class="sub">Форма демонстрационная. Для реального запуска подключается Telegram-бот, email или CRM.</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Демо-форма. Следующий шаг — подключить Telegram-бота или email.');">
+      <input placeholder="Ваше имя">
+      <input placeholder="Телефон или Telegram">
+      <textarea rows="5" placeholder="Сообщение"></textarea>
+      <button class="btn" type="submit">Отправить</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <b>Открой Когалым</b> · туристический портал · разработка: Spartak5589 · <a href="tel:+79088825323">+7 908 882-53-23</a>
+    <div class="sources">
+      Историческая и юбилейная основа сверена по официальным открытым источникам: администрация Когалыма и Банк России. Для финального коммерческого запуска рекомендуется заменить фото-заглушки на реальные авторские фотографии Когалыма.
+    </div>
+  </div>
+</footer>
+
+<script>
+let map, currentRoute, placemarks = [];
+const details = {
+  day: {title:'Когалым за один день',text:'Маршрут для первого знакомства: история утром, прогулка днём, «Галактика» и вечерний город в финале.',tags:['6–8 часов','первый визит','семья','фото']},
+  jubilee: {title:'Юбилейный маршрут 50-летия',text:'Маршрут вокруг смысла юбилея: точка основания, городские символы труда, музейная история и места, связанные с образом Когалыма как города нефтяников.',tags:['2025','50 лет','история','символы города']},
+  family: {title:'Семейный Когалым',text:'Комфортный маршрут для детей и родителей: развлечения, прогулки, кафе и тёплые остановки.',tags:['дети','1 день','аквапарк','кафе']},
+  history: {title:'Нефть, Север и первопроходцы',text:'Маршрут для тех, кто хочет понять, почему город появился именно здесь и как его строили.',tags:['музей','нефть','первопроходцы','Север']},
+  photo: {title:'Фото-маршрут',text:'Короткий маршрут для красивых кадров: парк, центр, современная архитектура и вечерний свет.',tags:['2–3 часа','вечер','фото','город']},
+  winter: {title:'Зимний Когалым',text:'Северная атмосфера, снег, морозный воздух и тёплый финал в «Галактике».',tags:['зима','атмосфера','прогулка','тепло']},
+  weekend: {title:'Выходные в Когалыме',text:'Два дня без спешки: история, отдых, гастро-точки, прогулки и вечерняя программа.',tags:['2 дня','без спешки','отдых','маршрут']}
+};
+const routes = {
+  day:[[62.264069,74.482761,'Центр Когалыма'],[62.2658,74.4808,'Музейно-выставочный центр'],[62.2609,74.4910,'Парк Победы'],[62.2520,74.4990,'СКК «Галактика»']],
+  jubilee:[[62.264069,74.482761,'Центр города'],[62.2658,74.4808,'Музейная история'],[62.2609,74.4910,'Памятная прогулка'],[62.2668,74.4750,'Городские символы']],
+  family:[[62.2520,74.4990,'СКК «Галактика»'],[62.2609,74.4910,'Парк Победы'],[62.2639,74.4829,'Кафе и центр города']],
+  history:[[62.2658,74.4808,'Музейно-выставочный центр'],[62.2609,74.4910,'Памятные места'],[62.264069,74.482761,'Центр города']],
+  photo:[[62.264069,74.482761,'Центр города'],[62.2609,74.4910,'Парк Победы'],[62.2520,74.4990,'Галактика'],[62.2668,74.4750,'Вечерняя точка']],
+  winter:[[62.264069,74.482761,'Зимний центр'],[62.2609,74.4910,'Зимний парк'],[62.2520,74.4990,'Тёплая точка — Галактика']],
+  weekend:[[62.264069,74.482761,'День 1: центр'],[62.2658,74.4808,'Музей'],[62.2520,74.4990,'Галактика'],[62.2609,74.4910,'День 2: парк']]
+};
+function renderDetail(key){const d=details[key];document.getElementById('routeDetail').innerHTML=`<h3>${d.title}</h3><p>${d.text}</p><div class="chips">${d.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div>`;}
+ymaps.ready(()=>{map=new ymaps.Map('map',{center:[62.264069,74.482761],zoom:13,controls:['zoomControl','fullscreenControl','routeButtonControl','geolocationControl']});buildRoute('day',document.querySelector('.route-card'));});
+function clearMap(){if(currentRoute) map.geoObjects.remove(currentRoute);placemarks.forEach(p=>map.geoObjects.remove(p));placemarks=[];currentRoute=null;}
+function buildRoute(key,el){if(!map)return;document.querySelectorAll('.route-card').forEach(c=>c.classList.remove('active'));if(el)el.classList.add('active');renderDetail(key);clearMap();const points=routes[key];points.forEach((p,i)=>{const mark=new ymaps.Placemark([p[0],p[1]],{balloonContent:`<b>${i+1}. ${p[2]}</b>`,iconCaption:`${i+1}`},{preset:'islands#blueCircleIcon'});placemarks.push(mark);map.geoObjects.add(mark);});ymaps.route(points.map(p=>[p[0],p[1]]),{mapStateAutoApply:true}).then(route=>{currentRoute=route;route.getPaths().options.set({strokeColor:'#45c8ff',strokeWidth:6,opacity:.92});map.geoObjects.add(route);},err=>{const bounds=ymaps.util.bounds.fromPoints(points.map(p=>[p[0],p[1]]));map.setBounds(bounds,{checkZoomRange:true,zoomMargin:50});});}
+</script>
+</body>
+</html>
