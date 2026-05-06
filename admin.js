@@ -1,80 +1,8 @@
 
 import {auth,db,signInWithEmailAndPassword,signOut,onAuthStateChanged,collection,addDoc,updateDoc,deleteDoc,doc,onSnapshot,query,orderBy,serverTimestamp} from './firebase.js';
-
-let current='announcements', editId=null;
-const names={announcements:'Объявления',news:'Новости',events:'Афиша',places:'Места / бизнес'};
-const cats={
-  announcements:['Услуги','Работа','Недвижимость','Продажа','Туризм','Бизнес'],
-  news:['Город','История','Юбилей','Спорт','Культура'],
-  events:['Концерт','Спорт','Дети','Культура','Город'],
-  places:['Кафе','Гостиница','Достопримечательность','Услуги','Маршрут']
-};
-
-const loginBox=document.getElementById('loginBox'), adminBox=document.getElementById('adminBox'), list=document.getElementById('itemsList'), status=document.getElementById('status');
-
-function setCats(){
-  category.innerHTML = (cats[current]||[]).map(c=>`<option>${c}</option>`).join('');
-}
-setCats();
-
-document.getElementById('loginForm').onsubmit=async e=>{
-  e.preventDefault();
-  try{ await signInWithEmailAndPassword(auth,email.value,password.value); }
-  catch(err){ status.textContent='Ошибка: '+err.message; }
-};
-
-document.getElementById('logoutBtn').onclick=()=>signOut(auth);
-
-onAuthStateChanged(auth,u=>{
-  if(u){ loginBox.classList.add('hidden'); adminBox.classList.remove('hidden'); adminEmail.textContent=u.email; load(); }
-  else{ loginBox.classList.remove('hidden'); adminBox.classList.add('hidden'); }
-});
-
-document.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>{
-  current=b.dataset.col; editId=null;
-  document.querySelectorAll('[data-col]').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  formTitle.textContent='Добавить: '+names[current];
-  contentForm.reset();
-  setCats();
-  load();
-});
-
-contentForm.onsubmit=async e=>{
-  e.preventDefault();
-  const data={
-    title:{ru:titleRu.value.trim(),en:titleEn.value.trim()},
-    text:{ru:textRu.value.trim(),en:textEn.value.trim()},
-    category:category.value.trim(),
-    phone:phone.value.trim(),
-    imageUrl:imageUrl.value.trim(),
-    updatedAt:serverTimestamp()
-  };
-  if(!data.title.ru||!data.text.ru){ alert('Заполни RU заголовок и текст'); return; }
-  if(editId){ await updateDoc(doc(db,current,editId),data); editId=null; }
-  else{ data.createdAt=serverTimestamp(); await addDoc(collection(db,current),data); }
-  e.target.reset(); formTitle.textContent='Добавить: '+names[current]; setCats();
-};
-
-function load(){
-  onSnapshot(query(collection(db,current),orderBy('createdAt','desc')),snap=>{
-    if(snap.empty){ list.innerHTML='<p>Пока записей нет.</p>'; return; }
-    list.innerHTML=snap.docs.map(d=>{
-      const x=d.data();
-      return `<div class="item">
-        <div><b>${x.title?.ru||''}</b><p>${x.text?.ru||''}</p>${x.category?`<span class="tag">${x.category}</span>`:''}</div>
-        <div><button class="small-btn edit" data-edit="${d.id}">Редактировать</button> <button class="small-btn del" data-del="${d.id}">Удалить</button></div>
-      </div>`;
-    }).join('');
-    document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{ if(confirm('Удалить?')) await deleteDoc(doc(db,current,b.dataset.del)); });
-    document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{
-      const d=snap.docs.find(x=>x.id===b.dataset.edit).data();
-      editId=b.dataset.edit;
-      titleRu.value=d.title?.ru||''; titleEn.value=d.title?.en||'';
-      textRu.value=d.text?.ru||''; textEn.value=d.text?.en||'';
-      category.value=d.category||''; phone.value=d.phone||''; imageUrl.value=d.imageUrl||'';
-      formTitle.textContent='Редактирование';
-      scrollTo({top:0,behavior:'smooth'});
-    });
-  });
-}
+let current='announcements', editId=null;const names={announcements:'Объявления',news:'Новости',events:'Афиша',places:'Места / бизнес'};const cats={announcements:['Услуги','Работа','Недвижимость','Продажа','Туризм','Бизнес'],news:['Город','История','Юбилей','Спорт','Культура'],events:['Концерт','Спорт','Дети','Культура','Город'],places:['Кафе','Гостиница','Достопримечательность','Услуги','Маршрут']};
+function setCats(){category.innerHTML=(cats[current]||[]).map(c=>`<option>${c}</option>`).join('')}setCats();loginForm.onsubmit=async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,email.value,password.value)}catch(err){status.textContent='Ошибка: '+err.message}};logoutBtn.onclick=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{if(u){loginBox.classList.add('hidden');adminBox.classList.remove('hidden');adminEmail.textContent=u.email;load()}else{loginBox.classList.remove('hidden');adminBox.classList.add('hidden')}});
+document.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>{current=b.dataset.col;editId=null;document.querySelectorAll('[data-col]').forEach(x=>x.classList.remove('active'));b.classList.add('active');formTitle.textContent='Добавить: '+names[current];contentForm.reset();setCats();load()});
+contentForm.onsubmit=async e=>{e.preventDefault();const data={title:{ru:titleRu.value.trim(),en:titleEn.value.trim()},text:{ru:textRu.value.trim(),en:textEn.value.trim()},category:category.value.trim(),phone:phone.value.trim(),imageUrl:imageUrl.value.trim(),updatedAt:serverTimestamp()};if(!data.title.ru||!data.text.ru){alert('Заполни RU заголовок и текст');return}if(editId){await updateDoc(doc(db,current,editId),data);editId=null}else{data.createdAt=serverTimestamp();await addDoc(collection(db,current),data)}e.target.reset();formTitle.textContent='Добавить: '+names[current];setCats()};
+function load(){onSnapshot(query(collection(db,current),orderBy('createdAt','desc')),snap=>{if(snap.empty){itemsList.innerHTML='<p>Пока записей нет.</p>';return}itemsList.innerHTML=snap.docs.map(d=>{const x=d.data();return `<div class="item"><div><b>${x.title?.ru||''}</b><p>${x.text?.ru||''}</p>${x.category?`<span class="tag">${x.category}</span>`:''}</div><div><button class="small-btn edit" data-edit="${d.id}">Редактировать</button> <button class="small-btn del" data-del="${d.id}">Удалить</button></div></div>`}).join('');document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(confirm('Удалить?'))await deleteDoc(doc(db,current,b.dataset.del))});document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const d=snap.docs.find(x=>x.id===b.dataset.edit).data();editId=b.dataset.edit;titleRu.value=d.title?.ru||'';titleEn.value=d.title?.en||'';textRu.value=d.text?.ru||'';textEn.value=d.text?.en||'';category.value=d.category||'';phone.value=d.phone||'';imageUrl.value=d.imageUrl||'';formTitle.textContent='Редактирование';scrollTo({top:0,behavior:'smooth'})})})}
