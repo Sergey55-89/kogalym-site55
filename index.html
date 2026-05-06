@@ -1,245 +1,63 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Админка</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Админка.</h1><p class="lead">Добавляй объявления, новости, афишу и места. Фото пока через ссылку.</p></div></section><section><div class="container"><div id="loginBox" class="card" style="max-width:520px;margin:auto"><h2>Вход</h2><div id="status" class="status"></div><form id="loginForm" class="form"><input id="email" type="email" placeholder="Email" required><input id="password" type="password" placeholder="Пароль" required><button class="btn blue" type="submit">Войти</button></form></div><div id="adminBox" class="hidden"><div class="head"><h2>Панель управления</h2><p class="sub">Вы вошли как: <b id="adminEmail"></b> <button id="logoutBtn" class="btn ghost">Выйти</button></p></div><div class="admin-wrap"><aside class="panel admin-menu"><button class="active" data-col="announcements">Объявления</button><button data-col="news">Новости</button><button data-col="events">Афиша</button><button data-col="places">Места / бизнес</button></aside><div><div class="panel"><h3 id="formTitle">Добавить: Объявления</h3><form id="contentForm" class="form"><label>Заголовок RU</label><input id="titleRu" required><label>Текст RU</label><textarea id="textRu" rows="5" required></textarea><label>Заголовок EN</label><input id="titleEn"><label>Текст EN</label><textarea id="textEn" rows="4"></textarea><label>Категория</label><input id="category"><label>Телефон</label><input id="phone"><label>Ссылка на фото</label><input id="imageUrl" placeholder="https://...jpg"><button class="btn blue" type="submit">Сохранить</button></form></div><div class="panel" style="margin-top:18px"><h3>Записи</h3><div id="itemsList"></div></div></div></div></div></div></section></main><script type="module" src="admin.js"></script></body></html>
 
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>admin.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>Админка</h1><p>Будущая панель управления объявлениями и новостями.</p>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
+import {auth,db,signInWithEmailAndPassword,signOut,onAuthStateChanged,collection,addDoc,updateDoc,deleteDoc,doc,onSnapshot,query,orderBy,serverTimestamp} from './firebase.js';
+let current='announcements', editId=null;
+const names={announcements:'Объявления',news:'Новости',events:'Афиша',places:'Места / бизнес'};
+const loginBox=document.getElementById('loginBox'), adminBox=document.getElementById('adminBox'), list=document.getElementById('itemsList'), status=document.getElementById('status');
+document.getElementById('loginForm').onsubmit=async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,email.value,password.value)}catch(err){status.textContent='Ошибка: '+err.message}};
+document.getElementById('logoutBtn').onclick=()=>signOut(auth);
+onAuthStateChanged(auth,u=>{if(u){loginBox.classList.add('hidden');adminBox.classList.remove('hidden');adminEmail.textContent=u.email;load()}else{loginBox.classList.remove('hidden');adminBox.classList.add('hidden')}});
+document.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>{current=b.dataset.col;editId=null;document.querySelectorAll('[data-col]').forEach(x=>x.classList.remove('active'));b.classList.add('active');formTitle.textContent='Добавить: '+names[current];contentForm.reset();load()});
+contentForm.onsubmit=async e=>{e.preventDefault();const data={title:{ru:titleRu.value.trim(),en:titleEn.value.trim()},text:{ru:textRu.value.trim(),en:textEn.value.trim()},category:category.value.trim(),phone:phone.value.trim(),imageUrl:imageUrl.value.trim(),updatedAt:serverTimestamp()};if(!data.title.ru||!data.text.ru){alert('Заполни RU заголовок и текст');return} if(editId){await updateDoc(doc(db,current,editId),data);editId=null}else{data.createdAt=serverTimestamp();await addDoc(collection(db,current),data)} e.target.reset();formTitle.textContent='Добавить: '+names[current]};
+function load(){onSnapshot(query(collection(db,current),orderBy('createdAt','desc')),snap=>{if(snap.empty){list.innerHTML='<p>Пока записей нет.</p>';return} list.innerHTML=snap.docs.map(d=>{const x=d.data();return `<div class="item"><div><b>${x.title?.ru||''}</b><p>${x.text?.ru||''}</p>${x.category?`<span class="tag">${x.category}</span>`:''}</div><div><button class="small-btn edit" data-edit="${d.id}">Редактировать</button> <button class="small-btn del" data-del="${d.id}">Удалить</button></div></div>`}).join('');document.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{if(confirm('Удалить?'))await deleteDoc(doc(db,current,b.dataset.del))});document.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>{const d=snap.docs.find(x=>x.id===b.dataset.edit).data();editId=b.dataset.edit;titleRu.value=d.title?.ru||'';titleEn.value=d.title?.en||'';textRu.value=d.text?.ru||'';textEn.value=d.text?.en||'';category.value=d.category||'';phone.value=d.phone||'';imageUrl.value=d.imageUrl||'';formTitle.textContent='Редактирование';scrollTo({top:0,behavior:'smooth'})})})}
 
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Объявления</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Объявления.</h1><p class="lead">Публикуются через личную админку.</p></div></section><section><div class="container"><div id="announcementsList" class="grid3"></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
 
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>history.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>История Когалыма</h1><p>Когалым начал развиваться в 1975 году благодаря геологам и нефтяникам.</p>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
+import { db, collection, onSnapshot, query, orderBy } from './firebase.js';
+function show(col,id,empty){
+ const el=document.getElementById(id); if(!el)return;
+ onSnapshot(query(collection(db,col),orderBy('createdAt','desc')),snap=>{
+  if(snap.empty){el.innerHTML=`<div class="card"><p>${empty}</p></div>`;return}
+  el.innerHTML=snap.docs.map(d=>{const x=d.data(); const img=x.imageUrl?`<img src="${x.imageUrl}">`:`<div class="visual">${(x.title?.ru||'К')[0]}</div>`;
+   return `<article class="card news-card">${img}<h3>${x.title?.ru||''}</h3><p>${x.text?.ru||''}</p>${x.phone?`<p><b>Тел:</b> ${x.phone}</p>`:''}${x.category?`<span class="tag">${x.category}</span>`:''}</article>`}).join('');
+ },err=>{el.innerHTML=`<div class="card"><p>Ошибка Firebase: ${err.message}</p></div>`})
+}
+show('announcements','announcementsList','Пока объявлений нет.');
+show('news','newsList','Пока новостей нет.');
+show('events','eventsList','Пока событий нет.');
+show('places','placesList','Пока мест нет.');
 
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Афиша</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Афиша и новости.</h1><p class="lead">События, мероприятия и городские новости.</p></div></section><section><div class="container"><div class="head"><h2>Афиша</h2></div><div id="eventsList" class="grid3"></div></div></section><section><div class="container"><div class="head"><h2>Новости</h2></div><div id="newsList" class="grid3"></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
 
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>index.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>Открой Когалым</h1><p>Современный туристический портал города Когалым.</p><a class='btn' href='history.html'>История города</a>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyA_Y0BsSrcgxvSExq1oH30_zMR-sjXI71I",
+  authDomain: "kogalym-site.firebaseapp.com",
+  projectId: "kogalym-site",
+  storageBucket: "kogalym-site.firebasestorage.app",
+  messagingSenderId: "859257999395",
+  appId: "1:859257999395:web:8f048a2ced0e9f9f796196",
+  measurementId: "G-KDR1BLZT5R"
+};
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export { signInWithEmailAndPassword, signOut, onAuthStateChanged, collection, addDoc, updateDoc, deleteDoc, doc, onSnapshot, query, orderBy, serverTimestamp };
 
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>История</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>История Когалыма.</h1><p class="lead">1975 — начало истории. 1985 — статус города. 2025 — 50-летие и памятные монеты Банка России.</p></div></section><section><div class="container grid2"><div class="card"><h3>1975</h3><p>Первые геологи и гидрологи на берегу Ингу-Ягуна.</p></div><div class="card"><h3>1985</h3><p>Когалым получил статус города.</p></div><div class="card"><h3>2025</h3><p>50-летие города и монеты ЦБ: 3 ₽ серебро и 100 ₽ золото.</p></div><div class="card"><h3>Сегодня</h3><p>Современный северный город с туристическим потенциалом.</p></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Открой Когалым</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><div class="kicker">Когалым · Югра · живой городской портал</div><h1>Когалым — город Севера, нефти и сильного характера.</h1><p class="lead">Портал с маршрутами, историей, афишей, объявлениями, рекламой и личной админкой.</p><a class="btn" href="announcements.html">Смотреть объявления</a></div></section><section><div class="container"><div class="head"><h2>Свежие объявления</h2><p class="sub">Добавляются через админку.</p></div><div id="announcementsList" class="grid3"></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Реклама</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Реклама и партнёрство.</h1><p class="lead">Кафе, гостиницы, услуги, мероприятия, партнёрские карточки.</p></div></section><section><div class="container grid2"><div class="card"><h3>Форматы</h3><p><span class="tag">Премиум-карточки</span><span class="tag">Реклама маршрута</span><span class="tag">Афиша</span></p></div><div class="card"><h3>Контакт</h3><p>+7 904 477-47-46</p><a class="btn blue" href="tel:+79044774746">Позвонить</a></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Места</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Места и бизнес.</h1><p class="lead">Достопримечательности, кафе, гостиницы и точки маршрутов.</p></div></section><section><div class="container"><div id="placesList" class="grid3"></div></div></section><section><div class="container grid3"><div class="card"><div class="visual">Г</div><h3>СКК «Галактика»</h3><p>Семейный отдых и современная архитектура.</p></div><div class="card"><div class="visual">М</div><h3>Музей</h3><p>История города и Югры.</p></div><div class="card"><div class="visual">П</div><h3>Парк Победы</h3><p>Прогулочная зона.</p></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Маршруты</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></header><main><section class="hero"><div class="container"><h1>Маршруты Когалыма.</h1><p class="lead">Когалым за один день, юбилейный маршрут, семейный и зимний маршруты.</p></div></section><section><div class="container grid3"><div class="card"><h3>Когалым за один день</h3><p>Центр → музей → Парк Победы → Галактика.</p></div><div class="card"><h3>Юбилейный</h3><p>История основания и символы 50-летия.</p></div><div class="card"><h3>Семейный</h3><p>Галактика, прогулки, кафе.</p></div></div></section></main><footer><div class="container"><b>Открой Когалым</b> · туристический портал · Spartak5589 · +7 904 477-47-46</div></footer><script type="module" src="app.js"></script></body></html>
 
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>partners.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>Реклама и партнёры</h1><p>Размещение бизнеса и объявлений на портале.</p>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
-
-
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>places.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>Достопримечательности</h1><p>СКК «Галактика», музей, Парк Победы и природа Югры.</p>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
-
-
-<!doctype html>
-<html lang="ru">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>routes.html</title>
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#eef6fb;color:#0b1b2b}
-header{background:#0067b1;color:#fff;padding:18px}
-nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
-main{padding:40px;max-width:1100px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:18px;margin-bottom:20px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-h1{font-size:48px}
-.btn{display:inline-block;background:#f2c94c;color:#111;padding:14px 18px;border-radius:12px;text-decoration:none;font-weight:bold}
-footer{background:#07111f;color:#dce8f5;padding:25px;text-align:center}
-</style>
-</head>
-<body>
-<header>
-<nav>
-<a href="index.html">Главная</a>
-<a href="history.html">История</a>
-<a href="places.html">Места</a>
-<a href="routes.html">Маршруты</a>
-<a href="partners.html">Реклама</a>
-<a href="admin.html">Админка</a>
-<a href="en/index.html">EN</a>
-</nav>
-</header>
-<main>
-<div class="card">
-<h1>Маршруты</h1><p>Туристические маршруты по Когалыму.</p>
-</div>
-</main>
-<footer>
-+7 904 477-47-46 · Открой Когалым
-</footer>
-</body>
-</html>
+:root{--blue:#0067b1;--green:#0f8a55;--gold:#f2c94c;--dark:#06111f;--ink:#0b1b2b;--muted:#66788a;--line:rgba(11,27,43,.13);--bg:#eef7fb}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef7fb);color:var(--ink)}a{text-decoration:none;color:inherit}.container{max-width:1180px;margin:auto;padding:0 22px}
+header{position:sticky;top:0;z-index:20;background:rgba(248,251,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:14px}.logo{font-weight:950;font-size:22px;display:flex;gap:12px;align-items:center}.logo span{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--green));display:grid;place-items:center;color:white}.links{display:flex;gap:14px;font-size:14px;font-weight:800;flex-wrap:wrap}.phone{padding:11px 14px;border-radius:999px;background:var(--blue);color:#fff;font-weight:900}
+.hero{padding:88px 0;background:radial-gradient(circle at 80% 10%,rgba(242,201,76,.28),transparent 25%),linear-gradient(135deg,#0067b1,#0f8a55);color:#fff}.kicker{display:inline-block;padding:9px 13px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.14);font-weight:850}h1{font-size:clamp(42px,6vw,82px);letter-spacing:-.06em;line-height:.95;margin:24px 0 18px}.lead{font-size:20px;line-height:1.6;max-width:780px;color:rgba(255,255,255,.9)}
+section{padding:68px 0}.head{display:flex;justify-content:space-between;gap:25px;align-items:end;margin-bottom:28px}h2{font-size:clamp(32px,4vw,56px);line-height:1;margin:0}.sub{font-size:18px;line-height:1.6;color:var(--muted);max-width:720px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:white;border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:0 20px 60px rgba(0,65,120,.08)}.card h3{font-size:24px;margin:0 0 10px}.card p{color:var(--muted);line-height:1.6}.visual{height:200px;border-radius:22px;margin:-4px -4px 18px;background:linear-gradient(135deg,var(--blue),var(--green));display:grid;place-items:center;color:white;font-size:46px;font-weight:950}.visual img{width:100%;height:100%;object-fit:cover;border-radius:22px}.btn{display:inline-flex;padding:14px 19px;border-radius:16px;background:var(--gold);color:#17200d;font-weight:950;border:0;cursor:pointer}.btn.blue{background:var(--blue);color:white}.btn.ghost{background:#fff;border:1px solid var(--line)}
+.tag{display:inline-flex;margin:4px 6px 4px 0;padding:7px 10px;border-radius:999px;background:#eef7fb;border:1px solid var(--line);font-weight:800;font-size:13px}.news-card img{width:100%;height:190px;object-fit:cover;border-radius:18px;margin-bottom:14px;background:#e4eef5}
+.admin-wrap{display:grid;grid-template-columns:300px 1fr;gap:22px}.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px}.admin-menu button{display:block;width:100%;padding:13px;border-radius:14px;border:1px solid var(--line);background:#f8fbff;margin-bottom:10px;text-align:left;font-weight:900;cursor:pointer}.admin-menu button.active{background:var(--blue);color:#fff}.form input,.form textarea{width:100%;padding:14px;border-radius:14px;border:1px solid var(--line);font:inherit;margin-bottom:11px}.form label{font-weight:900;font-size:13px;margin:10px 0 6px;display:block}.hidden{display:none!important}.status{padding:10px 12px;border-radius:12px;background:#eef7fb;margin:10px 0}.item{display:flex;justify-content:space-between;gap:15px;border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:12px}.small-btn{border:0;border-radius:10px;padding:9px 11px;font-weight:900;cursor:pointer}.del{background:#ffe5e5;color:#9f1111}.edit{background:#e7f3ff;color:#005896}
+footer{padding:34px 0;background:var(--dark);color:#dbe8f5}@media(max-width:900px){.links{display:none}.grid3,.grid2,.admin-wrap{grid-template-columns:1fr}.head{display:block}.phone{display:none}}
