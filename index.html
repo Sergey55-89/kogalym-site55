@@ -1,1 +1,69 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Открой Когалым</title><link rel="stylesheet" href="styles.css"></head><body><header><div class="container nav"><a class="logo" href="index.html"><span>К</span>Открой Когалым</a><nav class="links"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></nav><div class="right"><button class="lang-btn" onclick="toggleLang()">RU/EN</button><button class="menu-btn" onclick="toggleMenu()">Меню</button><a class="phone" href="tel:+79044774746">+7 904 477-47-46</a></div></div><div id="mobileMenu" class="mobile-menu"><a href="index.html">Главная</a><a href="history.html">История</a><a href="places.html">Места</a><a href="routes.html">Маршруты</a><a href="announcements.html">Объявления</a><a href="events.html">Афиша</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a></div></header><main><section class="hero"><div class="container"><div class="kicker">Когалым · Югра · городской портал</div><h1>Когалым — город Севера, нефти и сильного характера.</h1><p class="lead">Портал с маршрутами, историей, афишей, объявлениями, рекламой, картой и личной админкой.</p><div class="hero-actions"><a class="btn" href="routes.html">Исследовать Когалым</a><a class="btn ghost" href="announcements.html">Объявления</a></div><div class="timeline"><div class="time-card"><b>1975</b><span>начало истории</span></div><div class="time-card"><b>1985</b><span>статус города</span></div><div class="time-card"><b>2025</b><span>50-летие</span></div></div></div></section><section><div class="container split"><div><h2>Почему Когалым цепляет</h2><p class="sub">Это не просто северный город. Здесь есть характер, сильная городская история, современные места и маршруты, которые можно превратить в нормальный туристический продукт.</p><div class="reason-grid"><div class="reason"><div class="icon">1</div><div><b>Северная атмосфера</b><p>Зима, огни, широкие улицы и ощущение города, построенного трудом.</p></div></div><div class="reason"><div class="icon">2</div><div><b>Сильные места</b><p>Галактика, парк 50-летия, набережная, городские символы и новые точки притяжения.</p></div></div><div class="reason"><div class="icon">3</div><div><b>Живой портал</b><p>Объявления, афиша, новости и реклама добавляются через админку.</p></div></div></div></div><div class="big-photo"></div></div></section><section><div class="container"><div class="head"><h2>Город в кадре</h2><p class="sub">Реальные фото Когалыма: Галактика, парк 50-летия, городские символы, зимний город и набережная.</p></div><div class="gallery"><div class="shot"><img src="galaktika.jpg" alt="СКК Галактика"><b>Галактика</b></div><div class="shot"><img src="park-50-let.jpg" alt="Парк 50-летия"><b>Парк 50-летия</b></div><div class="shot"><img src="lukoil-city.webp" alt="Городской символ"><b>Город</b></div><div class="shot"><img src="kogalym-night.jpg" alt="Ночной Когалым"><b>Ночной Когалым</b></div><div class="shot"><img src="embankment.jpg" alt="Набережная"><b>Набережная</b></div></div></div></section><section><div class="container jubilee"><div class="head"><h2>Когалым — 50 лет</h2><p class="sub">В 2025 году город отметил 50-летие. К юбилею Банк России выпустил памятные монеты серии «Города».</p></div><div class="coin-row"><div class="coin silver"><div class="coin-icon">3₽</div><div><h3>Серебряная монета</h3><p>На реверсе — «Слава труду» на фоне нефтяной вышки и станка-качалки.</p></div></div><div class="coin"><div class="coin-icon">100₽</div><div><h3>Золотая монета</h3><p>На реверсе — «Капля жизни», храм святой мученицы Татианы и городские дома.</p></div></div></div></div></section><section><div class="container"><div class="head"><h2>Свежие объявления</h2><p class="sub">Добавляются через админку и сразу появляются на сайте.</p></div><input id="annSearch" class="search" placeholder="Поиск по объявлениям"><div id="annFilters" class="filters" style="margin-top:18px"></div><div id="announcementsList" class="grid3"></div></div></section></main><footer><div class="container footer-grid"><div><h3>Открой Когалым</h3><p>Туристический портал города: маршруты, история, объявления, афиша и реклама.</p></div><div><h3>Связь</h3><p><a href="tel:+79044774746">+7 904 477-47-46</a></p><p>Разработка: Spartak5589</p></div><div><h3>Разделы</h3><p><a href="announcements.html">Объявления</a><br><a href="events.html">Афиша</a><br><a href="partners.html">Реклама</a></p></div></div></footer><script type="module" src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Открой Когалым</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+<nav>
+<div class="logo">Открой Когалым</div>
+<ul>
+<li>Главная</li>
+<li>Маршруты</li>
+<li>Афиша</li>
+<li>Места</li>
+<li>Объявления</li>
+</ul>
+</nav>
+
+<div class="hero-content">
+<h1>Когалым — северный город с характером</h1>
+<p>Маршруты, афиша, места, городская атмосфера и живые объявления.</p>
+
+<div class="buttons">
+<a href="#">Маршруты</a>
+<a href="#">Афиша</a>
+</div>
+</div>
+</header>
+
+<section class="places">
+<h2>Куда сходить</h2>
+
+<div class="cards">
+<div class="card">
+<img src="https://picsum.photos/800/500?1">
+<h3>Галактика</h3>
+<p>Главный центр отдыха и событий.</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/800/500?2">
+<h3>Парк 50-летия</h3>
+<p>Прогулки и атмосфера Севера.</p>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/800/500?3">
+<h3>Набережная</h3>
+<p>Лучшее место для вечерних прогулок.</p>
+</div>
+</div>
+</section>
+
+<section class="events">
+<h2>События недели</h2>
+
+<div class="event-list">
+<div class="event">Фестиваль Севера</div>
+<div class="event">Концерт в Галактике</div>
+<div class="event">Городская ярмарка</div>
+</div>
+</section>
+
+</body>
+</html>
