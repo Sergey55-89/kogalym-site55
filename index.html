@@ -7,104 +7,49 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<header class="topbar">
-  <a class="logo" href="index.html"><span>К</span> Открой Когалым</a>
-  <nav class="nav">
-    <a href="index.html">Главная</a>
-    <a href="routes.html">Маршруты</a>
-    <a href="places.html">Места</a>
-    <a href="announcements.html">Объявления</a>
-    <a href="events.html">Афиша</a>
-    <a href="partners.html">Реклама</a>
-    <a href="admin.html">Админка</a>
+<header class="top">
+  <a class="brand" href="index.html"><img src="kogalym-compass-logo.svg" alt="Открой Когалым"><span>ОТКРОЙ<br>КОГАЛЫМ</span></a>
+  <nav>
+    <a class="active" href="index.html">Главная</a><a href="routes.html">Маршруты</a><a href="places.html">Места</a><a href="events.html">Афиша</a><a href="announcements.html">Объявления</a><a href="partners.html">Реклама</a><a href="admin.html">Админка</a>
   </nav>
-  <a class="phone" href="tel:+79044774746">+7 904 477-47-46</a>
+  <button class="search">⌕</button>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="badge">Когалым · Югра · северный городской портал</div>
-    <h1>Когалым — северный город с характером</h1>
-    <p>Маршруты, афиша, места, городская атмосфера, объявления и реклама для бизнеса.</p>
-    <div class="actions">
-      <a href="routes.html" class="btn yellow">Маршруты</a>
-      <a href="events.html" class="btn light">Афиша</a>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="section-head">
-    <h2>Куда сходить</h2>
-    <p>Главные точки города с нормальными локальными фото. Теперь ничего не должно пропадать.</p>
-  </div>
-
-  <div class="cards">
-    <article class="card">
-      <src="galaktika.jpg" alt="СКК Галактика">
-      <div class="card-body">
-        <span class="tag">семейный отдых</span>
-        <h3>СКК «Галактика»</h3>
-        <p>Один из самых узнаваемых объектов Когалыма: отдых, события и городская архитектура.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <src="park-50-let.jpg" alt="Парк 50-летия Когалыма">
-      <div class="card-body">
-        <span class="tag">прогулки</span>
-        <h3>Парк 50-летия</h3>
-        <p>Новая зелёная зона, связанная с юбилеем города и современной городской средой.</p>
-      </div>
-    </article>
-
-    <article class="card">
-      <src="embankment.jpg" alt="Набережная Когалыма">
-      <div class="card-body">
-        <span class="tag">маршрут</span>
-        <h3>Набережная</h3>
-        <p>Спокойное место для прогулок, фото и маршрутов по городской природе.</p>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="section dark">
-  <div class="section-head">
-    <h2>Город в кадре</h2>
-    <p>Фото, которые дают сайту атмосферу настоящего Когалыма.</p>
-  </div>
-
-  <div class="gallery">
-    <div class="shot big"><img src="kogalym-night.jpg" alt=""><b>Ночной Когалым</b></div>
-    <div class="shot"><img src="lukoil-city.webp" alt=""><b>Город</b></div>
-    <div class="shot"><img src="winter-monument.webp" alt=""><b>Зима</b></div>
-    <div class="shot"><img src="galaktika.jpg" alt=""><b>Галактика</b></div>
-    <div class="shot"><img src="embankment.jpg" alt=""><b>Набережная</b></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="feature">
-    <div>
-      <h2>Живой городской портал</h2>
-      <p>Следующий шаг — сделать так, чтобы главная автоматически подтягивала объявления, новости, афишу и рекламу из админки.</p>
-      <div class="mini-grid">
-        <div><b>1975</b><span>начало истории</span></div>
-        <div><b>1985</b><span>статус города</span></div>
-        <div><b>2025</b><span>50-летие</span></div>
+<main class="page">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>КОГАЛЫМ —<br>СЕВЕРНЫЙ ГОРОД<br><span>С ХАРАКТЕРОМ</span></h1>
+      <p>Маршруты, афиша, места, городская атмосфера и объявления для бизнеса и жителей.</p>
+      <div class="actions"><a class="btn primary" href="routes.html">▱ Маршруты</a><a class="btn ghost" href="events.html">▣ Афиша</a></div>
+      <div class="features">
+        <div><b>⌖</b><span>Лучшие места<br>в одном городе</span></div>
+        <div><b>▦</b><span>Афиша и события<br>на каждый день</span></div>
+        <div><b>◁</b><span>Объявления<br>для бизнеса и людей</span></div>
       </div>
     </div>
-    <src="park-50-let.jpg" alt="">
-  </div>
-</section>
+    <img class="crest-big" src="kogalym-compass-logo.svg" alt="Герб Когалыма">
+  </section>
 
-<footer>
-  <b>Открой Когалым</b>
-  <span> · туристический портал · Spartak5589 · </span>
-  <a href="tel:+79044774746">+7 904 477-47-46</a>
-</footer>
+  <section class="dashboard">
+    <div class="places">
+      <div class="section-title"><h2>⌖ Куда сходить</h2><a href="places.html">Все места →</a></div>
+      <div class="cards">
+        <article class="card"><img src="galaktika.jpg" alt="СКК Галактика"><div><h3>СКК «Галактика»</h3><p>Семейный отдых и мероприятия</p><a>→</a></div></article>
+        <article class="card"><img src="park-50-let.jpg" alt="Парк 50-летия"><div><h3>Парк 50-летия Когалыма</h3><p>Прогулки и атмосфера Севера</p><a>→</a></div></article>
+        <article class="card"><img src="embankment.jpg" alt="Набережная"><div><h3>Набережная</h3><p>Лучшее место для прогулок</p><a>→</a></div></article>
+      </div>
+    </div>
 
+    <aside class="events">
+      <div class="section-title"><h2>Афиша / Новости</h2><a href="events.html">Все события →</a></div>
+      <div class="event"><b>24<br><small>МАЯ</small></b><p><strong>День города Когалым</strong><span>Праздничная программа<br>Площадь СКК «Галактика»</span></p><em>18:00</em></div>
+      <div class="event"><b>27<br><small>МАЯ</small></b><p><strong>Концерт группы «ЗВЕРИ»</strong><span>Большой концертный зал</span></p><em>19:00</em></div>
+      <div class="event"><b>01<br><small>ИЮНЯ</small></b><p><strong>Детский фестиваль</strong><span>Парк 50-летия Когалыма</span></p><em>12:00</em></div>
+      <a class="all-events" href="events.html">▣ Вся афиша</a>
+    </aside>
+  </section>
+
+  <section class="partners"><span>Партнёры портала</span><b>ЛУКОЙЛ</b><b>КОГАЛЫМ</b><b>Газпром нефть</b><b>Ростелеком</b><b>СБЕР</b><b>Галактика СКК</b></section>
+</main>
 </body>
 </html>

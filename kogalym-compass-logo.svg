@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<defs>
+<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#06142b"/><stop offset="1" stop-color="#010711"/></linearGradient>
+<linearGradient id="silver" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#b7c9e8"/><stop offset="1" stop-color="#6e88b8"/></linearGradient>
+<linearGradient id="blue" x1="0" x2="1"><stop offset="0" stop-color="#0047ff"/><stop offset="1" stop-color="#23c7ff"/></linearGradient>
+</defs>
+<circle cx="256" cy="256" r="234" fill="url(#bg)" stroke="url(#silver)" stroke-width="14"/>
+<circle cx="256" cy="256" r="205" fill="none" stroke="#154caa" stroke-width="3" opacity=".75"/>
+<path d="M256 18l14 38h-28zM256 494l-14-38h28zM18 256l38-14v28zM494 256l-38 14v-28z" fill="url(#silver)"/>
+<text x="256" y="58" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">N</text>
+<text x="256" y="475" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">S</text>
+<text x="45" y="266" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">W</text>
+<text x="467" y="266" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#fff">E</text>
+<path d="M220 110 L145 245 H190 L128 335 H220 V382 H292 V335 H384 L322 245 H367 L292 110 Z" fill="url(#silver)"/>
+<path d="M343 150h46v28h-46zM366 120l16 30h-32zM350 178l-55 205M382 178l55 205M318 265h96M305 320h122M330 383h72M332 215l70 55M400 215l-70 55M315 383h110" stroke="url(#silver)" stroke-width="11" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M82 326 C150 285 205 365 278 323 C332 291 388 299 432 330" fill="none" stroke="#e9f2ff" stroke-width="16" stroke-linecap="round"/>
+<path d="M90 356 C160 315 220 392 290 352 C345 320 390 333 430 357" fill="none" stroke="url(#blue)" stroke-width="15" stroke-linecap="round"/>
+<path d="M100 386 C162 352 230 414 300 382 C350 358 390 368 420 388" fill="none" stroke="#6fa4ff" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+<text x="256" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="900" fill="url(#silver)" letter-spacing="5">КОГАЛЫМ</text>
+</svg>
