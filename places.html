@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Места — Открой Когалым</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* FIX: единая шапка как на главной/маршрутах */
+.header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:94px;
+padding:0 34px;
+display:grid;
+grid-template-columns:260px 1fr auto;
+align-items:center;
+gap:24px;
+background:rgba(2,8,20,.84);
+backdrop-filter:blur(16px);
+border-bottom:1px solid rgba(255,255,255,.06);
+z-index:100;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:14px;
+font-family:Georgia,'Times New Roman',serif;
+font-size:22px;
+line-height:1.04;
+letter-spacing:.01em;
+}
+
+.brand img{
+width:64px;
+height:64px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.header nav{
+display:flex;
+justify-content:center;
+gap:30px;
+font-size:16px;
+font-weight:700;
+}
+
+.header nav a{
+padding:34px 0 12px;
+border-bottom:2px solid transparent;
+color:#f0f5ff;
+text-decoration:none;
+}
+
+.header nav a.active,
+.header nav a:hover{
+color:#f2d08a;
+border-color:#d6a24b;
+}
+
+.header-spacer{
+height:94px;
+}
+
+.places-page{
+min-height:100vh;
+padding:58px 28px 70px;
+background:
+linear-gradient(180deg,rgba(2,8,20,.78),#020814 46%),
+url('images/hero.jpg') center/cover fixed;
+color:white;
+font-family:Arial,sans-serif;
+}
+
+.container{
+max-width:1450px;
+margin:0 auto;
+}
+
+.badge{
+display:inline-flex;
+padding:10px 16px;
+border-radius:999px;
+background:rgba(214,162,75,.12);
+border:1px solid rgba(214,162,75,.28);
+color:#f2d08a;
+font-weight:800;
+margin-bottom:18px;
+}
+
+h1{
+font-family:Georgia,'Times New Roman',serif;
+font-size:82px;
+line-height:.92;
+margin:0 0 18px;
+font-weight:500;
+}
+
+.top-text{
+max-width:760px;
+font-size:20px;
+line-height:1.6;
+color:#dbe6f8;
+margin-bottom:44px;
+}
+
+.week-place{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+background:rgba(8,20,42,.88);
+border-radius:28px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 30px 80px rgba(0,0,0,.35);
+margin-bottom:40px;
+}
+
+.week-image{
+min-height:470px;
+background:url('images/galaktika.jpg') center/cover;
+position:relative;
+}
+
+.week-image::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.72));
+}
+
+.week-tag{
+position:absolute;
+left:22px;
+top:22px;
+z-index:2;
+padding:10px 16px;
+border-radius:999px;
+background:rgba(0,0,0,.5);
+border:1px solid rgba(255,255,255,.15);
+font-weight:900;
+}
+
+.week-content{
+padding:40px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.week-content h2{
+font-family:Georgia,'Times New Roman',serif;
+font-size:58px;
+margin:0 0 16px;
+font-weight:500;
+}
+
+.rating{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.rating span{
+padding:8px 13px;
+border-radius:999px;
+background:rgba(214,162,75,.12);
+border:1px solid rgba(214,162,75,.28);
+color:#f2d08a;
+font-weight:800;
+}
+
+.week-content p{
+font-size:18px;
+line-height:1.7;
+color:#dce8f8;
+margin-bottom:28px;
+}
+
+.info-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+margin-bottom:28px;
+}
+
+.info{
+padding:18px;
+border-radius:16px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+}
+
+.info b{
+display:block;
+margin-bottom:8px;
+color:#f2d08a;
+}
+
+.buttons{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:15px 24px;
+border-radius:12px;
+font-weight:900;
+text-decoration:none;
+transition:.25s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+.gold{
+background:linear-gradient(135deg,#f1d493,#b88631);
+color:#08111f;
+}
+
+.dark{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.12);
+color:#fff;
+}
+
+.section-title{
+font-family:Georgia,'Times New Roman',serif;
+font-size:48px;
+margin:0 0 26px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
+}
+
+.card{
+background:rgba(8,20,42,.86);
+border-radius:24px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+transition:.28s;
+backdrop-filter:blur(14px);
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 24px 60px rgba(0,0,0,.36);
+border-color:rgba(214,162,75,.32);
+}
+
+.card-image{
+height:250px;
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+.card-image::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.82));
+}
+
+.place-label{
+position:absolute;
+left:16px;
+bottom:16px;
+z-index:2;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(0,0,0,.55);
+font-weight:800;
+}
+
+.card-content{
+padding:22px;
+min-height:210px;
+display:flex;
+flex-direction:column;
+}
+
+.card-content h3{
+font-family:Georgia,'Times New Roman',serif;
+font-size:34px;
+margin:0 0 12px;
+font-weight:500;
+}
+
+.card-content p{
+color:#dbe6f8;
+line-height:1.65;
+font-size:16px;
+margin-bottom:18px;
+flex:1;
+}
+
+.meta{
+display:flex;
+justify-content:space-between;
+font-size:14px;
+color:#f2d08a;
+font-weight:800;
+}
+
+@media(max-width:1100px){
+.header{
+position:relative;
+height:auto;
+grid-template-columns:1fr;
+padding:18px;
+}
+.header nav{
+justify-content:flex-start;
+flex-wrap:wrap;
+gap:18px;
+}
+.header nav a{
+padding:8px 0;
+}
+.header-spacer{
+height:0;
+}
+.places-page{
+padding:42px 16px 60px;
+}
+.grid{
+grid-template-columns:1fr;
+}
+.week-place{
+grid-template-columns:1fr;
+}
+.info-grid{
+grid-template-columns:1fr;
+}
+h1{
+font-size:52px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+<a class="brand" href="index.html">
+<img src="images/logo.png" alt="Открой Когалым">
+<span>ОТКРОЙ<br>КОГАЛЫМ</span>
+</a>
+
+<nav>
+<a href="index.html">Главная</a>
+<a href="routes.html">Маршруты</a>
+<a class="active" href="places.html">Места</a>
+<a href="events.html">Афиша</a>
+<a href="announcements.html">Объявления</a>
+<a href="admin.html">Админка</a>
+</nav>
+</header>
+
+<div class="header-spacer"></div>
+
+<main class="places-page">
+<div class="container">
+
+<div class="badge">Лучшие места города</div>
+
+<h1>МЕСТА<br>КОГАЛЫМА</h1>
+
+<div class="top-text">
+Главные городские локации, прогулочные зоны, культурные пространства
+и атмосферные места северного Когалыма.
+</div>
+
+<section class="week-place">
+<div class="week-image">
+<div class="week-tag">Место недели</div>
+</div>
+
+<div class="week-content">
+<h2>СКК «Галактика»</h2>
+
+<div class="rating">
+<span>★ 4.9</span>
+<span>Центр города</span>
+<span>Открыто до 23:00</span>
+</div>
+
+<p>
+Главная современная площадка Когалыма:
+концерты, отдых, кино, мероприятия и вечерняя атмосфера города.
+</p>
+
+<div class="info-grid">
+<div class="info"><b>Категория</b>Культурный центр</div>
+<div class="info"><b>Лучшее время</b>Вечер и выходные</div>
+<div class="info"><b>Подходит для</b>Семьи и прогулок</div>
+</div>
+
+<div class="buttons">
+<a class="btn gold" href="routes.html">Построить маршрут</a>
+<a class="btn dark" href="#">Подробнее</a>
+</div>
+</div>
+</section>
+
+<h2 class="section-title">Популярные места</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-image" style="background-image:url('images/park.jpg')">
+<div class="place-label">Парк</div>
+</div>
+<div class="card-content">
+<h3>Парк 50-летия</h3>
+<p>Популярное место для прогулок, отдыха и спокойной северной атмосферы.</p>
+<div class="meta"><span>★ 4.8</span><span>Прогулки</span></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-image" style="background-image:url('images/embankment.jpg')">
+<div class="place-label">Набережная</div>
+</div>
+<div class="card-content">
+<h3>Набережная</h3>
+<p>Лучшее место для вечерних прогулок и красивых фотографий города.</p>
+<div class="meta"><span>★ 4.7</span><span>Фото-точки</span></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-image" style="background-image:url('images/night.jpg')">
+<div class="place-label">Ночной город</div>
+</div>
+<div class="card-content">
+<h3>Ночной Когалым</h3>
+<p>Подсветка улиц, северная атмосфера и лучшие виды города ночью.</p>
+<div class="meta"><span>★ 4.9</span><span>Вечер</span></div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-image" style="background-image:url('images/lukoil.webp')">
+<div class="place-label">Символ города</div>
+</div>
+<div class="card-content">
+<h3>ЛУКОЙЛ</h3>
+<p>Один из главных символов Когалыма и нефтяной истории региона.</p>
+<div class="meta"><span>★ 4.6</span><span>История</span></div>
+</div>
+</div>
+
+</div>
+</div>
+</main>
+
+</body>
+</html>
