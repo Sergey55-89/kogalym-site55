@@ -6,31 +6,21 @@
 <title>Маршруты — Открой Когалым</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.routes-page{min-height:100vh;padding:130px 32px 70px;background:linear-gradient(180deg,rgba(2,8,20,.78),#020814 42%),url('images/hero.jpg') center top/cover fixed}
-.routes-container{max-width:1420px;margin:0 auto}
-.routes-kicker{display:inline-flex;padding:9px 14px;border-radius:999px;background:rgba(214,162,75,.12);border:1px solid rgba(214,162,75,.32);color:#f2d08a;font-weight:800;margin-bottom:18px}
-.routes-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(44px,5vw,76px);line-height:.98;font-weight:500;text-transform:uppercase;margin-bottom:20px}
-.routes-hero p{max-width:760px;color:#dce8f8;font-size:20px;line-height:1.6;margin-bottom:40px}
-.route-list{display:grid;gap:28px}
-.route-card{display:grid;grid-template-columns:420px 1fr;overflow:hidden;border-radius:24px;background:rgba(5,20,39,.84);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(16px);box-shadow:0 24px 70px rgba(0,0,0,.34)}
-.route-photo{min-height:410px;background-size:cover;background-position:center;position:relative}
-.route-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.68))}
-.route-label{position:absolute;left:22px;bottom:22px;z-index:2;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.50);border:1px solid rgba(255,255,255,.18);color:#fff;font-weight:900}
-.route-body{padding:30px}
-.route-body h2{font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:500;line-height:1.05}
-.route-meta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 22px}
-.route-meta span{padding:8px 12px;border-radius:999px;background:rgba(214,162,75,.12);border:1px solid rgba(214,162,75,.28);color:#f2d08a;font-size:14px;font-weight:800}
-.route-desc{color:#dbe7f8;font-size:17px;line-height:1.65;max-width:780px;margin-bottom:24px}
-.route-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
-.step{min-height:136px;border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.10);background-size:cover;background-position:center}
-.step:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.75))}
-.step b{position:absolute;top:12px;left:12px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f1d493,#b88631);color:#08111f;font-weight:950}
-.step span{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;font-weight:900;color:#fff;line-height:1.25}
-.route-actions{display:flex;gap:14px;flex-wrap:wrap}
-.route-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:12px;font-weight:900;border:1px solid rgba(255,255,255,.12)}
-.route-btn.gold{background:linear-gradient(135deg,#f1d493,#b88631);color:#08111f;border:none}
-.route-btn.dark{background:rgba(255,255,255,.04);color:#fff}
-@media(max-width:1050px){.routes-page{padding:42px 16px}.route-card{grid-template-columns:1fr}.route-photo{min-height:280px}.route-steps{grid-template-columns:1fr}.route-body h2{font-size:30px}}
+.header{
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 32px;
+  box-sizing:border-box;
+}
+
+.header-actions{
+  margin-left:auto;
+}
+
+.routes-page{
+  overflow-x:hidden;
+}
+
 </style>
 </head>
 <body>
