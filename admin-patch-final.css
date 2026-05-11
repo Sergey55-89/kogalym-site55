@@ -107,3 +107,56 @@ font-size:44px;
 }
 
 }
+.site-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+padding-top:20px;
+margin-bottom:60px;
+}
+
+.site-header .logo{
+position:relative;
+top:auto;
+left:auto;
+}
+
+.site-header .main-nav{
+position:relative;
+top:auto;
+left:auto;
+display:flex;
+gap:32px;
+margin-left:auto;
+}
+
+.site-header .header-actions{
+display:flex;
+align-items:center;
+gap:18px;
+position:relative;
+top:auto;
+right:auto;
+}
+
+.weather-widget{
+display:flex;
+flex-direction:column;
+align-items:flex-start;
+line-height:1.2;
+}
+
+@media(max-width:900px){
+
+.site-header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.site-header .main-nav{
+flex-wrap:wrap;
+margin-left:0;
+}
+
+}
