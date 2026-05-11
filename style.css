@@ -190,3 +190,14 @@ margin-left:auto;
 .header nav a.active::after{
   bottom:-12px !important;
 }
+/* ===== ЕДИНЫЙ ФОН САЙТА ===== */
+
+body{
+background:
+linear-gradient(180deg,rgba(2,8,20,.78),#020814 52%),
+url('images/hero.jpg') center/cover fixed;
+background-repeat:no-repeat;
+background-size:cover;
+background-attachment:fixed;
+color:#fff;
+}
