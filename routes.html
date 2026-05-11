@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маршруты — Открой Когалым</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.routes-page{min-height:100vh;padding:130px 32px 70px;background:linear-gradient(180deg,rgba(2,8,20,.78),#020814 42%),url('images/hero.jpg') center top/cover fixed}
+.routes-container{max-width:1420px;margin:0 auto}
+.routes-kicker{display:inline-flex;padding:9px 14px;border-radius:999px;background:rgba(214,162,75,.12);border:1px solid rgba(214,162,75,.32);color:#f2d08a;font-weight:800;margin-bottom:18px}
+.routes-hero h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(44px,5vw,76px);line-height:.98;font-weight:500;text-transform:uppercase;margin-bottom:20px}
+.routes-hero p{max-width:760px;color:#dce8f8;font-size:20px;line-height:1.6;margin-bottom:40px}
+.route-list{display:grid;gap:28px}
+.route-card{display:grid;grid-template-columns:420px 1fr;overflow:hidden;border-radius:24px;background:rgba(5,20,39,.84);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(16px);box-shadow:0 24px 70px rgba(0,0,0,.34)}
+.route-photo{min-height:410px;background-size:cover;background-position:center;position:relative}
+.route-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.68))}
+.route-label{position:absolute;left:22px;bottom:22px;z-index:2;padding:10px 14px;border-radius:999px;background:rgba(0,0,0,.50);border:1px solid rgba(255,255,255,.18);color:#fff;font-weight:900}
+.route-body{padding:30px}
+.route-body h2{font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:500;line-height:1.05}
+.route-meta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 22px}
+.route-meta span{padding:8px 12px;border-radius:999px;background:rgba(214,162,75,.12);border:1px solid rgba(214,162,75,.28);color:#f2d08a;font-size:14px;font-weight:800}
+.route-desc{color:#dbe7f8;font-size:17px;line-height:1.65;max-width:780px;margin-bottom:24px}
+.route-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:26px}
+.step{min-height:136px;border-radius:16px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.10);background-size:cover;background-position:center}
+.step:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.75))}
+.step b{position:absolute;top:12px;left:12px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#f1d493,#b88631);color:#08111f;font-weight:950}
+.step span{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;font-weight:900;color:#fff;line-height:1.25}
+.route-actions{display:flex;gap:14px;flex-wrap:wrap}
+.route-btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 22px;border-radius:12px;font-weight:900;border:1px solid rgba(255,255,255,.12)}
+.route-btn.gold{background:linear-gradient(135deg,#f1d493,#b88631);color:#08111f;border:none}
+.route-btn.dark{background:rgba(255,255,255,.04);color:#fff}
+@media(max-width:1050px){.routes-page{padding:42px 16px}.route-card{grid-template-columns:1fr}.route-photo{min-height:280px}.route-steps{grid-template-columns:1fr}.route-body h2{font-size:30px}}
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html"><img src="images/logo.png" alt="Открой Когалым"><span>ОТКРОЙ<br>КОГАЛЫМ</span></a>
+  <nav><a href="index.html">Главная</a><a class="active" href="routes.html">Маршруты</a><a href="places.html">Места</a><a href="events.html">Афиша</a><a href="announcements.html">Объявления</a><a href="admin.html">Админка</a></nav>
+</header>
+<main class="routes-page">
+<div class="routes-container">
+<section class="routes-hero">
+<div class="routes-kicker">Готовые прогулочные сценарии</div>
+<h1>Маршруты<br>по Когалыму</h1>
+<p>Не просто список мест, а готовые прогулки: куда идти, что смотреть, где сделать фото и сколько времени заложить.</p>
+</section>
+<section class="route-list">
+<article class="route-card">
+<div class="route-photo" style="background-image:url('images/galaktika.jpg')"><div class="route-label">Маршрут 01</div></div>
+<div class="route-body"><h2>Центр и СКК «Галактика»</h2><div class="route-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div><p class="route-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p><div class="route-steps"><div class="step" style="background-image:url('images/galaktika.jpg')"><b>1</b><span>СКК «Галактика»</span></div><div class="step" style="background-image:url('images/night.jpg')"><b>2</b><span>Вечерние улицы</span></div><div class="step" style="background-image:url('images/lukoil.webp')"><b>3</b><span>Городской символ</span></div></div><div class="route-actions"><a class="route-btn gold" href="#">Открыть маршрут</a><a class="route-btn dark" href="places.html">Смотреть места</a></div></div>
+</article>
+<article class="route-card">
+<div class="route-photo" style="background-image:url('images/park.jpg')"><div class="route-label">Маршрут 02</div></div>
+<div class="route-body"><h2>Парк 50-летия и набережная</h2><div class="route-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div><p class="route-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p><div class="route-steps"><div class="step" style="background-image:url('images/park.jpg')"><b>1</b><span>Парк 50-летия</span></div><div class="step" style="background-image:url('images/embankment.jpg')"><b>2</b><span>Набережная</span></div><div class="step" style="background-image:url('images/night.jpg')"><b>3</b><span>Вид на город</span></div></div><div class="route-actions"><a class="route-btn gold" href="#">Открыть маршрут</a><a class="route-btn dark" href="places.html">Смотреть места</a></div></div>
+</article>
+<article class="route-card">
+<div class="route-photo" style="background-image:url('images/night.jpg')"><div class="route-label">Маршрут 03</div></div>
+<div class="route-body"><h2>Ночной Когалым</h2><div class="route-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div><p class="route-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p><div class="route-steps"><div class="step" style="background-image:url('images/night.jpg')"><b>1</b><span>Ночной центр</span></div><div class="step" style="background-image:url('images/galaktika.jpg')"><b>2</b><span>Галактика вечером</span></div><div class="step" style="background-image:url('images/embankment.jpg')"><b>3</b><span>Тихая прогулка</span></div></div><div class="route-actions"><a class="route-btn gold" href="#">Открыть маршрут</a><a class="route-btn dark" href="places.html">Смотреть места</a></div></div>
+</article>
+</section>
+</div>
+</main>
+</body>
+</html>
