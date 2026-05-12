@@ -440,3 +440,13 @@ padding-top:140px !important;
   font-size:23px !important;
   text-align:right !important;
 }
+#adsList .item h2{
+  font-size:42px;
+  font-family:Georgia, serif;
+  margin-bottom:10px;
+}
+
+#adsList .price b{
+  font-size:38px;
+  color:#f2d05a;
+}
