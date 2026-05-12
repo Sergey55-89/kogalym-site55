@@ -397,3 +397,46 @@ font-family:Arial,Helvetica,sans-serif !important;
 .ann-page{
 padding-top:140px !important;
 }
+#adsList{
+  display:grid;
+  gap:18px;
+}
+
+#adsList .item{
+  grid-template-columns:118px 1fr 155px !important;
+  padding:20px !important;
+  align-items:center !important;
+}
+
+#adsList .thumb{
+  width:108px !important;
+  height:88px !important;
+  border-radius:16px !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+
+#adsList .side{
+  display:block !important;
+}
+
+#adsList .cat{
+  display:inline-flex !important;
+  width:auto !important;
+  margin-bottom:10px !important;
+}
+
+#adsList h2{
+  font-size:30px !important;
+  margin:0 0 8px !important;
+}
+
+#adsList p{
+  font-size:16px !important;
+  margin:0 !important;
+}
+
+#adsList .price{
+  font-size:23px !important;
+  text-align:right !important;
+}
