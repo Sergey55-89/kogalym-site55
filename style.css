@@ -213,8 +213,9 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    linear-gradient(180deg,rgba(2,8,20,.78),#020814 52%),
-    url("images/hero.jpg") center/cover no-repeat;
+linear-gradient(90deg, rgba(2,8,20,.72) 0%, rgba(2,8,20,.45) 40%, rgba(2,8,20,.18) 100%),
+linear-gradient(180deg, rgba(2,8,20,.03) 0%, #020814 100%),
+url("images/hero.jpg") center/cover fixed;;
   z-index:-1;
   pointer-events:none;
 }
