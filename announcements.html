@@ -172,7 +172,7 @@ function renderStorageAds() {
     </div>
 
     <div class="price">
-      <b>${ad.price || 'Цена не указана'}</b>
+      b>${ad.price ? ad.price + ' ₽' : 'Цена не указана'}</b>
       <span>контакт открыт</span>
     </div>
 
