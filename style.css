@@ -375,3 +375,25 @@ box-sizing:border-box;
 .admin-card{
   border-radius:24px !important;
 }
+/* ===== ОБЪЯВЛЕНИЯ ПОД ОБЩИЙ СТИЛЬ ===== */
+
+.ann-page h1{
+font-family:Georgia,"Times New Roman",serif !important;
+font-size:72px !important;
+font-weight:700 !important;
+line-height:.95 !important;
+letter-spacing:-.04em !important;
+}
+
+.ann-page p,
+.ann-page input,
+.ann-page select,
+.ann-page button,
+.ann-page .item,
+.ann-page .price{
+font-family:Arial,Helvetica,sans-serif !important;
+}
+
+.ann-page{
+padding-top:140px !important;
+}
