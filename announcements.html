@@ -93,6 +93,7 @@ h1{font-family:Georgia,serif;font-size:82px;line-height:.92;font-weight:500;marg
 <article class="item" data-category="rent" data-text="сдам квартиру аренда 1 комнатная центр"><div class="thumb" style="background-image:url('images/park.jpg')"></div><div><h2>Сдам 1-комнатную квартиру</h2><p>Чистая квартира, район центра, рядом магазины и остановка.</p><div class="item-meta"><span>Аренда</span><span>центр</span><span>2 дня назад</span></div></div><div class="price"><b>35 000 ₽</b><span>в месяц</span></div></article>
 <article class="item" data-category="sale" data-text="продам зимние шины продажа"><div class="thumb" style="background-image:url('images/embankment.jpg')"></div><div><h2>Продам зимние шины</h2><p>Комплект 4 шт., хорошее состояние, самовывоз.</p><div class="item-meta"><span>Продажа</span><span>самовывоз</span><span>3 дня назад</span></div></div><div class="price"><b>12 000 ₽</b><span>торг</span></div></article>
 </div>
+<div id="adsList"></div>
 <div class="empty" id="empty">По этому фильтру объявлений пока нет.</div>
 </div>
 
@@ -139,6 +140,57 @@ select.addEventListener('change', ()=>{
 });
 
 search.addEventListener('input', applyFilter);
+  const adsList = document.getElementById('adsList');
+
+function getAdsStorage() {
+  try {
+    return JSON.parse(localStorage.getItem('kogalym_ads') || '[]');
+  } catch(e) {
+    return [];
+  }
+}
+
+function renderStorageAds() {
+
+  const ads = getAdsStorage();
+
+  if(!ads.length) return;
+
+  adsList.innerHTML = ads.map(ad => `
+
+    <article class="item">
+
+      <div class="thumb"
+      style="background-image:url('${ad.image || ''}')">
+      </div>
+
+      <div class="side">
+
+        <div class="cat">
+          ${ad.category || 'Объявление'}
+        </div>
+
+        <h2>
+          ${ad.title || ''}
+        </h2>
+
+        <p>
+          ${ad.description || ''}
+        </p>
+
+        <div class="price">
+          ${ad.price || ''}
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join('');
+
+}
+
+renderStorageAds();
 </script>
 
 </body>
