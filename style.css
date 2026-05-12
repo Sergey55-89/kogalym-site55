@@ -18,7 +18,8 @@ nav a.active,nav a:hover{color:var(--gold2);border-color:var(--gold)}
 min-height:650px;
 padding-top:94px;
 background:
-linear-gradient(180deg, rgba(2,8,20,.78), #020814 52%),
+linear-gradient(90deg, rgba(2,8,20,.92) 0%, rgba(2,8,20,.68) 35%, rgba(2,8,20,.22) 100%),
+linear-gradient(180deg, rgba(2,8,20,.04) 0%, #020814 100%),
 url("images/hero.jpg") center/cover fixed;
 }
 .hero-content{max-width:1500px;margin:0 auto;padding:62px 34px 0}
