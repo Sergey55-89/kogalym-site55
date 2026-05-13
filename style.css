@@ -414,6 +414,7 @@ padding:24px !important;
 border-radius:26px !important;
 background:linear-gradient(180deg,#202c44 0%,#162033 100%) !important;
 border:1px solid rgba(255,255,255,.08) !important;
+opacity:.96;
 }
 
 #adsList .thumb{
