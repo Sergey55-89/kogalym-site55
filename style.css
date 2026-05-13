@@ -455,3 +455,71 @@ color:#ffe45c;
 font-size:14px;
 color:#d6d9e5;
 }
+/* ===== КАРТОЧКИ ОБЪЯВЛЕНИЙ ИЗ АДМИНКИ ===== */
+
+#adsList{
+display:grid;
+gap:18px;
+margin-top:18px;
+}
+
+#adsList .item{
+display:grid !important;
+grid-template-columns:110px 1fr auto !important;
+gap:28px !important;
+align-items:center !important;
+padding:28px !important;
+border-radius:30px !important;
+background:linear-gradient(180deg,#1a2240,#111827) !important;
+border:1px solid rgba(255,255,255,.08) !important;
+min-height:170px !important;
+}
+
+#adsList .thumb{
+width:110px !important;
+height:100px !important;
+border-radius:20px !important;
+background-size:cover !important;
+background-position:center !important;
+}
+
+#adsList h2{
+font-size:28px !important;
+line-height:1.1 !important;
+margin:0 0 14px !important;
+font-family:Georgia,"Times New Roman",serif !important;
+font-weight:700 !important;
+color:#fff !important;
+}
+
+#adsList p{
+margin:0 0 14px !important;
+font-size:21px !important;
+line-height:1.45 !important;
+color:#e5e7eb !important;
+font-weight:500 !important;
+}
+
+#adsList .meta{
+font-size:14px !important;
+font-weight:800 !important;
+color:#d6d9e5 !important;
+}
+
+#adsList .price{
+text-align:right !important;
+}
+
+#adsList .price b{
+display:block !important;
+font-size:54px !important;
+font-weight:900 !important;
+color:#ffe45c !important;
+line-height:1 !important;
+}
+
+#adsList .price span{
+font-size:14px !important;
+font-weight:800 !important;
+color:#d6d9e5 !important;
+}
