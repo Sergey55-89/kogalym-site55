@@ -464,3 +464,72 @@ font-size:13px !important;
 font-weight:800 !important;
 color:#d6d9e5 !important;
 }
+/* FIX карточек из админки */
+#adsList .item{
+display:grid !important;
+grid-template-columns:95px 1fr 140px !important;
+gap:20px !important;
+
+align-items:center !important;
+
+padding:20px !important;
+min-height:120px !important;
+
+border-radius:28px !important;
+
+background:linear-gradient(180deg,#1b2436 0%, #131c2d 100%) !important;
+
+border:1px solid rgba(255,255,255,.08) !important;
+
+box-shadow:none !important;
+opacity:1 !important;
+}
+
+#adsList .thumb{
+width:95px !important;
+height:78px !important;
+border-radius:18px !important;
+background-size:cover !important;
+background-position:center !important;
+}
+
+#adsList h2{
+font-size:21px !important;
+font-family:Georgia,"Times New Roman",serif !important;
+font-weight:700 !important;
+line-height:1.1 !important;
+margin:0 0 8px !important;
+color:#f4f6fb !important;
+}
+
+#adsList p{
+font-size:16px !important;
+font-weight:600 !important;
+line-height:1.35 !important;
+margin:0 0 8px !important;
+color:#e7e7e7 !important;
+}
+
+#adsList .meta{
+font-size:14px !important;
+font-weight:700 !important;
+color:#d7dcec !important;
+}
+
+#adsList .price{
+text-align:right !important;
+}
+
+#adsList .price b{
+display:block !important;
+font-size:28px !important;
+font-weight:800 !important;
+line-height:1 !important;
+color:#ffe45c !important;
+}
+
+#adsList .price span{
+font-size:13px !important;
+font-weight:700 !important;
+color:#d7dcec !important;
+}
