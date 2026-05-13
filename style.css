@@ -557,3 +557,29 @@ background:linear-gradient(180deg,#23293a 0%, #1b2130 100%) !important;
 border:1px solid rgba(255,255,255,.06) !important;
 box-shadow:none !important;
 }
+/* FINAL: карточка из админки */
+#adsList article.item{
+min-height:125px !important;
+padding:18px 24px !important;
+grid-template-columns:92px 1fr 150px !important;
+gap:20px !important;
+background:rgba(31,38,55,.92) !important;
+background-image:none !important;
+}
+
+#adsList article.item .thumb{
+width:92px !important;
+height:82px !important;
+}
+
+#adsList article.item h2{
+font-size:24px !important;
+}
+
+#adsList article.item p{
+font-size:16px !important;
+}
+
+#adsList article.item .price b{
+font-size:42px !important;
+}
