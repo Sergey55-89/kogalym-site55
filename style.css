@@ -516,3 +516,28 @@ padding-top:140px !important;
 #adsList .price b{
   font-size:34px;
 }
+#adsList .item{
+  min-height:150px !important;
+  padding:24px 30px !important;
+  grid-template-columns:118px 1fr 170px !important;
+  gap:24px !important;
+  align-items:center !important;
+}
+
+#adsList .thumb{
+  width:118px !important;
+  height:92px !important;
+}
+
+#adsList h2{
+  font-size:30px !important;
+}
+
+#adsList p{
+  font-size:17px !important;
+  max-width:520px !important;
+}
+
+#adsList .price b{
+  font-size:34px !important;
+}
