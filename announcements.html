@@ -141,7 +141,6 @@ select.addEventListener('change', ()=>{
 
 search.addEventListener('input', applyFilter);
   const adsList = document.getElementById('adsList');
-<script>
 function getAdsStorage(){
   try{
     return JSON.parse(localStorage.getItem('kogalym_ads') || '[]');
