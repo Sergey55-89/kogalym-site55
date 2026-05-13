@@ -150,31 +150,45 @@ function getAdsStorage() {
   }
 }
 
-function renderStorageAds() {
+unction renderStorageAds() {
 
-  const ads = getAdsStorage();
+const ads = getAdsStorage();
 
-  if(!ads.length){
-  adsList.innerHTML = '<p style="color:white">Нет объявлений из админки</p>';
-  return;
-  }
-  adsList.innerHTML = ads.map(ad => `
-  <article class="item" data-category="${ad.category || 'sale'}" data-text="${ad.title || ''} ${ad.description || ''}">
-    <div class="thumb" style="background-image:url('${ad.image || 'images/galaktika.jpg'}')"></div>
-    <div>
-      <h2>${ad.title || ''}</h2>
-      <p>${ad.description || ''}</p>
-      <div class="meta">${ad.category || 'Объявление'} &nbsp; сегодня</div>
-    </div>
-    <div class="price">
-      <b>${ad.price ? ad.price + ' ₽' : 'Цена не указана'}</b>
-      <span>контакт открыт</span>
-    </div>
-  </article>
+if(!ads.length) return;
+
+adsList.innerHTML = ads.map(ad => `
+
+<article class="item" data-category="${ad.category || 'sale'}">
+
+<div class="thumb"
+style="background-image:url('${ad.image || 'images/galaktika.jpg'}')">
+</div>
+
+<div class="content">
+
+<h2>${ad.title || ''}</h2>
+
+<p>${ad.description || ''}</p>
+
+<div class="meta">
+${ad.category || 'Объявление'} · сегодня
+</div>
+
+</div>
+
+<div class="price">
+
+<b>${ad.price ? ad.price + ' ₽' : 'Цена не указана'}</b>
+
+<span>контакт открыт</span>
+
+</div>
+
+</article>
+
 `).join('');
-}
 
-renderStorageAds();
+}
 </script>
 
 </body>
