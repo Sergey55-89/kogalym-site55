@@ -523,3 +523,37 @@ font-size:14px !important;
 font-weight:800 !important;
 color:#d6d9e5 !important;
 }
+/* уменьшаем карточку из админки */
+#adsList .item{
+min-height:125px !important;
+padding:18px 24px !important;
+grid-template-columns:92px 1fr 150px !important;
+gap:20px !important;
+}
+
+#adsList .thumb{
+width:92px !important;
+height:82px !important;
+border-radius:16px !important;
+}
+
+#adsList h2{
+font-size:24px !important;
+margin-bottom:8px !important;
+}
+
+#adsList p{
+font-size:16px !important;
+line-height:1.35 !important;
+margin-bottom:8px !important;
+}
+
+#adsList .price b{
+font-size:42px !important;
+}
+/* цвет как у основных карточек */
+#adsList .item{
+background:linear-gradient(180deg,#23293a 0%, #1b2130 100%) !important;
+border:1px solid rgba(255,255,255,.06) !important;
+box-shadow:none !important;
+}
