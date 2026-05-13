@@ -158,7 +158,7 @@ function renderStorageAds() {
   adsList.innerHTML = '<p style="color:white">Нет объявлений из админки</p>';
   return;
   }
-  dsList.innerHTML = ads.map(ad => `
+  adsList.innerHTML = ads.map(ad => `
   <article class="item" data-category="${ad.category || 'sale'}" data-text="${ad.title || ''} ${ad.description || ''}">
     <div class="thumb" style="background-image:url('${ad.image || 'images/galaktika.jpg'}')"></div>
     <div>
