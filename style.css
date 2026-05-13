@@ -494,3 +494,25 @@ padding-top:140px !important;
   font-size:14px;
   opacity:.8;
 }
+#adsList .item{
+  min-height:150px;
+  padding:24px 30px;
+}
+
+#adsList .thumb{
+  width:118px;
+  height:92px;
+}
+
+#adsList h2{
+  font-size:30px;
+}
+
+#adsList p{
+  font-size:17px;
+  max-width:520px;
+}
+
+#adsList .price b{
+  font-size:34px;
+}
