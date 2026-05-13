@@ -1,0 +1,72 @@
+body{
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.page-bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(rgba(7,10,18,.72), rgba(7,10,18,.88)),
+    url("images/hero.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  z-index: -2;
+}
+
+body::before{
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background:
+    radial-gradient(circle at top,
+    rgba(88,255,145,.18),
+    transparent 42%);
+
+  z-index: -1;
+}
+/* admin-patch-final.css — только стили админки */
+
+.admin-wrap{max-width:1180px;margin:120px auto 90px;padding:0 20px;position:relative;z-index:2}
+.admin-page{color:#fff}
+.admin-hero{margin-bottom:34px;max-width:820px}
+.admin-eyebrow{display:block;margin:0 0 10px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:900;color:#fff}
+.admin-hero h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,7vw,92px);line-height:.9;margin:0 0 18px;font-weight:900;color:#fff}
+.admin-hero p{font-size:18px;line-height:1.45;color:#fff;max-width:760px;margin:0 0 4px}
+.admin-hero .es{color:#ffd84d;font-weight:900}
+.admin-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+.admin-card{background:rgba(17,23,36,.82);border:1px solid rgba(255,255,255,.16);border-radius:26px;padding:26px;box-shadow:0 18px 55px rgba(0,0,0,.28);backdrop-filter:blur(12px)}
+.admin-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:22px}
+.admin-card-head h2{margin:0;font-size:28px;line-height:1.05;color:#fff}
+.admin-card-head span{font-size:13px;font-weight:900;color:#ffd84d}
+.admin-form{display:grid;gap:16px}
+.admin-form label{display:grid;gap:8px;font-weight:800;color:#fff}
+.admin-form input,.admin-form select,.admin-form textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.16);border-radius:15px;background:rgba(74,111,168,.92);color:#fff;padding:14px 16px;font:inherit;outline:none}
+.admin-form input::placeholder,.admin-form textarea::placeholder{color:rgba(255,255,255,.42)}
+.admin-form textarea{min-height:124px;resize:vertical}
+.admin-form input:focus,.admin-form select:focus,.admin-form textarea:focus{border-color:#ffd84d;box-shadow:0 0 0 3px rgba(255,216,77,.18)}
+.admin-submit{border:0;border-radius:16px;padding:16px 18px;background:#ffd84d;color:#141414;font-weight:950;cursor:pointer}
+.preview-card{overflow:hidden;border-radius:22px;background:rgba(17,23,36,.82);border:1px solid rgba(255,255,255,.12)}
+.preview-image{height:230px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ffe066,#8ec5ff);color:#fff;font-weight:900}
+.preview-body{padding:20px}
+.preview-category{display:inline-flex;padding:6px 12px;border-radius:999px;background:#ffd84d;color:#141414;font-size:12px;font-weight:900;margin-bottom:12px}
+.preview-body h3{margin:0 0 8px;font-size:24px;line-height:1.1;color:#fff}
+.preview-body p{margin:0 0 10px;color:rgba(255,255,255,.82)}
+.preview-body strong{color:#ffd84d;font-size:18px}
+.saved-list{margin-top:28px}
+.saved-ads{display:grid;gap:16px}
+.saved-item{display:grid;grid-template-columns:80px 1fr auto;gap:16px;align-items:center;background:rgba(17,23,36,.82);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px;color:#fff}
+.saved-thumb{width:80px;height:60px;border-radius:12px;background:#27314a;object-fit:cover}
+.delete-ad{border:0;border-radius:12px;padding:10px 12px;cursor:pointer;font-weight:900}
+@media(max-width:900px){.admin-wrap{margin-top:36px;padding:0 16px 70px}.admin-grid{grid-template-columns:1fr}.admin-hero h1{font-size:46px}.saved-item{grid-template-columns:60px 1fr}.delete-ad{grid-column:1/-1}}
