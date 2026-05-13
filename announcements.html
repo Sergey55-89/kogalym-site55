@@ -156,26 +156,18 @@ function renderStorageAds() {
 
   if(!ads.length) return;
 
-  adsList.innerHTML = ads.map(ad => `
+  dsList.innerHTML = ads.map(ad => `
   <article class="item" data-category="${ad.category || 'sale'}" data-text="${ad.title || ''} ${ad.description || ''}">
-    
     <div class="thumb" style="background-image:url('${ad.image || 'images/galaktika.jpg'}')"></div>
-
     <div>
       <h2>${ad.title || ''}</h2>
-
       <p>${ad.description || ''}</p>
-
-      <div class="meta">
-        ${ad.category || 'Объявление'} · сегодня
-      </div>
+      <div class="meta">${ad.category || 'Объявление'} &nbsp; сегодня</div>
     </div>
-
     <div class="price">
       <b>${ad.price ? ad.price + ' ₽' : 'Цена не указана'}</b>
       <span>контакт открыт</span>
     </div>
-
   </article>
 `).join('');
 }
