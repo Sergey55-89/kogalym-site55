@@ -193,3 +193,22 @@ z-index:999;
 }
 
 }
+
+
+/* UNIFIED GLOBAL BACKGROUND */
+
+html,
+body,
+main,
+section,
+.page,
+.page-wrapper,
+.announcements-page,
+.ads-page {
+    background: #07111d !important;
+}
+
+/* SAME HEADER COLOR */
+.header {
+    background: rgba(7,17,29,.82) !important;
+}
