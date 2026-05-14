@@ -1214,3 +1214,165 @@ letter-spacing:.3px;
 .phone-revealed{
   font-weight:950;
 }
+
+
+
+/* ===== KOGALYM VIP PHONE REAL FIX UI ===== */
+.vip-phone-label{
+  display:grid;
+  gap:8px;
+  color:#fff;
+  font-weight:800;
+  margin-top:14px;
+}
+
+.vip-phone-label input{
+  height:52px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  padding:0 16px;
+  font-size:15px;
+  outline:none;
+}
+
+.vip-phone-label input::placeholder{
+  color:rgba(255,255,255,.54);
+}
+
+.vip-checkbox-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-weight:900;
+  padding:14px 16px;
+  margin-top:14px;
+  border-radius:14px;
+  background:rgba(255,213,74,.10);
+  border:1px solid rgba(255,213,74,.28);
+}
+
+.vip-checkbox-label input{
+  width:18px;
+  height:18px;
+}
+
+.vip-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:10;
+  padding:8px 14px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#ffe066,#ffc107);
+  color:#111827;
+  font-size:12px;
+  font-weight:950;
+  box-shadow:0 10px 24px rgba(255,193,7,.32);
+}
+
+.ad-card.vip,
+.announcement-card.vip,
+.ann-card.vip,
+.card.vip{
+  border-color:rgba(255,213,74,.46)!important;
+  box-shadow:0 0 0 1px rgba(255,213,74,.20),0 18px 46px rgba(255,193,7,.13),0 18px 44px rgba(0,0,0,.28)!important;
+}
+
+.show-phone-btn,
+.phone-btn,
+.ad-phone-btn{
+  width:100%;
+  min-height:52px;
+  margin-top:16px;
+  border-radius:14px;
+  border:0;
+  background:linear-gradient(180deg,#ffe066,#ffc107);
+  color:#111827;
+  font-weight:900;
+  font-size:16px;
+}
+
+.phone-revealed{
+  font-weight:950;
+  letter-spacing:.2px;
+}
+
+
+
+/* ===== ONE CHANCE VIP PHONE FINAL CSS ===== */
+.vip-phone-label{
+  display:grid;
+  gap:8px;
+  color:#fff;
+  font-weight:800;
+  margin-top:14px;
+}
+.vip-phone-label input{
+  height:52px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  padding:0 16px;
+  font-size:15px;
+  outline:none;
+}
+.vip-checkbox-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#fff;
+  font-weight:900;
+  padding:14px 16px;
+  margin-top:14px;
+  border-radius:14px;
+  background:rgba(255,213,74,.10);
+  border:1px solid rgba(255,213,74,.28);
+}
+.vip-checkbox-label input{
+  width:18px;
+  height:18px;
+}
+.vip-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:20;
+  padding:8px 14px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#ffe066,#ffc107);
+  color:#111827;
+  font-size:12px;
+  font-weight:950;
+  box-shadow:0 10px 24px rgba(255,193,7,.32);
+}
+.vip{
+  border-color:rgba(255,213,74,.46)!important;
+}
+.ad-card.vip,
+.announcement-card.vip,
+.ann-card.vip,
+.listing-card.vip,
+.card.vip{
+  box-shadow:0 0 0 1px rgba(255,213,74,.20),0 18px 46px rgba(255,193,7,.13),0 18px 44px rgba(0,0,0,.28)!important;
+}
+.show-phone-btn,
+.phone-btn,
+.ad-phone-btn{
+  width:100%;
+  min-height:52px;
+  margin-top:16px;
+  border-radius:14px;
+  border:0;
+  background:linear-gradient(180deg,#ffe066,#ffc107);
+  color:#111827;
+  font-weight:900;
+  font-size:16px;
+}
+.phone-revealed{
+  font-weight:950;
+  letter-spacing:.2px;
+}

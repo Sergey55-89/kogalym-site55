@@ -1,0 +1,12 @@
+VIP/PHONE REAL FIX
+
+Detected localStorage keys before fix: 
+
+admin.html: OK
+announcements.html: OK
+style.css: OK
+kogalym-vip-phone-real-fix.js: OK
+kogalym-vip-phone-real-fix.js syntax: OK
+admin connected: OK
+announcements connected: OK
+local refs: OK
