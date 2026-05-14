@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = 'kogalym_ads';
   const fallbackImage = 'images/galaktika.jpg';
+
   const categoryMap = {
     'работа':'work', 'work':'work',
     'услуги':'service', 'service':'service',
@@ -11,8 +12,13 @@
     'находки':'lost', 'lost':'lost',
     'другое':'sale', 'other':'sale'
   };
+
   const categoryLabel = {
-    work:'Работа', service:'Услуги', rent:'Аренда', sale:'Продажа', lost:'Находки'
+    work:'Работа',
+    service:'Услуги',
+    rent:'Аренда',
+    sale:'Продажа',
+    lost:'Находки'
   };
 
   const list = document.getElementById('annList');
@@ -32,12 +38,17 @@
   const modalLocation = document.getElementById('adModalLocation');
   const modalDate = document.getElementById('adModalDate');
   const modalCategory = document.getElementById('adModalCategory');
+  const modalPhone = document.querySelector('.ad-modal-phone');
 
   if (!list) return;
 
   function escapeHtml(value){
     return String(value || '').replace(/[&<>'"]/g, char => ({
-      '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;'
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      "'":'&#39;',
+      '"':'&quot;'
     }[char]));
   }
 
@@ -47,8 +58,12 @@
   }
 
   function getStorageAds(){
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-    catch (error) { return []; }
+    try {
+      const ads = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      return Array.isArray(ads) ? ads : [];
+    } catch (error) {
+      return [];
+    }
   }
 
   function extractNumber(value){
@@ -65,19 +80,23 @@
       const title = escapeHtml(ad.title || 'Объявление');
       const description = escapeHtml(ad.description || 'Описание не указано.');
       const price = escapeHtml(ad.price || 'Цена не указана');
+      const phone = escapeHtml(ad.phone || '');
       const image = escapeHtml(ad.image || fallbackImage);
-      const date = ad.createdAt ? 'сегодня' : 'сегодня';
+      const date = 'сегодня';
       const location = 'Когалым';
+      const vip = Boolean(ad.vip);
 
       return `
-        <article class="ann-item" data-category="${category}" data-title="${title}" data-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-created="${index}">
+        <article class="ann-item ${vip ? 'vip' : ''}" data-category="${category}" data-title="${title}" data-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-phone="${phone}" data-created="${index}">
+          ${vip ? '<div class="vip-badge">VIP</div>' : ''}
           <div class="ann-thumb" style="background-image:url('${image}')"></div>
           <div class="ann-item-body">
             <h2>${title}</h2>
             <p>${description}</p>
             <div class="ann-meta"><span>${categoryLabel[category] || 'Объявление'}</span><span>${location}</span><span>${date}</span></div>
+            ${phone ? '<button class="ann-phone-btn" type="button">Показать телефон</button>' : ''}
           </div>
-          <div class="ann-price"><b>${price}</b><span>контакт открыт</span></div>
+          <div class="ann-price"><b>${price}</b><span>${phone ? 'контакт открыт' : 'контакт не указан'}</span></div>
         </article>`;
     }).join('');
 
@@ -115,7 +134,7 @@
     items.sort((a, b) => {
       if (mode === 'vip') return Number(b.classList.contains('vip')) - Number(a.classList.contains('vip'));
       if (mode === 'cheap') return extractNumber(a.dataset.price) - extractNumber(b.dataset.price);
-      return 0;
+      return Number(b.classList.contains('vip')) - Number(a.classList.contains('vip'));
     });
 
     items.forEach(item => list.appendChild(item));
@@ -128,8 +147,16 @@
     applyFilter();
   }
 
+  function revealPhone(button, phone){
+    if(!button) return;
+    button.textContent = phone && /\d/.test(phone) ? phone : 'Телефон не указан';
+    button.classList.add('phone-revealed');
+  }
+
   function openModal(card){
     if (!modal || !card) return;
+
+    const phone = card.dataset.phone || '';
 
     modalImage.style.backgroundImage = `url('${card.dataset.image || fallbackImage}')`;
     modalTitle.textContent = card.dataset.title || '';
@@ -138,6 +165,12 @@
     modalLocation.textContent = card.dataset.location || 'Когалым';
     modalDate.textContent = card.dataset.date || 'сегодня';
     modalCategory.textContent = categoryLabel[card.dataset.category] || 'Объявление';
+
+    if(modalPhone){
+      modalPhone.textContent = '☎ Показать телефон';
+      modalPhone.dataset.phone = phone;
+      modalPhone.style.display = phone ? 'block' : 'none';
+    }
 
     modal.classList.add('show');
     modal.setAttribute('aria-hidden', 'false');
@@ -152,6 +185,7 @@
   }
 
   renderStorageAds();
+  applySort();
   applyFilter();
 
   categoryButtons.forEach(button => {
@@ -164,10 +198,20 @@
   sortSelect?.addEventListener('change', applySort);
 
   list.addEventListener('click', event => {
+    const phoneButton = event.target.closest('.ann-phone-btn');
+    if(phoneButton){
+      event.preventDefault();
+      event.stopPropagation();
+      const card = phoneButton.closest('.ann-item');
+      revealPhone(phoneButton, card?.dataset.phone || '');
+      return;
+    }
+
     const card = event.target.closest('.ann-item');
     if (card) openModal(card);
   });
 
+  modalPhone?.addEventListener('click', () => revealPhone(modalPhone, modalPhone.dataset.phone || ''));
   modalClose?.addEventListener('click', closeModal);
   modal?.addEventListener('click', event => { if (event.target === modal) closeModal(); });
   document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });

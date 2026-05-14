@@ -467,3 +467,57 @@ body.modal-open{overflow:hidden}
   font-weight:900;
   font-size:16px;
 }
+
+
+
+/* ===== DIRECT VIP PHONE FIX ===== */
+.admin-vip-row{
+  display:flex!important;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:rgba(214,162,75,.12);
+  border:1px solid rgba(214,162,75,.35);
+  color:#fff;
+  font-weight:900;
+}
+.admin-vip-row input{
+  width:18px;
+  height:18px;
+}
+.ann-item{
+  position:relative;
+}
+.ann-item.vip{
+  border-color:rgba(242,208,138,.75)!important;
+  box-shadow:0 0 0 1px rgba(242,208,138,.28),0 18px 46px rgba(214,162,75,.16),0 18px 44px rgba(0,0,0,.28)!important;
+}
+.vip-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:10;
+  padding:7px 13px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  color:#08111f;
+  font-size:12px;
+  font-weight:950;
+  box-shadow:0 10px 24px rgba(214,162,75,.32);
+}
+.ann-phone-btn{
+  width:min(420px,100%);
+  min-height:48px;
+  margin-top:16px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  color:#08111f;
+  font-weight:950;
+  cursor:pointer;
+}
+.phone-revealed{
+  letter-spacing:.2px;
+  font-weight:950;
+}
