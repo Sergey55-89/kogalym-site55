@@ -94,7 +94,7 @@
             <h2>${title}</h2>
             <p>${description}</p>
             <div class="ann-meta"><span>${categoryLabel[category] || 'Объявление'}</span><span>${location}</span><span>${date}</span></div>
-            ${phone ? '<button class="ann-phone-btn" type="button">Показать телефон</button>' : ''}
+            
           </div>
           <div class="ann-price"><b>${price}</b><span>${phone ? 'контакт открыт' : 'контакт не указан'}</span></div>
         </article>`;
@@ -198,15 +198,6 @@
   sortSelect?.addEventListener('change', applySort);
 
   list.addEventListener('click', event => {
-    const phoneButton = event.target.closest('.ann-phone-btn');
-    if(phoneButton){
-      event.preventDefault();
-      event.stopPropagation();
-      const card = phoneButton.closest('.ann-item');
-      revealPhone(phoneButton, card?.dataset.phone || '');
-      return;
-    }
-
     const card = event.target.closest('.ann-item');
     if (card) openModal(card);
   });
