@@ -1,0 +1,16 @@
+admin.html: OK
+admin-patch.js: OK
+announcements.html: OK
+announcements.js: OK
+style.css: OK
+admin-patch.js syntax: OK
+announcements.js syntax: OK
+id="adPhone": OK
+id="adVip": OK
+admin-form-fixed: OK
+admin JS edit-ad: OK
+admin JS fillForm: OK
+admin JS Сохранить изменения: OK
+admin JS phone:: OK
+admin JS vip:: OK
+local refs: OK
