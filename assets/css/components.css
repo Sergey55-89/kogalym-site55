@@ -1,0 +1,12 @@
+/* COMPONENTS */
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:20px;
+overflow:hidden;
+transition:.25s ease;
+backdrop-filter:blur(8px);
+}
+.card:hover{
+transform:translateY(-4px);
+}

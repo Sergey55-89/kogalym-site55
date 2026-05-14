@@ -1,0 +1,1 @@
+document.querySelectorAll('[data-modal]').forEach(btn=>{btn.addEventListener('click',()=>{})});

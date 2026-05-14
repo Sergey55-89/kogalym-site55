@@ -1,0 +1,9 @@
+/* LAYOUT */
+.container{
+width:min(1280px,92%);
+margin:auto;
+}
+.grid{
+display:grid;
+gap:24px;
+}

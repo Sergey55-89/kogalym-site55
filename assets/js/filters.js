@@ -1,0 +1,1 @@
+function filterCards(){console.log('filters ready')}
