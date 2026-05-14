@@ -507,17 +507,27 @@ body.modal-open{overflow:hidden}
   box-shadow:0 10px 24px rgba(214,162,75,.32);
 }
 .ann-phone-btn{
-  width:min(420px,100%);
-  min-height:48px;
-  margin-top:16px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;
+  padding:10px 18px;
+  min-height:42px;
+  margin-top:14px;
   border:0;
-  border-radius:12px;
+  border-radius:10px;
   background:linear-gradient(135deg,#f2d08a,#d6a24b);
   color:#08111f;
-  font-weight:950;
+  font-size:14px;
+  font-weight:900;
   cursor:pointer;
+  box-shadow:0 6px 18px rgba(214,162,75,.22);
 }
+
 .phone-revealed{
+  background:#0f1724!important;
+  color:#f2d08a!important;
+  border:1px solid rgba(242,208,138,.35);
   letter-spacing:.2px;
   font-weight:950;
 }

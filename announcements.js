@@ -149,7 +149,7 @@
 
   function revealPhone(button, phone){
     if(!button) return;
-    button.textContent = phone && /\d/.test(phone) ? phone : 'Телефон не указан';
+    button.innerHTML = '☎ ' + (phone && /\d/.test(phone) ? phone : 'Телефон не указан');
     button.classList.add('phone-revealed');
   }
 
