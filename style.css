@@ -990,3 +990,129 @@ header,
     font-size:21px !important;
   }
 }
+
+
+
+/* ===== ANNOUNCEMENTS STAGE 3 / REAL INTERACTION LAYER ===== */
+
+.ads-stats,
+.ann-stats{
+  width:min(1180px,calc(100% - 40px));
+  margin:0 auto 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  color:rgba(255,255,255,.72);
+  font-size:15px;
+}
+
+.ads-sort{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.ads-sort select{
+  height:42px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(15,23,42,.78);
+  color:#fff;
+  padding:0 12px;
+  outline:none;
+}
+
+.ad-card{
+  cursor:pointer;
+}
+
+.ad-card.is-hidden,
+.announcement-card.is-hidden,
+.ann-card.is-hidden{
+  display:none !important;
+}
+
+.ad-skeleton{
+  min-height:360px;
+  border-radius:24px;
+  background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.10),rgba(255,255,255,.05));
+  background-size:220% 100%;
+  animation:adSkeleton 1.25s infinite linear;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+@keyframes adSkeleton{
+  0%{background-position:100% 0}
+  100%{background-position:-100% 0}
+}
+
+.favorite-btn{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:6;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(15,23,42,.78);
+  color:#fff;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(8px);
+}
+
+.favorite-btn.active{
+  background:linear-gradient(180deg,#ffe066,#ffc107);
+  color:#111827;
+}
+
+.ad-actions{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
+.ad-actions .show-phone-btn,
+.ad-actions .details-btn{
+  margin-top:0;
+  flex:1;
+}
+
+.details-btn{
+  min-height:52px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+}
+
+.details-btn:hover{
+  background:rgba(255,255,255,.11);
+}
+
+@media(max-width:768px){
+  .ads-stats,
+  .ann-stats{
+    width:calc(100% - 24px);
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .ads-sort{
+    justify-content:space-between;
+  }
+
+  .ads-sort select{
+    flex:1;
+  }
+
+  .ad-actions{
+    flex-direction:column;
+  }
+}

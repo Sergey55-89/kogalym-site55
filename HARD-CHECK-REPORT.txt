@@ -1,0 +1,9 @@
+HARD CHECK REPORT
+Source: kogalym-site55-ads-stage3.zip
+
+Fixes:
+- Rebuilt announcements-stage3.js with safer interaction logic
+- Cleaned duplicate announcements-stage3.js script tags
+
+Issues:
+- No critical issues found
