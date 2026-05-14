@@ -1,1 +1,0 @@
-console.log('Kogalym Site55 initialized');
