@@ -1,0 +1,8 @@
+admin.html: OK
+announcements.html: OK
+style.css: OK
+main.js: OK
+announcements.js: OK
+kogalym-vip-phone-real-fix.js: MISSING
+admin.html fix connection count: 1
+announcements.html fix connection count: 1

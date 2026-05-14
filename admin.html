@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админка | Открой Когалым</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="admin-patch-final.css" />
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <header class="header">
+    <a class="brand" href="index.html" aria-label="Открой Когалым">
+      <img src="images/logo.png" alt="Открой Когалым" />
+      <span>ОТКРОЙ<br>КОГАЛЫМ</span>
+    </a>
+
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="routes.html">Маршруты</a>
+      <a href="places.html">Места</a>
+      <a href="events.html">Афиша</a>
+      <a href="announcements.html">Объявления</a>
+      <a class="active" href="admin.html">Админка</a>
+    </nav>
+
+    <div class="right-head">
+      <span class="icon">⌕</span>
+      <span class="icon">♡</span>
+      <a class="about" href="about.html">О городе</a>
+      <div class="weather">
+        <span>☁</span>
+        <b>-9°</b>
+        <small>Когалым<br>ХМАО-Югра</small>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+    <main class="admin-page">
+      <section class="admin-hero">
+        <span class="admin-eyebrow">ADMIN PANEL</span>
+        <h1>Панель управления</h1>
+        <p>Добавляй объявления без ручного редактирования HTML. Пока данные сохраняются в браузере через LocalStorage.</p>
+        <p class="es">Poco a poco — шаг за шагом.</p>
+      </section>
+
+      <section class="admin-grid">
+        <form class="admin-card admin-form" id="adminForm">
+          <div class="admin-card-head">
+            <div>
+              <h2>Добавить объявление</h2>
+              <span>Nuevo anuncio</span>
+            </div>
+          </div>
+
+          <label>
+            Заголовок
+            <input id="adTitle" type="text" placeholder="Например: Требуется водитель" required />
+          </label>
+
+          <label>
+            Категория
+            <select id="adCategory">
+              <option value="Работа">Работа</option>
+              <option value="Услуги">Услуги</option>
+              <option value="Аренда">Аренда</option>
+              <option value="Продажа">Продажа</option>
+              <option value="Другое">Другое</option>
+            </select>
+          </label>
+
+          <label>
+            Цена / зарплата
+            <input id="adPrice" type="text" placeholder="Например: от 80 000 ₽" />
+          </label>
+
+          <label>
+            Описание
+            <textarea id="adDescription" placeholder="Коротко и по делу" rows="5" required></textarea>
+          </label>
+
+          <label>
+            Фото
+            <input id="adPhoto" type="file" accept="image/*" />
+          </label>
+
+          <button class="admin-submit" type="submit">Опубликовать</button>
+        </form>
+
+        <aside class="admin-card admin-preview">
+          <div class="admin-card-head">
+            <div>
+              <h2>Предпросмотр</h2>
+              <span>Vista previa</span>
+            </div>
+          </div>
+
+          <article class="preview-card">
+            <div class="preview-image" id="previewImage">Фото</div>
+            <div class="preview-body">
+              <span class="preview-category" id="previewCategory">Работа</span>
+              <h3 id="previewTitle">Заголовок объявления</h3>
+              <p id="previewDescription">Описание появится здесь.</p>
+              <strong id="previewPrice">Цена не указана</strong>
+            </div>
+          </article>
+        </aside>
+      </section>
+
+      <section class="admin-card saved-list">
+        <div class="admin-card-head">
+          <h2>Сохранённые объявления</h2>
+          <span>Anuncios guardados</span>
+        </div>
+        <div id="savedAds" class="saved-ads"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="admin-patch.js"></script>
+<script src="kogalym-vip-phone-real-fix.js"></script>
+</body>
+</html>

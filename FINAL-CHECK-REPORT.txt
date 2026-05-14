@@ -1,0 +1,20 @@
+source zip integrity: OK
+admin.html: OK
+announcements.html: OK
+style.css: OK
+main.js: OK
+announcements.js: OK
+kogalym-vip-phone-real-fix.js: OK
+admin-patch-final.css: OK
+fix JS syntax: OK
+JS contains #annList: OK
+JS contains .ann-list: OK
+JS contains .ann-item: OK
+JS contains ensureVip: OK
+JS contains ensurePhone: OK
+JS contains vip-badge: OK
+JS contains show-phone-btn: OK
+JS contains localStorage.setItem: OK
+admin script count: OK
+announcements script count: OK
+local refs: OK
