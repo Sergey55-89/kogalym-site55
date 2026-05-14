@@ -1,1 +1,0 @@
-Единый фон добавлен в конец style.css блоком GLOBAL UNIFIED BACKGROUND / FINAL.
