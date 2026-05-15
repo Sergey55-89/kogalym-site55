@@ -93,7 +93,7 @@
       const vip = Boolean(ad.vip);
 
       return `
-        <article class="ann-item ${vip ? 'vip' : ''}" data-storage="1" data-category="${category}" data-title="${title}" data-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-phone="${phone}" data-created="${index}">
+        <article class="ann-item ${vip ? 'vip' : ''}" data-storage="1" data-category="${category}" data-title="${title}" data-description="${description}" data-full-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-phone="${phone}" data-created="${index}">
           ${vip ? '<div class="vip-badge">VIP</div>' : ''}
           <div class="ann-thumb" style="background-image:url('${image}')"></div>
           <div class="ann-item-body">
@@ -203,7 +203,7 @@
 
     modalImage.style.backgroundImage = `url('${card.dataset.image || fallbackImage}')`;
     modalTitle.textContent = card.dataset.title || '';
-    modalDescription.textContent = card.dataset.description || '';
+    modalDescription.textContent = card.dataset.fullDescription || card.dataset.description || '';
     modalPrice.textContent = card.dataset.price || 'Цена не указана';
     modalLocation.textContent = card.dataset.location || 'Когалым';
     modalDate.textContent = card.dataset.date || 'сегодня';

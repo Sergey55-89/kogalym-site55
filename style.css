@@ -1916,3 +1916,76 @@ section,
     min-height:auto !important;
   }
 }
+
+
+
+/* ===== ANNOUNCEMENTS TEXT CLAMP + FULL MODAL FIX ===== */
+
+/* Список объявлений: размер карточки стабильный, длинный текст не растягивает карточку */
+.ann-list .ann-item{
+  min-height:170px !important;
+  max-height:250px !important;
+  overflow:hidden !important;
+}
+
+.ann-list .ann-item-body{
+  min-width:0 !important;
+  overflow:hidden !important;
+}
+
+.ann-list .ann-item-body h2,
+.ann-list .ann-item-body h3{
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  max-height:64px !important;
+}
+
+.ann-list .ann-item-body p{
+  display:-webkit-box !important;
+  -webkit-line-clamp:3 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  max-height:76px !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+/* Метки и цена не должны прыгать */
+.ann-list .ann-meta{
+  overflow:hidden !important;
+  max-height:42px !important;
+}
+
+.ann-list .ann-price{
+  align-self:center !important;
+}
+
+/* В открытой карточке показываем полный текст */
+.ad-modal,
+.ad-modal-box,
+.ad-modal-content{
+  max-height:92vh !important;
+}
+
+#adModalDescription,
+.ad-modal-description{
+  display:block !important;
+  -webkit-line-clamp:unset !important;
+  -webkit-box-orient:unset !important;
+  overflow:visible !important;
+  max-height:none !important;
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+  line-height:1.65 !important;
+}
+
+/* Если в модалке много текста — прокручивается только окно, а не ломается страница */
+.ad-modal-box,
+.ad-modal-card{
+  overflow:auto !important;
+}
