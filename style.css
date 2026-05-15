@@ -1578,3 +1578,38 @@ section,
 .ann-item.hidden{
   display:none !important;
 }
+
+
+/* ===== PLACES PAGE UPGRADE ===== */
+.places-page{min-height:100vh;padding:140px 28px 70px}
+.places-hero{width:min(1240px,100%);margin:0 auto 30px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:stretch}
+.places-hero-content,.places-map-card{position:relative;overflow:hidden;border-radius:30px;padding:34px;background:rgba(7,17,29,.72);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px);box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.places-eyebrow{display:inline-flex;margin-bottom:16px;padding:8px 14px;border-radius:999px;background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f;font-weight:950;font-size:13px}
+.places-hero h1{margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,6vw,82px);line-height:.95;text-transform:uppercase;color:#fff}
+.places-hero p{max-width:720px;color:#dbe6f8;font-size:19px;line-height:1.6}
+.places-search{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:14px;margin-top:28px}
+.places-search input,.places-search select{height:54px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;padding:0 16px;outline:none}
+.places-map-card{display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;background:linear-gradient(180deg,rgba(7,17,29,.28),rgba(7,17,29,.92)),url("images/embankment.jpg") center/cover}
+.places-map-card span{color:#f2d08a;font-weight:900}.places-map-card strong{margin:8px 0;font-size:38px;color:#fff}
+.places-filter-row{width:min(1240px,100%);margin:0 auto 24px;display:flex;gap:10px;flex-wrap:wrap}
+.place-filter{min-height:44px;padding:0 18px;border:1px solid rgba(255,255,255,.10);border-radius:999px;background:rgba(7,17,29,.72);color:#fff;font-weight:900;cursor:pointer}
+.place-filter.active,.place-filter:hover{background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f}
+.places-grid{width:min(1240px,100%);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.place-card{overflow:hidden;border-radius:26px;background:rgba(7,17,29,.72);border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(14px);box-shadow:0 24px 60px rgba(0,0,0,.24);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.place-card:hover{transform:translateY(-8px);border-color:rgba(242,208,138,.26);box-shadow:0 34px 80px rgba(0,0,0,.34)}
+.place-card.hidden{display:none!important}.place-image{position:relative;height:220px;background-size:cover;background-position:center}.place-image::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(2,8,20,.88),transparent 70%)}
+.place-badge{position:absolute;top:14px;left:14px;z-index:2;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f;font-size:12px;font-weight:950}
+.place-body{padding:20px}.place-top,.place-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#aebcd0;font-size:13px;font-weight:900}.place-top b{color:#f2d08a}
+.place-body h2{margin:12px 0 10px;color:#fff;font-size:25px;line-height:1.1}.place-body p{color:#dbe6f8;line-height:1.55}
+.place-meta{justify-content:flex-start;flex-wrap:wrap;margin-top:16px}.place-meta span{padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08)}
+.place-more{width:100%;min-height:48px;margin-top:18px;border:0;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font-weight:950}.place-more:hover{background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f}
+.places-empty{display:none;width:min(760px,calc(100% - 40px));margin:30px auto;padding:28px;border-radius:22px;background:rgba(7,17,29,.72);border:1px dashed rgba(255,255,255,.14);color:#dbe6f8;text-align:center;font-weight:900}.places-empty.show{display:block}
+.place-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.72);backdrop-filter:blur(8px)}.place-modal.show{display:flex}
+.place-modal-box{position:relative;width:min(820px,96vw);max-height:92vh;overflow:hidden;border-radius:26px;background:linear-gradient(180deg,#101827,#07111d);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.65);color:#fff}
+.place-modal-close{position:absolute;top:14px;right:14px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:30px;cursor:pointer;z-index:5}
+.place-modal-image{height:320px;background-size:cover;background-position:center}.place-modal-content{padding:26px}.place-modal-rating{display:inline-flex;padding:8px 14px;border-radius:999px;background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f;font-weight:950;margin-bottom:16px}
+.place-modal-content h2{margin:0 0 12px;font-size:36px;color:#fff}.place-modal-content p{color:#dbe6f8;font-size:18px;line-height:1.55}
+.place-modal-info{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}.place-modal-info div{padding:16px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}.place-modal-info span{display:block;color:#9fb0cc;font-size:13px;margin-bottom:6px}.place-modal-info b{color:#fff}
+.place-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}.place-modal-actions a,.place-modal-actions button{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;border:0;text-decoration:none;font-weight:950;cursor:pointer}.place-modal-actions a{background:linear-gradient(135deg,#f2d08a,#d6a24b);color:#08111f}.place-modal-actions button{background:rgba(255,255,255,.08);color:#fff}
+@media(max-width:900px){.places-hero{grid-template-columns:1fr}.places-search{grid-template-columns:1fr}.place-modal-info,.place-modal-actions{grid-template-columns:1fr}}
+@media(max-width:700px){.places-page{padding:112px 12px 50px}.places-hero-content,.places-map-card{padding:22px;border-radius:22px}.places-grid{grid-template-columns:1fr}.place-modal-image{height:230px}.place-modal-content h2{font-size:28px}}
