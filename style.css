@@ -1419,3 +1419,155 @@ section,
     min-width:unset;
   }
 }
+
+
+
+/* ===== ANNOUNCEMENTS FINAL CARD GRID FIX ===== */
+
+/* Страница объявлений должна быть списком, а не сеткой в 2-3 узких колонки */
+.ann-board{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) 360px !important;
+  gap:26px !important;
+  align-items:start !important;
+}
+
+.ann-list{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:18px !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+/* Карточка объявления: фото / текст / цена */
+.ann-list .ann-item{
+  display:grid !important;
+  grid-template-columns:150px minmax(0,1fr) 220px !important;
+  gap:22px !important;
+  align-items:center !important;
+  width:100% !important;
+  min-width:0 !important;
+  min-height:0 !important;
+  padding:22px !important;
+}
+
+/* Фото не растягивает карточку */
+.ann-list .ann-thumb{
+  width:150px !important;
+  height:150px !important;
+  min-height:150px !important;
+  max-height:150px !important;
+  border-radius:20px !important;
+  flex:none !important;
+}
+
+/* Текст больше не становится вертикальной колонкой */
+.ann-list .ann-item-body{
+  min-width:0 !important;
+  width:100% !important;
+  max-width:none !important;
+}
+
+.ann-list .ann-item-body h2,
+.ann-list .ann-item-body h3,
+.ann-list .ann-item-body p{
+  white-space:normal !important;
+  word-break:normal !important;
+  overflow-wrap:break-word !important;
+  writing-mode:horizontal-tb !important;
+  text-orientation:mixed !important;
+  max-width:100% !important;
+}
+
+.ann-list .ann-item-body h2,
+.ann-list .ann-item-body h3{
+  font-size:28px !important;
+  line-height:1.12 !important;
+  margin:0 0 10px !important;
+}
+
+.ann-list .ann-item-body p{
+  font-size:16px !important;
+  line-height:1.55 !important;
+}
+
+/* Метки */
+.ann-list .ann-meta{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  margin-top:12px !important;
+}
+
+.ann-list .ann-meta span{
+  white-space:nowrap !important;
+}
+
+/* Цена справа, не ломает карточку */
+.ann-list .ann-price{
+  width:100% !important;
+  min-width:190px !important;
+  max-width:220px !important;
+  padding:20px !important;
+  border-radius:20px !important;
+  text-align:center !important;
+  align-self:center !important;
+}
+
+.ann-list .ann-price b{
+  display:block !important;
+  font-size:26px !important;
+  line-height:1.1 !important;
+  white-space:normal !important;
+  word-break:normal !important;
+}
+
+.ann-list .ann-price span{
+  display:block !important;
+  margin-top:8px !important;
+  white-space:normal !important;
+}
+
+/* Боковая колонка */
+.ann-side{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+/* На планшетах боковая колонка уходит вниз */
+@media(max-width:1180px){
+  .ann-board{
+    grid-template-columns:1fr !important;
+  }
+
+  .ann-side{
+    order:2;
+  }
+}
+
+/* На телефонах карточка становится вертикальной */
+@media(max-width:760px){
+  .ann-list .ann-item{
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+    padding:16px !important;
+  }
+
+  .ann-list .ann-thumb{
+    width:100% !important;
+    height:230px !important;
+    max-height:230px !important;
+  }
+
+  .ann-list .ann-price{
+    max-width:none !important;
+    min-width:0 !important;
+    text-align:left !important;
+  }
+
+  .ann-list .ann-item-body h2,
+  .ann-list .ann-item-body h3{
+    font-size:23px !important;
+  }
+}
