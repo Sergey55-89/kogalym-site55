@@ -1571,3 +1571,10 @@ section,
     font-size:23px !important;
   }
 }
+
+
+
+/* ===== ANNOUNCEMENTS FILTER FIX ===== */
+.ann-item.hidden{
+  display:none !important;
+}

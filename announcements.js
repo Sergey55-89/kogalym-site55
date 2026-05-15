@@ -71,9 +71,15 @@
     return match ? Number(match[0]) : 0;
   }
 
+  function normalizeText(value){
+    return String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
   function renderStorageAds(){
     const ads = getStorageAds();
     if (!ads.length) return;
+
+    list.querySelectorAll('.ann-item[data-storage="1"]').forEach(item => item.remove());
 
     const markup = ads.map((ad, index) => {
       const category = normalizeCategory(ad.category);
@@ -87,14 +93,13 @@
       const vip = Boolean(ad.vip);
 
       return `
-        <article class="ann-item ${vip ? 'vip' : ''}" data-category="${category}" data-title="${title}" data-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-phone="${phone}" data-created="${index}">
+        <article class="ann-item ${vip ? 'vip' : ''}" data-storage="1" data-category="${category}" data-title="${title}" data-description="${description}" data-price="${price}" data-location="${location}" data-date="${date}" data-image="${image}" data-phone="${phone}" data-created="${index}">
           ${vip ? '<div class="vip-badge">VIP</div>' : ''}
           <div class="ann-thumb" style="background-image:url('${image}')"></div>
           <div class="ann-item-body">
             <h2>${title}</h2>
             <p>${description}</p>
             <div class="ann-meta"><span>${categoryLabel[category] || 'Объявление'}</span><span>${location}</span><span>${date}</span></div>
-            
           </div>
           <div class="ann-price"><b>${price}</b><span>${phone ? 'контакт открыт' : 'контакт не указан'}</span></div>
         </article>`;
@@ -103,24 +108,58 @@
     list.insertAdjacentHTML('afterbegin', markup);
   }
 
+  function prepareStaticItems(){
+    getItems().forEach(item => {
+      if (!item.dataset.searchText) {
+        item.dataset.searchText = normalizeText([
+          item.dataset.title,
+          item.dataset.description,
+          item.dataset.price,
+          item.dataset.location,
+          item.textContent
+        ].join(' '));
+      }
+
+      if (!item.dataset.category) {
+        item.dataset.category = normalizeCategory(item.querySelector('.ann-meta span')?.textContent || '');
+      }
+    });
+  }
+
   function getItems(){
     return Array.from(list.querySelectorAll('.ann-item'));
   }
 
+  function getActiveCategory(){
+    const activeButton = document.querySelector('.ann-cat.active');
+    const buttonValue = activeButton ? activeButton.dataset.filter : 'all';
+    const selectValue = categorySelect ? categorySelect.value : 'all';
+    return selectValue || buttonValue || 'all';
+  }
+
   function applyFilter(){
-    const activeCategory = categorySelect ? categorySelect.value : 'all';
-    const search = (searchInput ? searchInput.value : '').trim().toLowerCase();
+    const activeCategory = getActiveCategory();
+    const search = normalizeText(searchInput ? searchInput.value : '');
     const priceLimit = priceSelect && priceSelect.value !== 'all' ? Number(priceSelect.value) : null;
     let visible = 0;
 
     getItems().forEach(item => {
-      const text = [item.dataset.title, item.dataset.description, item.dataset.price, item.dataset.location].join(' ').toLowerCase();
+      const text = normalizeText(item.dataset.searchText || [
+        item.dataset.title,
+        item.dataset.description,
+        item.dataset.price,
+        item.dataset.location,
+        item.textContent
+      ].join(' '));
+
       const categoryOk = activeCategory === 'all' || item.dataset.category === activeCategory;
       const searchOk = !search || text.includes(search);
       const priceOk = !priceLimit || extractNumber(item.dataset.price) <= priceLimit;
       const shouldShow = categoryOk && searchOk && priceOk;
 
       item.classList.toggle('hidden', !shouldShow);
+      item.style.display = shouldShow ? '' : 'none';
+
       if (shouldShow) visible += 1;
     });
 
@@ -143,13 +182,17 @@
 
   function setActiveCategory(value){
     if (categorySelect) categorySelect.value = value;
-    categoryButtons.forEach(button => button.classList.toggle('active', button.dataset.filter === value));
+
+    categoryButtons.forEach(button => {
+      button.classList.toggle('active', button.dataset.filter === value);
+    });
+
     applyFilter();
   }
 
   function revealPhone(button, phone){
     if(!button) return;
-    button.innerHTML = '☎ ' + (phone && /\d/.test(phone) ? phone : 'Телефон не указан');
+    button.textContent = phone && /\d/.test(phone) ? phone : 'Телефон не указан';
     button.classList.add('phone-revealed');
   }
 
@@ -185,6 +228,7 @@
   }
 
   renderStorageAds();
+  prepareStaticItems();
   applySort();
   applyFilter();
 
@@ -194,6 +238,7 @@
 
   categorySelect?.addEventListener('change', () => setActiveCategory(categorySelect.value));
   searchInput?.addEventListener('input', applyFilter);
+  searchInput?.addEventListener('keyup', applyFilter);
   priceSelect?.addEventListener('change', applyFilter);
   sortSelect?.addEventListener('change', applySort);
 
