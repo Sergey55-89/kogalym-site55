@@ -283,6 +283,99 @@
   .routes-v2-bottom{grid-template-columns:1fr;}
   .routes-v2-info{grid-template-columns:1fr;}
 }
+
+.routes-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(10px);
+  box-sizing:border-box;
+}
+.routes-modal.is-open{display:flex;}
+.routes-modal__box{
+  width:min(760px,100%);
+  max-height:min(86vh,760px);
+  overflow:auto;
+  border-radius:26px;
+  background:linear-gradient(180deg,rgba(20,28,42,.98),rgba(10,15,24,.98));
+  border:1px solid rgba(241,199,91,.28);
+  box-shadow:0 26px 90px rgba(0,0,0,.58);
+  color:#fff;
+}
+.routes-modal__head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:18px;
+  padding:26px 28px 18px;
+  border-bottom:1px solid rgba(255,255,255,.09);
+}
+.routes-modal__title{
+  margin:0 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:clamp(28px,4vw,42px) !important;
+  line-height:1.05 !important;
+  color:#fff !important;
+}
+.routes-modal__close{
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font:900 24px/1 Arial,Helvetica,sans-serif;
+  cursor:pointer;
+}
+.routes-modal__body{padding:22px 28px 28px;}
+.routes-modal__meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:0 0 20px;
+}
+.routes-modal__meta span{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(241,199,91,.14);
+  border:1px solid rgba(241,199,91,.28);
+  color:#f1c75b;
+  font:900 13px/1.15 Arial,Helvetica,sans-serif;
+}
+.routes-modal__list{
+  display:grid;
+  gap:12px;
+  margin:0 0 22px;
+  padding:0;
+  list-style:none;
+}
+.routes-modal__list li{
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.09);
+  color:#e7edf8;
+  font:800 15px/1.45 Arial,Helvetica,sans-serif;
+}
+.routes-modal__list b{color:#fff;}
+.routes-modal__note{
+  margin:0 !important;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(241,199,91,.12);
+  border:1px solid rgba(241,199,91,.25);
+  color:#f5e9c5 !important;
+  font:800 15px/1.5 Arial,Helvetica,sans-serif !important;
+}
+.routes-v2-btn{border:0;cursor:pointer;}
+@media(max-width:620px){.routes-modal{padding:12px}.routes-modal__head,.routes-modal__body{padding-left:18px;padding-right:18px}}
+
 </style>
 </head>
 <body>
@@ -295,8 +388,7 @@
   <nav>
     <a href="index.html">Главная</a>
     <a class="active" href="routes.html">Маршруты</a>
-    <a href="places.html">Каталог</a>
-    <a href="map.html">Карта</a>
+    <a href="places.html">Места</a>
     <a href="events.html">Афиша</a>
     <a href="announcements.html">Объявления</a>
     <a href="admin.html">Админка</a>
@@ -327,7 +419,7 @@
           <h2 class="routes-v2-card-title">Центр и СКК «Галактика»</h2>
           <div class="routes-v2-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div>
           <p class="routes-v2-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold" type="button" data-route="galaktika">Показать маршрут</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
         </div>
       </article>
 
@@ -339,7 +431,7 @@
           <h2 class="routes-v2-card-title">Парк 50-летия и набережная</h2>
           <div class="routes-v2-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div>
           <p class="routes-v2-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold" type="button" data-route="park">Показать маршрут</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
         </div>
       </article>
 
@@ -351,12 +443,27 @@
           <h2 class="routes-v2-card-title">Ночной Когалым</h2>
           <div class="routes-v2-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div>
           <p class="routes-v2-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold" type="button" data-route="night">Показать маршрут</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div></div>
         </div>
       </article>
     </section>
   </div>
 </main>
+
+
+<div class="routes-modal" id="routeModal" aria-hidden="true">
+  <div class="routes-modal__box" role="dialog" aria-modal="true" aria-labelledby="routeModalTitle">
+    <div class="routes-modal__head">
+      <h2 class="routes-modal__title" id="routeModalTitle">Маршрут</h2>
+      <button class="routes-modal__close" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="routes-modal__body">
+      <div class="routes-modal__meta" id="routeModalMeta"></div>
+      <ul class="routes-modal__list" id="routeModalList"></ul>
+      <p class="routes-modal__note" id="routeModalNote"></p>
+    </div>
+  </div>
+</div>
 
 <footer>
   <span>© 2026 Открой Когалым</span>
@@ -364,6 +471,70 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="announcements.html">Реклама</a>
 </footer>
+
+<script>
+(function(){
+  const routes = {
+    galaktika: {
+      title: 'Центр и СКК «Галактика»',
+      meta: ['1–1.5 часа', 'семейный отдых', 'вечерний маршрут'],
+      steps: [
+        ['Старт', 'СКК «Галактика» — удобная точка начала, фото у фасада и прогулка вокруг комплекса.'],
+        ['Дальше', 'Центральные улицы — подсветка, городские витрины, спокойная пешая часть маршрута.'],
+        ['Финиш', 'Кафе или зона отдыха рядом с центром — нормальная точка завершить прогулку без лишней беготни.']
+      ],
+      note: 'Лучше идти вечером: подсветка делает маршрут заметно атмосфернее.'
+    },
+    park: {
+      title: 'Парк 50-летия и набережная',
+      meta: ['1 час', 'спокойная прогулка', 'фото-точки'],
+      steps: [
+        ['Старт', 'Парк 50-летия — спокойная прогулка по зелёной зоне.'],
+        ['Дальше', 'Выход к набережной — виды, открытое пространство и хорошие точки для фото.'],
+        ['Финиш', 'Прогулка обратно через тихие городские улицы без резкого темпа.']
+      ],
+      note: 'Маршрут лучше для дневной или ранней вечерней прогулки.'
+    },
+    night: {
+      title: 'Ночной Когалым',
+      meta: ['1.5–2 часа', 'ночной город', 'лучшие виды'],
+      steps: [
+        ['Старт', 'Центральная часть города — включённая подсветка и основные городские огни.'],
+        ['Дальше', 'Улицы с яркой вечерней архитектурой и открытыми видами.'],
+        ['Финиш', 'Точка с панорамным видом или освещённая городская зона для финальных фото.']
+      ],
+      note: 'Одевайся теплее: маршрут красивый, но вечером быстро становится прохладно.'
+    }
+  };
+  const modal = document.getElementById('routeModal');
+  const title = document.getElementById('routeModalTitle');
+  const meta = document.getElementById('routeModalMeta');
+  const list = document.getElementById('routeModalList');
+  const note = document.getElementById('routeModalNote');
+  const closeBtn = modal.querySelector('.routes-modal__close');
+  function openRoute(key){
+    const data = routes[key];
+    if(!data) return;
+    title.textContent = data.title;
+    meta.innerHTML = data.meta.map(item => `<span>${item}</span>`).join('');
+    list.innerHTML = data.steps.map(([name, text]) => `<li><b>${name}:</b> ${text}</li>`).join('');
+    note.textContent = data.note;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeRoute(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-route]').forEach(btn => btn.addEventListener('click', () => openRoute(btn.dataset.route)));
+  closeBtn.addEventListener('click', closeRoute);
+  modal.addEventListener('click', e => { if(e.target === modal) closeRoute(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape' && modal.classList.contains('is-open')) closeRoute(); });
+})();
+</script>
 <script src="weather.js"></script>
 </body>
 </html>
