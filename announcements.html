@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Объявления — Открой Когалым</title>
+  <link rel="stylesheet" href="style.css?v=11">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html" aria-label="Открой Когалым">
+    <img src="images/logo.png" alt="Открой Когалым">
+    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
+  </a>
+
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="routes.html">Маршруты</a>
+    <a href="places.html">Места</a>
+    <a href="events.html">Афиша</a>
+    <a class="active" href="announcements.html">Объявления</a>
+    <a href="admin.html">Админка</a>
+  </nav>
+
+  <div class="right-head">
+    <span class="icon">⌕</span>
+    <span class="icon">♡</span>
+    <a class="about" href="about.html">О городе</a>
+    <div class="weather">
+      <span>☁</span>
+      <b>-9°</b>
+      <small>Когалым<br>ХМАО-Югра</small>
+    </div>
+  </div>
+</header>
+
+<main class="ann-page">
+  <div class="ann-container">
+    <div class="ann-badge">Городская доска</div>
+
+    <section class="ann-top">
+      <div>
+        <h1>ОБЪЯВЛЕНИЯ<br>КОГАЛЫМА</h1>
+        <p class="ann-lead">Работа, услуги, аренда, покупка, продажа и городские предложения в одном месте.</p>
+      </div>
+      <a class="ann-add-btn" href="admin.html">Подать объявление</a>
+    </section>
+
+    <section class="ann-search-panel" aria-label="Фильтры объявлений">
+      <input id="searchInput" type="search" placeholder="Поиск по объявлениям" autocomplete="off">
+      <select id="categorySelect">
+        <option value="all">Все категории</option>
+        <option value="work">Работа</option>
+        <option value="service">Услуги</option>
+        <option value="rent">Аренда</option>
+        <option value="sale">Продажа</option>
+        <option value="lost">Находки</option>
+      </select>
+      <select id="priceSelect" aria-label="Цена">
+        <option value="all">Любая цена</option>
+        <option value="5000">До 5 000 ₽</option>
+        <option value="50000">До 50 000 ₽</option>
+      </select>
+      <select id="sortSelect" aria-label="Сортировка">
+        <option value="new">Сначала новые</option>
+        <option value="cheap">Сначала дешевые</option>
+        <option value="vip">VIP сверху</option>
+      </select>
+    </section>
+
+    <section class="ann-categories" aria-label="Категории">
+      <button class="ann-cat active" type="button" data-filter="all">Все</button>
+      <button class="ann-cat" type="button" data-filter="work">Работа</button>
+      <button class="ann-cat" type="button" data-filter="service">Услуги</button>
+      <button class="ann-cat" type="button" data-filter="rent">Аренда</button>
+      <button class="ann-cat" type="button" data-filter="sale">Продажа</button>
+    </section>
+
+    <section class="ann-board">
+      <div>
+        <div class="ann-list" id="annList">
+          <article class="ann-item vip" data-category="work" data-title="Требуется водитель категории C" data-description="Работа по городу и району. График обсуждается. Опыт обязателен." data-price="от 90 000 ₽" data-location="Когалым" data-date="сегодня" data-image="images/night.jpg">
+            <div class="vip-label">VIP</div>
+            <div class="ann-thumb" style="background-image:url('images/night.jpg')"></div>
+            <div class="ann-item-body">
+              <h2>Требуется водитель категории C</h2>
+              <p>Работа по городу и району. График обсуждается. Опыт обязателен.</p>
+              <div class="ann-meta"><span>Работа</span><span>Когалым</span><span>сегодня</span></div>
+            </div>
+            <div class="ann-price"><b>от 90 000 ₽</b><span>контакт открыт</span></div>
+          </article>
+
+          <article class="ann-item" data-category="service" data-title="Ремонт квартир и мелкие работы" data-description="Электрика, сантехника, сборка мебели, отделочные работы. Выезд по Когалыму." data-price="от 1 500 ₽" data-location="по городу" data-date="вчера" data-image="images/lukoil.webp">
+            <div class="ann-thumb" style="background-image:url('images/lukoil.webp')"></div>
+            <div class="ann-item-body">
+              <h2>Ремонт квартир и мелкие работы</h2>
+              <p>Электрика, сантехника, сборка мебели, отделочные работы. Выезд по Когалыму.</p>
+              <div class="ann-meta"><span>Услуги</span><span>по городу</span><span>вчера</span></div>
+            </div>
+            <div class="ann-price"><b>от 1 500 ₽</b><span>быстрый выезд</span></div>
+          </article>
+
+          <article class="ann-item" data-category="rent" data-title="Сдам 1-комнатную квартиру" data-description="Чистая квартира, район центра, рядом магазины и остановка." data-price="35 000 ₽" data-location="центр" data-date="2 дня назад" data-image="images/park.jpg">
+            <div class="ann-thumb" style="background-image:url('images/park.jpg')"></div>
+            <div class="ann-item-body">
+              <h2>Сдам 1-комнатную квартиру</h2>
+              <p>Чистая квартира, район центра, рядом магазины и остановка.</p>
+              <div class="ann-meta"><span>Аренда</span><span>центр</span><span>2 дня назад</span></div>
+            </div>
+            <div class="ann-price"><b>35 000 ₽</b><span>в месяц</span></div>
+          </article>
+
+          <article class="ann-item" data-category="sale" data-title="Продам зимние шины" data-description="Комплект 4 шт., хорошее состояние, самовывоз." data-price="12 000 ₽" data-location="самовывоз" data-date="3 дня назад" data-image="images/embankment.jpg">
+            <div class="ann-thumb" style="background-image:url('images/embankment.jpg')"></div>
+            <div class="ann-item-body">
+              <h2>Продам зимние шины</h2>
+              <p>Комплект 4 шт., хорошее состояние, самовывоз.</p>
+              <div class="ann-meta"><span>Продажа</span><span>самовывоз</span><span>3 дня назад</span></div>
+            </div>
+            <div class="ann-price"><b>12 000 ₽</b><span>торг</span></div>
+          </article>
+        </div>
+
+        <div class="ann-empty" id="empty">По этому фильтру объявлений пока нет.</div>
+      </div>
+
+      <aside class="ann-side">
+        <h2>Разместить объявление</h2>
+        <p>Добавьте объявление через админку: категория, описание, цена, фото и контакт. После сохранения оно появится на сайте.</p>
+        <div class="ann-side-box"><b>VIP-размещение</b><span>Выделение объявления вверху списка.</span></div>
+        <div class="ann-side-box"><b>Фото</b><span>Карточки с фото получают больше внимания.</span></div>
+        <div class="ann-side-box"><b>Фильтры</b><span>Поиск по цене, категории и дате.</span></div>
+        <a class="ann-add-btn" href="admin.html">Перейти в админку</a>
+      </aside>
+    </section>
+  </div>
+</main>
+
+<div class="ad-modal" id="adModal" aria-hidden="true">
+  <div class="ad-modal-box" role="dialog" aria-modal="true" aria-labelledby="adModalTitle">
+    <button class="ad-close" id="adClose" type="button" aria-label="Закрыть">×</button>
+    <div class="ad-modal-image" id="adModalImage"></div>
+    <div class="ad-modal-content">
+      <div class="ad-modal-category" id="adModalCategory">Объявление</div>
+      <h2 id="adModalTitle"></h2>
+      <p id="adModalDescription"></p>
+      <div class="ad-modal-info">
+        <div><span>Цена</span><b id="adModalPrice"></b></div>
+        <div><span>Город</span><b id="adModalLocation"></b></div>
+        <div><span>Дата</span><b id="adModalDate"></b></div>
+        <div><span>Контакт</span><b>открыт</b></div>
+      </div>
+      <button class="ad-modal-phone" type="button">☎ Показать телефон</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="submit-contact-modal" id="submitContactModal" aria-hidden="true">
+  <div class="submit-contact-modal__box" role="dialog" aria-modal="true" aria-labelledby="submitContactTitle">
+    <button class="submit-contact-modal__close" id="submitContactClose" type="button" aria-label="Закрыть">×</button>
+
+    <div class="submit-contact-modal__badge">Подать объявление</div>
+
+    <h2 id="submitContactTitle">Информация для связи</h2>
+
+    <p class="submit-contact-modal__text">
+      Чтобы разместить объявление, свяжитесь с администратором сайта.
+    </p>
+
+    <div class="submit-contact-modal__info">
+      <div>
+        <span>Контакт</span>
+        <strong>Польшаков Сергей Владимирович</strong>
+      </div>
+
+      <div>
+        <span>Телефон</span>
+        <a href="tel:+79044774746">+7 (904) 477-47-46</a>
+      </div>
+
+      <div>
+        <span>Email</span>
+        <a href="mailto:Sergey55.89@mail.ru">Sergey55.89@mail.ru</a>
+      </div>
+    </div>
+
+    <div class="submit-contact-modal__actions">
+      <a class="submit-contact-modal__call" href="tel:+79044774746">Позвонить</a>
+      <a class="submit-contact-modal__mail" href="mailto:Sergey55.89@mail.ru">Написать на Email</a>
+    </div>
+  </div>
+</div>
+
+<script src="announcements.js"></script>
+<script src="contact-popup.js"></script>
+</body>
+</html>
