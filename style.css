@@ -2687,3 +2687,6 @@ section,
 .weather.weather--error small,
 .weather.weather--loading small{overflow:hidden;text-overflow:ellipsis;}
 .weather.weather--error{border-color:rgba(255,255,255,.12);opacity:.82;}
+
+
+.routes-v2-actions{margin-top:18px;display:flex}.routes-v2-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:14px;background:#f5c542;color:#111;text-decoration:none;font-weight:800;transition:.2s}.routes-v2-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
