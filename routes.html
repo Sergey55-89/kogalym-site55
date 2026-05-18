@@ -209,17 +209,22 @@
   -webkit-box-orient:vertical;
   overflow:hidden;
 }
-.routes-v2-actions{
-  display:flex;
+.routes-v2-bottom{
+  display:grid;
+  grid-template-columns:minmax(190px,240px) minmax(0,1fr);
   gap:14px;
   margin-top:auto;
+  align-items:stretch;
+  min-width:0;
+}
+.routes-v2-actions{
+  display:flex;
   min-width:0;
 }
 .routes-v2-info{
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:1fr;
   gap:14px;
-  margin-top:auto;
   min-width:0;
 }
 .routes-v2-info div{
@@ -240,21 +245,24 @@
   color:#e7edf8;
   font:800 14px/1.35 Arial,Helvetica,sans-serif;
 }
-.routes-v2-steps,.routes-v2-actions{display:none!important;}
-
 .routes-v2-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:50px;
+  width:100%;
+  min-height:64px;
   max-width:100%;
-  padding:14px 22px;
-  border-radius:14px;
+  padding:16px 22px;
+  border-radius:18px;
   text-decoration:none;
-  font:900 15px/1.1 Arial,Helvetica,sans-serif;
+  font:900 16px/1.1 Arial,Helvetica,sans-serif;
   transition:.2s ease;
   box-sizing:border-box;
   text-align:center;
+}
+.routes-v2-btn::before{
+  content:"📍";
+  margin-right:9px;
 }
 .routes-v2-btn--gold{
   background:#f1c75b;
@@ -272,6 +280,7 @@
   .routes-v2-content{padding:22px;}
 }
 @media(max-width:620px){
+  .routes-v2-bottom{grid-template-columns:1fr;}
   .routes-v2-info{grid-template-columns:1fr;}
 }
 </style>
@@ -318,8 +327,7 @@
           <h2 class="routes-v2-card-title">Центр и СКК «Галактика»</h2>
           <div class="routes-v2-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div>
           <p class="routes-v2-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p>
-          <div class="routes-v2-info"><div><b>Старт</b><span>СКК «Галактика»</span></div><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div>
-          <div class="routes-v2-actions"><a class="routes-v2-btn" href="map.html">Показать маршрут</a></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
         </div>
       </article>
 
@@ -331,8 +339,7 @@
           <h2 class="routes-v2-card-title">Парк 50-летия и набережная</h2>
           <div class="routes-v2-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div>
           <p class="routes-v2-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p>
-          <div class="routes-v2-info"><div><b>Старт</b><span>Парк 50-летия</span></div><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div>
-          <div class="routes-v2-actions"><a class="routes-v2-btn" href="map.html">Показать маршрут</a></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
         </div>
       </article>
 
@@ -344,8 +351,7 @@
           <h2 class="routes-v2-card-title">Ночной Когалым</h2>
           <div class="routes-v2-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div>
           <p class="routes-v2-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p>
-          <div class="routes-v2-info"><div><b>Старт</b><span>центральная часть города</span></div><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div>
-          <div class="routes-v2-actions"><a class="routes-v2-btn" href="map.html">Показать маршрут</a></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><a class="routes-v2-btn routes-v2-btn--gold" href="map.html">Показать маршрут</a></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div></div>
         </div>
       </article>
     </section>
