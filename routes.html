@@ -6,76 +6,273 @@
 <title>Маршруты — Открой Когалым</title>
 <link rel="stylesheet" href="style.css">
 <style>
-.routes-page{
+/* ===== ROUTES V2 FINAL: scoped, no overlap, no fixed broken widths ===== */
+.routes-v2-page{
+  width:100%;
   min-height:100vh;
   padding:150px 24px 76px;
+  box-sizing:border-box;
   color:#fff;
-  background:transparent;
 }
-.routes-container{max-width:1180px;margin:0 auto;}
-.routes-hero{margin-bottom:34px;}
-.routes-kicker{
-  display:inline-flex;align-items:center;gap:8px;
-  margin-bottom:16px;padding:8px 14px;border-radius:999px;
-  background:rgba(241,199,91,.14);border:1px solid rgba(241,199,91,.35);
-  color:#f1c75b;font-weight:800;font-size:14px;
+.routes-v2-wrap{
+  width:min(1180px,100%);
+  margin:0 auto;
 }
-.routes-hero h1{
-  font-size:clamp(44px,7vw,82px);line-height:.92;margin:0 0 20px;
-  font-family:Georgia,serif;letter-spacing:-.04em;
+.routes-v2-hero{
+  margin:0 0 34px;
+  max-width:900px;
 }
-.routes-hero p{max-width:780px;color:#d6d9e0;margin:0;font-size:20px;line-height:1.5;font-weight:700;}
-.route-list{display:grid;gap:26px;}
-.route-card{
-  display:grid;grid-template-columns:minmax(310px,420px) minmax(0,1fr);
-  overflow:hidden;border-radius:26px;background:rgba(17,23,36,.9);
-  border:1px solid rgba(255,255,255,.1);box-shadow:0 24px 70px rgba(0,0,0,.34);
-  min-height:360px;
+.routes-v2-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 16px;
+  padding:9px 15px;
+  border-radius:999px;
+  background:rgba(241,199,91,.16);
+  border:1px solid rgba(241,199,91,.38);
+  color:#f1c75b;
+  font:900 14px/1.2 Arial,Helvetica,sans-serif;
 }
-.route-photo{
-  position:relative;min-height:360px;aspect-ratio:4/3;
-  background-size:cover;background-position:center;isolation:isolate;
+.routes-v2-title-main{
+  margin:0 0 18px !important;
+  max-width:860px;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:clamp(44px,7vw,82px) !important;
+  line-height:.92 !important;
+  letter-spacing:-.045em !important;
+  color:#fff !important;
 }
-.route-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.45));z-index:1;}
-.route-label{
-  position:absolute;left:18px;top:18px;z-index:2;
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:8px 14px;border-radius:999px;background:#f1c75b;color:#111;
-  font-weight:900;font-size:14px;box-shadow:0 8px 22px rgba(0,0,0,.28);
+.routes-v2-lead{
+  max-width:790px;
+  margin:0 !important;
+  color:#e1e7f2 !important;
+  font:800 clamp(16px,2vw,20px)/1.52 Arial,Helvetica,sans-serif !important;
 }
-.route-body{display:flex;flex-direction:column;min-width:0;padding:30px;}
-.route-body h2{
-  margin:0 0 14px;font-size:clamp(30px,3vw,44px);line-height:1.02;
-  font-family:Georgia,serif;letter-spacing:-.025em;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+.routes-v2-list{
+  display:grid;
+  gap:28px;
 }
-.route-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;}
-.route-meta span{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);color:#f3f5f8;font-size:13px;font-weight:800;}
-.route-desc{
-  color:#d6d9e0;line-height:1.55;margin:0 0 22px;font-size:16px;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+.routes-v2-card{
+  display:grid;
+  grid-template-columns:minmax(0,430px) minmax(0,1fr);
+  align-items:stretch;
+  width:100%;
+  min-width:0;
+  overflow:hidden;
+  border-radius:28px;
+  background:rgba(17,23,36,.92);
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:0 24px 70px rgba(0,0,0,.34);
 }
-.route-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 24px;}
-.step{position:relative;min-height:104px;border-radius:16px;overflow:hidden;background-size:cover;background-position:center;border:1px solid rgba(255,255,255,.1);}
-.step::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.08));}
-.step b{position:absolute;top:10px;left:10px;width:28px;height:28px;border-radius:50%;background:#f1c75b;color:#111;display:flex;align-items:center;justify-content:center;font-size:13px;z-index:2;}
-.step span{position:absolute;left:12px;right:10px;bottom:10px;z-index:2;font-size:13px;line-height:1.2;font-weight:800;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.route-actions{display:flex;gap:14px;margin-top:auto;}
-.route-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 22px;border-radius:14px;text-decoration:none;font-weight:900;transition:.2s ease;}
-.route-btn.gold{background:#f1c75b;color:#111;box-shadow:0 10px 28px rgba(241,199,91,.22);}
-.route-btn.gold:hover{transform:translateY(-1px);filter:brightness(1.04);}
+.routes-v2-media{
+  position:relative;
+  min-width:0;
+  overflow:hidden;
+  background:#111827;
+}
+.routes-v2-media img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:330px;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  object-position:center;
+}
+.routes-v2-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.44));
+  pointer-events:none;
+}
+.routes-v2-label{
+  position:absolute;
+  z-index:2;
+  left:18px;
+  top:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  max-width:calc(100% - 36px);
+  padding:9px 15px;
+  border-radius:999px;
+  background:#f1c75b;
+  color:#111;
+  font:900 14px/1.1 Arial,Helvetica,sans-serif;
+  box-shadow:0 8px 22px rgba(0,0,0,.28);
+}
+.routes-v2-content{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  padding:30px;
+  box-sizing:border-box;
+}
+.routes-v2-card-title{
+  min-width:0;
+  margin:0 0 14px !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:clamp(30px,3vw,42px) !important;
+  line-height:1.04 !important;
+  letter-spacing:-.025em !important;
+  color:#fff !important;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.routes-v2-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:0 0 18px;
+  min-width:0;
+}
+.routes-v2-meta span{
+  max-width:100%;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.08);
+  color:#f3f5f8;
+  font:900 13px/1.15 Arial,Helvetica,sans-serif;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.routes-v2-desc{
+  margin:0 0 22px !important;
+  color:#dbe4f2 !important;
+  font:700 16px/1.58 Arial,Helvetica,sans-serif !important;
+  display:-webkit-box;
+  -webkit-line-clamp:3;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.routes-v2-steps{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:0 0 24px;
+  min-width:0;
+}
+.routes-v2-step{
+  position:relative;
+  min-width:0;
+  min-height:104px;
+  overflow:hidden;
+  border-radius:16px;
+  background:#111827;
+  border:1px solid rgba(255,255,255,.1);
+}
+.routes-v2-step img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:104px;
+  object-fit:cover;
+}
+.routes-v2-step::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.84),rgba(0,0,0,.08));
+}
+.routes-v2-num{
+  position:absolute;
+  z-index:2;
+  top:10px;
+  left:10px;
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#f1c75b;
+  color:#111;
+  font:900 13px/1 Arial,Helvetica,sans-serif;
+}
+.routes-v2-step-title{
+  position:absolute;
+  z-index:2;
+  left:12px;
+  right:10px;
+  bottom:10px;
+  color:#fff;
+  font:900 13px/1.22 Arial,Helvetica,sans-serif;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.routes-v2-actions{
+  display:flex;
+  gap:14px;
+  margin-top:auto;
+  min-width:0;
+}
+.routes-v2-info{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:auto;
+  min-width:0;
+}
+.routes-v2-info div{
+  min-width:0;
+  padding:16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.09);
+}
+.routes-v2-info b{
+  display:block;
+  margin:0 0 7px;
+  color:#f1c75b;
+  font:900 14px/1.2 Arial,Helvetica,sans-serif;
+}
+.routes-v2-info span{
+  display:block;
+  color:#e7edf8;
+  font:800 14px/1.35 Arial,Helvetica,sans-serif;
+}
+.routes-v2-steps,.routes-v2-actions{display:none!important;}
+
+.routes-v2-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  max-width:100%;
+  padding:14px 22px;
+  border-radius:14px;
+  text-decoration:none;
+  font:900 15px/1.1 Arial,Helvetica,sans-serif;
+  transition:.2s ease;
+  box-sizing:border-box;
+  text-align:center;
+}
+.routes-v2-btn--gold{
+  background:#f1c75b;
+  color:#111;
+  box-shadow:0 10px 28px rgba(241,199,91,.22);
+}
+.routes-v2-btn--gold:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.04);
+}
 @media(max-width:980px){
-  .routes-page{padding:120px 16px 56px;}
-  .route-card{grid-template-columns:1fr;min-height:0;}
-  .route-photo{min-height:240px;aspect-ratio:16/9;}
-  .route-body{padding:22px;}
+  .routes-v2-page{padding:122px 16px 56px;}
+  .routes-v2-card{grid-template-columns:1fr;}
+  .routes-v2-media img{min-height:0;height:auto;aspect-ratio:16/9;}
+  .routes-v2-content{padding:22px;}
 }
 @media(max-width:620px){
-  .routes-hero p{font-size:16px;}
-  .route-steps{grid-template-columns:1fr;}
-  .step{min-height:92px;}
-  .route-actions{flex-direction:column;}
-  .route-btn{width:100%;}
+  .routes-v2-info{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -100,33 +297,61 @@
     <span class="icon">⌕</span>
     <span class="icon">♡</span>
     <a class="about" href="about.html">О городе</a>
-
     <div class="weather weather--loading"><span>🌡️</span><b>…</b><small>Когалым<br>загрузка</small></div>
   </div>
 </header>
-<main class="routes-page page shell">
-<div class="routes-container">
-<section class="routes-hero">
-<div class="routes-kicker">Готовые прогулочные сценарии</div>
-<h1>Маршруты<br>по Когалыму</h1>
-<p>Не просто список мест, а готовые прогулки: куда идти, что смотреть, где сделать фото и сколько времени заложить.</p>
-</section>
-<section class="route-list">
-<article class="route-card">
-<div class="route-photo" style="background-image:url('images/galaktika.jpg')"><div class="route-label">Маршрут 01</div></div>
-<div class="route-body"><h2>Центр и СКК «Галактика»</h2><div class="route-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div><p class="route-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p><div class="route-steps"><div class="step" style="background-image:url('images/galaktika.jpg')"><b>1</b><span>СКК «Галактика»</span></div><div class="step" style="background-image:url('images/night.jpg')"><b>2</b><span>Вечерние улицы</span></div><div class="step" style="background-image:url('images/lukoil.webp')"><b>3</b><span>Городской символ</span></div></div><div class="route-actions"><a class="route-btn gold" href="https://yandex.ru/maps/?rtext=~Когалым%20СКК%20Галактика~Когалым%20центр~Когалым%20ЛУКОЙЛ&rtt=pd" target="_blank" rel="noopener">Открыть маршрут</a></div></div>
-</article>
-<article class="route-card">
-<div class="route-photo" style="background-image:url('images/park.jpg')"><div class="route-label">Маршрут 02</div></div>
-<div class="route-body"><h2>Парк 50-летия и набережная</h2><div class="route-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div><p class="route-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p><div class="route-steps"><div class="step" style="background-image:url('images/park.jpg')"><b>1</b><span>Парк 50-летия</span></div><div class="step" style="background-image:url('images/embankment.jpg')"><b>2</b><span>Набережная</span></div><div class="step" style="background-image:url('images/night.jpg')"><b>3</b><span>Вид на город</span></div></div><div class="route-actions"><a class="route-btn gold" href="https://yandex.ru/maps/?rtext=~Когалым%20Парк%2050-летия~Когалым%20Набережная~Когалым%20центр&rtt=pd" target="_blank" rel="noopener">Открыть маршрут</a></div></div>
-</article>
-<article class="route-card">
-<div class="route-photo" style="background-image:url('images/night.jpg')"><div class="route-label">Маршрут 03</div></div>
-<div class="route-body"><h2>Ночной Когалым</h2><div class="route-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div><p class="route-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p><div class="route-steps"><div class="step" style="background-image:url('images/night.jpg')"><b>1</b><span>Ночной центр</span></div><div class="step" style="background-image:url('images/galaktika.jpg')"><b>2</b><span>Галактика вечером</span></div><div class="step" style="background-image:url('images/embankment.jpg')"><b>3</b><span>Тихая прогулка</span></div></div><div class="route-actions"><a class="route-btn gold" href="https://yandex.ru/maps/?rtext=~Когалым%20центр~Когалым%20СКК%20Галактика~Когалым%20Набережная&rtt=pd" target="_blank" rel="noopener">Открыть маршрут</a></div></div>
-</article>
-</section>
-</div>
+
+<main class="routes-v2-page">
+  <div class="routes-v2-wrap">
+    <section class="routes-v2-hero">
+      <div class="routes-v2-kicker">Готовые прогулочные сценарии</div>
+      <h1 class="routes-v2-title-main">Маршруты<br>по Когалыму</h1>
+      <p class="routes-v2-lead">Не просто список мест, а готовые прогулки: куда идти, что смотреть, где сделать фото и сколько времени заложить.</p>
+    </section>
+
+    <section class="routes-v2-list" aria-label="Список маршрутов">
+      <article class="routes-v2-card">
+        <div class="routes-v2-media">
+          <img src="images/galaktika.jpg" alt="СКК Галактика">
+          <div class="routes-v2-label">Маршрут 01</div>
+        </div>
+        <div class="routes-v2-content">
+          <h2 class="routes-v2-card-title">Центр и СКК «Галактика»</h2>
+          <div class="routes-v2-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div>
+          <p class="routes-v2-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p>
+          <div class="routes-v2-info"><div><b>Старт</b><span>СКК «Галактика»</span></div><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div>
+        </div>
+      </article>
+
+      <article class="routes-v2-card">
+        <div class="routes-v2-media">
+          <img src="images/park.jpg" alt="Парк в Когалыме">
+          <div class="routes-v2-label">Маршрут 02</div>
+        </div>
+        <div class="routes-v2-content">
+          <h2 class="routes-v2-card-title">Парк 50-летия и набережная</h2>
+          <div class="routes-v2-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div>
+          <p class="routes-v2-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p>
+          <div class="routes-v2-info"><div><b>Старт</b><span>Парк 50-летия</span></div><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div>
+        </div>
+      </article>
+
+      <article class="routes-v2-card">
+        <div class="routes-v2-media">
+          <img src="images/night.jpg" alt="Ночной Когалым">
+          <div class="routes-v2-label">Маршрут 03</div>
+        </div>
+        <div class="routes-v2-content">
+          <h2 class="routes-v2-card-title">Ночной Когалым</h2>
+          <div class="routes-v2-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div>
+          <p class="routes-v2-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p>
+          <div class="routes-v2-info"><div><b>Старт</b><span>центральная часть города</span></div><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div>
+        </div>
+      </article>
+    </section>
+  </div>
 </main>
+
 <footer>
   <span>© 2026 Открой Когалым</span>
   <a href="about.html">О проекте</a>
