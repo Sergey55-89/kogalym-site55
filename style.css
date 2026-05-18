@@ -2345,3 +2345,140 @@ section,
 .place-modal-box{overflow-y:auto!important}.place-modal-content{padding-bottom:28px!important}.place-modal-close{line-height:38px!important}.modal-open{overflow:hidden}
 @media(max-width:980px){.catalog-layout{grid-template-columns:1fr}.catalog-sidebar{position:static}.catalog-stats{grid-template-columns:1fr 1fr 1fr}.catalog-category-list{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.catalog-stats{grid-template-columns:1fr}.catalog-layout{gap:16px}.catalog-sidebar{padding:16px;border-radius:20px}.catalog-category-list{grid-template-columns:1fr}.catalog-toolbar{align-items:flex-start;flex-direction:column}.catalog-toolbar button{width:100%}.catalog-card .place-body h2,.catalog-card .place-body p{min-height:0}.custom-select-menu{max-height:260px}.catalog-note{font-size:13px}.places-filter-row.catalog-filter-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px}.places-filter-row.catalog-filter-row .place-filter{white-space:nowrap;flex:0 0 auto}}
+
+/* ===== FINAL CATALOG CARD UI FIX 2026-05-18 ===== */
+.catalog-grid.places-grid{
+  width:100% !important;
+  margin:0 !important;
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap:20px !important;
+  align-items:stretch !important;
+}
+
+.catalog-card.place-card{
+  display:flex !important;
+  flex-direction:column !important;
+  height:auto !important;
+  min-height:520px !important;
+  max-height:none !important;
+  overflow:hidden !important;
+  border-radius:24px !important;
+}
+
+.catalog-card .place-image{
+  flex:0 0 auto !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  aspect-ratio:16 / 9 !important;
+  background-size:cover !important;
+  background-position:center !important;
+}
+
+.catalog-card .place-body{
+  display:flex !important;
+  flex-direction:column !important;
+  flex:1 1 auto !important;
+  min-height:0 !important;
+  padding:18px !important;
+}
+
+.catalog-card .place-top{
+  flex:0 0 auto !important;
+  min-height:24px !important;
+}
+
+.catalog-card .place-body h2{
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:2 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  margin:10px 0 10px !important;
+  min-height:54px !important;
+  max-height:58px !important;
+  font-size:24px !important;
+  line-height:1.12 !important;
+  letter-spacing:-.02em !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+.catalog-card .place-body p{
+  display:-webkit-box !important;
+  -webkit-box-orient:vertical !important;
+  -webkit-line-clamp:3 !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  margin:0 !important;
+  min-height:72px !important;
+  max-height:76px !important;
+  font-size:16px !important;
+  line-height:1.5 !important;
+  word-break:normal !important;
+  overflow-wrap:anywhere !important;
+}
+
+.catalog-card .place-meta{
+  flex:0 0 auto !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  align-items:flex-start !important;
+  min-height:76px !important;
+  max-height:82px !important;
+  margin-top:16px !important;
+  overflow:hidden !important;
+}
+
+.catalog-card .place-meta span{
+  max-width:100% !important;
+  white-space:nowrap !important;
+  overflow:hidden !important;
+  text-overflow:ellipsis !important;
+  font-size:13px !important;
+  line-height:1.2 !important;
+  padding:8px 10px !important;
+}
+
+.catalog-card .place-more{
+  flex:0 0 auto !important;
+  width:100% !important;
+  min-height:46px !important;
+  margin-top:auto !important;
+  border-radius:14px !important;
+}
+
+@media (max-width:1150px){
+  .catalog-grid.places-grid{
+    grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)) !important;
+  }
+}
+
+@media (max-width:700px){
+  .catalog-grid.places-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .catalog-card.place-card{
+    min-height:0 !important;
+  }
+
+  .catalog-card .place-body h2{
+    min-height:0 !important;
+    max-height:58px !important;
+    font-size:23px !important;
+  }
+
+  .catalog-card .place-body p{
+    min-height:0 !important;
+    max-height:74px !important;
+  }
+
+  .catalog-card .place-meta{
+    min-height:0 !important;
+    max-height:84px !important;
+  }
+}
