@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Места Когалыма — Открой Когалым</title>
+  <title>Каталог Когалыма — Открой Когалым</title>
+  <meta name="description" content="Городской каталог Когалыма: организации, школы, сады, медицина, магазины, кафе, спорт, транспорт, адреса, режим работы, карта и маршрут.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
   <nav>
     <a href="index.html">Главная</a>
     <a href="routes.html">Маршруты</a>
-    <a class="active" href="places.html">Места</a>
+    <a class="active" href="places.html">Каталог</a>
     <a href="events.html">Афиша</a>
     <a href="announcements.html">Объявления</a>
     <a href="admin.html">Админка</a>
@@ -28,122 +29,68 @@
   </div>
 </header>
 
-<main class="places-page">
-  <section class="places-hero">
+<main class="places-page catalog-page">
+  <section class="places-hero catalog-hero">
     <div class="places-hero-content">
-      <span class="places-eyebrow">Городской гид</span>
-      <h1>Места Когалыма</h1>
-      <p>Кафе, спорт, прогулки, отдых с детьми и полезные городские точки в одном разделе.</p>
-      <div class="places-search">
-        <input id="placesSearch" type="search" placeholder="Найти место, кафе, парк или услугу">
+      <span class="places-eyebrow">Городской каталог</span>
+      <h1>Каталог Когалыма</h1>
+      <p>Организации, школы, детские сады, медицина, магазины, кафе, спорт и городские службы. Быстрый поиск, категории, карта и маршрут.</p>
+      <div class="places-search catalog-search">
+        <input id="placesSearch" type="search" placeholder="Поиск: школа, аптека, кафе, больница, банк..." autocomplete="off">
         <div class="custom-select" id="placesSelect">
-          <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все места</button>
-          <div class="custom-select-menu" id="placesSelectMenu">
-            <button type="button" data-value="all">Все места</button>
-            <button type="button" data-value="food">Кафе и еда</button>
-            <button type="button" data-value="walk">Прогулки</button>
-            <button type="button" data-value="sport">Спорт</button>
-            <button type="button" data-value="kids">Детям</button>
-            <button type="button" data-value="service">Сервисы</button>
-          </div>
+          <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
+          <div class="custom-select-menu" id="placesSelectMenu"></div>
         </div>
       </div>
+      <div class="catalog-note">Карточки открывают объект или категорию на Яндекс Картах. Для части сетевых точек режим и телефон лучше сверять перед визитом.</div>
     </div>
-    <aside class="places-map-card">
-      <span>Карта города</span>
-      <strong>Когалым</strong>
-      <p>Выберите место — откроется карточка с описанием и быстрыми действиями.</p>
+    <aside class="places-map-card catalog-map-card">
+      <span>Навигация</span>
+      <strong>Карта + маршрут</strong>
+      <p>Откройте карточку организации и нажмите «Построить маршрут».</p>
     </aside>
   </section>
 
-  <section class="places-filter-row">
-    <button class="place-filter active" type="button" data-place-filter="all">Все</button>
-    <button class="place-filter" type="button" data-place-filter="food">Кафе</button>
-    <button class="place-filter" type="button" data-place-filter="walk">Прогулки</button>
-    <button class="place-filter" type="button" data-place-filter="sport">Спорт</button>
-    <button class="place-filter" type="button" data-place-filter="kids">Детям</button>
-    <button class="place-filter" type="button" data-place-filter="service">Сервисы</button>
+  <section class="catalog-stats" aria-label="Статистика каталога">
+    <div><b id="catalogTotal">0</b><span>карточек</span></div>
+    <div><b>11</b><span>категорий</span></div>
+    <div><b>2</b><span>действия с картой</span></div>
   </section>
 
-  <section class="places-grid" id="placesGrid">
-    <article class="place-card" data-place-type="walk" data-place-title="Парк Победы" data-place-description="Прогулочная зона, семейные маршруты, фото и спокойный отдых." data-place-rating="4.8" data-place-hours="Круглосуточно" data-place-image="images/park.jpg" data-place-address="Когалым, Парк Победы" data-place-phone="Телефон не указан" data-place-map="Когалым Парк Победы">
-      <div class="place-image" style="background-image:url('images/park.jpg')"><span class="place-badge">Популярно</span></div>
-      <div class="place-body"><div class="place-top"><span>Прогулки</span><b>★ 4.8</b></div><h2>Парк Победы</h2><p>Прогулочная зона, семейные маршруты, фото и спокойный отдых.</p><div class="place-meta"><span>Круглосуточно</span><span>Семейно</span></div><button class="place-more" type="button">Подробнее</button></div>
-    </article>
-    <article class="place-card" data-place-type="food" data-place-title="Галактика" data-place-description="Торговый центр, кафе, магазины и городские встречи." data-place-rating="4.6" data-place-hours="10:00–22:00" data-place-image="images/galaktika.jpg" data-place-address="Когалым, ТРЦ Галактика" data-place-phone="Телефон не указан" data-place-map="Когалым Галактика">
-      <div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">ТОП</span></div>
-      <div class="place-body"><div class="place-top"><span>Кафе и еда</span><b>★ 4.6</b></div><h2>Галактика</h2><p>Торговый центр, кафе, магазины и городские встречи.</p><div class="place-meta"><span>10:00–22:00</span><span>Центр</span></div><button class="place-more" type="button">Подробнее</button></div>
-    </article>
-    <article class="place-card" data-place-type="walk" data-place-title="Набережная" data-place-description="Хорошее место для прогулки, фото и спокойного вечера." data-place-rating="4.7" data-place-hours="Круглосуточно" data-place-image="images/embankment.jpg" data-place-address="Когалым, Набережная" data-place-phone="Телефон не указан" data-place-map="Когалым Набережная">
-      <div class="place-image" style="background-image:url('images/embankment.jpg')"><span class="place-badge">Фото</span></div>
-      <div class="place-body"><div class="place-top"><span>Прогулки</span><b>★ 4.7</b></div><h2>Набережная</h2><p>Хорошее место для прогулки, фото и спокойного вечера.</p><div class="place-meta"><span>Круглосуточно</span><span>Прогулка</span></div><button class="place-more" type="button">Подробнее</button></div>
-    </article>
-    <article class="place-card" data-place-type="sport" data-place-title="Спортивный комплекс" data-place-description="Тренировки, секции и активный отдых для взрослых и детей." data-place-rating="4.5" data-place-hours="08:00–22:00" data-place-image="images/galaktika.jpg" data-place-address="Когалым, спортивный комплекс" data-place-phone="Телефон не указан" data-place-map="Когалым спортивный комплекс">
-      <div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">Спорт</span></div>
-      <div class="place-body"><div class="place-top"><span>Спорт</span><b>★ 4.5</b></div><h2>Спортивный комплекс</h2><p>Тренировки, секции и активный отдых для взрослых и детей.</p><div class="place-meta"><span>08:00–22:00</span><span>Секции</span></div><button class="place-more" type="button">Подробнее</button></div>
-    </article>
-  
-<article class="place-card" data-place-type="service" data-place-title="МФЦ Когалым" data-place-description="Многофункциональный центр государственных услуг." data-place-rating="4.5" data-place-hours="08:00–20:00" data-place-image="images/galaktika.jpg" data-place-address="ул. Мира, 15" data-place-phone="+7 (34667) 2-15-90" data-place-map="Когалым МФЦ Мира 15">
-<div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">МФЦ</span></div>
-<div class="place-body"><div class="place-top"><span>Сервисы</span><b>★ 4.5</b></div><h2>МФЦ Когалым</h2><p>Государственные услуги, документы, консультации.</p><div class="place-meta"><span>08:00–20:00</span><span>ул. Мира, 15</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
+  <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
 
-<article class="place-card" data-place-type="kids" data-place-title="Школа №1" data-place-description="Средняя общеобразовательная школа Когалыма." data-place-rating="4.4" data-place-hours="08:00–18:00" data-place-image="images/park.jpg" data-place-address="Набережная 55А" data-place-phone="+7 (34667) 5-51-37" data-place-map="Когалым школа 1">
-<div class="place-image" style="background-image:url('images/park.jpg')"><span class="place-badge">Школа</span></div>
-<div class="place-body"><div class="place-top"><span>Детям</span><b>★ 4.4</b></div><h2>Школа №1</h2><p>Муниципальная школа с общим образованием и секциями.</p><div class="place-meta"><span>08:00–18:00</span><span>Набережная 55А</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
+  <section class="catalog-layout">
+    <aside class="catalog-sidebar">
+      <h2>Категории</h2>
+      <div id="catalogCategoryList" class="catalog-category-list"></div>
+      <div class="catalog-help">
+        <b>Как пользоваться</b>
+        <p>Введите название или выберите категорию. В карточке есть адрес, режим, телефон, карта и маршрут.</p>
+      </div>
+    </aside>
 
-<article class="place-card" data-place-type="service" data-place-title="Когалымская городская больница" data-place-description="Поликлиника и медицинская помощь." data-place-rating="4.2" data-place-hours="Круглосуточно" data-place-image="images/embankment.jpg" data-place-address="ул. Молодежная" data-place-phone="+7 (34667) 2-50-03" data-place-map="Когалым больница">
-<div class="place-image" style="background-image:url('images/embankment.jpg')"><span class="place-badge">Медицина</span></div>
-<div class="place-body"><div class="place-top"><span>Сервисы</span><b>★ 4.2</b></div><h2>Когалымская городская больница</h2><p>Прием врачей, диагностика и экстренная помощь.</p><div class="place-meta"><span>24/7</span><span>Молодежная</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-<article class="place-card" data-place-type="food" data-place-title="Пятёрочка" data-place-description="Продуктовый магазин рядом с домом." data-place-rating="4.3" data-place-hours="09:00–22:00" data-place-image="images/galaktika.jpg" data-place-address="Когалым" data-place-phone="8-800-555-55-05" data-place-map="Когалым Пятерочка">
-<div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">Магазин</span></div>
-<div class="place-body"><div class="place-top"><span>Магазины</span><b>★ 4.3</b></div><h2>Пятёрочка</h2><p>Продукты, бытовые товары и ежедневные покупки.</p><div class="place-meta"><span>09:00–22:00</span><span>Магазин</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-
-<article class="place-card" data-place-type="service" data-place-title="Администрация Когалыма" data-place-description="Городская администрация." data-place-rating="4.3" data-place-hours="09:00–18:00" data-place-image="images/embankment.jpg" data-place-address="ул. Дружбы Народов, 7" data-place-phone="+7 (34667) 9-31-00" data-place-map="Администрация Когалыма">
-<div class="place-image" style="background-image:url('images/embankment.jpg')"><span class="place-badge">Гос.</span></div>
-<div class="place-body"><div class="place-top"><span>Сервисы</span><b>★ 4.3</b></div><h2>Администрация Когалыма</h2><p>Городская администрация и прием граждан.</p><div class="place-meta"><span>09:00–18:00</span><span>Дружбы Народов, 7</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-<article class="place-card" data-place-type="kids" data-place-title="Детский сад Берёзка" data-place-description="Муниципальный детский сад." data-place-rating="4.6" data-place-hours="07:00–19:00" data-place-image="images/park.jpg" data-place-address="Когалым" data-place-phone="+7 (34667) 2-22-22" data-place-map="Детский сад Березка Когалым">
-<div class="place-image" style="background-image:url('images/park.jpg')"><span class="place-badge">Сад</span></div>
-<div class="place-body"><div class="place-top"><span>Детям</span><b>★ 4.6</b></div><h2>Детский сад Берёзка</h2><p>Дошкольное образование и развитие детей.</p><div class="place-meta"><span>07:00–19:00</span><span>Детский сад</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-<article class="place-card" data-place-type="sport" data-place-title="Ледовый дворец Айсберг" data-place-description="Каток, хоккей и массовое катание." data-place-rating="4.8" data-place-hours="08:00–23:00" data-place-image="images/galaktika.jpg" data-place-address="Когалым" data-place-phone="+7 (34667) 3-33-33" data-place-map="Айсберг Когалым">
-<div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">Спорт</span></div>
-<div class="place-body"><div class="place-top"><span>Спорт</span><b>★ 4.8</b></div><h2>Ледовый дворец Айсберг</h2><p>Тренировки, хоккей и катание для жителей города.</p><div class="place-meta"><span>08:00–23:00</span><span>Каток</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-<article class="place-card" data-place-type="service" data-place-title="Аптека Планета Здоровья" data-place-description="Лекарства и медицинские товары." data-place-rating="4.5" data-place-hours="08:00–22:00" data-place-image="images/embankment.jpg" data-place-address="Когалым" data-place-phone="8-800-755-05-00" data-place-map="Аптека Планета Здоровья Когалым">
-<div class="place-image" style="background-image:url('images/embankment.jpg')"><span class="place-badge">Аптека</span></div>
-<div class="place-body"><div class="place-top"><span>Сервисы</span><b>★ 4.5</b></div><h2>Аптека Планета Здоровья</h2><p>Лекарства, витамины и товары для здоровья.</p><div class="place-meta"><span>08:00–22:00</span><span>Аптека</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-<article class="place-card" data-place-type="food" data-place-title="Кафе Север" data-place-description="Кафе и горячая кухня." data-place-rating="4.4" data-place-hours="10:00–23:00" data-place-image="images/galaktika.jpg" data-place-address="Когалым" data-place-phone="+7 (34667) 4-44-44" data-place-map="Кафе Север Когалым">
-<div class="place-image" style="background-image:url('images/galaktika.jpg')"><span class="place-badge">Кафе</span></div>
-<div class="place-body"><div class="place-top"><span>Кафе</span><b>★ 4.4</b></div><h2>Кафе Север</h2><p>Обеды, кофе и семейные ужины.</p><div class="place-meta"><span>10:00–23:00</span><span>Кафе</span></div><button class="place-more" type="button">Подробнее</button></div>
-</article>
-
-</section>
-  <div class="places-empty" id="placesEmpty">По этому запросу мест пока нет.</div>
+    <section>
+      <div class="catalog-toolbar">
+        <div><b id="catalogResultTitle">Все организации</b><span id="catalogResultCount"></span></div>
+        <button id="catalogReset" type="button">Сбросить фильтр</button>
+      </div>
+      <div class="places-grid catalog-grid" id="placesGrid"></div>
+      <div class="places-empty" id="placesEmpty">По этому запросу ничего не найдено.</div>
+    </section>
+  </section>
 </main>
 
 <div class="place-modal" id="placeModal" aria-hidden="true">
-  <div class="place-modal-box" role="dialog" aria-modal="true">
+  <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
     <button class="place-modal-close" id="placeModalClose" type="button" aria-label="Закрыть">×</button>
     <div class="place-modal-image" id="placeModalImage"></div>
     <div class="place-modal-content">
-      <div class="place-modal-rating" id="placeModalRating">★ 4.8</div>
+      <div class="place-modal-rating" id="placeModalRating">Каталог</div>
       <h2 id="placeModalTitle"></h2>
       <p id="placeModalDescription"></p>
       <div class="place-modal-info">
         <div><span>Категория</span><b id="placeModalType"></b></div>
-        <div><span>Время</span><b id="placeModalHours"></b></div>
+        <div><span>Режим</span><b id="placeModalHours"></b></div>
         <div><span>Адрес</span><b id="placeModalAddress"></b></div>
         <div><span>Телефон</span><b id="placeModalPhone"></b></div>
       </div>
@@ -153,7 +100,7 @@
         <div>
           <span>Карта</span>
           <strong id="placeModalMapTitle">Когалым</strong>
-          <p>Откройте место на карте и постройте маршрут через Яндекс Карты.</p>
+          <p>Откройте место на карте или постройте маршрут в Яндекс Картах.</p>
         </div>
       </div>
 
