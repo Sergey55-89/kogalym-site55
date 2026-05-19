@@ -3657,3 +3657,73 @@ max-width:none;
 .cinematic-weather__aurora{
   opacity:.48 !important;
 }
+
+/* ===== FINAL FIX: центрируем верхнее меню после очистки шапки ===== */
+.header{
+  position:fixed !important;
+  top:0 !important;
+  left:0 !important;
+  width:100% !important;
+  height:94px !important;
+  padding:0 72px !important;
+  display:grid !important;
+  grid-template-columns:minmax(220px,1fr) auto minmax(220px,1fr) !important;
+  align-items:center !important;
+  gap:24px !important;
+  background:rgba(2,8,20,.78) !important;
+  backdrop-filter:blur(16px) !important;
+  border-bottom:1px solid rgba(255,255,255,.06) !important;
+  z-index:1000 !important;
+}
+
+.header .brand{
+  grid-column:1 !important;
+  justify-self:start !important;
+}
+
+.header nav{
+  grid-column:2 !important;
+  justify-self:center !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:34px !important;
+}
+
+.header .right-head{
+  grid-column:3 !important;
+  justify-self:end !important;
+  margin:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  min-width:80px !important;
+}
+
+.header nav a{
+  padding:34px 0 12px !important;
+}
+
+@media(max-width:1100px){
+  .header{
+    position:relative !important;
+    height:auto !important;
+    padding:18px !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+  }
+  .header .brand,
+  .header nav,
+  .header .right-head{
+    grid-column:1 !important;
+    justify-self:center !important;
+  }
+  .header nav{
+    flex-wrap:wrap !important;
+    gap:18px 24px !important;
+  }
+  .header nav a{
+    padding:8px 0 10px !important;
+  }
+}
