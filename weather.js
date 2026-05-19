@@ -64,6 +64,14 @@
         '<b>' + temp + '</b>' +
         '<small>' + KOGALYM.name + '<br>' + condition[1] + '</small>';
     });
+
+    document.querySelectorAll('[data-weather-temp]').forEach(function(el){ el.textContent = temp; });
+    document.querySelectorAll('[data-weather-status]').forEach(function(el){
+      el.textContent = 'Северное сияние · ' + condition[1].toLowerCase();
+    });
+    document.querySelectorAll('[data-weather-wind]').forEach(function(el){
+      el.textContent = wind ? 'ветер ' + wind : 'ветер —';
+    });
   }
 
   function renderLoading(){
@@ -78,6 +86,9 @@
       box.classList.remove('weather--loading');
       box.classList.add('weather--error');
       box.innerHTML = '<span>🌡️</span><b>—</b><small>' + KOGALYM.name + '<br>погода недоступна</small>';
+    });
+    document.querySelectorAll('[data-weather-status]').forEach(function(el){
+      el.textContent = 'Северное сияние · данные обновятся позже';
     });
   }
 

@@ -57,24 +57,20 @@
       </div>
     </div>
 
-    <aside class="hero-weather-card" aria-label="Погода и северное сияние">
-      <div class="weather-top">
+    <aside class="cinematic-weather" aria-label="Погода и северное сияние">
+      <div class="cinematic-weather__glow"></div>
+      <div class="cinematic-weather__label">Ночной Когалым</div>
+      <div class="cinematic-weather__main">
         <div>
-          <div class="weather-temp">−18°</div>
-          <div class="weather-status">
-            Когалым · Югра<br>
-            Снег и северное сияние
-          </div>
+          <div class="cinematic-weather__temp" data-weather-temp>−18°</div>
+          <div class="cinematic-weather__status" data-weather-status>Северное сияние · морозный вечер</div>
         </div>
-        <div class="aurora-icon">🌌</div>
+        <div class="cinematic-weather__time">сейчас</div>
       </div>
-
-      <div class="aurora-badge">Северное сияние ожидается сегодня</div>
-
-      <div class="weather-grid">
-        <div><b>12 м/с</b><span>Ветер</span></div>
-        <div><b>84%</b><span>Влажность</span></div>
-        <div><b>−24°</b><span>Ночью</span></div>
+      <div class="cinematic-weather__line"></div>
+      <div class="cinematic-weather__footer">
+        <span>Югра</span>
+        <span data-weather-wind>ветер 12 м/с</span>
       </div>
     </aside>
   </section>
