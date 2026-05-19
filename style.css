@@ -2690,3 +2690,74 @@ section,
 
 
 .routes-v2-actions{margin-top:18px;display:flex}.routes-v2-btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:14px;background:#f5c542;color:#111;text-decoration:none;font-weight:800;transition:.2s}.routes-v2-btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+/* Unified modal close buttons */
+.ad-close,
+.submit-contact-modal__close,
+.place-modal-close,
+.routes-modal__close{
+  position:absolute!important;
+  top:16px!important;
+  right:16px!important;
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  padding:0!important;
+  border-radius:14px!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(10,16,26,.72)!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  cursor:pointer!important;
+  z-index:50!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.25)!important;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease!important;
+}
+.ad-close::before,
+.ad-close::after,
+.submit-contact-modal__close::before,
+.submit-contact-modal__close::after,
+.place-modal-close::before,
+.place-modal-close::after,
+.routes-modal__close::before,
+.routes-modal__close::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:20px!important;
+  height:2px!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  transform-origin:center!important;
+}
+.ad-close::before,
+.submit-contact-modal__close::before,
+.place-modal-close::before,
+.routes-modal__close::before{transform:translate(-50%,-50%) rotate(45deg)!important;}
+.ad-close::after,
+.submit-contact-modal__close::after,
+.place-modal-close::after,
+.routes-modal__close::after{transform:translate(-50%,-50%) rotate(-45deg)!important;}
+.ad-close:hover,
+.submit-contact-modal__close:hover,
+.place-modal-close:hover,
+.routes-modal__close:hover{
+  background:rgba(241,199,91,.18)!important;
+  border-color:rgba(241,199,91,.42)!important;
+  transform:translateY(-1px)!important;
+}
+.ad-close:active,
+.submit-contact-modal__close:active,
+.place-modal-close:active,
+.routes-modal__close:active{transform:translateY(0)!important;}
+@media(max-width:620px){
+  .ad-close,
+  .submit-contact-modal__close,
+  .place-modal-close,
+  .routes-modal__close{top:12px!important;right:12px!important;width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;border-radius:12px!important;}
+}
