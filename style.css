@@ -2934,3 +2934,31 @@ footer{align-items:center;justify-content:space-between;border-top:1px solid rgb
   .highlight-card{min-height:190px;}
   .today-grid{padding:0 18px;}
 }
+
+/* Final unified CTA buttons */
+.home-highlights .highlight-card a.btn,
+.home-highlights .highlight-card a.btn.gold,
+.home-highlights .highlight-card a.btn:visited,
+.home-highlights .highlight-card a.btn.gold:visited{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  min-height:48px !important;
+  padding:13px 18px !important;
+  border-radius:12px !important;
+  border:1px solid rgba(242,208,138,.55) !important;
+  background:linear-gradient(135deg,#f2d08a 0%,#d6a24b 52%,#b9832b 100%) !important;
+  color:#08111f !important;
+  font-weight:900 !important;
+  font-size:15px !important;
+  line-height:1 !important;
+  text-decoration:none !important;
+  box-shadow:0 12px 28px rgba(214,162,75,.22) !important;
+}
+.home-highlights .highlight-card a.btn:hover,
+.home-highlights .highlight-card a.btn.gold:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 16px 34px rgba(214,162,75,.32) !important;
+  filter:brightness(1.04) !important;
+}
