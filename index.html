@@ -57,21 +57,27 @@
       </div>
     </div>
 
-    <aside class="cinematic-weather" aria-label="Погода и северное сияние">
-      <div class="cinematic-weather__glow"></div>
-      <div class="cinematic-weather__label">Ночной Когалым</div>
+    <aside class="cinematic-weather live-weather-card" aria-label="Живая погода в Когалыме">
+      <div class="cinematic-weather__aurora" aria-hidden="true"></div>
+      <div class="cinematic-weather__head">
+        <span class="cinematic-weather__label">Сейчас в Когалыме</span>
+        <span class="cinematic-weather__dot" aria-hidden="true"></span>
+      </div>
       <div class="cinematic-weather__main">
         <div>
-          <div class="cinematic-weather__temp" data-weather-temp>−18°</div>
-          <div class="cinematic-weather__status" data-weather-status>Северное сияние · морозный вечер</div>
+          <div class="cinematic-weather__temp" data-weather-temp>—</div>
+          <div class="cinematic-weather__status" data-weather-status>Загрузка погоды</div>
+          <div class="cinematic-weather__feels" data-weather-feels>Ощущается как —</div>
         </div>
-        <div class="cinematic-weather__time">сейчас</div>
+        <div class="cinematic-weather__icon" data-weather-icon>☁️</div>
       </div>
       <div class="cinematic-weather__line"></div>
       <div class="cinematic-weather__footer">
-        <span>Югра</span>
-        <span data-weather-wind>ветер 12 м/с</span>
+        <span><b data-weather-wind>—</b><small>ветер</small></span>
+        <span><b data-weather-humidity>—</b><small>влажность</small></span>
+        <span><b data-weather-pressure>—</b><small>давление</small></span>
       </div>
+      <div class="cinematic-weather__updated" data-weather-updated>Обновление…</div>
     </aside>
   </section>
 

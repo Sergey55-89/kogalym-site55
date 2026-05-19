@@ -55,6 +55,9 @@
     var condition = getIconAndText(current.weather_code);
     var temp = roundTemp(current.temperature_2m);
     var wind = typeof current.wind_speed_10m === 'number' ? Math.round(current.wind_speed_10m) + ' м/с' : '';
+    var humidity = typeof current.relative_humidity_2m === 'number' ? Math.round(current.relative_humidity_2m) + '%' : '—';
+    var apparent = typeof current.apparent_temperature === 'number' ? roundTemp(current.apparent_temperature) : '—';
+    var pressure = typeof current.surface_pressure === 'number' ? Math.round(current.surface_pressure * 0.750062) + ' мм' : '—';
 
     document.querySelectorAll('.weather').forEach(function(box){
       box.classList.remove('weather--loading', 'weather--error');
@@ -67,10 +70,26 @@
 
     document.querySelectorAll('[data-weather-temp]').forEach(function(el){ el.textContent = temp; });
     document.querySelectorAll('[data-weather-status]').forEach(function(el){
-      el.textContent = 'Северное сияние · ' + condition[1].toLowerCase();
+      el.textContent = condition[1] + ' · северное сияние';
+    });
+    document.querySelectorAll('[data-weather-feels]').forEach(function(el){
+      el.textContent = 'Ощущается как ' + apparent;
+    });
+    document.querySelectorAll('[data-weather-icon]').forEach(function(el){
+      el.textContent = condition[0];
     });
     document.querySelectorAll('[data-weather-wind]').forEach(function(el){
-      el.textContent = wind ? 'ветер ' + wind : 'ветер —';
+      el.textContent = wind || '—';
+    });
+    document.querySelectorAll('[data-weather-humidity]').forEach(function(el){
+      el.textContent = humidity;
+    });
+    document.querySelectorAll('[data-weather-pressure]').forEach(function(el){
+      el.textContent = pressure;
+    });
+    document.querySelectorAll('[data-weather-updated]').forEach(function(el){
+      var now = new Date();
+      el.textContent = 'Обновлено ' + now.toLocaleTimeString('ru-RU', {hour:'2-digit', minute:'2-digit'});
     });
   }
 
@@ -88,8 +107,13 @@
       box.innerHTML = '<span>🌡️</span><b>—</b><small>' + KOGALYM.name + '<br>погода недоступна</small>';
     });
     document.querySelectorAll('[data-weather-status]').forEach(function(el){
-      el.textContent = 'Северное сияние · данные обновятся позже';
+      el.textContent = 'Данные обновятся позже';
     });
+    document.querySelectorAll('[data-weather-feels]').forEach(function(el){ el.textContent = 'Ощущается как —'; });
+    document.querySelectorAll('[data-weather-wind]').forEach(function(el){ el.textContent = '—'; });
+    document.querySelectorAll('[data-weather-humidity]').forEach(function(el){ el.textContent = '—'; });
+    document.querySelectorAll('[data-weather-pressure]').forEach(function(el){ el.textContent = '—'; });
+    document.querySelectorAll('[data-weather-updated]').forEach(function(el){ el.textContent = 'Погода временно недоступна'; });
   }
 
   function loadWeather(){
@@ -100,7 +124,7 @@
     var url = 'https://api.open-meteo.com/v1/forecast'
       + '?latitude=' + KOGALYM.lat
       + '&longitude=' + KOGALYM.lon
-      + '&current=temperature_2m,weather_code,wind_speed_10m'
+      + '&current=temperature_2m,apparent_temperature,relative_humidity_2m,surface_pressure,weather_code,wind_speed_10m'
       + '&timezone=Asia%2FYekaterinburg';
 
     fetch(url, { cache: 'no-store' })
