@@ -118,7 +118,8 @@
 
   function loadWeather(){
     var boxes = document.querySelectorAll('.weather');
-    if (!boxes.length || !window.fetch) return;
+    var liveTargets = document.querySelectorAll('[data-weather-temp], [data-weather-status], [data-weather-feels], [data-weather-icon], [data-weather-wind], [data-weather-humidity], [data-weather-pressure], [data-weather-updated]');
+    if ((!boxes.length && !liveTargets.length) || !window.fetch) return;
     renderLoading();
 
     var url = 'https://api.open-meteo.com/v1/forecast'
