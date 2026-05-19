@@ -3577,3 +3577,14 @@ max-width:none;
   .live-weather-card,.cinematic-weather{min-height:270px !important;padding:22px !important;border-radius:22px !important;}
   .cinematic-weather__temp{font-size:50px !important;}
 }
+
+
+/* FINAL CLEANUP: removed duplicated hero CTA buttons, tighten hero composition */
+.hero .actions{display:none !important;}
+.hero .lead{margin-bottom:24px !important;}
+.hero .features{margin-top:24px !important;}
+@media(min-width:1051px){
+  .hero{grid-template-columns:minmax(0, 760px) minmax(300px, 390px) !important;gap:64px !important;}
+  .hero-content{transform:translateY(-8px) !important;}
+  .live-weather-card,.cinematic-weather{transform:translateY(-4px) !important;}
+}

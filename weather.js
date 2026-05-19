@@ -70,7 +70,7 @@
 
     document.querySelectorAll('[data-weather-temp]').forEach(function(el){ el.textContent = temp; });
     document.querySelectorAll('[data-weather-status]').forEach(function(el){
-      el.textContent = condition[1] + ' · северное сияние';
+      el.textContent = condition[1];
     });
     document.querySelectorAll('[data-weather-feels]').forEach(function(el){
       el.textContent = 'Ощущается как ' + apparent;
