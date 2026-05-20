@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Места Когалыма — Открой Когалым</title>
-  <meta name="description" content="Места города Когалыма: организации, школы, сады, медицина, магазины, кафе, спорт, транспорт, адреса, режим работы, карта и маршрут.">
+  <meta name="description" content="Достопримечательности Когалыма: памятники, стелы, парки, культура, религия, спорт, образование, адреса, карта и маршрут.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,28 +29,28 @@
 <main class="places-page catalog-page">
   <section class="places-hero catalog-hero">
     <div class="places-hero-content">
-      <span class="places-eyebrow">Места города</span>
+      <span class="places-eyebrow">Достопримечательности Когалыма</span>
       <h1>Места Когалыма</h1>
-      <p>Организации, школы, детские сады, медицина, магазины, кафе, спорт и городские службы. Быстрый поиск, категории, карта и маршрут.</p>
+      <p>Памятники, стелы, парки, культурные, религиозные, спортивные и образовательные объекты Когалыма. Без кафе, магазинов и заправок.</p>
       <div class="places-search catalog-search">
-        <input id="placesSearch" type="search" placeholder="Поиск: школа, аптека, кафе, больница, банк..." autocomplete="off">
+        <input id="placesSearch" type="search" placeholder="Поиск: памятник, парк, храм, спорт, театр..." autocomplete="off">
         <div class="custom-select" id="placesSelect">
           <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
           <div class="custom-select-menu" id="placesSelectMenu"></div>
         </div>
       </div>
-      <div class="catalog-note">Карточки открывают объект или категорию на Яндекс Картах. Для части сетевых точек режим и телефон лучше сверять перед визитом.</div>
+      <div class="catalog-note">Карточки открывают объект на Яндекс Картах. Для режимных объектов расписание лучше сверять перед визитом.</div>
     </div>
     <aside class="places-map-card catalog-map-card">
       <span>Навигация</span>
       <strong>Карта + маршрут</strong>
-      <p>Откройте карточку организации и нажмите «Построить маршрут».</p>
+      <p>Откройте карточку объекта и нажмите «Построить маршрут».</p>
     </aside>
   </section>
 
   <section class="catalog-stats" aria-label="Статистика каталога">
     <div><b id="catalogTotal">0</b><span>карточек</span></div>
-    <div><b>11</b><span>категорий</span></div>
+    <div><b>6</b><span>категорий</span></div>
     <div><b>2</b><span>действия с картой</span></div>
   </section>
 
@@ -62,13 +62,13 @@
       <div id="catalogCategoryList" class="catalog-category-list"></div>
       <div class="catalog-help">
         <b>Как пользоваться</b>
-        <p>Введите название или выберите категорию. В карточке есть адрес, режим, телефон, карта и маршрут.</p>
+        <p>Введите название или выберите категорию. В карточке есть адрес, описание, карта и маршрут.</p>
       </div>
     </aside>
 
     <section>
       <div class="catalog-toolbar">
-        <div><b id="catalogResultTitle">Все организации</b><span id="catalogResultCount"></span></div>
+        <div><b id="catalogResultTitle">Все места</b><span id="catalogResultCount"></span></div>
         <button id="catalogReset" type="button">Сбросить фильтр</button>
       </div>
       <div class="places-grid catalog-grid" id="placesGrid"></div>
