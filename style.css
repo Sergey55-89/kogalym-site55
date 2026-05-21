@@ -1589,7 +1589,7 @@ section,
 .places-hero p{max-width:720px;color:#dbe6f8;font-size:19px;line-height:1.6}
 .places-search{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:14px;margin-top:28px}
 .places-search input,.places-search select{height:54px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;padding:0 16px;outline:none}
-.places-map-card{display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;background:linear-gradient(180deg,rgba(7,17,29,.28),rgba(7,17,29,.92)),url("images/embankment.jpg") center/cover}
+.places-map-card{display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;background:linear-gradient(180deg,rgba(7,17,29,.28),rgba(7,17,29,.92)),url("images/places/23-naberezhnaya-reki-ingu-yagun.jpg") center/cover}
 .places-map-card span{color:#f2d08a;font-weight:900}.places-map-card strong{margin:8px 0;font-size:38px;color:#fff}
 .places-filter-row{width:min(1240px,100%);margin:0 auto 24px;display:flex;gap:10px;flex-wrap:wrap}
 .place-filter{min-height:44px;padding:0 18px;border:1px solid rgba(255,255,255,.10);border-radius:999px;background:rgba(7,17,29,.72);color:#fff;font-weight:900;cursor:pointer}
@@ -1748,7 +1748,7 @@ section,
 .place-image:empty{
   background:
     linear-gradient(135deg, rgba(242,208,138,.16), rgba(7,17,29,.92)),
-    url("images/galaktika.jpg") center/cover !important;
+    url("images/places/10-galaktika.jpg") center/cover !important;
 }
 
 @media(max-width:700px){
@@ -2064,7 +2064,7 @@ section,
   border-radius:18px;
   background:
     linear-gradient(135deg, rgba(242,208,138,.13), rgba(255,255,255,.04)),
-    url("images/embankment.jpg") center/cover;
+    url("images/places/23-naberezhnaya-reki-ingu-yagun.jpg") center/cover;
   border:1px solid rgba(242,208,138,.22);
   overflow:hidden;
   position:relative;

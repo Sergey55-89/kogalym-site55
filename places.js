@@ -62,7 +62,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/vremya-kogalyma.jpg",
+            "image": "images/places/03-arkhitekturnaya-kompozitsiya-vremya-kogalyma.jpg",
             "badge": "Арт-объект"
       },
       {
@@ -77,7 +77,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/lukoil-25.jpg",
+            "image": "images/places/04-arkhitekturnaya-forma-k-25-letiyu-pao-lukoyl.jpg",
             "badge": "ЛУКОЙЛ"
       },
       {
@@ -92,7 +92,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/malchik-s-sobakoy.jpg",
+            "image": "images/places/05-bronzovaya-skulptura-malchik-igrayuschiy-s-sobakoy.jpg",
             "badge": "Скульптура"
       },
       {
@@ -107,7 +107,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/posle-vahty.jpg",
+            "image": "images/places/06-bronzovaya-skulptura-posle-vakhty.jpg",
             "badge": "Скульптура"
       },
       {
@@ -122,7 +122,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/navstrechu-solntsu.jpg",
+            "image": "images/places/07-bronzovaya-skulpturnaya-kompozitsiya-navstrechu-solntsu.jpg",
             "badge": "Скульптура"
       },
       {
@@ -137,7 +137,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/bust-shmidt.jpg",
+            "image": "images/places/08-byust-vitaliyu-shmidtu.jpg",
             "badge": "Бюст"
       },
       {
@@ -152,7 +152,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/bust-povh.jpg",
+            "image": "images/places/09-byust-stepanu-povkhu.jpg",
             "badge": "Бюст"
       },
       {
@@ -167,7 +167,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/plamya.jpg",
+            "image": "images/places/12-dekorativnyy-obekt-termometr.jpg",
             "badge": "Стела"
       },
       {
@@ -182,7 +182,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/bust-povh.jpg",
+            "image": "images/places/27-pamyatnik-v-i-grayferu.jpg",
             "badge": "Памятник"
       },
       {
@@ -197,7 +197,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/park.jpg",
+            "image": "images/places/34-samolet-mig-21.jpg",
             "badge": "Памятник"
       },
       {
@@ -212,7 +212,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/zhemchuzhina.jpg",
+            "image": "images/places/13-zhemchuzhina.jpg",
             "badge": "Символ"
       },
       {
@@ -227,7 +227,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/kaplya-zhizni.jpg",
+            "image": "images/places/14-kaplya.jpg",
             "badge": "Памятник"
       },
       {
@@ -242,7 +242,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/letopisi-rossii.jpg",
+            "image": "images/places/35-skulpturnaya-kompozitsiya-letopisi-rossii.jpg",
             "badge": "Культура"
       },
       {
@@ -257,7 +257,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/medveditsa.jpg",
+            "image": "images/places/21-medveditsa-s-medvezhatami.jpg",
             "badge": "Скульптура"
       },
       {
@@ -272,7 +272,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/pokoritelyam-zapadnoy-sibiri.jpg",
+            "image": "images/places/31-pokoritelyam-zapadnoy-sibiri.jpg",
             "badge": "Стела"
       },
       {
@@ -287,7 +287,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/semya.jpg",
+            "image": "images/places/36-skulpturnaya-kompozitsiya-semya.jpg",
             "badge": "Семья"
       },
       {
@@ -302,7 +302,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/slava-trudu.jpg",
+            "image": "images/places/37-skulpturnaya-kompozitsiya-slava-trudu.jpg",
             "badge": "Памятник"
       },
       {
@@ -317,7 +317,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/petr-fevronia.jpg",
+            "image": "images/places/38-skulpturnaya-kompozitsiya-v-chest-svyatykh-petra-i-fevronii.jpg",
             "badge": "Семья"
       },
       {
@@ -332,7 +332,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/dobry-rock.jpg",
+            "image": "images/places/40-stela-dobryy-rok-n-roll.jpg",
             "badge": "Стела"
       },
       {
@@ -347,7 +347,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/plamya.jpg",
+            "image": "images/places/41-stela-plamya.jpg",
             "badge": "Стела"
       },
       {
@@ -362,7 +362,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/places/cvetochniye-chasy.jpg",
+            "image": "images/places/45-tsvetochnye-chasy.jpg",
             "badge": "Город"
       },
       {
@@ -377,7 +377,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/park.jpg",
+            "image": "images/places/19-literaturnyy-skver.jpg",
             "badge": "Сквер"
       },
       {
@@ -392,7 +392,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/embankment.jpg",
+            "image": "images/places/23-naberezhnaya-reki-ingu-yagun.jpg",
             "badge": "Набережная"
       },
       {
@@ -407,7 +407,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/park.jpg",
+            "image": "images/places/28-park-pervoprokhodtsev.jpg",
             "badge": "Парк"
       },
       {
@@ -422,7 +422,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/park.jpg",
+            "image": "images/places/29-park-pobedy.jpg",
             "badge": "Парк"
       },
       {
@@ -437,7 +437,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/park.jpg",
+            "image": "images/places/33-ryabinovyy-bulvar.jpg",
             "badge": "Бульвар"
       },
       {
@@ -452,7 +452,7 @@
             ],
             "phone": "не требуется",
             "hours": "круглосуточно",
-            "image": "images/embankment.jpg",
+            "image": "images/places/46-etnoderevnya.jpg",
             "badge": "Этно"
       },
       {
@@ -467,7 +467,7 @@
             ],
             "phone": "+7 (34667) 5-82-00",
             "hours": "ежедневно 10:00–22:00",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/01-akvapark.jpg",
             "badge": "Аквапарк"
       },
       {
@@ -482,7 +482,7 @@
             ],
             "phone": "+7 992 356-11-44",
             "hours": "по расписанию сеансов",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/15-kinoteatr.jpg",
             "badge": "Кинотеатр"
       },
       {
@@ -497,7 +497,7 @@
             ],
             "phone": "+7 (34667) 5-82-00",
             "hours": "ежедневно 10:00–22:00",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/25-okeanarium.jpg",
             "badge": "Океанариум"
       },
       {
@@ -512,7 +512,7 @@
             ],
             "phone": "+7 (34667) 5-82-00",
             "hours": "ежедневно 10:00–22:00",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/26-oranzhereya.jpg",
             "badge": "Дендрарий"
       },
       {
@@ -527,7 +527,7 @@
             ],
             "phone": "+7 (34667) 5-82-00",
             "hours": "ежедневно 10:00–22:00",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/10-galaktika.jpg",
             "badge": "Развлечения"
       },
       {
@@ -542,7 +542,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "по афише мероприятий",
-            "image": "images/hero.jpg",
+            "image": "images/places/17-kulturno-dosugovyy-kompleks-metro.jpg",
             "badge": "Культура"
       },
       {
@@ -557,7 +557,7 @@
             ],
             "phone": "+7 (34667) 4-39-69",
             "hours": "по афише и режиму кассы",
-            "image": "images/hero.jpg",
+            "image": "images/places/43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii.jpg",
             "badge": "Театр"
       },
       {
@@ -572,7 +572,7 @@
             ],
             "phone": "уточнять в Музейно-выставочном центре",
             "hours": "по расписанию музея",
-            "image": "images/night.jpg",
+            "image": "images/places/32-russkiy-muzey.jpg",
             "badge": "Музей"
       },
       {
@@ -587,7 +587,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "график уточнять перед визитом",
-            "image": "images/night.jpg",
+            "image": "images/places/22-muzeyno-vystavochnyy-tsentr-kogalyma.jpg",
             "badge": "Музей"
       },
       {
@@ -602,7 +602,7 @@
             ],
             "phone": "+7 (34667) 2-63-83",
             "hours": "по расписанию богослужений",
-            "image": "images/hero.jpg",
+            "image": "images/places/30-patriarshee-podvore-pyukhtitskogo-uspenskogo-zhenskogo-monastyrya.jpg",
             "badge": "Монастырь"
       },
       {
@@ -617,7 +617,7 @@
             ],
             "phone": "+7 (34667) 5-18-44",
             "hours": "по расписанию молитв",
-            "image": "images/night.jpg",
+            "image": "images/places/39-sobornaya-mechet-kogalyma.jpg",
             "badge": "Мечеть"
       },
       {
@@ -632,7 +632,7 @@
             ],
             "phone": "уточнять при храме",
             "hours": "по расписанию богослужений",
-            "image": "images/hero.jpg",
+            "image": "images/places/44-khram-svyatoy-muchenitsy-tatiany.jpg",
             "badge": "Храм"
       },
       {
@@ -647,7 +647,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "по расписанию",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/02-arena-kogalym.jpg",
             "badge": "Арена"
       },
       {
@@ -662,7 +662,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "по расписанию секций",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/11-dvorets-sporta-yubileynyy.jpg",
             "badge": "Спорт"
       },
       {
@@ -677,7 +677,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "по расписанию",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/18-ledovyy-dvorets-aysberg.jpg",
             "badge": "Лёд"
       },
       {
@@ -692,7 +692,7 @@
             ],
             "phone": "+7 (34667) 5-57-80",
             "hours": "по сезону и расписанию",
-            "image": "images/park.jpg",
+            "image": "images/places/20-lyzhnaya-baza-snezhinka.jpg",
             "badge": "Лыжи"
       },
       {
@@ -707,7 +707,7 @@
             ],
             "phone": "уточнять перед визитом",
             "hours": "по расписанию",
-            "image": "images/galaktika.jpg",
+            "image": "images/places/42-tennisnyy-tsentr.jpg",
             "badge": "Теннис"
       },
       {
@@ -722,7 +722,7 @@
             ],
             "phone": "уточнять на официальном сайте",
             "hours": "по графику колледжа",
-            "image": "images/hero.jpg",
+            "image": "images/places/16-kogalymskiy-politekhnicheskiy-kolledzh.jpg",
             "badge": "Колледж"
       },
       {
@@ -737,7 +737,7 @@
             ],
             "phone": "+7 (34667) 4-31-04",
             "hours": "пн–пт, рабочее время",
-            "image": "images/hero.jpg",
+            "image": "images/places/24-obrazovatelnyy-tsentr-pnipu-v-kogalyme.jpg",
             "badge": "Вуз"
       }
 ];
@@ -891,7 +891,7 @@
     const url = makeMapUrl(place);
     const routeUrl = makeRouteUrl(place);
 
-    image.style.backgroundImage = `url('${place.image || 'images/galaktika.jpg'}')`;
+    image.style.backgroundImage = `url('${place.image || 'images/places/10-galaktika.jpg'}')`;
     title.textContent = place.title;
     description.textContent = place.desc;
     rating.textContent = categoryFull(place.type);

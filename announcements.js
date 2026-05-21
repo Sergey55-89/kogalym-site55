@@ -2,7 +2,7 @@
   'use strict';
 
   const STORAGE_KEY = 'kogalym_ads';
-  const fallbackImage = 'images/galaktika.jpg';
+  const fallbackImage = 'images/places/10-galaktika.jpg';
 
   const categoryMap = {
     'работа':'work', 'work':'work',
