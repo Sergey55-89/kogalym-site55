@@ -3727,3 +3727,96 @@ max-width:none;
     padding:8px 0 10px !important;
   }
 }
+
+/* ===== PLACES CARDS: FULL TITLES FINAL FIX ===== */
+/* Названия мест больше не обрезаются многоточием. Карточки стали шире и выше по содержимому. */
+.places-grid{
+  width:min(1240px,100%) !important;
+  grid-template-columns:repeat(3,minmax(320px,1fr)) !important;
+  gap:22px !important;
+  align-items:stretch !important;
+}
+
+.place-card{
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+}
+
+.place-image{
+  flex:0 0 190px !important;
+  height:190px !important;
+  min-height:190px !important;
+  max-height:190px !important;
+}
+
+.place-body{
+  min-height:0 !important;
+  height:auto !important;
+}
+
+.place-body h2{
+  display:block !important;
+  -webkit-line-clamp:unset !important;
+  -webkit-box-orient:unset !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  white-space:normal !important;
+  min-height:0 !important;
+  max-height:none !important;
+  font-size:25px !important;
+  line-height:1.15 !important;
+  letter-spacing:-.25px !important;
+  margin:10px 0 10px !important;
+  word-break:normal !important;
+  overflow-wrap:break-word !important;
+}
+
+.place-body p{
+  display:-webkit-box !important;
+  -webkit-line-clamp:4 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+  min-height:0 !important;
+  max-height:none !important;
+  font-size:15px !important;
+  line-height:1.48 !important;
+}
+
+.place-meta{
+  min-height:0 !important;
+  align-items:flex-start !important;
+}
+
+.place-meta span{
+  white-space:normal !important;
+  overflow:visible !important;
+  text-overflow:clip !important;
+  line-height:1.25 !important;
+  max-width:100% !important;
+}
+
+.place-more{
+  margin-top:18px !important;
+}
+
+@media(max-width:1150px){
+  .places-grid{
+    grid-template-columns:repeat(2,minmax(300px,1fr)) !important;
+  }
+}
+
+@media(max-width:700px){
+  .places-grid{
+    grid-template-columns:1fr !important;
+  }
+  .place-image{
+    flex-basis:210px !important;
+    height:210px !important;
+    min-height:210px !important;
+    max-height:210px !important;
+  }
+  .place-body h2{
+    font-size:24px !important;
+  }
+}
