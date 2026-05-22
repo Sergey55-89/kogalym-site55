@@ -1,0 +1,14 @@
+ФИНАЛЬНАЯ ВЕРСИЯ V6 HARD
+
+Загружать всё содержимое архива в корень GitHub Pages.
+Главная проверка: places.html должен подключать style.v6-hard.css и places.v6-hard.js.
+Папка фото: images/places-v6.
+Старые папки images/places и images/places-v5 можно удалить.
+
+{
+  "version": "v6_20260522_hard",
+  "places_images_folder": "images/places-v6",
+  "place_image_count": 46,
+  "legacy_refs_replaced": 3,
+  "v5_refs_replaced": 46
+}
