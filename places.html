@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Места Когалыма — Открой Когалым</title>
+  <meta name="description" content="Достопримечательности Когалыма: памятники, стелы, парки, культура, религия, спорт, образование, адреса, карта и маршрут.">
+  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260522_nocrop">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html" aria-label="Открой Когалым">
+    <img src="images/logo.png" alt="Открой Когалым">
+    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
+  </a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="routes.html">Маршруты</a>
+    <a class="active" href="places.html">Места</a>
+    <a href="events.html">Афиша</a>
+    <a href="announcements.html">Объявления</a>
+  </nav>
+  <div class="right-head">
+    <span class="icon">⌕</span>
+    <span class="icon">♡</span>
+  </div>
+</header>
+
+<main class="places-page catalog-page">
+  <section class="places-hero catalog-hero">
+    <div class="places-hero-content">
+      <span class="places-eyebrow">Достопримечательности Когалыма</span>
+      <h1>Места Когалыма</h1>
+      <p>Памятники, стелы, парки, культурные, религиозные, спортивные и образовательные объекты Когалыма. Без кафе, магазинов и заправок.</p>
+      <div class="places-search catalog-search">
+        <input id="placesSearch" type="search" placeholder="Поиск: памятник, сквер, парк, храм, спорт..." autocomplete="off">
+        <div class="custom-select" id="placesSelect">
+          <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
+          <div class="custom-select-menu" id="placesSelectMenu"></div>
+        </div>
+      </div>
+      <div class="catalog-note">Карточки открывают объект на Яндекс Картах. Для режимных объектов расписание лучше сверять перед визитом.</div>
+    </div>
+    <aside class="places-map-card catalog-map-card">
+      <span>Навигация</span>
+      <strong>Карта объекта</strong>
+      <p>Откройте карточку объекта и нажмите «Открыть карту».</p>
+    </aside>
+  </section>
+
+  <section class="catalog-stats" aria-label="Статистика каталога">
+    <div><b id="catalogTotal">0</b><span>карточек</span></div>
+    <div><b>8</b><span>категорий</span></div>
+    <div><b>1</b><span>действие с картой</span></div>
+  </section>
+
+  <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
+
+  <section class="catalog-layout">
+    <aside class="catalog-sidebar">
+      <h2>Категории</h2>
+      <div id="catalogCategoryList" class="catalog-category-list"></div>
+      <div class="catalog-help">
+        <b>Как пользоваться</b>
+        <p>Введите название или выберите категорию. В карточке есть адрес, описание, телефон и карта.</p>
+      </div>
+    </aside>
+
+    <section>
+      <div class="catalog-toolbar">
+        <div><b id="catalogResultTitle">Все места</b><span id="catalogResultCount"></span></div>
+        <button id="catalogReset" type="button">Сбросить фильтр</button>
+      </div>
+      <div class="places-grid catalog-grid" id="placesGrid"></div>
+      <div class="places-empty" id="placesEmpty">По этому запросу ничего не найдено.</div>
+    </section>
+  </section>
+</main>
+
+<div class="place-modal" id="placeModal" aria-hidden="true">
+  <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
+    <button class="place-modal-close" id="placeModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="place-modal-image" id="placeModalImage"></div>
+    <div class="place-modal-content">
+      <div class="place-modal-rating" id="placeModalRating">Места</div>
+      <h2 id="placeModalTitle"></h2>
+      <p id="placeModalDescription"></p>
+      <div class="place-modal-info">
+        <div><span>Категория</span><b id="placeModalType"></b></div>
+        <div><span>Режим</span><b id="placeModalHours"></b></div>
+        <div><span>Адрес</span><b id="placeModalAddress"></b></div>
+        <div><span>Телефон</span><b id="placeModalPhone"></b></div>
+      </div>
+
+      <div class="place-modal-map" id="placeModalMap">
+        <div class="place-modal-map__pin">⌖</div>
+        <div>
+          <span>Карта</span>
+          <strong id="placeModalMapTitle">Когалым</strong>
+          <p>Откройте точку объекта в Яндекс Картах.</p>
+        </div>
+      </div>
+
+      <div class="place-modal-actions">
+        <a id="placeMapBtn" href="https://yandex.ru/maps/?text=Когалым" target="_blank" rel="noopener">Открыть карту</a>
+        <a id="placeSiteBtn" href="#" target="_blank" rel="noopener">Официальный сайт</a>
+        <button type="button" id="placeFavoriteBtn">♡ В избранное</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="about.html">О проекте</a>
+  <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+  <a href="admin.html">Админка</a>
+</footer>
+<script src="places.v7-hard.js?v=v7_20260522_nocrop"></script>
+<script src="weather.js?v=v7_20260522_nocrop"></script>
+</body>
+</html>

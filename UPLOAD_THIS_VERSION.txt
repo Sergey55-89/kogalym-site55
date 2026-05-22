@@ -1,0 +1,1 @@
+V7 FINAL. Upload all files to site root. places.html uses style.v7-hard.css and places.v7-hard.js. Modal photos are object-fit: contain, so they are not cropped. Address/regime/phone display starts with capital letter.
