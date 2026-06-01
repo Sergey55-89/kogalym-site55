@@ -5059,3 +5059,64 @@ max-width:none;
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* ===== Places page: photo collage upgrade 2026-06-01 ===== */
+.places-postcard--collage{
+  min-height:390px!important;
+  transform:rotate(-.6deg)!important;
+  filter:drop-shadow(0 30px 58px rgba(0,0,0,.46))!important;
+}
+.places-postcard--collage img{
+  height:390px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  clip-path:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+}
+.places-postcard--collage::after{
+  inset:4% 4% 7% 3%!important;
+  clip-path:none!important;
+  border-radius:34px!important;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(242,208,138,.14), transparent 24%),
+    linear-gradient(135deg, rgba(255,255,255,.05), transparent 38%, rgba(0,0,0,.10))!important;
+  opacity:.72;
+}
+.places-postcard--collage .places-postcard__note{
+  right:-34px!important;
+  top:54px!important;
+  max-width:120px!important;
+  font-size:18px!important;
+  opacity:.95;
+}
+.places-postcard--collage .places-postcard__tape--top{
+  top:2px!important;
+  left:88px!important;
+}
+.places-postcard--collage .places-postcard__tape--bottom{
+  right:78px!important;
+  bottom:16px!important;
+}
+@media(max-width:1100px){
+  .places-postcard--collage{
+    min-height:320px!important;
+  }
+  .places-postcard--collage img{
+    height:320px!important;
+  }
+  .places-postcard--collage .places-postcard__note{
+    display:none!important;
+  }
+}
+@media(max-width:700px){
+  .places-postcard--collage{
+    min-height:260px!important;
+  }
+  .places-postcard--collage img{
+    height:260px!important;
+  }
+}
