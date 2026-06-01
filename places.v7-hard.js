@@ -956,7 +956,7 @@
     hours.textContent = capFirst(place.hours);
     address.textContent = capFirst(place.address);
     phone.innerHTML = renderPhone(place.phone);
-    mapTitle.textContent = place.title + (place.address ? ' · ' + capFirst(place.address) : '');
+    if(mapTitle){ mapTitle.textContent = place.title + (place.address ? ' · ' + capFirst(place.address) : ''); }
 
     mapBtn.href = url;
     if(siteBtn){

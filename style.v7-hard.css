@@ -5281,3 +5281,9 @@ max-width:none;
     font-size:12px!important;
   }
 }
+
+
+/* ===== Place modal cleanup: remove duplicate map strip 2026-06-01 ===== */
+.place-modal-map{display:none!important;}
+.place-modal-actions{margin-top:22px!important;}
+.place-modal-actions a,.place-modal-actions button{min-height:56px!important;}
