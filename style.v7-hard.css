@@ -5287,3 +5287,16 @@ max-width:none;
 .place-modal-map{display:none!important;}
 .place-modal-actions{margin-top:22px!important;}
 .place-modal-actions a,.place-modal-actions button{min-height:56px!important;}
+
+
+/* ===== Final locations: remove history block from locations 2026-06-01 ===== */
+.places-page--lively .places-showcase{
+  margin-bottom:24px!important;
+}
+.places-page--lively .places-control-panel--simple{
+  margin-top:0!important;
+  margin-bottom:18px!important;
+}
+.places-page--lively .catalog-toolbar--simple-search{
+  margin-top:0!important;
+}
