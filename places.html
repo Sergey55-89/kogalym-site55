@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Места Когалыма — Открой Когалым</title>
   <meta name="description" content="Достопримечательности Когалыма: памятники, стелы, парки, культура, религия, спорт, образование, адреса, карта и маршрут.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_live_map">
+  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_lively_places">
 </head>
 <body>
 <header class="header">
@@ -29,47 +29,68 @@
   </div>
 </header>
 
-<main class="places-page catalog-page">
-  <section class="places-hero catalog-hero">
-    <div class="places-hero-content">
+<main class="places-page catalog-page places-page--lively">
+  <section class="places-showcase" aria-label="Места Когалыма">
+    <div class="places-showcase__text">
       <span class="places-eyebrow">Достопримечательности Когалыма</span>
       <h1>Места Когалыма</h1>
-      <p>Памятники, стелы, парки, культурные, религиозные, спортивные и образовательные объекты Когалыма. Без кафе, магазинов и заправок.</p>
-      <div class="places-search catalog-search">
-        <input id="placesSearch" type="search" placeholder="Поиск: памятник, сквер, парк, храм, спорт..." autocomplete="off">
-        <div class="custom-select" id="placesSelect">
-          <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
-          <div class="custom-select-menu" id="placesSelectMenu"></div>
-        </div>
-      </div>
-      <div class="catalog-note">Карточки открывают объект на Яндекс Картах. Для режимных объектов расписание лучше сверять перед визитом.</div>
+      <h2>Город, который вырос из мечты о будущем</h2>
+      <p>Когалым — северный город с нефтяным характером и живой городской памятью. Здесь история освоения Западной Сибири соседствует с парками, скверами, культурными центрами, храмами и местами для спокойных прогулок.</p>
+      <p>Этот раздел — не сухой список точек. Это быстрый путеводитель по объектам, через которые читается город: от памятников первопроходцам до новых общественных пространств.</p>
     </div>
-    <aside class="places-map-card catalog-map-card">
-      <div class="catalog-map-card__visual" aria-hidden="true">
-        <span class="catalog-map-card__pin pin-1"></span>
-        <span class="catalog-map-card__pin pin-2"></span>
-        <span class="catalog-map-card__pin pin-3"></span>
-        <span class="catalog-map-card__pin pin-4"></span>
+
+    <div class="places-postcard" aria-label="Когалым">
+      <div class="places-postcard__tape places-postcard__tape--top"></div>
+      <img src="images/places-v7/01-03-arkhitekturnaya-kompozitsiya-vremya-kogalyma-3df47bdf-v7-4ce0f02be0.jpg" alt="Достопримечательности Когалыма">
+      <div class="places-postcard__tape places-postcard__tape--bottom"></div>
+      <div class="places-postcard__note">
+        <span>Любимый город</span>
+        <b>с северным характером</b>
       </div>
-      <div class="catalog-map-card__content">
-        <span class="catalog-map-card__eyebrow">Навигация</span>
-        <strong>Карта Когалыма</strong>
-        <b class="catalog-map-card__count">46 мест на карте</b>
-        <p>Откройте карту города и находите объекты рядом с вами.</p>
-        <a class="catalog-map-card__button" href="https://yandex.ru/maps/?text=%D0%9A%D0%BE%D0%B3%D0%B0%D0%BB%D1%8B%D0%BC" target="_blank" rel="noopener">Открыть карту</a>
-      </div>
-    </aside>
+    </div>
   </section>
 
-  <section class="catalog-stats" aria-label="Статистика каталога">
-    <div><b id="catalogTotal">0</b><span>карточек</span></div>
-    <div><b>8</b><span>категорий</span></div>
-    <div><b>1</b><span>действие с картой</span></div>
+  <section class="places-timeline-panel" aria-label="Краткая история Когалыма">
+    <div class="places-timeline-title">
+      <span>История города</span>
+      <strong>в нескольких датах</strong>
+    </div>
+    <div class="places-history-line places-history-line--lively">
+      <article>
+        <span>1970-е</span>
+        <b>Начало освоения</b>
+        <p>На месте будущего города появляются первые поселки, дороги и инфраструктура нефтяников.</p>
+      </article>
+      <article>
+        <span>1978</span>
+        <b>Поселковый совет</b>
+        <p>Когалым получает управленную основу для роста: жилье, улицы и социальные объекты.</p>
+      </article>
+      <article>
+        <span>1985</span>
+        <b>Статус города</b>
+        <p>15 августа Когалым становится городом окружного подчинения и начинает новую главу.</p>
+      </article>
+      <article>
+        <span>Сегодня</span>
+        <b>Город для маршрутов</b>
+        <p>Памятники, парки, музеи, спорт и храмы складываются в понятный городской маршрут.</p>
+      </article>
+    </div>
   </section>
 
-  <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
+  <section class="places-control-panel places-control-panel--lively" aria-label="Поиск и фильтры мест">
+    <div class="places-search catalog-search">
+      <input id="placesSearch" type="search" placeholder="Поиск: памятник, сквер, парк, храм, музей..." autocomplete="off">
+      <div class="custom-select" id="placesSelect">
+        <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
+        <div class="custom-select-menu" id="placesSelectMenu"></div>
+      </div>
+    </div>
+    <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
+  </section>
 
-  <section class="catalog-layout">
+  <section class="catalog-layout catalog-layout--lively">
     <aside class="catalog-sidebar">
       <h2>Категории</h2>
       <div id="catalogCategoryList" class="catalog-category-list"></div>
@@ -79,8 +100,8 @@
       </div>
     </aside>
 
-    <section>
-      <div class="catalog-toolbar">
+    <section class="places-results-panel">
+      <div class="catalog-toolbar catalog-toolbar--lively">
         <div><b id="catalogResultTitle">Все места</b><span id="catalogResultCount"></span></div>
         <button id="catalogReset" type="button">Сбросить фильтр</button>
       </div>
@@ -128,7 +149,7 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
-<script src="places.v7-hard.js?v=v7_20260522_nocrop"></script>
+<script src="places.v7-hard.js?v=v7_20260601_lively_places"></script>
 <script src="weather.js?v=v7_20260522_nocrop"></script>
 </body>
 </html>
