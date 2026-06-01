@@ -3954,7 +3954,7 @@ max-width:none;
   display:block!important;
   width:100%!important;
   height:100%!important;
-  object-fit:cover!important;
+  object-fit:contain!important;
 }
 .catalog-card.place-card{
   display:flex!important;
@@ -4055,7 +4055,7 @@ max-width:none;
   display:block!important;
   width:100%!important;
   height:100%!important;
-  object-fit:cover!important;
+  object-fit:contain!important;
 }
 .places-grid.catalog-grid .place-card.catalog-card .place-image::after{
   pointer-events:none!important;
@@ -4107,7 +4107,7 @@ max-width:none;
   z-index:1!important;
 }
 .place-modal-image{background:none!important;overflow:hidden!important;}
-.place-modal-image img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;}
+.place-modal-image img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;}
 .place-badge{display:none!important;}
 @media(max-width:700px){
   .places-grid.catalog-grid{grid-template-columns:1fr!important;}
@@ -4147,4 +4147,23 @@ max-width:none;
     height:42vh!important;
     min-height:240px!important;
   }
+}
+
+/* ===== FIX: catalog card photos must show full object, not cropped ===== */
+.places-grid.catalog-grid .place-card.catalog-card .place-image,
+.catalog-card .place-image,
+.place-modal-image{
+  background:#07111f!important;
+}
+
+.places-grid.catalog-grid .place-card.catalog-card .place-image img,
+.catalog-card .place-image img,
+.place-modal-image img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+  transform:none!important;
 }
