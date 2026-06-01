@@ -493,7 +493,7 @@
                   74.4765
             ],
             "phone": "+7 (34667) 5-82-19",
-            "hours": "пн — санитарный день; вт–пт 10:00–21:00; сб–вс 10:00–22:00",
+            "hours": "пн — санитарный день; вт–пт 10:00–21:00 (вход до 18:00); сб–вс 10:00–22:00 (вход до 19:00)",
             "image": "images/places-v7/28-01-akvapark-dcf30837-v7-7b94fdf37b.jpg",
             "badge": "",
             "siteUrl": "https://skk-galaxy.ru/aquapark/"
@@ -524,11 +524,11 @@
                   62.2677,
                   74.4764
             ],
-            "phone": "+7 (34667) 5-82-00",
-            "hours": "ежедневно 10:00–22:00",
+            "phone": "+7 (34667) 5-82-34",
+            "hours": "пн 12:00–21:00 (каждый 3-й пн санитарный день); вт–пт 10:00–21:00; сб–вс 10:00–22:00",
             "image": "images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg",
             "badge": "",
-            "siteUrl": "https://skk-galaxy.ru/"
+            "siteUrl": "https://skk-galaxy.ru/oceanarium/"
       },
       {
             "type": "entertainment",
@@ -541,10 +541,10 @@
                   74.4766
             ],
             "phone": "+7 (34667) 5-82-00",
-            "hours": "ежедневно 10:00–22:00",
+            "hours": "пн 10:00–21:00 (каждый 3-й пн с 14:00); вт–пт 10:00–21:00; сб–вс 10:00–22:00",
             "image": "images/places-v7/31-26-oranzhereya-98f29074-v7-7f75d74e50.jpg",
             "badge": "",
-            "siteUrl": "https://skk-galaxy.ru/"
+            "siteUrl": "https://skk-galaxy.ru/greenhouse/"
       },
       {
             "type": "entertainment",
@@ -556,27 +556,27 @@
                   62.2676,
                   74.4762
             ],
-            "phone": "+7 (34667) 5-82-00",
+            "phone": "+7 (34667) 5-82-00, +7 (912) 080-15-17",
             "hours": "ежедневно 10:00–22:00",
             "image": "images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg",
             "badge": "",
-            "siteUrl": "https://skk-galaxy.ru/"
+            "siteUrl": "https://skk-galaxy.ru/contacts.html"
       },
       {
             "type": "culture",
             "title": "Культурно-досуговый комплекс «Метро»",
             "desc": "Молодёжный центр и культурная площадка для концертов, встреч, кинопоказов, творческих программ и городских мероприятий.",
-            "address": "Молодёжный центр «Метро», Когалым",
-            "mapQuery": "Молодёжный центр Метро, Когалым",
+            "address": "Северная улица, 1А",
+            "mapQuery": "Культурно-досуговый комплекс Метро, Северная улица 1А, Когалым",
             "coords": [
                   62.2602,
                   74.4882
             ],
             "phone": "+7 (34667) 4-30-22",
-            "hours": "по афише мероприятий и режиму площадки",
+            "hours": "пн, ср, пт 08:30–22:00; вт, чт 08:30–21:00; сб 17:00–02:00; вс 13:00–23:00; перерыв 12:30–14:00",
             "image": "images/places-v7/33-17-kulturno-dosugovyy-kompleks-metro-bae9c6f4-v7-b4786055a7.jpg",
             "badge": "",
-            "siteUrl": "https://artprazdnikk.ru/"
+            "siteUrl": "https://admkogalym.ru/administration/structure/kultura/podvedomstvennye-uchrezhdeniya/mau-kulturno-dosugovyy-kompleks-art-prazdnik-/index.php"
       },
       {
             "type": "culture",
@@ -589,7 +589,7 @@
                   74.4758
             ],
             "phone": "+7 (34667) 4-39-69, +7 (982) 884-52-15",
-            "hours": "касса: вт–пт 11:00–19:00, сб 10:00–18:00; перерыв 14:00–15:00",
+            "hours": "касса: вт–пт 11:00–19:00, сб 10:00–18:00; перерыв 14:00–15:00; вс–пн выходные",
             "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg",
             "badge": "",
             "siteUrl": "https://www.maly.ru/kogalym/contacts"
@@ -608,7 +608,7 @@
             "hours": "по расписанию Музейно-выставочного центра",
             "image": "images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg",
             "badge": "",
-            "siteUrl": "https://museumkogalym.ru/"
+            "siteUrl": "https://virtualrm.spb.ru/ru/virtual/kogalym"
       },
       {
             "type": "museum",
@@ -621,7 +621,7 @@
                   74.479
             ],
             "phone": "+7 (34667) 2-88-58",
-            "hours": "график уточнять перед визитом",
+            "hours": "по текущему графику музея; перед визитом лучше уточнить",
             "image": "images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg",
             "badge": "",
             "siteUrl": "https://museumkogalym.ru/"
@@ -637,10 +637,10 @@
                   74.4751
             ],
             "phone": "+7 (34667) 2-63-83",
-            "hours": "ежедневно примерно 06:30–19:00; богослужения — по расписанию",
+            "hours": "ежедневно 06:30–19:00; богослужения — по расписанию",
             "image": "images/places-v7/37-30-patriarshee-podvore-pyukhtitskogo-uspenskogo-zhenskogo-monastyrya-74bbda10-v7-dc41d6c34f.jpg",
             "badge": "",
-            "siteUrl": "https://patriarchia.ru/"
+            "siteUrl": "https://www.patriarchia.ru/"
       },
       {
             "type": "religion",
@@ -653,7 +653,7 @@
                   74.492
             ],
             "phone": "+7 (34667) 5-18-44",
-            "hours": "по расписанию молитв",
+            "hours": "ежедневно 08:00–22:00; молитвы — по расписанию",
             "image": "images/places-v7/38-39-sobornaya-mechet-kogalyma-b4db27a1-v7-536d5ef087.jpg",
             "badge": "",
             "siteUrl": ""
@@ -668,8 +668,8 @@
                   62.2598,
                   74.4888
             ],
-            "phone": "+7 922 470-95-85",
-            "hours": "сб 17:00; вс 08:30; в иное время — по расписанию храма",
+            "phone": "не указан",
+            "hours": "ежедневно 06:00–18:00; богослужения — по расписанию храма",
             "image": "images/places-v7/39-44-khram-svyatoy-muchenitsy-tatiany-276b874d-v7-0107fa8e5c.jpg",
             "badge": "",
             "siteUrl": "https://ugraeparhia.ru/hram-v-chest-mts-tatianyi-g-kogalyim/"
@@ -684,11 +684,11 @@
                   62.2629,
                   74.4884
             ],
-            "phone": "уточнять на официальном сайте объекта",
-            "hours": "по расписанию занятий и мероприятий",
+            "phone": "+7 (922) 418-71-63",
+            "hours": "ежедневно 08:00–22:00",
             "image": "images/places-v7/40-02-arena-kogalym-daedeb58-v7-d59282fa3b.jpg",
             "badge": "",
-            "siteUrl": ""
+            "siteUrl": "https://ugramegasport.ru/object/rcsp/"
       },
       {
             "type": "sport",
@@ -700,7 +700,7 @@
                   62.2632,
                   74.486
             ],
-            "phone": "+7 (34667) 4-08-77",
+            "phone": "+7 (34667) 4-08-77, +7 (34667) 4-19-10",
             "hours": "ежедневно 08:00–22:00",
             "image": "images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg",
             "badge": "",
@@ -716,7 +716,7 @@
                   62.2634,
                   74.487
             ],
-            "phone": "+7 (34667) 5-12-90",
+            "phone": "+7 (34667) 2-69-66",
             "hours": "ежедневно 08:00–22:00",
             "image": "images/places-v7/42-18-ledovyy-dvorets-aysberg-929eb6eb-v7-54997bcf84.jpg",
             "badge": "",
@@ -733,7 +733,7 @@
                   74.4897
             ],
             "phone": "+7 (34667) 5-57-80",
-            "hours": "по сезону и расписанию базы",
+            "hours": "ежедневно 08:00–22:00; работа кассы — по расписанию базы",
             "image": "images/places-v7/43-20-lyzhnaya-baza-snezhinka-b7f0b628-v7-83c09d826b.jpg",
             "badge": "",
             "siteUrl": "https://dvorec86.ru/sportobjects/4"
@@ -781,7 +781,7 @@
                   74.47
             ],
             "phone": "+7 (34667) 4-31-04",
-            "hours": "пн–пт, рабочее время",
+            "hours": "по графику работы филиала; перед визитом лучше уточнить",
             "image": "images/places-v7/46-24-obrazovatelnyy-tsentr-pnipu-v-kogalyme-6b50bf1e-v7-34880fd8af.jpg",
             "badge": "",
             "siteUrl": "https://pstu.ru/about-the-university/structure-and-governing-bodies/divisions/obrazovatelnyy-tsentr-g-kogalyma1/"

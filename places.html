@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Места Когалыма — Открой Когалым</title>
   <meta name="description" content="Достопримечательности Когалыма: памятники, стелы, парки, культура, религия, спорт, образование, адреса, карта и маршрут.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_places_collage">
+  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_final_verified_places">
 </head>
 <body>
 <header class="header">
@@ -79,14 +79,7 @@
     </div>
   </section>
 
-  <section class="places-control-panel places-control-panel--lively" aria-label="Поиск и фильтры мест">
-    <div class="places-search catalog-search">
-      <input id="placesSearch" type="search" placeholder="Поиск: памятник, сквер, парк, храм, музей..." autocomplete="off">
-      <div class="custom-select" id="placesSelect">
-        <button class="custom-select-trigger" id="placesSelectTrigger" type="button">Все категории</button>
-        <div class="custom-select-menu" id="placesSelectMenu"></div>
-      </div>
-    </div>
+  <section class="places-control-panel places-control-panel--simple" aria-label="Категории мест">
     <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
   </section>
 
@@ -101,9 +94,13 @@
     </aside>
 
     <section class="places-results-panel">
-      <div class="catalog-toolbar catalog-toolbar--lively">
+      <div class="catalog-toolbar catalog-toolbar--lively catalog-toolbar--simple-search">
         <div><b id="catalogResultTitle">Все места</b><span id="catalogResultCount"></span></div>
-        <button id="catalogReset" type="button">Сбросить фильтр</button>
+        <label class="catalog-toolbar-search" aria-label="Поиск места">
+          <span>⌕</span>
+          <input id="placesSearch" type="search" placeholder="Найти место" autocomplete="off">
+        </label>
+        <button id="catalogReset" type="button">Сбросить</button>
       </div>
       <div class="places-grid catalog-grid" id="placesGrid"></div>
       <div class="places-empty" id="placesEmpty">По этому запросу ничего не найдено.</div>
@@ -149,7 +146,7 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
-<script src="places.v7-hard.js?v=v7_20260601_lively_places"></script>
+<script src="places.v7-hard.js?v=v7_20260601_final_verified_places"></script>
 <script src="weather.js?v=v7_20260522_nocrop"></script>
 </body>
 </html>
