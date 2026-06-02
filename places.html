@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Что посмотреть в Когалыме — Открой Когалым</title>
   <meta name="description" content="Городской путеводитель по Когалыму: памятники, парки, культура, музеи, храмы, спорт, образование, адреса и карта.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_locations_no_history">
+  <link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_final_clean_locations">
 </head>
 <body>
 <header class="header">
@@ -30,7 +30,7 @@
 </header>
 
 <main class="places-page catalog-page places-page--lively">
-  <section class="places-showcase" aria-label="Места Когалыма">
+  <section class="places-showcase" aria-label="Локации Когалыма">
     <div class="places-showcase__text">
       <span class="places-eyebrow">Городской путеводитель</span>
       <h1>Что посмотреть в Когалыме</h1>
@@ -55,24 +55,7 @@
   </section>
 
   <section class="catalog-layout catalog-layout--lively">
-    <aside class="catalog-sidebar">
-      <h2>Категории</h2>
-      <div id="catalogCategoryList" class="catalog-category-list"></div>
-      <div class="catalog-help">
-        <b>Как пользоваться</b>
-        <p>Введите название или выберите категорию. В карточке есть адрес, описание, телефон и карта.</p>
-      </div>
-    </aside>
-
-    <section class="places-results-panel">
-      <div class="catalog-toolbar catalog-toolbar--lively catalog-toolbar--simple-search">
-        <div><b id="catalogResultTitle">Все места</b><span id="catalogResultCount"></span></div>
-        <label class="catalog-toolbar-search" aria-label="Поиск места">
-          <span>⌕</span>
-          <input id="placesSearch" type="search" placeholder="Найти место" autocomplete="off">
-        </label>
-        <button id="catalogReset" type="button">Сбросить</button>
-      </div>
+    <section class="places-results-panel places-results-panel--clean">
       <div class="places-grid catalog-grid" id="placesGrid"></div>
       <div class="places-empty" id="placesEmpty">По этому запросу ничего не найдено.</div>
     </section>
@@ -93,8 +76,6 @@
         <div><span>Адрес</span><b id="placeModalAddress"></b></div>
         <div><span>Телефон</span><b id="placeModalPhone"></b></div>
       </div>
-
-
       <div class="place-modal-actions">
         <a id="placeMapBtn" href="https://yandex.ru/maps/?text=Когалым" target="_blank" rel="noopener">Открыть карту</a>
         <a id="placeSiteBtn" href="#" target="_blank" rel="noopener">Официальный сайт</a>
@@ -109,7 +90,7 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
-<script src="places.v7-hard.js?v=v7_20260601_locations_no_history"></script>
+<script src="places.v7-hard.js?v=v7_20260601_final_clean_locations"></script>
 <script src="weather.js?v=v7_20260522_nocrop"></script>
 </body>
 </html>

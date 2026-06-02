@@ -5300,3 +5300,201 @@ max-width:none;
 .places-page--lively .catalog-toolbar--simple-search{
   margin-top:0!important;
 }
+
+
+/* ===== FINAL LOCATIONS GRID ALIGNMENT 2026-06-01 ===== */
+.places-page--lively{
+  --locations-page-width:min(1180px, calc(100vw - 72px));
+  padding-left:0!important;
+  padding-right:0!important;
+  overflow-x:hidden!important;
+}
+.places-page--lively .places-showcase,
+.places-page--lively .places-control-panel--simple,
+.places-page--lively .catalog-layout--lively{
+  width:var(--locations-page-width)!important;
+  max-width:var(--locations-page-width)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+.places-page--lively .places-showcase{
+  grid-template-columns:minmax(0, 520px) minmax(0, 1fr)!important;
+  gap:28px!important;
+  align-items:stretch!important;
+  margin-bottom:22px!important;
+}
+.places-page--lively .places-showcase__text{
+  width:100%!important;
+  height:100%!important;
+  min-height:390px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+.places-page--lively .places-postcard--collage{
+  width:100%!important;
+  min-height:390px!important;
+  height:100%!important;
+  transform:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.places-page--lively .places-postcard--collage img{
+  width:100%!important;
+  height:390px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.places-page--lively .places-control-panel--simple{
+  margin-top:0!important;
+  margin-bottom:18px!important;
+}
+.places-page--lively .places-control-panel--simple .catalog-filter-row{
+  width:100%!important;
+  grid-template-columns:repeat(9,minmax(0,1fr))!important;
+}
+.places-page--lively .catalog-layout--lively{
+  margin-top:0!important;
+}
+.places-page--lively .catalog-toolbar--simple-search{
+  width:100%!important;
+  box-sizing:border-box!important;
+  grid-template-columns:minmax(220px,1fr) minmax(180px,260px) auto!important;
+}
+.places-page--lively .catalog-grid{
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+@media(max-width:1120px){
+  .places-page--lively{
+    --locations-page-width:calc(100vw - 40px);
+    padding-top:108px!important;
+  }
+  .places-page--lively .places-showcase{
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+  }
+  .places-page--lively .places-showcase__text{
+    min-height:auto!important;
+    justify-content:flex-start!important;
+  }
+  .places-page--lively .places-postcard--collage,
+  .places-page--lively .places-postcard--collage img{
+    min-height:300px!important;
+    height:300px!important;
+  }
+  .places-page--lively .places-control-panel--simple .catalog-filter-row{
+    display:flex!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+  }
+}
+@media(max-width:700px){
+  .places-page--lively{
+    --locations-page-width:calc(100vw - 24px);
+    padding-top:96px!important;
+  }
+  .places-page--lively .places-postcard--collage,
+  .places-page--lively .places-postcard--collage img{
+    min-height:240px!important;
+    height:240px!important;
+  }
+}
+
+
+/* ===== Locations final cleanup: remove result/search strip 2026-06-01 ===== */
+.places-results-panel--clean{
+  margin-top:0!important;
+}
+.places-results-panel--clean .catalog-grid{
+  margin-top:0!important;
+}
+.places-control-panel--simple{
+  margin-bottom:18px!important;
+}
+.places-page--lively .places-filter-row.catalog-filter-row{
+  margin-bottom:0!important;
+}
+@media(max-width:700px){
+  .places-control-panel--simple{margin-bottom:14px!important;}
+}
+
+
+/* ===== FINAL CLEAN LOCATIONS BUILD 2026-06-01 ===== */
+.places-page--lively{
+  --locations-page-width:min(1180px, calc(100vw - 72px));
+}
+.places-page--lively .catalog-sidebar,
+.catalog-toolbar,
+.catalog-toolbar--simple-search,
+.places-search,
+.custom-select,
+#placesSearch,
+#placesSelect,
+#catalogReset,
+#catalogResultTitle,
+#catalogResultCount,
+#catalogTotal,
+.place-modal-map{
+  display:none!important;
+}
+.places-page--lively .catalog-layout--lively{
+  display:block!important;
+  width:var(--locations-page-width)!important;
+  max-width:var(--locations-page-width)!important;
+  margin:0 auto!important;
+}
+.places-page--lively .places-results-panel--clean,
+.places-page--lively .catalog-grid{
+  width:100%!important;
+  max-width:100%!important;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+.places-page--lively .places-control-panel--simple{
+  width:var(--locations-page-width)!important;
+  max-width:var(--locations-page-width)!important;
+  margin:0 auto 18px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+.places-page--lively .places-control-panel--simple .catalog-filter-row{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(9,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin:0!important;
+}
+.places-page--lively .places-control-panel--simple .place-filter{
+  width:100%!important;
+  min-width:0!important;
+  min-height:48px!important;
+  padding:0 10px!important;
+}
+@media(max-width:1120px){
+  .places-page--lively{--locations-page-width:calc(100vw - 40px);}
+  .places-page--lively .places-control-panel--simple .catalog-filter-row{
+    display:flex!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    flex-wrap:nowrap!important;
+    scrollbar-width:none!important;
+  }
+  .places-page--lively .places-control-panel--simple .catalog-filter-row::-webkit-scrollbar{display:none!important;}
+  .places-page--lively .places-control-panel--simple .place-filter{
+    flex:0 0 auto!important;
+    width:auto!important;
+    min-width:118px!important;
+  }
+}
+@media(max-width:700px){
+  .places-page--lively{--locations-page-width:calc(100vw - 24px);}
+}

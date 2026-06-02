@@ -790,16 +790,7 @@
 
   const grid = document.getElementById('placesGrid');
   const empty = document.getElementById('placesEmpty');
-  const search = document.getElementById('placesSearch');
   const filters = document.getElementById('catalogFilters');
-  const categoryList = document.getElementById('catalogCategoryList');
-  const resultTitle = document.getElementById('catalogResultTitle');
-  const resultCount = document.getElementById('catalogResultCount');
-  const total = document.getElementById('catalogTotal');
-  const reset = document.getElementById('catalogReset');
-  const customSelect = document.getElementById('placesSelect');
-  const customTrigger = document.getElementById('placesSelectTrigger');
-  const customMenu = document.getElementById('placesSelectMenu');
 
   const modal = document.getElementById('placeModal');
   const close = document.getElementById('placeModalClose');
@@ -811,7 +802,6 @@
   const hours = document.getElementById('placeModalHours');
   const address = document.getElementById('placeModalAddress');
   const phone = document.getElementById('placeModalPhone');
-  const mapTitle = document.getElementById('placeModalMapTitle');
   const mapBtn = document.getElementById('placeMapBtn');
   const siteBtn = document.getElementById('placeSiteBtn');
   const favorite = document.getElementById('placeFavoriteBtn');
@@ -884,21 +874,12 @@
   }
 
   function renderFilters(){
-    const buttons = categories.map(cat => `<button class="place-filter${cat[0] === 'all' ? ' active' : ''}" type="button" data-place-filter="${cat[0]}">${esc(cat[1])}</button>`).join('');
-    if(filters) filters.innerHTML = buttons;
-    if(customMenu) customMenu.innerHTML = categories.map(cat => `<button type="button" data-value="${cat[0]}">${esc(cat[2])}</button>`).join('');
-
-    if(categoryList){
-      categoryList.innerHTML = categories.filter(cat => cat[0] !== 'all').map(cat => {
-        const count = places.filter(place => place.type === cat[0]).length;
-        return `<button type="button" data-place-filter="${cat[0]}"><span>${esc(cat[2])}</span><b>${count}</b></button>`;
-      }).join('');
-    }
+    if(!filters) return;
+    filters.innerHTML = categories.map(cat => `<button class="place-filter${cat[0] === 'all' ? ' active' : ''}" type="button" data-place-filter="${cat[0]}">${esc(cat[1])}</button>`).join('');
   }
 
   function renderCards(){
     grid.innerHTML = places.map(cardTemplate).join('');
-    if(total) total.textContent = places.length;
   }
 
   function visibleCards(){
@@ -906,15 +887,11 @@
   }
 
   function applyFilter(){
-    const q = norm(search ? search.value : '');
     let visible = 0;
 
     visibleCards().forEach(card => {
       const place = places[Number(card.dataset.index)];
-      const text = norm([place.title, place.desc, place.address, place.phone, place.hours, categoryName(place.type), categoryFull(place.type)].join(' '));
-      const typeOk = currentType === 'all' || place.type === currentType;
-      const searchOk = !q || text.includes(q);
-      const ok = typeOk && searchOk;
+      const ok = currentType === 'all' || place.type === currentType;
 
       card.classList.toggle('hidden', !ok);
       if(ok){
@@ -926,15 +903,12 @@
     });
 
     if(empty) empty.classList.toggle('show', visible === 0);
-    if(resultTitle) resultTitle.textContent = categoryFull(currentType);
-    if(resultCount) resultCount.textContent = ' · найдено: ' + visible;
   }
 
   function syncActive(){
     document.querySelectorAll('[data-place-filter]').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.placeFilter === currentType);
     });
-    if(customTrigger) customTrigger.textContent = categoryFull(currentType);
   }
 
   function setType(value){
@@ -956,8 +930,6 @@
     hours.textContent = capFirst(place.hours);
     address.textContent = capFirst(place.address);
     phone.innerHTML = renderPhone(place.phone);
-    if(mapTitle){ mapTitle.textContent = place.title + (place.address ? ' · ' + capFirst(place.address) : ''); }
-
     mapBtn.href = url;
     if(siteBtn){
       if(place.siteUrl){
@@ -996,34 +968,7 @@
     const filterBtn = event.target.closest('[data-place-filter]');
     if(filterBtn){
       setType(filterBtn.dataset.placeFilter || 'all');
-      customSelect?.classList.remove('open');
-      return;
     }
-
-    const selectBtn = event.target.closest('#placesSelectMenu button');
-    if(selectBtn){
-      setType(selectBtn.dataset.value || 'all');
-      customSelect?.classList.remove('open');
-      return;
-    }
-
-    if(customSelect && !customSelect.contains(event.target)){
-      customSelect.classList.remove('open');
-    }
-  });
-
-  search?.addEventListener('input', applyFilter);
-
-  customTrigger?.addEventListener('click', event => {
-    event.stopPropagation();
-    customSelect?.classList.toggle('open');
-  });
-
-  reset?.addEventListener('click', () => {
-    currentType = 'all';
-    if(search) search.value = '';
-    syncActive();
-    applyFilter();
   });
 
   grid.addEventListener('click', event => {
