@@ -2,238 +2,72 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=v7_20260601_images_full">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_20260602_final">
 <style>
-
-body{margin:0;background:#020814;color:white;font-family:Arial,sans-serif}
-
-.events-page{
-min-height:100vh;
-padding:54px 28px 70px;
-background:transparent;
-}
-
-.container{max-width:1450px;margin:0 auto}
-
-.badge{
-display:inline-flex;padding:10px 16px;border-radius:999px;
-background:rgba(214,162,75,.12);
-border:1px solid rgba(214,162,75,.28);
-color:#f2d08a;font-weight:800;margin-bottom:18px
-}
-
-h1{
-font-family:Georgia,serif;
-font-size:82px;
-line-height:.92;
-font-weight:500;
-margin:0 0 18px;
-}
-
-.top-text{
-max-width:760px;
-font-size:20px;
-line-height:1.6;
-color:#dbe6f8;
-margin-bottom:44px;
-}
-
-.hero-event{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-overflow:hidden;
-border-radius:28px;
-background:rgba(8,20,42,.88);
-border:1px solid rgba(255,255,255,.08);
-box-shadow:0 30px 80px rgba(0,0,0,.35);
-margin-bottom:42px;
-}
-
-.hero-image{
-min-height:470px;
-background:url('images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg') center/cover;
-position:relative;
-}
-
-.hero-image:after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.76));
-}
-
-.live{
-position:absolute;
-top:22px;
-left:22px;
-z-index:2;
-padding:10px 16px;
-border-radius:999px;
-background:#d63f3f;
-font-weight:900;
-}
-
-.hero-content{
-padding:40px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-}
-
-.hero-content h2{
-font-family:Georgia,serif;
-font-size:58px;
-font-weight:500;
-margin:0 0 16px;
-}
-
-.meta{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-bottom:20px;
-}
-
-.meta span{
-padding:8px 13px;
-border-radius:999px;
-background:rgba(214,162,75,.12);
-border:1px solid rgba(214,162,75,.28);
-color:#f2d08a;
-font-weight:800;
-}
-
-.hero-content p{
-font-size:18px;
-line-height:1.7;
-color:#dce8f8;
-margin-bottom:28px;
-}
-
-.buttons{display:flex;gap:14px;flex-wrap:wrap}
-
-.btn{
-padding:15px 24px;
-border-radius:12px;
-font-weight:900;
-text-decoration:none;
-transition:.25s;
-}
-
-.btn:hover{transform:translateY(-3px)}
-
-.gold{
-background:linear-gradient(135deg,#f1d493,#b88631);
-color:#08111f;
-}
-
-.dark{
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.12);
-color:#fff;
-}
-
-.section-title{
-font-family:Georgia,serif;
-font-size:48px;
-margin:0 0 28px;
-}
-
-.events-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
-}
-
-.event-card{
-background:rgba(8,20,42,.86);
-border-radius:24px;
-overflow:hidden;
-border:1px solid rgba(255,255,255,.08);
-transition:.28s;
-backdrop-filter:blur(14px);
-}
-
-.event-card:hover{
-transform:translateY(-10px);
-box-shadow:0 24px 60px rgba(0,0,0,.36);
-border-color:rgba(214,162,75,.32);
-}
-
-.event-image{
-height:240px;
-background-size:cover;
-background-position:center;
-position:relative;
-}
-
-.event-image:after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.82));
-}
-
-.date{
-position:absolute;
-left:16px;
-bottom:16px;
-z-index:2;
-padding:12px 14px;
-border-radius:16px;
-background:rgba(0,0,0,.58);
-font-weight:900;
-text-align:center;
-line-height:1;
-}
-
-.date b{display:block;font-size:30px}
-.date span{font-size:12px;color:#f2d08a}
-
-.event-content{
-padding:22px;
-min-height:210px;
-display:flex;
-flex-direction:column;
-}
-
-.event-content h3{
-font-family:Georgia,serif;
-font-size:34px;
-font-weight:500;
-margin:0 0 12px;
-}
-
-.event-content p{
-color:#dbe6f8;
-line-height:1.65;
-font-size:16px;
-margin-bottom:18px;
-flex:1;
-}
-
-.bottom{
-display:flex;
-justify-content:space-between;
-font-size:14px;
-color:#f2d08a;
-font-weight:800;
-}
-
-@media(max-width:1150px){
-.hero-event{grid-template-columns:1fr}
-.events-grid{grid-template-columns:1fr}
-}
-
+:root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
+html{scroll-behavior:smooth}
+body{margin:0;background:#020814;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(2,8,20,.92),rgba(2,8,20,.58) 45%,rgba(2,8,20,.30)),linear-gradient(180deg,rgba(2,8,20,.12),#020814 72%),url('images/night.jpg') center top/cover fixed;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 62% 8%,rgba(28,178,111,.23),transparent 32%),radial-gradient(circle at 18% 24%,rgba(241,199,91,.10),transparent 30%);pointer-events:none}
+.header{position:sticky!important;top:0!important;height:92px!important;padding:0 66px!important;background:rgba(2,8,20,.76)!important;border-bottom:1px solid rgba(255,255,255,.08)!important;backdrop-filter:blur(18px)!important;display:flex!important;align-items:center!important;gap:30px!important;z-index:100!important}
+.brand img{width:58px!important;height:58px!important;border-radius:50%;object-fit:cover!important}
+.brand span{font-family:Georgia,'Times New Roman',serif!important;font-size:28px!important;line-height:.90!important;letter-spacing:-.04em!important;color:#fff!important}
+.header nav{margin-left:auto!important;display:flex!important;gap:34px!important;align-items:center!important}
+.header nav a{font-size:16px!important;font-weight:800!important;color:#eef5ff!important;padding:34px 0 14px!important;border-bottom:0!important;position:relative!important}
+.header nav a.active{color:var(--af-gold)!important}
+.header nav a.active::after{content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:3px!important;border-radius:999px!important;background:var(--af-gold)!important}
+.right-head{margin-left:28px!important;display:flex!important;gap:18px!important;align-items:center!important}
+.icon{font-size:24px!important;color:#fff!important;line-height:1!important}
+.events-page{min-height:100vh;max-width:none!important;margin:0!important;padding:0 28px 58px!important;background:transparent!important;box-sizing:border-box!important}
+main.events-page{background:transparent!important}
+.events-shell{max-width:1450px;margin:0 auto}
+.events-hero{position:relative;overflow:hidden;border-bottom-left-radius:28px;border-bottom-right-radius:28px;padding:34px 0 30px;margin-bottom:24px;background:linear-gradient(90deg,rgba(2,8,20,.84),rgba(2,8,20,.45)),linear-gradient(180deg,rgba(2,8,20,.10),rgba(2,8,20,.88)),url('images/hero.jpg') center 38%/cover;border:1px solid rgba(255,255,255,.07);border-top:0;box-shadow:0 32px 80px rgba(0,0,0,.24)}
+.events-hero::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:240px;background:radial-gradient(ellipse at center,rgba(82,222,135,.32),transparent 62%);filter:blur(18px);transform:rotate(-4deg);opacity:.85}
+.events-hero-inner{position:relative;z-index:1;padding:0 40px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:26px;align-items:end}
+.events-kicker{display:inline-flex;align-items:center;gap:9px;width:max-content;margin-bottom:15px;padding:8px 15px;border-radius:9px;border:1px solid var(--af-line2);background:rgba(214,162,75,.10);color:var(--af-gold);font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.events-kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--af-gold);box-shadow:0 0 18px var(--af-gold)}
+.events-hero h1{font-family:Georgia,'Times New Roman',serif!important;text-transform:none!important;letter-spacing:-.055em!important;font-size:clamp(48px,5.2vw,78px)!important;line-height:.98!important;font-weight:500!important;margin:0 0 14px!important;color:#fff!important;text-shadow:0 16px 44px rgba(0,0,0,.55)!important}
+.events-lead{max-width:640px!important;font-size:20px!important;line-height:1.45!important;color:#e9f1ff!important;margin:0!important;font-weight:600!important}
+.events-summary{border:1px solid rgba(255,255,255,.10);border-radius:22px;background:rgba(4,14,27,.62);backdrop-filter:blur(14px);padding:20px 22px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.events-summary b{display:block;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:500;margin-bottom:10px;color:#fff}
+.events-summary span{display:block;color:#dce8f8;line-height:1.5;font-size:15px}
+.events-toolbar{position:sticky;top:92px;z-index:80;margin:0 0 18px;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(2,8,20,.78);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap}
+.filter-btn{appearance:none;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);color:#fff;border-radius:11px;padding:11px 18px;font-weight:850;cursor:pointer;transition:.2s;white-space:nowrap}
+.filter-btn:hover{border-color:rgba(241,199,91,.45);transform:translateY(-1px)}
+.filter-btn.active{background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;border-color:transparent;box-shadow:0 10px 28px rgba(214,162,75,.22)}
+.week-switch{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.10);border-radius:13px;background:rgba(255,255,255,.04);padding:10px 13px;color:#e8f0ff;font-weight:800;white-space:nowrap}
+.week-switch button{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#fff;cursor:pointer}
+.events-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.event-card{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,rgba(8,23,43,.92),rgba(4,14,27,.92));border:1px solid rgba(255,255,255,.10);box-shadow:0 16px 52px rgba(0,0,0,.20);transition:transform .24s,border-color .24s,box-shadow .24s;min-height:430px;display:flex;flex-direction:column}
+.event-card:hover{transform:translateY(-7px);border-color:rgba(241,199,91,.38);box-shadow:0 26px 70px rgba(0,0,0,.36)}
+.event-img{position:relative;height:168px;background-size:cover;background-position:center;overflow:hidden}
+.event-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.76))}
+.today-label{position:absolute;left:12px;top:12px;z-index:2;padding:6px 10px;border-radius:999px;background:#d94343;color:#fff;font-size:12px;font-weight:900;text-transform:uppercase;box-shadow:0 8px 20px rgba(217,67,67,.24)}
+.date-badge{position:absolute;left:14px;bottom:12px;z-index:2;width:62px;border-radius:14px;overflow:hidden;text-align:center;background:rgba(3,10,20,.82);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 26px rgba(0,0,0,.26)}
+.date-badge strong{display:block;font-size:26px;line-height:1;padding-top:10px;color:#fff}.date-badge span{display:block;padding:2px 0 7px;font-size:12px;font-weight:900;color:#fff}.date-badge small{display:block;background:rgba(255,255,255,.08);padding:6px 0;color:#dce7f8;font-size:11px;font-weight:900}
+.event-body{padding:18px 18px 16px;display:flex;flex-direction:column;flex:1}
+.event-cat{display:flex;align-items:center;gap:8px;color:var(--af-gold);font-weight:950;font-size:12px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}.event-cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--af-gold);opacity:.85}
+.event-body h2{font-family:Georgia,'Times New Roman',serif!important;font-size:24px!important;line-height:1.08!important;font-weight:500!important;margin:0 0 10px!important;color:#fff!important;letter-spacing:-.025em!important}
+.event-meta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 10px;color:#d9e5f7;font-size:14px}.event-meta span{display:inline-flex;align-items:center;gap:5px}
+.event-body p{margin:0 0 16px!important;color:#b9c8dc!important;font-size:15px!important;line-height:1.42!important;font-weight:500!important;flex:1}
+.event-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}.more-btn{border:1px solid var(--af-line2);background:rgba(214,162,75,.08);color:var(--af-gold);border-radius:10px;padding:10px 19px;font-weight:900;cursor:pointer}.more-btn:hover{background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f}.heart{width:38px;height:38px;border:1px solid rgba(255,255,255,.13);border-radius:50%;display:grid;place-items:center;color:#fff;opacity:.84}.event-card.is-hidden{display:none}
+.side-panel{position:sticky;top:184px;border:1px solid rgba(255,255,255,.10);border-radius:22px;background:rgba(5,18,34,.80);backdrop-filter:blur(14px);padding:18px;box-shadow:0 16px 48px rgba(0,0,0,.20)}
+.side-panel h2{font-family:Georgia,'Times New Roman',serif!important;font-size:30px!important;line-height:1.05!important;margin:0 0 14px!important;font-weight:700!important;color:#fff!important}.mini-event{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:11px;margin-bottom:10px;background:rgba(255,255,255,.035)}.mini-date{text-align:center;color:#dce7f8;font-size:11px;font-weight:900;border-right:1px solid rgba(255,255,255,.08);padding-right:10px}.mini-date strong{display:block;color:#fff;font-size:16px}.mini-event b{display:block;color:#fff;font-size:14px;margin-bottom:5px}.mini-event span{display:block;color:#b7c4d8;font-size:12px;line-height:1.25}.all-events{display:flex;align-items:center;justify-content:center;width:100%;margin-top:14px;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:13px;background:rgba(255,255,255,.04);color:#fff;font-weight:900;text-decoration:none}.all-events:hover{border-color:rgba(241,199,91,.45);color:var(--af-gold)}
+.no-events{display:none;grid-column:1/-1;border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:28px;text-align:center;background:rgba(255,255,255,.04);color:#dce8f8;font-weight:800}.no-events.show{display:block}
+.event-modal{position:fixed;inset:0;z-index:999;display:none;place-items:center;padding:20px;background:rgba(2,8,20,.72);backdrop-filter:blur(10px)}.event-modal.show{display:grid}.modal-card{width:min(640px,100%);border-radius:24px;border:1px solid rgba(255,255,255,.13);background:#071526;box-shadow:0 32px 100px rgba(0,0,0,.55);overflow:hidden}.modal-top{height:220px;background-size:cover;background-position:center;position:relative}.modal-top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.75))}.modal-close{position:absolute;right:14px;top:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.42);color:#fff;font-size:24px;cursor:pointer}.modal-content{padding:24px}.modal-content small{display:inline-flex;margin-bottom:10px;color:var(--af-gold);font-weight:950;text-transform:uppercase}.modal-content h2{font-family:Georgia,'Times New Roman',serif!important;font-size:34px!important;line-height:1.05!important;font-weight:500!important;margin:0 0 14px!important}.modal-content p{color:#dce8f8!important;line-height:1.65!important;margin:0 0 18px!important;font-size:16px!important;font-weight:500!important}.modal-content a{display:inline-flex;border-radius:12px;background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;padding:13px 20px;font-weight:950;text-decoration:none}
+footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px 44px!important;border-top:1px solid rgba(255,255,255,.08)!important;display:flex!important;gap:34px!important;color:#aebcd0!important}
+@media(max-width:1240px){.events-hero-inner{grid-template-columns:1fr}.events-summary{max-width:560px}.events-layout{grid-template-columns:1fr}.side-panel{position:relative;top:auto}.events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.events-toolbar{top:0}}
+@media(max-width:860px){.header{position:relative!important;height:auto!important;padding:16px!important;align-items:flex-start!important}.header nav{width:100%;margin-left:0!important;overflow-x:auto;gap:22px!important;padding-bottom:10px}.right-head{margin-left:0!important}.events-page{padding:0 14px 44px}.events-hero{border-radius:0 0 22px 22px}.events-hero-inner{padding:0 18px}.events-lead{font-size:17px}.events-toolbar{position:relative;top:auto;align-items:flex-start;flex-direction:column}.filter-row{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}.filter-btn{flex:0 0 auto}.week-switch{width:100%;justify-content:space-between}.events-grid{grid-template-columns:1fr}.event-card{min-height:0}.event-img{height:190px}.side-panel{padding:15px}.events-hero h1{font-size:44px!important}footer{flex-wrap:wrap!important;padding:22px 14px 38px!important}}
 </style>
 </head>
 <body>
-
 <header class="header">
   <a class="brand" href="index.html">
     <img src="images/logo.png" alt="Открой Когалым">
@@ -251,98 +85,233 @@ font-weight:800;
   <div class="right-head">
     <span class="icon">⌕</span>
     <span class="icon">♡</span>
-
+    <span class="icon">☰</span>
   </div>
 </header>
 
-
-
 <main class="events-page">
-<div class="container">
+  <div class="events-shell">
+    <section class="events-hero">
+      <div class="events-hero-inner">
+        <div>
+          <div class="events-kicker">События города</div>
+          <h1>Афиша Когалыма</h1>
+          <p class="events-lead">Концерты, выставки, спортивные соревнования, семейные мероприятия и городские праздники — всё в одном месте.</p>
+        </div>
+        <aside class="events-summary">
+          <b>25 мая — 1 июня</b>
+          <span>Подборка ближайших событий недели: куда сходить вечером, чем занять детей и что посмотреть в выходные.</span>
+        </aside>
+      </div>
+    </section>
 
-<div class="badge">События города</div>
+    <section class="events-toolbar" aria-label="Фильтры афиши">
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="today">Сегодня</button>
+        <button class="filter-btn" data-filter="weekend">Выходные</button>
+        <button class="filter-btn" data-filter="kids">Детям</button>
+        <button class="filter-btn" data-filter="concert">Концерты</button>
+        <button class="filter-btn" data-filter="sport">Спорт</button>
+        <button class="filter-btn" data-filter="exhibition">Выставки</button>
+        <button class="filter-btn" data-filter="cinema">Кино</button>
+      </div>
+      <div class="week-switch" aria-label="Неделя событий">
+        <button type="button" aria-label="Предыдущая неделя">‹</button>
+        <span>▣ 25 мая — 1 июня</span>
+        <button type="button" aria-label="Следующая неделя">›</button>
+      </div>
+    </section>
 
-<h1>АФИША<br>КОГАЛЫМА</h1>
+    <section class="events-layout">
+      <div class="events-grid" id="eventsGrid">
+        <article class="event-card" data-cat="today concert" data-title="Весенний концерт в «Галактике»" data-date="25 мая, 19:00" data-place="СКК «Галактика»" data-img="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" data-desc="Вечер живой музыки, выступления артистов города и тёплая атмосфера для всей семьи. Подойдёт для спокойного вечернего выхода.">
+          <div class="event-img" style="background-image:url('images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg')">
+            <div class="today-label">Сегодня</div>
+            <div class="date-badge"><strong>25</strong><span>МАЯ</span><small>ВС</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Концерт</div>
+            <h2>Весенний концерт в «Галактике»</h2>
+            <div class="event-meta"><span>◴ 19:00</span><span>⌖ СКК «Галактика»</span></div>
+            <p>Живой звук, выступления артистов города и вечерняя программа для всей семьи.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<div class="top-text">
-Концерты, фестивали, городские праздники, выставки,
-ярмарки и главные события Когалыма.
-</div>
+        <article class="event-card" data-cat="exhibition" data-title="Северный свет в красках" data-date="26 мая, 10:00" data-place="Музейно-выставочный центр" data-img="images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg" data-desc="Выставка работ художников Югры о красоте северного края, городских пейзажах и природе Западной Сибири.">
+          <div class="event-img" style="background-image:url('images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg')">
+            <div class="date-badge"><strong>26</strong><span>МАЯ</span><small>ПН</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Выставка</div>
+            <h2>Северный свет в красках</h2>
+            <div class="event-meta"><span>◴ 10:00</span><span>⌖ Музейно-выставочный центр</span></div>
+            <p>Живопись, северные мотивы и работы местных авторов о Когалыме и Югре.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<section class="hero-event" id="spring-concert">
-<div class="hero-image">
-<div class="live">Скоро</div>
-</div>
+        <article class="event-card" data-cat="kids" data-title="Мастер-класс «Чудеса своими руками»" data-date="27 мая, 17:00" data-place="Центральная библиотека" data-img="images/places-v7/22-19-literaturnyy-skver-2650b27c-v7-96518e55aa.jpg" data-desc="Творческое занятие для детей от 6 лет. Материалы предоставляются, участие лучше уточнить заранее.">
+          <div class="event-img" style="background-image:url('images/places-v7/22-19-literaturnyy-skver-2650b27c-v7-96518e55aa.jpg')">
+            <div class="date-badge"><strong>27</strong><span>МАЯ</span><small>ВТ</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Детям</div>
+            <h2>Мастер-класс «Чудеса своими руками»</h2>
+            <div class="event-meta"><span>◴ 17:00</span><span>⌖ Центральная библиотека</span></div>
+            <p>Творческий мастер-класс для детей: поделки, рисунки и простые техники.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<div class="hero-content">
-<h2>Весенний концерт в «Галактике»</h2>
+        <article class="event-card" data-cat="cinema" data-title="Кино: семейный вечер" data-date="28 мая, 18:30" data-place="Кинотеатр «Когалым»" data-img="images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg" data-desc="Семейный киносеанс на большом экране. Подходит для вечернего выхода с детьми.">
+          <div class="event-img" style="background-image:url('images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg')">
+            <div class="date-badge"><strong>28</strong><span>МАЯ</span><small>СР</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Кино</div>
+            <h2>Кино: семейный вечер</h2>
+            <div class="event-meta"><span>◴ 18:30</span><span>⌖ Кинотеатр «Когалым»</span></div>
+            <p>Семейный приключенческий фильм и спокойный вечерний формат. 6+</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<div class="meta">
-<span>25 МАЯ</span>
-<span>19:00</span>
-<span>СКК «Галактика»</span>
-</div>
+        <article class="event-card" data-cat="sport" data-title="Турнир по мини-футболу «Кубок Когалыма»" data-date="30 мая, 10:00" data-place="Спорткомплекс «Дружба»" data-img="images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg" data-desc="Командный турнир среди любительских коллективов города. Хороший вариант для тех, кто любит спорт без лишней официальщины.">
+          <div class="event-img" style="background-image:url('images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg')">
+            <div class="date-badge"><strong>30</strong><span>МАЯ</span><small>ПТ</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Спорт</div>
+            <h2>Турнир по мини-футболу</h2>
+            <div class="event-meta"><span>◴ 10:00</span><span>⌖ Спорткомплекс «Дружба»</span></div>
+            <p>Городской турнир любительских команд. Болельщики точно не лишние.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<p>
-Главное музыкальное событие недели:
-живой звук, вечерняя атмосфера и выступления артистов города.
-</p>
+        <article class="event-card" data-cat="weekend concert kids" data-title="День города Когалыма" data-date="31 мая, 12:00" data-place="Площадь Нефтяников" data-img="images/night.jpg" data-desc="Праздничная программа, концерты, ярмарка, активности для детей и вечерняя городская атмосфера.">
+          <div class="event-img" style="background-image:url('images/night.jpg')">
+            <div class="date-badge"><strong>31</strong><span>МАЯ</span><small>СБ</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Праздник</div>
+            <h2>День города Когалыма</h2>
+            <div class="event-meta"><span>◴ 12:00</span><span>⌖ Площадь Нефтяников</span></div>
+            <p>Праздничная программа, концерты, ярмарка и вечерние активности.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<div class="buttons">
-<a class="btn gold" href="mailto:info@kogalym-portal.ru?subject=Билеты%20на%20весенний%20концерт">Уточнить билеты</a>
-<a class="btn dark" href="#spring-concert">Подробнее</a>
-</div>
-</div>
-</section>
+        <article class="event-card" data-cat="weekend kids" data-title="День защиты детей" data-date="1 июня, 12:00" data-place="Городской парк" data-img="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg" data-desc="Игры, аниматоры, конкурс рисунков на асфальте, семейная программа и небольшие подарки для детей.">
+          <div class="event-img" style="background-image:url('images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg')">
+            <div class="date-badge"><strong>1</strong><span>ИЮНЯ</span><small>ВС</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Детям</div>
+            <h2>День защиты детей</h2>
+            <div class="event-meta"><span>◴ 12:00</span><span>⌖ Городской парк</span></div>
+            <p>Игры, аниматоры, конкурс рисунков и семейная программа на свежем воздухе.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<h2 class="section-title">Ближайшие события</h2>
+        <article class="event-card" data-cat="weekend exhibition" data-title="Экскурсия «Ночной Когалым»" data-date="1 июня, 21:00" data-place="Старт от центральной площади" data-img="images/hero.jpg" data-desc="Вечерний маршрут по знаковым местам города, подсветка, северная атмосфера и короткие истории о Когалыме.">
+          <div class="event-img" style="background-image:url('images/hero.jpg')">
+            <div class="date-badge"><strong>1</strong><span>ИЮНЯ</span><small>ВС</small></div>
+          </div>
+          <div class="event-body">
+            <div class="event-cat">Экскурсия</div>
+            <h2>Экскурсия «Ночной Когалым»</h2>
+            <div class="event-meta"><span>◴ 21:00</span><span>⌖ Центральная площадь</span></div>
+            <p>Атмосферный вечерний маршрут по знаковым местам и городским огням.</p>
+            <div class="event-actions"><button class="more-btn">Подробнее</button><span class="heart">♡</span></div>
+          </div>
+        </article>
 
-<div class="events-grid">
+        <div class="no-events" id="noEvents">В этой категории пока нет событий.</div>
+      </div>
 
-<div class="event-card">
-<div class="event-image" style="background-image:url('images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg')">
-<div class="date"><b>25</b><span>МАЯ</span></div>
-</div>
-<div class="event-content">
-<h3>Концерт</h3>
-<p>Вечер живой музыки и городской атмосферы в СКК «Галактика».</p>
-<div class="bottom"><span>19:00</span><span>Центр</span></div>
-</div>
-</div>
-
-<div class="event-card">
-<div class="event-image" style="background-image:url('images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg')">
-<div class="date"><b>26</b><span>МАЯ</span></div>
-</div>
-<div class="event-content">
-<h3>Ярмарка</h3>
-<p>Городская ярмарка выходного дня с едой, музыкой и развлечениями.</p>
-<div class="bottom"><span>12:00</span><span>Парк</span></div>
-</div>
-</div>
-
-<div class="event-card">
-<div class="event-image" style="background-image:url('images/night.jpg')">
-<div class="date"><b>01</b><span>ИЮНЯ</span></div>
-</div>
-<div class="event-content">
-<h3>Ночной город</h3>
-<p>Вечерняя прогулка и атмосферная экскурсия по ночному Когалыму.</p>
-<div class="bottom"><span>21:00</span><span>Маршрут</span></div>
-</div>
-</div>
-
-</div>
-
-</div>
+      <aside class="side-panel">
+        <h2>Ближайшие события</h2>
+        <div class="mini-event"><div class="mini-date"><strong>2 июня</strong>ПН</div><div><b>Открытая тренировка по йоге</b><span>09:00 · Парк «Северный»</span></div></div>
+        <div class="mini-event"><div class="mini-date"><strong>2 июня</strong>ПН</div><div><b>Лекция «История Когалыма»</b><span>18:00 · Музейно-выставочный центр</span></div></div>
+        <div class="mini-event"><div class="mini-date"><strong>5 июня</strong>ЧТ</div><div><b>Концерт «Северный ветер»</b><span>19:00 · СКК «Галактика»</span></div></div>
+        <a class="all-events" href="#eventsGrid">Посмотреть все</a>
+      </aside>
+    </section>
+  </div>
 </main>
 
+<div class="event-modal" id="eventModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-top" id="modalImage"><button class="modal-close" type="button" aria-label="Закрыть">×</button></div>
+    <div class="modal-content">
+      <small id="modalMeta"></small>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <a id="modalMail" href="mailto:info@kogalym-portal.ru">Уточнить участие</a>
+    </div>
+  </div>
+</div>
 
 <footer>
   <a href="about.html">О проекте</a>
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
+
 <script src="weather.js?v=v7_20260522_nocrop"></script>
+<script>
+(function(){
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.event-card');
+  const noEvents = document.getElementById('noEvents');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      const filter = button.dataset.filter;
+      let shown = 0;
+      cards.forEach(card => {
+        const cats = (card.dataset.cat || '').split(' ');
+        const visible = filter === 'all' || cats.includes(filter);
+        card.classList.toggle('is-hidden', !visible);
+        if (visible) shown += 1;
+      });
+      noEvents.classList.toggle('show', shown === 0);
+    });
+  });
+
+  const modal = document.getElementById('eventModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const modalMail = document.getElementById('modalMail');
+  document.querySelectorAll('.more-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.event-card');
+      modalTitle.textContent = card.dataset.title || 'Событие';
+      modalMeta.textContent = [card.dataset.date, card.dataset.place].filter(Boolean).join(' · ');
+      modalText.textContent = card.dataset.desc || '';
+      modalImage.style.backgroundImage = `url('${card.dataset.img || 'images/hero.jpg'}')`;
+      modalMail.href = 'mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(card.dataset.title || 'Событие афиши');
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+    });
+  });
+  const closeModal = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  };
+  modal.querySelector('.modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+  window.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+})();
+</script>
 </body>
 </html>
