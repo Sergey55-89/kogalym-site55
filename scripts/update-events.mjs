@@ -1,11 +1,29 @@
-import { writeFile, readFile } from 'node:fs/promises';
+import { writeFile, readFile, mkdir } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 
 const OUT_FILE = new URL('../events-data.json', import.meta.url);
+const EVENTS_IMAGE_DIR = new URL('../images/events/', import.meta.url);
 const SOURCES = [
   { name: 'Малый театр', url: 'https://www.maly.ru/kogalym/events', parser: parseMaly },
   { name: 'СКК «Галактика»', url: 'https://www.skk-galaxy.ru/', parser: parseGalaxy },
   { name: 'Афиша7', url: 'https://afisha7.ru/kogalym', parser: parseAfisha7 },
   { name: 'Визит Когалым', url: 'https://vizitkogalym.ru/event/events.php', parser: parseVisitKogalym }
+];
+
+
+const IMAGE_BY_TITLE = [
+  [/п[её]тр\s*i|п[её]тр\s*1/i, 'https://static.dev.maly.ru/gallery/589/615b66f38520f.jpg'],
+  [/мудрец|простоты/i, 'https://static.dev.maly.ru/gallery/37/69b7db998a3a0.jpg'],
+  [/беззабот/i, 'https://static.dev.maly.ru/gallery/1029/6968cf0619139.jpg'],
+  [/расстроенная\s+семья/i, 'https://static.dev.maly.ru/gallery/1041/69984aaf214ed.jpg']
+];
+
+
+const LOCAL_IMAGE_BY_TITLE = [
+  [/п[её]тр\s*i|п[её]тр\s*1/i, 'images/events/petr-i.jpg'],
+  [/мудрец|простоты/i, 'images/events/mudrets.jpg'],
+  [/беззабот/i, 'images/events/bezzabotnye.jpg'],
+  [/расстроенная\s+семья/i, 'images/events/rasstroennaya-semya.jpg']
 ];
 
 const IMAGE_BY_KEYWORD = [
@@ -46,6 +64,121 @@ function cleanHtml(value = '') {
 
 function absUrl(url, base) {
   try { return new URL(url, base).toString(); } catch { return base; }
+}
+
+
+function htmlDecode(value = '') {
+  return String(value)
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&quot;/g, '"')
+    .replace(/&#34;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&laquo;/g, '«')
+    .replace(/&raquo;/g, '»')
+    .replace(/&ndash;/g, '–')
+    .replace(/&mdash;/g, '—')
+    .replace(/&amp;/g, '&')
+    .trim();
+}
+
+function getAttrs(tag = '') {
+  const attrs = {};
+  for (const match of tag.matchAll(/([\w:-]+)\s*=\s*(["'])([\s\S]*?)\2/g)) {
+    attrs[match[1].toLowerCase()] = htmlDecode(match[3]);
+  }
+  return attrs;
+}
+
+function looksLikeRealImage(url = '') {
+  const value = String(url).trim();
+  if (!value || /^data:/i.test(value)) return false;
+  if (/\.(svg|ico)(?:[?#].*)?$/i.test(value)) return false;
+  if (/logo|favicon|sprite|icon|loader|placeholder|blank|pixel|counter/i.test(value)) return false;
+  return /\.(jpe?g|png|webp)(?:[?#].*)?$/i.test(value) || /image|upload|uploads|poster|afisha|media|files|cache|resize|photo|img|picture/i.test(value);
+}
+
+function extractImageFromHtml(html = '', baseUrl = '', title = '') {
+  const candidates = [];
+  for (const tag of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attrs = getAttrs(tag[0]);
+    const key = `${attrs.property || ''} ${attrs.name || ''}`.toLowerCase();
+    if (/(og:image|twitter:image|image)/.test(key) && attrs.content) candidates.push(attrs.content);
+  }
+  for (const tag of html.matchAll(/<link\b[^>]*>/gi)) {
+    const attrs = getAttrs(tag[0]);
+    if (/image_src/i.test(attrs.rel || '') && attrs.href) candidates.push(attrs.href);
+  }
+  for (const tag of html.matchAll(/<img\b[^>]*>/gi)) {
+    const attrs = getAttrs(tag[0]);
+    candidates.push(attrs['data-src'], attrs['data-original'], attrs['data-lazy-src'], attrs.src);
+  }
+  const cleanedTitle = cleanHtml(title).toLowerCase().replace(/[«»]/g, '');
+  const titleWords = cleanedTitle.split(/\s+/).filter(word => word.length > 4).slice(0, 5);
+  const scored = candidates
+    .filter(Boolean)
+    .map(src => absUrl(src, baseUrl))
+    .filter(looksLikeRealImage)
+    .map(url => {
+      const lower = decodeURIComponent(url).toLowerCase();
+      let score = 0;
+      if (/poster|afisha|event|spectacle|performance|upload|uploads|media|files|cache|photo/i.test(lower)) score += 5;
+      if (/thumb|small|preview/i.test(lower)) score -= 1;
+      for (const word of titleWords) if (lower.includes(word)) score += 3;
+      return { url, score };
+    })
+    .sort((a, b) => b.score - a.score);
+  return scored[0]?.url || '';
+}
+
+async function fetchDetailImage(url, title) {
+  if (!url) return '';
+  try {
+    const html = await fetchText(url);
+    return extractImageFromHtml(html, url, title);
+  } catch {
+    return '';
+  }
+}
+
+function imageExtension(url = '', contentType = '') {
+  if (/webp/i.test(contentType)) return 'webp';
+  if (/png/i.test(contentType)) return 'png';
+  if (/jpe?g/i.test(contentType)) return 'jpg';
+  const path = new URL(url).pathname.toLowerCase();
+  if (path.endsWith('.webp')) return 'webp';
+  if (path.endsWith('.png')) return 'png';
+  return 'jpg';
+}
+
+async function downloadExternalImages(events) {
+  await mkdir(EVENTS_IMAGE_DIR, { recursive: true });
+  for (const event of events) {
+    if (!/^https?:\/\//i.test(event.image || '')) continue;
+    const originalImage = event.image;
+    try {
+      const response = await fetch(originalImage, {
+        headers: {
+          'user-agent': 'Mozilla/5.0 (compatible; KogalymEventsBot/2.1)',
+          'accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+          'referer': event.url || originalImage
+        }
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const contentType = response.headers.get('content-type') || '';
+      if (!/image\//i.test(contentType)) throw new Error(`not image: ${contentType}`);
+      const buffer = Buffer.from(await response.arrayBuffer());
+      if (buffer.length < 4096 || buffer.length > 8 * 1024 * 1024) throw new Error(`bad image size: ${buffer.length}`);
+      const hash = createHash('sha1').update(`${event.title}|${event.startDate}|${originalImage}`).digest('hex').slice(0, 18);
+      const ext = imageExtension(originalImage, contentType);
+      const filename = `${hash}.${ext}`;
+      await writeFile(new URL(filename, EVENTS_IMAGE_DIR), buffer);
+      event.image = `images/events/${filename}`;
+    } catch (error) {
+      console.warn(`image skipped for ${event.title}: ${error.message}`);
+      event.image = pickLocalImage(event) || pickImage(event);
+    }
+  }
+  return events;
 }
 
 function isoDate(year, month, day) {
@@ -96,8 +229,18 @@ function getCategory(title = '', rawCategory = '') {
   return [rawCategory || 'Событие', 'other'];
 }
 
+function pickLocalImage(event) {
+  const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''}`;
+  const localImage = LOCAL_IMAGE_BY_TITLE.find(([re]) => re.test(text));
+  return localImage ? localImage[1] : '';
+}
+
 function pickImage(event) {
   const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''}`;
+  const titleImage = IMAGE_BY_TITLE.find(([re]) => re.test(text));
+  if (titleImage) return titleImage[1];
+  const localImage = pickLocalImage(event);
+  if (localImage) return localImage;
   const found = IMAGE_BY_KEYWORD.find(([re]) => re.test(text));
   return found ? found[1] : 'images/hero.jpg';
 }
@@ -153,8 +296,10 @@ async function parseMaly() {
     const titleMatch = block.match(/<h2[^>]*>[\s\S]*?<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>[\s\S]*?<\/h2>/i);
     if (!titleMatch) continue;
     const title = cleanHtml(titleMatch[2]);
+    const detailUrl = absUrl(titleMatch[1], url);
     const time = (cleanHtml(block).match(/\b(?:[01]?\d|2[0-3]):[0-5]\d\b/) || [''])[0];
     if (!title || !time) continue;
+    const image = extractImageFromHtml(block, url, title) || await fetchDetailImage(detailUrl, title);
     const text = cleanHtml(block);
     const description = text
       .replace(matches[i].text, '')
@@ -171,7 +316,8 @@ async function parseMaly() {
       time,
       venue: 'Филиал Малого театра в Когалыме',
       description: description || 'Спектакль в филиале Государственного академического Малого театра России в Когалыме.',
-      url: absUrl(titleMatch[1], url),
+      url: detailUrl,
+      image,
       price: 'билеты в продаже',
       age: (text.match(/\b\d{1,2}\+/) || [''])[0],
       sourceName: 'Малый театр'
@@ -206,6 +352,7 @@ async function parseAfisha7() {
       const category = (bodyText.match(/Выставки|Концерты|Кино|Спорт|Встречи|Обучение|Праздники|Театр|Детям/i) || ['Событие'])[0];
       const price = (bodyText.match(/от\s*\d+[\s\S]{0,8}₽/i) || [''])[0].trim();
       const age = (bodyText.match(/\b\d{1,2}\+/) || [''])[0];
+      const image = extractImageFromHtml(body, url, title) || await fetchDetailImage(detailUrl, title);
       events.push(normalizeEvent({
         title,
         category,
@@ -214,6 +361,7 @@ async function parseAfisha7() {
         venue,
         description: `${category}. ${price || 'Стоимость уточняется'}${age ? `, ${age}` : ''}.`,
         url: detailUrl,
+        image,
         price,
         age,
         sourceName
@@ -227,6 +375,7 @@ async function parseGalaxy() {
   const url = 'https://www.skk-galaxy.ru/';
   const html = await fetchText(url);
   const text = cleanHtml(html).toLowerCase();
+  const pageImage = extractImageFromHtml(html, url, 'СКК Галактика');
   const now = new Date();
   const year = now.getFullYear();
   const events = [];
@@ -239,6 +388,7 @@ async function parseGalaxy() {
       venue: 'Океанариум СКК «Галактика»',
       description: 'Июньское расписание подводных экскурсий в океанариуме СКК «Галактика».',
       url: 'https://www.skk-galaxy.ru/',
+      image: pageImage,
       age: '0+',
       sourceName: 'СКК «Галактика»'
     }));
@@ -252,6 +402,7 @@ async function parseGalaxy() {
         venue: 'Океанариум СКК «Галактика»',
         description: 'Тематические мастер-классы Морского клуба в СКК «Галактика».',
         url: 'https://www.skk-galaxy.ru/',
+        image: pageImage,
         age: '0+',
         sourceName: 'СКК «Галактика»'
       }));
@@ -292,6 +443,7 @@ function verifiedSeedEvents() {
     venue: 'Филиал Малого театра в Когалыме',
     description: 'Спектакль в филиале Государственного академического Малого театра России в Когалыме.',
     url: theaterUrl,
+    image: pickImage({ title: `Спектакль «${title}»`, category: 'Театр', venue: 'Филиал Малого театра в Когалыме' }),
     price: 'билеты в продаже',
     age,
     sourceName: 'Малый театр'
@@ -348,13 +500,13 @@ async function main() {
     }
   }
 
-  const events = dedupe([...parsed, ...verifiedSeedEvents()])
+  const events = await downloadExternalImages(dedupe([...parsed, ...verifiedSeedEvents()])
     .filter(isRelevant)
-    .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)) || (a.time || '').localeCompare(b.time || '') || a.title.localeCompare(b.title, 'ru'));
+    .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)) || (a.time || '').localeCompare(b.time || '') || a.title.localeCompare(b.title, 'ru')));
 
   const payload = {
     updatedAt: new Date().toISOString(),
-    source: 'github-actions-auto-update-v2',
+    source: 'github-actions-auto-update-v3-with-event-images',
     sources: SOURCES.map(source => source.url),
     sourceStatus: status,
     events
