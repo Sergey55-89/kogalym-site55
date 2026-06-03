@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=afisha_photo_img_fix_20260603">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_modal_cinema_fix_20260603">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -61,7 +61,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradi
 .event-source{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:#8fa1ba;font-size:12px;font-weight:800}.event-source a{color:#c9d7ea;text-decoration:none}.event-source a:hover{color:var(--af-gold)}
 .status-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 14px;color:#aebcd0;font-size:13px;font-weight:800}.status-row a{color:var(--af-gold);text-decoration:none}.status-row a:hover{text-decoration:underline}
 
-.event-modal{position:fixed;inset:0;z-index:999;display:none;place-items:center;padding:20px;background:rgba(2,8,20,.72);backdrop-filter:blur(10px)}.event-modal.show{display:grid}.modal-card{width:min(640px,100%);border-radius:24px;border:1px solid rgba(255,255,255,.13);background:#071526;box-shadow:0 32px 100px rgba(0,0,0,.55);overflow:hidden}.modal-top{height:220px;background-size:cover;background-position:center;position:relative}.modal-top::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.42))}.modal-close{position:absolute;right:14px;top:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.42);color:#fff;font-size:24px;cursor:pointer}.modal-content{padding:24px}.modal-content small{display:inline-flex;margin-bottom:10px;color:var(--af-gold);font-weight:950;text-transform:uppercase}.modal-content h2{font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.05;font-weight:500;margin:0 0 14px}.modal-content p{color:#dce8f8;line-height:1.65;margin:0 0 18px}.modal-content a{display:inline-flex;border-radius:12px;background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;padding:13px 20px;font-weight:950;text-decoration:none}
+.event-modal{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:26px;background:rgba(0,5,14,.78);backdrop-filter:blur(12px)}.event-modal.show{display:flex}.modal-card{position:relative;width:min(820px,calc(100vw - 38px));max-height:calc(100vh - 52px);display:grid;grid-template-columns:minmax(280px,43%) minmax(0,1fr);border-radius:26px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,rgba(8,22,40,.98),rgba(4,13,26,.98));box-shadow:0 38px 120px rgba(0,0,0,.62);overflow:hidden}.modal-media{position:relative;min-height:420px;background:linear-gradient(135deg,rgba(9,24,45,.96),rgba(3,10,20,.98));overflow:hidden}.modal-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.98;filter:saturate(1.06) contrast(1.04)}.modal-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34))}.modal-fallback{position:absolute;inset:0;display:none;place-items:center;padding:28px;text-align:center;color:#dce8f8;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.08;background:radial-gradient(circle at 30% 25%,rgba(241,199,91,.16),transparent 30%),linear-gradient(135deg,#071526,#020814)}.modal-media.is-fallback .modal-photo{display:none}.modal-media.is-fallback .modal-fallback{display:grid}.modal-close{position:absolute;right:16px;top:16px;z-index:8;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(4,12,24,.78);color:#fff;font-size:0;line-height:1;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.34);transition:.18s}.modal-close::before,.modal-close::after{content:"";position:absolute;width:16px;height:2px;border-radius:2px;background:#fff}.modal-close::before{transform:rotate(45deg)}.modal-close::after{transform:rotate(-45deg)}.modal-close:hover{background:linear-gradient(135deg,#ffd977,#be8227);border-color:transparent}.modal-close:hover::before,.modal-close:hover::after{background:#07101f}.modal-content{padding:34px 34px 30px;display:flex;flex-direction:column;justify-content:center}.modal-content small{display:inline-flex;margin-bottom:12px;color:var(--af-gold);font-weight:950;text-transform:uppercase;letter-spacing:.02em}.modal-content h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,3vw,42px);line-height:1.02;font-weight:500;margin:0 0 16px;color:#fff}.modal-content p{color:#dce8f8;line-height:1.62;margin:0 0 22px;font-size:16px}.modal-content a{display:inline-flex;width:max-content;border-radius:12px;background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;padding:13px 20px;font-weight:950;text-decoration:none}.modal-content a:hover{filter:brightness(1.06)}@media(max-width:760px){.modal-card{display:block;overflow:auto}.modal-media{min-height:230px}.modal-content{padding:24px 20px 22px}.modal-close{right:12px;top:12px}}
 footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px 44px!important;border-top:1px solid rgba(255,255,255,.08)!important;display:flex!important;gap:34px!important;color:#aebcd0!important}
 @media(max-width:1240px){.events-hero-inner{grid-template-columns:1fr}.events-summary{max-width:560px}.events-layout{grid-template-columns:1fr}.side-panel{position:relative;top:auto}.events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.events-toolbar{top:0}}
 @media(max-width:860px){.events-page{padding:0 14px 44px}.events-hero{border-radius:0 0 22px 22px}.events-hero-inner{padding:0 18px}.events-lead{font-size:17px}.events-toolbar{position:relative;top:auto;align-items:flex-start;flex-direction:column}.filter-row{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}.filter-btn{flex:0 0 auto}.week-switch{width:100%;justify-content:space-between}.events-grid{grid-template-columns:1fr}.event-card{min-height:0}.event-img{height:190px}.side-panel{padding:15px}.events-hero h1{font-size:44px!important}footer{flex-wrap:wrap!important;padding:22px 14px 38px!important}}
@@ -145,7 +145,11 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 
 <div class="event-modal" id="eventModal" aria-hidden="true">
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-top" id="modalImage"><button class="modal-close" type="button" aria-label="Закрыть">×</button></div>
+    <div class="modal-media" id="modalImage">
+      <img class="modal-photo" id="modalPhoto" src="images/hero.jpg" alt="Фото события">
+      <div class="modal-fallback" id="modalFallback">Фото события</div>
+    </div>
+    <button class="modal-close" type="button" aria-label="Закрыть"></button>
     <div class="modal-content">
       <small id="modalMeta"></small>
       <h2 id="modalTitle"></h2>
@@ -179,6 +183,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   const updatedLabel = document.getElementById('eventsUpdated');
   const modal = document.getElementById('eventModal');
   const modalImage = document.getElementById('modalImage');
+  const modalPhoto = document.getElementById('modalPhoto');
+  const modalFallback = document.getElementById('modalFallback');
   const modalMeta = document.getElementById('modalMeta');
   const modalTitle = document.getElementById('modalTitle');
   const modalText = document.getElementById('modalText');
@@ -385,7 +391,11 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modalTitle.textContent = item.title || 'Событие';
     modalMeta.textContent = [formatEventDate(item), item.time, item.venue].filter(Boolean).join(' · ');
     modalText.textContent = item.description || 'Подробности смотрите в источнике события.';
-    modalImage.style.backgroundImage = `url('${item.image || localFallbackImage(item)}')`;
+    const modalSrc = item.image || localFallbackImage(item);
+    modalImage.classList.remove('is-fallback');
+    modalFallback.textContent = item.category || 'Фото события';
+    modalPhoto.alt = item.title || 'Фото события';
+    modalPhoto.src = modalSrc;
     modalMail.textContent = item.url ? 'Открыть источник' : 'Уточнить участие';
     modalMail.href = item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
     modalMail.target = item.url ? '_blank' : '';
@@ -402,6 +412,20 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   modal.querySelector('.modal-close').addEventListener('click', closeModal);
   modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
   window.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+
+
+  modalPhoto.addEventListener('error', () => {
+    const currentTitle = modalTitle.textContent || 'Фото события';
+    const item = visibleEvents.find(event => event.title === currentTitle) || {title: currentTitle, category: 'Фото события'};
+    const fallback = localFallbackImage(item);
+    if (modalPhoto.src && !modalPhoto.dataset.usedFallback && fallback && !modalPhoto.src.endsWith(fallback)) {
+      modalPhoto.dataset.usedFallback = '1';
+      modalPhoto.src = fallback;
+      return;
+    }
+    modalImage.classList.add('is-fallback');
+    modalFallback.textContent = item.category || 'Фото события';
+  });
 
   loadEvents();
 })();

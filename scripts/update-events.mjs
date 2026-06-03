@@ -5,6 +5,7 @@ const OUT_FILE = new URL('../events-data.json', import.meta.url);
 const EVENTS_IMAGE_DIR = new URL('../images/events/', import.meta.url);
 const SOURCES = [
   { name: 'Малый театр', url: 'https://www.maly.ru/kogalym/events', parser: parseMaly },
+  { name: 'Кинотеатр «Галактика»', url: 'https://galaxykino.ru/schedule/', parser: parseGalaxyKino },
   { name: 'СКК «Галактика»', url: 'https://www.skk-galaxy.ru/', parser: parseGalaxy },
   { name: 'Афиша7', url: 'https://afisha7.ru/kogalym', parser: parseAfisha7 },
   { name: 'Визит Когалым', url: 'https://vizitkogalym.ru/event/events.php', parser: parseVisitKogalym }
@@ -32,7 +33,7 @@ const IMAGE_BY_KEYWORD = [
   [/океан|аква|морск|галактик|подвод/i, 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg'],
   [/музей|выстав|нефт|ханты|этнограф/i, 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg'],
   [/метро|молод/i, 'images/places-v7/33-17-kulturno-dosugovyy-kompleks-metro-bae9c6f4-v7-b4786055a7.jpg'],
-  [/кино/i, 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg'],
+  [/кино|фильм|сеанс|мультфильм|киноклуб/i, 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg'],
   [/спорт|турнир|футбол|лед|йог/i, 'images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg'],
   [/парк|дет|мастер/i, 'images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg']
 ];
@@ -183,6 +184,10 @@ async function downloadExternalImages(events) {
 
 function isoDate(year, month, day) {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+function formatDottedDate(date) {
+  return `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}`;
 }
 
 function parseDottedDate(value) {
@@ -371,6 +376,50 @@ async function parseAfisha7() {
   return events;
 }
 
+
+async function parseGalaxyKino() {
+  const baseUrl = 'https://galaxykino.ru/schedule/';
+  const now = new Date();
+  const events = [];
+  const seen = new Set();
+  for (let offset = 0; offset < 7; offset += 1) {
+    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const url = `${baseUrl}?date=${formatDottedDate(day)}`;
+    let html = '';
+    try { html = await fetchText(url); } catch { continue; }
+    const beforeSoon = html.split(/Скоро\s+в\s+кино|<h[1-4][^>]*>\s*Скоро\s+в\s+кино/i)[0] || html;
+    const movieLinks = [...beforeSoon.matchAll(/<a\b[^>]+href=["']([^"']*\/filmbase\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
+    for (const match of movieLinks.slice(0, 12)) {
+      const detailUrl = absUrl(match[1], url);
+      const rawTitle = cleanHtml(match[2]).replace(/\s*\(в рамках Киноклуба\)\s*/i, ' (Киноклуб)');
+      if (!rawTitle || rawTitle.length < 3 || /билеты|расписание|сегодня|завтра/i.test(rawTitle)) continue;
+      const cleanTitle = rawTitle.replace(/\s+/g, ' ').trim();
+      const lowerKey = `${cleanTitle.toLowerCase().replace(/ё/g,'е')}|${isoDate(day.getFullYear(), day.getMonth(), day.getDate())}`;
+      if (seen.has(lowerKey)) continue;
+      seen.add(lowerKey);
+      const after = beforeSoon.slice(match.index, match.index + 800);
+      const age = (cleanHtml(after).match(/\b\d{1,2}\+/) || [''])[0];
+      let image = extractImageFromHtml(after, url, cleanTitle) || await fetchDetailImage(detailUrl, cleanTitle);
+      const detailText = cleanHtml(after);
+      const genre = (detailText.match(/\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b(?:,\s*\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b)*/i) || [''])[0];
+      events.push(normalizeEvent({
+        title: `Кино: ${cleanTitle}`,
+        category: 'Кино',
+        startDate: isoDate(day.getFullYear(), day.getMonth(), day.getDate()),
+        time: 'расписание на сайте',
+        venue: 'Кинотеатр «Галактика»',
+        description: `Сеансы фильма «${cleanTitle}» в кинотеатре «Галактика»${genre ? `. Жанр: ${genre}.` : '.'}`,
+        url: detailUrl,
+        image,
+        price: '',
+        age,
+        sourceName: 'Кинотеатр «Галактика»'
+      }));
+    }
+  }
+  return events;
+}
+
 async function parseGalaxy() {
   const url = 'https://www.skk-galaxy.ru/';
   const html = await fetchText(url);
@@ -419,6 +468,36 @@ async function parseVisitKogalym() {
   const text = cleanHtml(html);
   if (!/События Когалыма/i.test(text)) return [];
   return [];
+}
+
+
+function cinemaSeedEvents() {
+  const url = 'https://galaxykino.ru/schedule/';
+  const now = new Date();
+  const titles = [
+    ['Джек Райан: Призрачная война', '18+', 'боевик'],
+    ['Майкл', '18+', 'биография, драма, музыка'],
+    ['Кощей. Тайна живой воды', '6+', 'мультфильм, приключения, комедия, фэнтези'],
+    ['Не одна дома 3. Выпускной', '6+', 'комедия, приключения, семейный'],
+    ['Тролли возвращаются!', '6+', 'мультфильм, семейный'],
+    ['Грязные деньги', '18+', 'боевик, триллер']
+  ];
+  return titles.map((item, index) => {
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() + Math.min(index, 6));
+    const [title, age, genre] = item;
+    return normalizeEvent({
+      title: `Кино: ${title}`,
+      category: 'Кино',
+      startDate: isoDate(date.getFullYear(), date.getMonth(), date.getDate()),
+      time: 'расписание на сайте',
+      venue: 'Кинотеатр «Галактика»',
+      description: `Сеансы фильма «${title}» в кинотеатре «Галактика». Жанр: ${genre}.`,
+      url,
+      image: 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg',
+      age,
+      sourceName: 'Кинотеатр «Галактика»'
+    });
+  });
 }
 
 function verifiedSeedEvents() {
