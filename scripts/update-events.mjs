@@ -21,6 +21,7 @@ const IMAGE_BY_TITLE = [
 
 
 const LOCAL_IMAGE_BY_TITLE = [
+  [/подвод|океанариум|аквариум|морск/i, 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg'],
   [/п[её]тр\s*i|п[её]тр\s*1/i, 'images/events/petr-i.jpg'],
   [/мудрец|простоты/i, 'images/events/mudrets.jpg'],
   [/беззабот/i, 'images/events/bezzabotnye.jpg'],
@@ -28,6 +29,7 @@ const LOCAL_IMAGE_BY_TITLE = [
 ];
 
 const IMAGE_BY_KEYWORD = [
+  [/подвод|океанариум|аквариум|морск/i, 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg'],
   [/п[её]тр\s*i|п[её]тр\s*1/i, 'images/events/petr-i.jpg'],
   [/мудрец|простоты/i, 'images/events/mudrets.jpg'],
   [/беззабот/i, 'images/events/bezzabotnye.jpg'],
@@ -269,6 +271,7 @@ function normalizeEvent(event) {
     sourceName: event.sourceName || 'Источник'
   };
   normalized.image = normalized.image || pickImage(normalized);
+  if (/подвод|океанариум|аквариум|морск/i.test(`${normalized.title} ${normalized.venue} ${normalized.category}`)) normalized.image = 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
   if (normalized.categoryKey === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(normalized.image)) normalized.image = 'images/events/fallback-cinema.jpg';
   if (normalized.categoryKey === 'theater' && /places-v7\/34-43-filial/i.test(normalized.image)) normalized.image = pickImage(normalized);
   return normalized;
