@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-03T09:17:05.453Z",
+  "updatedAt": "2026-06-03T09:19:57.897Z",
   "source": "github-actions-auto-update-v3-with-event-images",
   "sources": [
     "https://www.maly.ru/kogalym/events",
@@ -36,8 +36,8 @@
     {
       "name": "Визит Когалым",
       "url": "https://vizitkogalym.ru/event/events.php",
-      "ok": false,
-      "error": "fetch failed"
+      "ok": true,
+      "count": 0
     }
   ],
   "events": [
