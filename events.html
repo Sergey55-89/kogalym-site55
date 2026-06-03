@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=afisha_real_events_20260602">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_photo_img_fix_20260603">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -40,8 +40,9 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradi
 .events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
 .event-card{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,rgba(8,23,43,.92),rgba(4,14,27,.92));border:1px solid rgba(255,255,255,.10);box-shadow:0 16px 52px rgba(0,0,0,.20);transition:transform .24s,border-color .24s,box-shadow .24s;min-height:430px;display:flex;flex-direction:column}
 .event-card:hover{transform:translateY(-7px);border-color:rgba(241,199,91,.38);box-shadow:0 26px 70px rgba(0,0,0,.36)}
-.event-img{position:relative;height:168px;background-size:cover;background-position:center;overflow:hidden}
-.event-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.38))}
+.event-img{position:relative;height:168px;background:linear-gradient(135deg,rgba(9,24,45,.95),rgba(4,14,27,.95));overflow:hidden}
+.event-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;filter:saturate(1.06) contrast(1.04);opacity:.96}
+.event-img::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.36))}
 .today-label{position:absolute;left:12px;top:12px;z-index:2;padding:6px 10px;border-radius:999px;background:#d94343;color:#fff;font-size:12px;font-weight:900;text-transform:uppercase;box-shadow:0 8px 20px rgba(217,67,67,.24)}
 .date-badge{position:absolute;left:14px;bottom:12px;z-index:2;width:62px;border-radius:14px;overflow:hidden;text-align:center;background:rgba(3,10,20,.82);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 26px rgba(0,0,0,.26)}
 .date-badge strong{display:block;font-size:26px;line-height:1;padding-top:10px;color:#fff}.date-badge span{display:block;padding:2px 0 7px;font-size:12px;font-weight:900;color:#fff}.date-badge small{display:block;background:rgba(255,255,255,.08);padding:6px 0;color:#dce7f8;font-size:11px;font-weight:900}
@@ -186,7 +187,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   const fallbackEvents = [
     {"title": "Подводная экскурсия", "category": "Экскурсия", "categoryKey": "exhibition", "startDate": "2026-06-01", "endDate": "2026-06-30", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Июньское расписание подводных экскурсий в океанариуме СКК «Галактика».", "image": "images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
     {"title": "Мастер-классы от Морского клуба", "category": "Детям", "categoryKey": "kids", "startDate": "2026-06-05", "endDate": "2026-06-05", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Тематические мастер-классы Морского клуба в СКК «Галактика».", "image": "images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
-    {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-05", "endDate": "2026-06-05", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-05", "endDate": "2026-06-05", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/events/petr-i.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
     {"title": "Мастер-классы от Морского клуба", "category": "Детям", "categoryKey": "kids", "startDate": "2026-06-06", "endDate": "2026-06-06", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Тематические мастер-классы Морского клуба в СКК «Галактика».", "image": "images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
     {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-06", "endDate": "2026-06-06", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
     {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-07", "endDate": "2026-06-07", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
@@ -262,6 +263,21 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
   function compareEvents(a,b){ return eventStart(a) - eventStart(b) || String(a.title).localeCompare(String(b.title),'ru'); }
 
+  function localFallbackImage(event){
+    const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''}`.toLowerCase().replace(/ё/g,'е');
+    if (/петр\s*i|петр\s*1/.test(text)) return 'images/events/petr-i.jpg';
+    if (/мудрец|простоты/.test(text)) return 'images/events/mudrets.jpg';
+    if (/беззабот/.test(text)) return 'images/events/bezzabotnye.jpg';
+    if (/расстроенная\s+семья/.test(text)) return 'images/events/rasstroennaya-semya.jpg';
+    if (/театр|спектак/.test(text)) return 'images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg';
+    if (/океан|аква|морск|галактик|подвод/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    if (/дет|парк|мастер/.test(text)) return 'images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg';
+    if (/кино/.test(text)) return 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg';
+    if (/спорт|турнир|футбол|лед|йог/.test(text)) return 'images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg';
+    if (/музей|выстав|экскурс/.test(text)) return 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg';
+    return 'images/hero.jpg';
+  }
+
   function eventCard(event, index, weekStart){
     const start = eventStart(event);
     const end = eventEnd(event);
@@ -270,11 +286,13 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const exactToday = start.getTime() === today.getTime() && !multi;
     const category = event.category || 'Событие';
     const time = event.time || (multi ? 'В течение периода' : 'Время уточняется');
-    const image = event.image || 'images/hero.jpg';
+    const image = event.image || localFallbackImage(event);
+    const fallback = localFallbackImage(event);
     const desc = event.description || 'Подробности смотрите в источнике события.';
     const sourceLink = event.url ? `<a href="${escapeHtml(event.url)}" target="_blank" rel="noopener">${escapeHtml(event.sourceName || 'Источник')}</a>` : escapeHtml(event.sourceName || 'Источник');
     return `<article class="event-card" data-index="${index}" data-filter="${escapeHtml(normalizeCategory(event))}">
-      <div class="event-img" style="background-image:url('${escapeHtml(image)}')">
+      <div class="event-img">
+        <img class="event-photo" src="${escapeHtml(image)}" data-fallback="${escapeHtml(fallback)}" alt="${escapeHtml(event.title || 'Событие')}" loading="lazy">
         ${exactToday ? '<div class="today-label">Сегодня</div>' : ''}
         <div class="date-badge"><strong>${displayDate.getDate()}</strong><span>${MONTHS_UPPER[displayDate.getMonth()]}</span><small>${DAYS[displayDate.getDay()]}</small></div>
       </div>
@@ -317,6 +335,17 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
     const empty = document.getElementById('noEventsDynamic');
     empty.classList.toggle('show', visibleEvents.length === 0);
+    grid.querySelectorAll('.event-photo').forEach(img => {
+      img.addEventListener('error', () => {
+        const fallback = img.dataset.fallback || 'images/hero.jpg';
+        if (!img.dataset.usedFallback && img.getAttribute('src') !== fallback) {
+          img.dataset.usedFallback = '1';
+          img.setAttribute('src', fallback);
+        } else if (img.getAttribute('src') !== 'images/hero.jpg') {
+          img.setAttribute('src', 'images/hero.jpg');
+        }
+      }, {once:false});
+    });
     updateSummary(weekStart);
     renderMiniEvents(weekStart);
   }
@@ -356,7 +385,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modalTitle.textContent = item.title || 'Событие';
     modalMeta.textContent = [formatEventDate(item), item.time, item.venue].filter(Boolean).join(' · ');
     modalText.textContent = item.description || 'Подробности смотрите в источнике события.';
-    modalImage.style.backgroundImage = `url('${item.image || 'images/hero.jpg'}')`;
+    modalImage.style.backgroundImage = `url('${item.image || localFallbackImage(item)}')`;
     modalMail.textContent = item.url ? 'Открыть источник' : 'Уточнить участие';
     modalMail.href = item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
     modalMail.target = item.url ? '_blank' : '';
