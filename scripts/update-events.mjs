@@ -28,14 +28,17 @@ const LOCAL_IMAGE_BY_TITLE = [
 ];
 
 const IMAGE_BY_KEYWORD = [
-  [/малый|театр|спектак|пётр|петр|беззабот|семья|мудрец/i, 'images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg'],
-  [/русск|музе/i, 'images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg'],
-  [/океан|аква|морск|галактик|подвод/i, 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg'],
-  [/музей|выстав|нефт|ханты|этнограф/i, 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg'],
-  [/метро|молод/i, 'images/places-v7/33-17-kulturno-dosugovyy-kompleks-metro-bae9c6f4-v7-b4786055a7.jpg'],
-  [/кино|фильм|сеанс|мультфильм|киноклуб/i, 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg'],
-  [/спорт|турнир|футбол|лед|йог/i, 'images/places-v7/41-11-dvorets-sporta-yubileynyy-5facf5ba-v7-4fc39bd5ea.jpg'],
-  [/парк|дет|мастер/i, 'images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg']
+  [/п[её]тр\s*i|п[её]тр\s*1/i, 'images/events/petr-i.jpg'],
+  [/мудрец|простоты/i, 'images/events/mudrets.jpg'],
+  [/беззабот/i, 'images/events/bezzabotnye.jpg'],
+  [/расстроенная\s+семья/i, 'images/events/rasstroennaya-semya.jpg'],
+  [/кино|фильм|сеанс|мультфильм|киноклуб/i, 'images/events/fallback-cinema.jpg'],
+  [/малый|театр|спектак|пьес|премьера/i, 'images/events/fallback-theater.jpg'],
+  [/спорт|турнир|футбол|лед|йог/i, 'images/events/fallback-sport.jpg'],
+  [/концерт|музык|оркестр|групп/i, 'images/events/fallback-concert.jpg'],
+  [/парк|дет|мастер|семейн|игр/i, 'images/events/fallback-kids.jpg'],
+  [/океан|аква|морск|галактик|подвод|музей|выстав|экскурс|русск|нефт|ханты|этнограф/i, 'images/events/fallback-exhibition.jpg'],
+  [/метро|молод/i, 'images/events/fallback-event.jpg']
 ];
 
 const RU_MONTH = {
@@ -242,12 +245,10 @@ function pickLocalImage(event) {
 
 function pickImage(event) {
   const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''}`;
-  const titleImage = IMAGE_BY_TITLE.find(([re]) => re.test(text));
-  if (titleImage) return titleImage[1];
   const localImage = pickLocalImage(event);
   if (localImage) return localImage;
   const found = IMAGE_BY_KEYWORD.find(([re]) => re.test(text));
-  return found ? found[1] : 'images/hero.jpg';
+  return found ? found[1] : 'images/events/fallback-event.jpg';
 }
 
 function normalizeEvent(event) {
@@ -268,6 +269,8 @@ function normalizeEvent(event) {
     sourceName: event.sourceName || 'Источник'
   };
   normalized.image = normalized.image || pickImage(normalized);
+  if (normalized.categoryKey === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(normalized.image)) normalized.image = 'images/events/fallback-cinema.jpg';
+  if (normalized.categoryKey === 'theater' && /places-v7\/34-43-filial/i.test(normalized.image)) normalized.image = pickImage(normalized);
   return normalized;
 }
 
@@ -493,7 +496,7 @@ function cinemaSeedEvents() {
       venue: 'Кинотеатр «Галактика»',
       description: `Сеансы фильма «${title}» в кинотеатре «Галактика». Жанр: ${genre}.`,
       url,
-      image: 'images/places-v7/29-15-kinoteatr-aaac9143-v7-be29656937.jpg',
+      image: 'images/events/fallback-cinema.jpg',
       age,
       sourceName: 'Кинотеатр «Галактика»'
     });
@@ -579,7 +582,9 @@ async function main() {
     }
   }
 
-  const events = await downloadExternalImages(dedupe([...parsed, ...verifiedSeedEvents()])
+  const hasCinemaFromSources = parsed.some(event => event.categoryKey === 'cinema' || /кино|фильм|сеанс/i.test(`${event.title || ''} ${event.category || ''}`));
+  const seedEvents = hasCinemaFromSources ? verifiedSeedEvents() : [...verifiedSeedEvents(), ...cinemaSeedEvents()];
+  const events = await downloadExternalImages(dedupe([...parsed, ...seedEvents])
     .filter(isRelevant)
     .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)) || (a.time || '').localeCompare(b.time || '') || a.title.localeCompare(b.title, 'ru')));
 
