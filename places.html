@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Что посмотреть в Когалыме — Открой Когалым</title>
+  <meta name="description" content="Городской путеводитель по Когалыму: памятники, парки, культура, музеи, храмы, спорт, образование, адреса и карта.">
+  <link rel="stylesheet" href="style.v7-hard.css?v=v8_20260602_compact_locations">
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html" aria-label="Открой Когалым">
+    <img src="images/logo.png" alt="Открой Когалым">
+    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
+  </a>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="routes.html">Маршруты</a>
+    <a class="active" href="places.html">Локации</a>
+    <a href="events.html">Афиша</a>
+    <a href="announcements.html">Объявления</a>
+  </nav>
+  <div class="right-head">
+    <span class="icon">⌕</span>
+    <span class="icon">♡</span>
+  </div>
+</header>
+
+<main class="places-page catalog-page places-page--lively">
+  <section class="places-showcase" aria-label="Локации Когалыма">
+    <div class="places-showcase__text">
+      <span class="places-eyebrow">Городской путеводитель</span>
+      <h1>Что посмотреть в Когалыме</h1>
+      <h2>Маршрут по характеру северного города</h2>
+      <p>Когалым — северный город с нефтяным характером и живой городской памятью. Здесь история освоения Западной Сибири соседствует с парками, скверами, культурными центрами, храмами и местами для спокойных прогулок.</p>
+      <p>Этот раздел — не сухой список точек. Это быстрый путеводитель по объектам, через которые читается город: от памятников первопроходцам до новых общественных пространств.</p>
+    </div>
+
+    <div class="places-postcard places-postcard--collage" aria-label="Коллаж мест Когалыма">
+      <div class="places-postcard__tape places-postcard__tape--top"></div>
+      <img src="images/places-collage-kogalym.png" alt="Коллаж достопримечательностей Когалыма">
+      <div class="places-postcard__tape places-postcard__tape--bottom"></div>
+      <div class="places-postcard__note">
+        <span>Любимый город</span>
+        <b>с северным характером</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="places-control-panel places-control-panel--simple" aria-label="Категории мест">
+    <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
+  </section>
+
+  <section class="catalog-layout catalog-layout--lively">
+    <section class="places-results-panel places-results-panel--clean">
+      <div class="places-grid catalog-grid" id="placesGrid"></div>
+      <div class="places-empty" id="placesEmpty">По этому запросу ничего не найдено.</div>
+    </section>
+  </section>
+</main>
+
+<div class="place-modal" id="placeModal" aria-hidden="true">
+  <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="placeModalTitle">
+    <button class="place-modal-close" id="placeModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="place-modal-image" id="placeModalImage"></div>
+    <div class="place-modal-content">
+      <div class="place-modal-rating" id="placeModalRating">Места</div>
+      <h2 id="placeModalTitle"></h2>
+      <p id="placeModalDescription"></p>
+      <div class="place-modal-info">
+        <div><span>Категория</span><b id="placeModalType"></b></div>
+        <div><span>Режим</span><b id="placeModalHours"></b></div>
+        <div><span>Адрес</span><b id="placeModalAddress"></b></div>
+        <div><span>Телефон</span><b id="placeModalPhone"></b></div>
+      </div>
+      <div class="place-modal-actions">
+        <a id="placeMapBtn" href="https://yandex.ru/maps/?text=Когалым" target="_blank" rel="noopener">Открыть карту</a>
+        <a id="placeSiteBtn" href="#" target="_blank" rel="noopener">Официальный сайт</a>
+        <button type="button" id="placeFavoriteBtn">♡ В избранное</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="about.html">О проекте</a>
+  <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+  <a href="admin.html">Админка</a>
+</footer>
+<script src="places.v7-hard.js?v=v8_20260602_compact_locations"></script>
+<script src="weather.js?v=v7_20260522_nocrop"></script>
+</body>
+</html>
