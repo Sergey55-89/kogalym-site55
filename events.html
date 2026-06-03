@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=afisha_compact_card_fix_20260603">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_text_visible_fix_20260603">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -93,6 +93,28 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 .modal-content h2{font-size:clamp(28px,2.7vw,38px)!important}
 @media(max-width:1240px){.events-grid{grid-template-columns:repeat(2,minmax(280px,1fr))!important}}
 @media(max-width:860px){.events-grid{grid-template-columns:1fr!important}.event-card{height:auto!important;max-height:none!important}.event-body{height:auto!important}.event-img{height:170px!important;min-height:170px!important}}
+
+
+/* AFISHA_TEXT_VISIBLE_FIX_20260603: compact cards, smaller photos, visible button */
+.events-grid{grid-template-columns:repeat(3,minmax(255px,1fr))!important;gap:15px!important;align-items:start!important}
+.event-card{height:365px!important;min-height:365px!important;max-height:365px!important;border-radius:18px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+.event-img{height:116px!important;min-height:116px!important;max-height:116px!important;flex:0 0 116px!important;background:#071526!important}
+.event-photo{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:.98!important}
+.today-label{left:10px!important;top:10px!important;font-size:10px!important;padding:5px 8px!important;line-height:1!important}
+.date-badge{left:12px!important;bottom:10px!important;width:52px!important;border-radius:12px!important}
+.date-badge strong{font-size:21px!important;padding-top:8px!important}.date-badge span{font-size:10px!important;padding:1px 0 5px!important}.date-badge small{font-size:10px!important;padding:5px 0!important}
+.event-body{height:auto!important;min-height:0!important;flex:1 1 auto!important;padding:11px 13px 12px!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.event-cat{font-size:11px!important;margin:0 0 6px!important;line-height:1.1!important}.event-cat::before{width:6px!important;height:6px!important}
+.event-body h2{font-size:18px!important;line-height:1.08!important;min-height:39px!important;max-height:39px!important;margin:0 0 7px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+.event-meta{display:block!important;font-size:12px!important;line-height:1.25!important;margin:0 0 7px!important;min-height:32px!important;max-height:32px!important;overflow:hidden!important;color:#d8e4f6!important}
+.event-meta span{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0 0 2px!important}
+.event-body p{font-size:12.5px!important;line-height:1.32!important;min-height:33px!important;max-height:33px!important;margin:0 0 7px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;flex:0 0 auto!important;color:#c2d0e2!important}
+.event-source{display:none!important}
+.event-actions{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin-top:auto!important;min-height:36px!important;flex:0 0 36px!important}
+.more-btn{height:34px!important;padding:0 15px!important;border-radius:10px!important;font-size:13px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.heart{width:34px!important;height:34px!important;min-width:34px!important}
+@media(max-width:1240px){.events-grid{grid-template-columns:repeat(2,minmax(255px,1fr))!important}.event-card{height:365px!important}}
+@media(max-width:860px){.events-grid{grid-template-columns:1fr!important}.event-card{height:auto!important;min-height:0!important;max-height:none!important}.event-img{height:140px!important;min-height:140px!important;max-height:140px!important;flex-basis:140px!important}.event-body{height:auto!important}.event-body h2{min-height:0!important;max-height:none!important}.event-meta{min-height:0!important;max-height:none!important}.event-body p{min-height:0!important;max-height:none!important}}
 
 </style>
 </head>
@@ -316,12 +338,13 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 
   function eventImage(event){
-    const image = String(event.image || '').trim();
     const fallback = localFallbackImage(event);
     const category = normalizeCategory(event);
-    const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''}`.toLowerCase().replace(/ё/g,'е');
-    if (/подвод|океанариум|аквариум|морск/.test(text)) return fallback;
+    const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''} ${event.description || ''}`.toLowerCase().replace(/ё/g,'е');
+    if (/подвод|океанариум|аквариум|морск/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    let image = String(event.image || '').trim();
     if (!image) return fallback;
+    if (category !== 'cinema' && /magnit|магнит|family|semey|семейн/i.test(image)) return fallback;
     if (category === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(image)) return 'images/events/fallback-cinema.jpg';
     if (category === 'theater' && /places-v7\/34-43-filial/i.test(image)) return fallback;
     return image;

@@ -430,7 +430,7 @@ async function parseGalaxy() {
   const url = 'https://www.skk-galaxy.ru/';
   const html = await fetchText(url);
   const text = cleanHtml(html).toLowerCase();
-  const pageImage = extractImageFromHtml(html, url, 'СКК Галактика');
+  const pageImage = 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
   const now = new Date();
   const year = now.getFullYear();
   const events = [];
