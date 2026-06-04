@@ -266,6 +266,11 @@ function normalizeEvent(event) {
     description: cleanHtml(event.description || 'Подробности смотрите в источнике события.'),
     image: event.image || '',
     url: event.url || '',
+    sourceUrl: event.sourceUrl || '',
+    schedule: event.schedule || '',
+    scheduleShort: event.scheduleShort || '',
+    format: event.format || '',
+    address: cleanHtml(event.address || ''),
     price: event.price || '',
     age: event.age || '',
     sourceName: event.sourceName || 'Источник'
@@ -383,46 +388,101 @@ async function parseAfisha7() {
 }
 
 
+
+function uniqueValues(values) {
+  return [...new Set(values.map(value => String(value || '').trim()).filter(Boolean))];
+}
+
+function extractCinemaSessions(block = '') {
+  const text = cleanHtml(block);
+  return uniqueValues([...text.matchAll(/\b(?:[01]?\d|2[0-3]):[0-5]\d\b/g)].map(match => match[0]))
+    .filter(time => !/^0:/.test(time));
+}
+
+function extractCinemaPrice(block = '') {
+  const text = cleanHtml(block);
+  const numbers = uniqueValues([...text.matchAll(/(?:от\s*)?(\d{2,4})\s*(?:₽|руб\.?|р\.?)/gi)].map(match => match[1]))
+    .map(Number)
+    .filter(value => value > 0 && value < 5000)
+    .sort((a, b) => a - b);
+  if (!numbers.length) return '';
+  const min = numbers[0];
+  const max = numbers[numbers.length - 1];
+  return min === max ? `${min} ₽` : `${min}–${max} ₽`;
+}
+
+function extractCinemaFormat(block = '') {
+  const text = cleanHtml(block).toUpperCase();
+  const formats = uniqueValues([...text.matchAll(/\b(?:2D|3D|IMAX|ATMOS)\b/g)].map(match => match[0]));
+  return formats.length ? formats.join(', ') : '2D';
+}
+
+
 async function parseGalaxyKino() {
   const baseUrl = 'https://galaxykino.ru/schedule/';
   const now = new Date();
   const events = [];
   const seen = new Set();
-  for (let offset = 0; offset < 7; offset += 1) {
+
+  for (let offset = 0; offset < 14; offset += 1) {
     const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const dateIso = isoDate(day.getFullYear(), day.getMonth(), day.getDate());
     const url = `${baseUrl}?date=${formatDottedDate(day)}`;
     let html = '';
+
     try { html = await fetchText(url); } catch { continue; }
+
     const beforeSoon = html.split(/Скоро\s+в\s+кино|<h[1-4][^>]*>\s*Скоро\s+в\s+кино/i)[0] || html;
     const movieLinks = [...beforeSoon.matchAll(/<a\b[^>]+href=["']([^"']*\/filmbase\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
-    for (const match of movieLinks.slice(0, 12)) {
+
+    for (let index = 0; index < movieLinks.length; index += 1) {
+      const match = movieLinks[index];
       const detailUrl = absUrl(match[1], url);
       const rawTitle = cleanHtml(match[2]).replace(/\s*\(в рамках Киноклуба\)\s*/i, ' (Киноклуб)');
       if (!rawTitle || rawTitle.length < 3 || /билеты|расписание|сегодня|завтра/i.test(rawTitle)) continue;
+
       const cleanTitle = rawTitle.replace(/\s+/g, ' ').trim();
-      const lowerKey = `${cleanTitle.toLowerCase().replace(/ё/g,'е')}|${isoDate(day.getFullYear(), day.getMonth(), day.getDate())}`;
+      const lowerKey = `${cleanTitle.toLowerCase().replace(/ё/g,'е')}|${dateIso}`;
       if (seen.has(lowerKey)) continue;
       seen.add(lowerKey);
-      const after = beforeSoon.slice(match.index, match.index + 800);
-      const age = (cleanHtml(after).match(/\b\d{1,2}\+/) || [''])[0];
-      let image = extractImageFromHtml(after, url, cleanTitle) || await fetchDetailImage(detailUrl, cleanTitle);
-      const detailText = cleanHtml(after);
+
+      const blockStart = Math.max(0, match.index - 450);
+      const blockEnd = index + 1 < movieLinks.length ? movieLinks[index + 1].index : Math.min(beforeSoon.length, match.index + 2500);
+      const block = beforeSoon.slice(blockStart, blockEnd);
+
+      const age = (cleanHtml(block).match(/\b\d{1,2}\+/) || [''])[0];
+      const sessions = extractCinemaSessions(block);
+      const scheduleShort = sessions.length ? sessions.join(', ') : 'уточняйте на сайте';
+      const schedule = sessions.length ? `Сеансы: ${scheduleShort}` : 'Точное расписание уточняйте на сайте кинотеатра';
+      const format = extractCinemaFormat(block);
+      const rawPrice = extractCinemaPrice(block);
+      const price = rawPrice ? `${format} · ${rawPrice}` : (format || '');
+      let image = extractImageFromHtml(block, url, cleanTitle) || await fetchDetailImage(detailUrl, cleanTitle);
+
+      const detailText = cleanHtml(block);
       const genre = (detailText.match(/\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b(?:,\s*\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b)*/i) || [''])[0];
+
       events.push(normalizeEvent({
         title: `Кино: ${cleanTitle}`,
         category: 'Кино',
-        startDate: isoDate(day.getFullYear(), day.getMonth(), day.getDate()),
-        time: 'расписание на сайте',
+        startDate: dateIso,
+        time: scheduleShort,
+        schedule,
+        scheduleShort,
+        format,
         venue: 'Кинотеатр «Галактика»',
-        description: `Сеансы фильма «${cleanTitle}» в кинотеатре «Галактика»${genre ? `. Жанр: ${genre}.` : '.'}`,
+        address: 'г. Когалым, ул. Дружбы Народов, 60',
+        description: `Показ фильма «${cleanTitle}» в кинотеатре «Галактика»${genre ? `. Жанр: ${genre}.` : '.'}`,
         url: detailUrl,
+        sourceUrl: url,
         image,
-        price: '',
+        price,
         age,
         sourceName: 'Кинотеатр «Галактика»'
       }));
     }
   }
+
   return events;
 }
 

@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=afisha_clean_header_20260604">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_precise_schedule_20260604">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -711,6 +711,143 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 }
 
+
+/* ===== FINAL EQUAL WIDTH CARDS FIX 2026-06-04 =====
+   Причина: auto-fit растягивал карточки, когда в фильтре 1 или 2 события.
+   Теперь карточки всегда занимают одинаковую колонку: 3 колонки на десктопе,
+   2 на среднем экране, 1 на мобильном.
+*/
+.events-grid{
+  width:100%!important;
+  max-width:1240px!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+  justify-content:start!important;
+}
+.event-card{
+  width:100%!important;
+  min-width:0!important;
+  height:560px!important;
+  min-height:560px!important;
+  max-height:560px!important;
+}
+.event-img{
+  height:210px!important;
+  min-height:210px!important;
+  max-height:210px!important;
+  flex:0 0 210px!important;
+}
+.event-body{
+  overflow:hidden!important;
+}
+.event-body h2{
+  min-height:50px!important;
+  max-height:50px!important;
+}
+.event-meta{
+  min-height:76px!important;
+  max-height:76px!important;
+}
+.event-body p{
+  min-height:90px!important;
+  max-height:90px!important;
+}
+@media(max-width:1000px){
+  .events-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:640px){
+  .events-grid{
+    grid-template-columns:1fr!important;
+  }
+  .event-card{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+  .event-img{
+    height:210px!important;
+    min-height:210px!important;
+    max-height:210px!important;
+    flex-basis:210px!important;
+  }
+  .event-body h2,
+  .event-meta,
+  .event-body p{
+    min-height:0!important;
+    max-height:none!important;
+  }
+}
+
+
+/* ===== FINAL MONTH SWITCH FIX 2026-06-04 =====
+   Переключатель возвращён справа от фильтров и теперь листает месяцы.
+*/
+.events-toolbar{
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:16px!important;
+}
+.filter-row{
+  width:auto!important;
+  flex:1 1 auto!important;
+}
+.week-switch{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  flex:0 0 auto!important;
+}
+.week-switch span{
+  min-width:142px!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+@media(max-width:900px){
+  .events-toolbar{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  .filter-row{
+    width:100%!important;
+  }
+  .week-switch{
+    width:100%!important;
+    justify-content:space-between!important;
+  }
+}
+
+
+/* ===== PRECISE SCHEDULE MODAL FIX 2026-06-04 ===== */
+.event-detail-modal .place-modal-info{
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+}
+.event-detail-modal .place-modal-info div{
+  min-height:74px!important;
+}
+.event-detail-modal .place-modal-info span{
+  font-size:13px!important;
+  letter-spacing:.01em!important;
+}
+.event-detail-modal .place-modal-info b{
+  font-size:16px!important;
+  line-height:1.35!important;
+  white-space:normal!important;
+}
+.event-detail-modal .place-modal-content p{
+  margin-bottom:18px!important;
+}
+@media(max-width:700px){
+  .event-detail-modal .place-modal-info{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -763,10 +900,10 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         <button class="filter-btn" data-filter="exhibition">Выставки</button>
         <button class="filter-btn" data-filter="cinema">Кино</button>
       </div>
-      <div class="week-switch" aria-label="Неделя событий">
-        <button type="button" id="weekPrev" aria-label="Предыдущая неделя">←</button>
-        <span id="weekLabel">▣ 25 мая — 1 июня</span>
-        <button type="button" id="weekNext" aria-label="Следующая неделя">→</button>
+      <div class="week-switch" aria-label="Месяц событий">
+        <button type="button" id="weekPrev" aria-label="Предыдущий месяц">←</button>
+        <span id="weekLabel">▣ Июнь 2026</span>
+        <button type="button" id="weekNext" aria-label="Следующий месяц">→</button>
       </div>
     </section>
 
@@ -799,9 +936,9 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
       <p id="modalText"></p>
       <div class="place-modal-info">
         <div><span>Дата</span><b id="modalDate"></b></div>
-        <div><span>Время</span><b id="modalTime"></b></div>
-        <div><span>Место</span><b id="modalVenue"></b></div>
-        <div><span>Источник</span><b id="modalSource"></b></div>
+        <div><span>Сеансы</span><b id="modalTime"></b></div>
+        <div><span>Адрес</span><b id="modalVenue"></b></div>
+        <div><span>Формат / цена</span><b id="modalSource"></b></div>
       </div>
       <div class="place-modal-actions event-modal-actions">
         <a id="modalSourceBtn" href="mailto:info@kogalym-portal.ru">Открыть источник</a>
@@ -822,6 +959,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 (function(){
   const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
   const MONTHS_UPPER = ['ЯНВАРЯ','ФЕВРАЛЯ','МАРТА','АПРЕЛЯ','МАЯ','ИЮНЯ','ИЮЛЯ','АВГУСТА','СЕНТЯБРЯ','ОКТЯБРЯ','НОЯБРЯ','ДЕКАБРЯ'];
+  const MONTHS_NOM = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
   const DAYS = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
   const buttons = document.querySelectorAll('.filter-btn');
   const grid = document.getElementById('eventsGrid');
@@ -865,11 +1003,11 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   let allEvents = [];
   let visibleEvents = [];
   let activeFilter = 'all';
-  let weekOffset = 0;
+  let monthOffset = 0;
   const today = stripTime(new Date());
-  const baseWeekStart = getWeekStart(today);
-  const minOffset = -4;
-  const maxOffset = 16;
+  const baseMonthStart = getMonthStart(today);
+  const minOffset = -12;
+  const maxOffset = 18;
 
   function stripTime(date){ return new Date(date.getFullYear(), date.getMonth(), date.getDate()); }
   function parseDate(value){
@@ -880,11 +1018,18 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
   function addDays(date, days){ const copy = new Date(date); copy.setDate(copy.getDate() + days); return copy; }
   function getWeekStart(date){ const d = stripTime(date); const day = d.getDay() || 7; d.setDate(d.getDate() - day + 1); return d; }
+  function getMonthStart(date){ return new Date(date.getFullYear(), date.getMonth(), 1); }
+  function addMonths(date, months){ return new Date(date.getFullYear(), date.getMonth() + months, 1); }
+  function getMonthEnd(date){ return new Date(date.getFullYear(), date.getMonth() + 1, 0); }
   function eventStart(event){ return parseDate(event.startDate) || today; }
   function eventEnd(event){ return parseDate(event.endDate) || eventStart(event); }
   function intersectsWeek(event, weekStart){
     const weekEnd = addDays(weekStart, 6);
     return eventStart(event) <= weekEnd && eventEnd(event) >= weekStart;
+  }
+  function intersectsMonth(event, monthStart){
+    const monthEnd = getMonthEnd(monthStart);
+    return eventStart(event) <= monthEnd && eventEnd(event) >= monthStart;
   }
   function formatDate(date){ return `${date.getDate()} ${MONTHS[date.getMonth()]}`; }
   function formatRange(start, end){
@@ -967,7 +1112,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const displayDate = multi && start < weekStart && end >= weekStart ? weekStart : start;
     const exactToday = start.getTime() === today.getTime() && !multi;
     const category = event.category || 'Событие';
-    const time = event.time || (multi ? 'В течение периода' : 'Время уточняется');
+    const time = event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется');
     const image = eventImage(event);
     const fallback = localFallbackImage(event);
     const desc = shortText(event.description || 'Подробности смотрите в источнике события.', 92);
@@ -989,15 +1134,14 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     </article>`;
   }
 
-  function updateSummary(weekStart){
-    const weekEnd = addDays(weekStart, 6);
-    const range = formatRange(weekStart, weekEnd);
-    weekLabel.textContent = `▣ ${range}`;
-    summaryTitle.textContent = range;
+  function updateSummary(monthStart){
+    const label = `${MONTHS_NOM[monthStart.getMonth()]} ${monthStart.getFullYear()}`;
+    weekLabel.textContent = `▣ ${label}`;
+    summaryTitle.textContent = label;
     const countText = visibleEvents.length === 1 ? 'событие' : visibleEvents.length > 1 && visibleEvents.length < 5 ? 'события' : 'событий';
-    summaryText.textContent = visibleEvents.length ? `Найдено ${visibleEvents.length} ${countText} из актуальных источников Когалыма.` : 'На эту неделю событий пока не найдено. Попробуйте другую категорию или следующую неделю.';
-    weekPrev.disabled = weekOffset <= minOffset;
-    weekNext.disabled = weekOffset >= maxOffset;
+    summaryText.textContent = visibleEvents.length ? `Найдено ${visibleEvents.length} ${countText} за выбранный месяц.` : 'На этот месяц событий пока не найдено. Попробуйте другую категорию или следующий месяц.';
+    weekPrev.disabled = monthOffset <= minOffset;
+    weekNext.disabled = monthOffset >= maxOffset;
   }
 
   function renderMiniEvents(weekStart){
@@ -1011,9 +1155,9 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 
   function render(){
-    const weekStart = addDays(baseWeekStart, weekOffset * 7);
-    visibleEvents = allEvents.filter(event => intersectsWeek(event, weekStart)).filter(filterMatch).sort(compareEvents);
-    const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, weekStart)).join('');
+    const monthStart = addMonths(baseMonthStart, monthOffset);
+    visibleEvents = allEvents.filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
+    const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, monthStart)).join('');
     grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
     const empty = document.getElementById('noEventsDynamic');
     empty.classList.toggle('show', visibleEvents.length === 0);
@@ -1028,8 +1172,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         }
       }, {once:false});
     });
-    updateSummary(weekStart);
-    renderMiniEvents(weekStart);
+    updateSummary(monthStart);
+    renderMiniEvents(monthStart);
   }
 
   async function loadEvents(){
@@ -1056,8 +1200,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
       render();
     });
   });
-  weekPrev.addEventListener('click', () => { if (weekOffset > minOffset) { weekOffset -= 1; render(); } });
-  weekNext.addEventListener('click', () => { if (weekOffset < maxOffset) { weekOffset += 1; render(); } });
+  weekPrev.addEventListener('click', () => { if (monthOffset > minOffset) { monthOffset -= 1; render(); } });
+  weekNext.addEventListener('click', () => { if (monthOffset < maxOffset) { monthOffset += 1; render(); } });
 
   grid.addEventListener('click', event => {
     const button = event.target.closest('.more-btn');
@@ -1066,7 +1210,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     if (!item) return;
 
     const sourceLabel = item.sourceName || 'Источник события';
-    const sourceHref = item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
+    const sourceHref = item.sourceUrl || item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
     const sourceTarget = item.url ? '_blank' : '';
     const imageHtml = '<img src="' + escapeHtml(eventImage(item)) + '" data-fallback="' + escapeHtml(localFallbackImage(item)) + '" alt="' + escapeHtml(item.title || 'Фото события') + '">';
 
@@ -1088,10 +1232,10 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modalTitle.textContent = item.title || 'Событие';
     modalText.textContent = item.description || 'Подробности смотрите в источнике события.';
     modalDate.textContent = formatEventDate(item);
-    modalTime.textContent = item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется');
-    modalVenue.textContent = item.venue || 'Место уточняется';
-    modalSource.textContent = sourceLabel;
-    modalSourceBtn.textContent = item.url ? 'Открыть источник' : 'Уточнить участие';
+    modalTime.textContent = item.schedule || item.scheduleShort || item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется');
+    modalVenue.textContent = item.address || item.venue || 'Место уточняется';
+    modalSource.textContent = item.price || item.format || item.age || sourceLabel;
+    modalSourceBtn.textContent = normalizeCategory(item) === 'cinema' ? 'Купить / расписание' : (item.url ? 'Открыть источник' : 'Уточнить участие');
     modalSourceBtn.href = sourceHref;
     modalSourceBtn.target = sourceTarget;
     if (sourceTarget) {
