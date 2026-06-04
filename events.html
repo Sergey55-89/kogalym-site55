@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=afisha_match_locations_20260604">
+<link rel="stylesheet" href="style.v7-hard.css?v=afisha_clean_header_20260604">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -524,6 +524,193 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   .event-img{height:215px!important;min-height:215px!important;max-height:215px!important;flex-basis:215px!important;}
 }
 
+
+
+/* ===== FINAL AFISHA UNIFY FIX 2026-06-04 ===== */
+.events-grid{
+  width:min(1240px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+}
+.event-card{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:610px!important;
+  height:610px!important;
+  max-height:610px!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  background:rgba(7,17,29,.72)!important;
+  backdrop-filter:blur(14px)!important;
+  box-shadow:0 24px 60px rgba(0,0,0,.24)!important;
+}
+.event-img{
+  height:240px!important;
+  min-height:240px!important;
+  max-height:240px!important;
+  flex:0 0 240px!important;
+  background:#07111f!important;
+}
+.event-photo{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+.event-body{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding:20px!important;
+  overflow:hidden!important;
+}
+.event-cat,
+.event-body h2,
+.event-meta,
+.event-body p,
+.event-actions{
+  margin:0!important;
+}
+.event-cat{
+  width:max-content!important;
+  max-width:100%!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  padding:8px 14px!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b)!important;
+  color:#08111f!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-cat::before{display:none!important;}
+.event-body h2{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  font-size:22px!important;
+  line-height:1.15!important;
+  min-height:50px!important;
+  max-height:50px!important;
+  color:#fff!important;
+}
+.event-meta{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+  min-height:76px!important;
+  max-height:76px!important;
+  overflow:hidden!important;
+  color:#dbe6f8!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+.event-meta span{
+  display:block!important;
+  padding:7px 10px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.075)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-body p{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:4!important;
+  overflow:hidden!important;
+  min-height:90px!important;
+  max-height:90px!important;
+  color:#e5edf9!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+}
+.event-source{display:none!important;}
+.event-actions{
+  display:block!important;
+  margin-top:auto!important;
+  min-height:52px!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  width:100%!important;
+  min-height:52px!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b)!important;
+  color:#08111f!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 24px rgba(214,162,75,.18)!important;
+}
+.heart{display:none!important;}
+.event-detail-modal .place-modal-image{
+  background:#07111f!important;
+  overflow:hidden!important;
+}
+.event-detail-modal .place-modal-image img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+.event-detail-modal .place-modal-rating{
+  text-transform:none!important;
+}
+.event-detail-modal .place-modal-info b{
+  text-transform:none!important;
+}
+@media(max-width:900px){
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .event-card{height:610px!important;max-height:610px!important;}
+  .event-img{height:220px!important;min-height:220px!important;max-height:220px!important;flex-basis:220px!important;}
+}
+@media(max-width:700px){
+  .events-grid{grid-template-columns:1fr!important;gap:18px!important;}
+  .event-card{height:auto!important;min-height:0!important;max-height:none!important;}
+  .event-img{height:215px!important;min-height:215px!important;max-height:215px!important;flex-basis:215px!important;}
+  .event-body h2,.event-meta,.event-body p{min-height:0!important;max-height:none!important;}
+}
+
+
+/* ===== FINAL CLEAN HEADER FIX 2026-06-04: убрать лишние блоки справа ===== */
+.events-hero-inner{
+  grid-template-columns:1fr!important;
+}
+.events-summary{
+  display:none!important;
+}
+.events-toolbar{
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+}
+.week-switch{
+  display:none!important;
+}
+.filter-row{
+  width:100%!important;
+}
+@media(max-width:700px){
+  .events-toolbar{
+    padding:12px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -602,18 +789,24 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   </div>
 </main>
 
-<div class="event-modal" id="eventModal" aria-hidden="true">
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-media" id="modalImage">
-      <img class="modal-photo" id="modalPhoto" src="images/hero.jpg" alt="Фото события">
-      <div class="modal-fallback" id="modalFallback">Фото события</div>
-    </div>
-    <button class="modal-close" type="button" aria-label="Закрыть"></button>
-    <div class="modal-content">
-      <small id="modalMeta"></small>
+<div class="place-modal event-detail-modal" id="eventModal" aria-hidden="true">
+  <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="place-modal-close" id="eventModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="place-modal-image" id="modalImage"></div>
+    <div class="place-modal-content">
+      <div class="place-modal-rating" id="modalRating">Событие</div>
       <h2 id="modalTitle"></h2>
       <p id="modalText"></p>
-      <a id="modalMail" href="mailto:info@kogalym-portal.ru">Уточнить участие</a>
+      <div class="place-modal-info">
+        <div><span>Дата</span><b id="modalDate"></b></div>
+        <div><span>Время</span><b id="modalTime"></b></div>
+        <div><span>Место</span><b id="modalVenue"></b></div>
+        <div><span>Источник</span><b id="modalSource"></b></div>
+      </div>
+      <div class="place-modal-actions event-modal-actions">
+        <a id="modalSourceBtn" href="mailto:info@kogalym-portal.ru">Открыть источник</a>
+        <button type="button" id="modalCloseBtn">Закрыть</button>
+      </div>
     </div>
   </div>
 </div>
@@ -642,12 +835,16 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   const updatedLabel = document.getElementById('eventsUpdated');
   const modal = document.getElementById('eventModal');
   const modalImage = document.getElementById('modalImage');
-  const modalPhoto = document.getElementById('modalPhoto');
-  const modalFallback = document.getElementById('modalFallback');
-  const modalMeta = document.getElementById('modalMeta');
   const modalTitle = document.getElementById('modalTitle');
   const modalText = document.getElementById('modalText');
-  const modalMail = document.getElementById('modalMail');
+  const modalRating = document.getElementById('modalRating');
+  const modalDate = document.getElementById('modalDate');
+  const modalTime = document.getElementById('modalTime');
+  const modalVenue = document.getElementById('modalVenue');
+  const modalSource = document.getElementById('modalSource');
+  const modalSourceBtn = document.getElementById('modalSourceBtn');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const eventModalClose = document.getElementById('eventModalClose');
 
   const fallbackEvents = [
     {"title": "Подводная экскурсия", "category": "Экскурсия", "categoryKey": "exhibition", "startDate": "2026-06-01", "endDate": "2026-06-30", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Июньское расписание подводных экскурсий в океанариуме СКК «Галактика».", "image": "images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
@@ -867,18 +1064,43 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     if (!button) return;
     const item = visibleEvents[Number(button.dataset.index)];
     if (!item) return;
+
+    const sourceLabel = item.sourceName || 'Источник события';
+    const sourceHref = item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
+    const sourceTarget = item.url ? '_blank' : '';
+    const imageHtml = '<img src="' + escapeHtml(eventImage(item)) + '" data-fallback="' + escapeHtml(localFallbackImage(item)) + '" alt="' + escapeHtml(item.title || 'Фото события') + '">';
+
+    modalImage.innerHTML = imageHtml;
+    const currentModalImg = modalImage.querySelector('img');
+    if (currentModalImg) {
+      currentModalImg.addEventListener('error', () => {
+        const fallback = currentModalImg.dataset.fallback || 'images/events/fallback-event.jpg';
+        if (!currentModalImg.dataset.usedFallback && currentModalImg.getAttribute('src') !== fallback) {
+          currentModalImg.dataset.usedFallback = '1';
+          currentModalImg.setAttribute('src', fallback);
+        } else if (currentModalImg.getAttribute('src') !== 'images/events/fallback-event.jpg') {
+          currentModalImg.setAttribute('src', 'images/events/fallback-event.jpg');
+        }
+      }, { once: false });
+    }
+
+    modalRating.textContent = item.category || 'Событие';
     modalTitle.textContent = item.title || 'Событие';
-    modalMeta.textContent = [formatEventDate(item), item.time, item.venue].filter(Boolean).join(' · ');
     modalText.textContent = item.description || 'Подробности смотрите в источнике события.';
-    const modalSrc = eventImage(item);
-    modalImage.classList.remove('is-fallback');
-    modalFallback.textContent = item.category || 'Фото события';
-    modalPhoto.removeAttribute('data-used-fallback');
-    modalPhoto.alt = item.title || 'Фото события';
-    modalPhoto.src = modalSrc;
-    modalMail.textContent = item.url ? 'Открыть источник' : 'Уточнить участие';
-    modalMail.href = item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
-    modalMail.target = item.url ? '_blank' : '';
+    modalDate.textContent = formatEventDate(item);
+    modalTime.textContent = item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется');
+    modalVenue.textContent = item.venue || 'Место уточняется';
+    modalSource.textContent = sourceLabel;
+    modalSourceBtn.textContent = item.url ? 'Открыть источник' : 'Уточнить участие';
+    modalSourceBtn.href = sourceHref;
+    modalSourceBtn.target = sourceTarget;
+    if (sourceTarget) {
+      modalSourceBtn.setAttribute('rel', 'noopener');
+    } else {
+      modalSourceBtn.removeAttribute('target');
+      modalSourceBtn.removeAttribute('rel');
+    }
+
     modal.classList.add('show');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('modal-open');
@@ -889,22 +1111,10 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modal.setAttribute('aria-hidden','true');
     document.body.classList.remove('modal-open');
   };
-  modal.querySelector('.modal-close').addEventListener('click', closeModal);
+  eventModalClose.addEventListener('click', closeModal);
+  modalCloseBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
   window.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
-
-
-  modalPhoto.addEventListener('error', () => {
-    const currentTitle = modalTitle.textContent || 'Фото события';
-    const item = visibleEvents.find(event => event.title === currentTitle) || {title: currentTitle, category: 'Событие'};
-    const fallback = localFallbackImage(item) || 'images/events/fallback-event.jpg';
-    if (!modalPhoto.dataset.usedFallback) {
-      modalPhoto.dataset.usedFallback = '1';
-      modalPhoto.src = fallback;
-      return;
-    }
-    modalPhoto.src = 'images/events/fallback-event.jpg';
-  });
 
   loadEvents();
 })();
