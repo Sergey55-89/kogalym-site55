@@ -8,6 +8,7 @@ const SOURCES = [
   { name: 'Кинотеатр «Галактика»', url: 'https://galaxykino.ru/schedule/', parser: parseGalaxyKino },
   { name: 'СКК «Галактика»', url: 'https://www.skk-galaxy.ru/', parser: parseGalaxy },
   { name: 'Афиша7', url: 'https://afisha7.ru/kogalym', parser: parseAfisha7 },
+  { name: 'Русский музей', url: 'https://rusmuseum.ru/', parser: parseRusMuseumOfficial },
   { name: 'Визит Когалым', url: 'https://vizitkogalym.ru/event/events.php', parser: parseVisitKogalym }
 ];
 
@@ -232,8 +233,8 @@ function getCategory(title = '', rawCategory = '') {
   if (/кино|фильм|сеанс/.test(text)) return ['Кино', 'cinema'];
   if (/спорт|турнир|футбол|йог|тренировк|лед/.test(text)) return ['Спорт', 'sport'];
   if (/концерт|музык|групп|оркестр/.test(text)) return ['Концерт', 'concert'];
-  if (/экскурс|подвод/.test(text)) return [rawCategory && /экскурс/i.test(rawCategory) ? rawCategory : 'Экскурсия', 'exhibition'];
   if (/выстав|музей|экспозиц/.test(text)) return ['Выставка', 'exhibition'];
+  if (/экскурс|подвод/.test(text)) return [rawCategory && /экскурс/i.test(rawCategory) ? rawCategory : 'Экскурсия', 'other'];
   if (/дет|квест|викторин|мастер|семейн|игр|молод/.test(text)) return ['Детям', 'kids'];
   if (/празд|фестивал/.test(text)) return ['Праздник', 'kids'];
   return [rawCategory || 'Событие', 'other'];
@@ -272,7 +273,11 @@ function normalizeEvent(event) {
     format: event.format || '',
     address: cleanHtml(event.address || ''),
     price: event.price || '',
+    priceDisplay: event.priceDisplay || '',
     age: event.age || '',
+    refundPolicy: event.refundPolicy || '',
+    refundUrl: event.refundUrl || '',
+    trailerUrl: event.trailerUrl || '',
     sourceName: event.sourceName || 'Источник'
   };
   normalized.image = normalized.image || pickImage(normalized);
@@ -418,6 +423,54 @@ function extractCinemaFormat(block = '') {
 }
 
 
+
+function stripCinemaPrefix(value = '') {
+  return String(value || '').replace(/^\s*Кино:\s*/i, '').trim();
+}
+
+function youtubeTrailerSearch(title = '') {
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(`${stripCinemaPrefix(title)} трейлер`)}`;
+}
+
+function extractTrailerUrlFromHtml(html = '', base = '') {
+  const iframe = html.match(/<iframe[^>]+src=["']([^"']*(?:youtube\.com|youtu\.be|rutube\.ru|vk\.com\/video_ext)[^"']*)["']/i);
+  if (iframe) return absUrl(iframe[1], base);
+
+  const video = html.match(/<video[^>]+src=["']([^"']+)["']/i) || html.match(/<source[^>]+src=["']([^"']+)["'][^>]*type=["']video/i);
+  if (video) return absUrl(video[1], base);
+
+  const link = [...html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
+    .find(match => /трейлер|trailer/i.test(cleanHtml(match[2])) || /trailer|youtube|youtu\.be|rutube|vk\.com\/video/i.test(match[1]));
+  if (link) return absUrl(link[1], base);
+
+  return '';
+}
+
+function extractRefundPolicyFromHtml(html = '') {
+  const text = cleanHtml(html);
+  const sentence = (text.match(/[^.!?]{0,120}(?:возврат|вернуть)[^.!?]{0,180}[.!?]/i) || [''])[0].trim();
+  if (sentence) return sentence;
+  return 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.';
+}
+
+function cleanCinemaPrice(value = '') {
+  const text = String(value || '').replace(/^\s*(?:2D|3D|IMAX|ATMOS)(?:\s*,\s*(?:2D|3D|IMAX|ATMOS))*\s*[·-]\s*/i, '').trim();
+  if (!text || /^(?:2D|3D|IMAX|ATMOS)$/i.test(text)) return '';
+  return text;
+}
+
+async function fetchCinemaDetailMeta(detailUrl = '') {
+  if (!detailUrl) return {};
+  let html = '';
+  try { html = await fetchText(detailUrl); } catch { return {}; }
+  return {
+    image: extractImageFromHtml(html, detailUrl, ''),
+    trailerUrl: extractTrailerUrlFromHtml(html, detailUrl),
+    refundPolicy: extractRefundPolicyFromHtml(html)
+  };
+}
+
+
 async function parseGalaxyKino() {
   const baseUrl = 'https://galaxykino.ru/schedule/';
   const now = new Date();
@@ -457,7 +510,9 @@ async function parseGalaxyKino() {
       const format = extractCinemaFormat(block);
       const rawPrice = extractCinemaPrice(block);
       const price = rawPrice ? `${format} · ${rawPrice}` : (format || '');
-      let image = extractImageFromHtml(block, url, cleanTitle) || await fetchDetailImage(detailUrl, cleanTitle);
+      const priceDisplay = cleanCinemaPrice(price) || 'уточняйте при покупке';
+      const detailMeta = await fetchCinemaDetailMeta(detailUrl);
+      let image = extractImageFromHtml(block, url, cleanTitle) || detailMeta.image || await fetchDetailImage(detailUrl, cleanTitle);
 
       const detailText = cleanHtml(block);
       const genre = (detailText.match(/\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b(?:,\s*\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b)*/i) || [''])[0];
@@ -477,7 +532,11 @@ async function parseGalaxyKino() {
         sourceUrl: url,
         image,
         price,
+        priceDisplay,
         age,
+        refundPolicy: detailMeta.refundPolicy || 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.',
+        refundUrl: detailUrl,
+        trailerUrl: detailMeta.trailerUrl || youtubeTrailerSearch(cleanTitle),
         sourceName: 'Кинотеатр «Галактика»'
       }));
     }
@@ -526,6 +585,36 @@ async function parseGalaxy() {
   return events;
 }
 
+
+async function parseRusMuseumOfficial() {
+  const url = 'https://rusmuseum.ru/news/v-kulturno-vystavochnom-tsentre-russkogo-muzeya-v-kogalyme-proshli-lektsii-k-vystavke-shiroka-strana/';
+  let html = '';
+  try { html = await fetchText(url); } catch { html = ''; }
+  const text = cleanHtml(html);
+
+  if (html && !/Широка страна моя родная|Культурно-выставочном центре Русского музея в Когалыме/i.test(text)) {
+    return [];
+  }
+
+  return [normalizeEvent({
+    title: 'Выставка «Широка страна моя родная»',
+    category: 'Выставка',
+    startDate: '2025-08-26',
+    endDate: '2026-08-23',
+    time: 'ср–вс 10:00–19:00',
+    venue: 'Культурно-выставочный центр Русского музея',
+    address: 'г. Когалым, ул. Югорская, 30',
+    description: 'Выставка живописных пейзажей «Широка страна моя родная» в Культурно-выставочном центре Русского музея в Когалыме. Официальные новости Русского музея подтверждают работу выставки и проведение просветительской программы к ней.',
+    url,
+    sourceUrl: url,
+    image: 'images/events/fallback-exhibition.jpg',
+    price: 'уточнять в центре',
+    age: '6+',
+    sourceName: 'Русский музей'
+  })];
+}
+
+
 async function parseVisitKogalym() {
   const url = 'https://vizitkogalym.ru/event/events.php';
   const html = await fetchText(url);
@@ -559,7 +648,12 @@ function cinemaSeedEvents() {
       venue: 'Кинотеатр «Галактика»',
       description: `Сеансы фильма «${title}» в кинотеатре «Галактика». Жанр: ${genre}.`,
       url,
+      sourceUrl: url,
       image: 'images/events/fallback-cinema.jpg',
+      priceDisplay: 'уточняйте при покупке',
+      refundPolicy: 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.',
+      refundUrl: url,
+      trailerUrl: youtubeTrailerSearch(title),
       age,
       sourceName: 'Кинотеатр «Галактика»'
     });

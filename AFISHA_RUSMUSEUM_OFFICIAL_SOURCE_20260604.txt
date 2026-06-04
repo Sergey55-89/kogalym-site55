@@ -1,0 +1,12 @@
+Исправление Афиши от 2026-06-04
+
+Что сделано:
+1. Выставка «Широка страна моя родная» переведена на официальный источник Русского музея.
+2. В events-data.json источник теперь: «Русский музей».
+3. Ссылка ведёт на официальный сайт rusmuseum.ru, а не на VizitKogalym.
+4. Автообновлятор scripts/update-events.mjs дополнен parser'ом parseRusMuseumOfficial().
+5. parseVisitKogalym больше не добавляет дубликат этой выставки через неофициальный источник.
+
+Официальные страницы:
+- https://rusmuseum.ru/news/v-kulturno-vystavochnom-tsentre-russkogo-muzeya-v-kogalyme-proshli-lektsii-k-vystavke-shiroka-strana/
+- https://rusmuseum.ru/news/prosvetitelskaya-programma-k-vystavke-shiroka-strana-moya-rodnaya-v-kulturno-vystavochnom-tsentre-ru/
