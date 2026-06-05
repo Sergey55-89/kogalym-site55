@@ -4,6 +4,7 @@ import { createHash } from 'node:crypto';
 const OUT_FILE = new URL('../events-data.json', import.meta.url);
 const EVENTS_IMAGE_DIR = new URL('../images/events/', import.meta.url);
 const SOURCES = [
+  { name: 'VizitKogalym / Кинотеатр «Галактика»', url: 'https://vizitkogalym.ru/movies/index.php', parser: parseVizitKogalymMovies },
   { name: 'Малый театр', url: 'https://www.maly.ru/kogalym/events', parser: parseMaly },
   { name: 'Кинотеатр «Галактика»', url: 'https://galaxykino.ru/schedule/', parser: parseGalaxyKino },
   { name: 'СКК «Галактика»', url: 'https://www.skk-galaxy.ru/', parser: parseGalaxy },
@@ -40,7 +41,9 @@ const IMAGE_BY_KEYWORD = [
   [/спорт|турнир|футбол|лед|йог/i, 'images/events/fallback-sport.jpg'],
   [/концерт|музык|оркестр|групп/i, 'images/events/fallback-concert.jpg'],
   [/парк|дет|мастер|семейн|игр/i, 'images/events/fallback-kids.jpg'],
-  [/океан|аква|морск|галактик|подвод|музей|выстав|экскурс|русск|нефт|ханты|этнограф/i, 'images/events/fallback-exhibition.jpg'],
+  [/русск|русский музей|широка страна/i, 'images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg'],
+  [/музейно|мвц|нить времени|швейн|музей|выстав|экспозиц|нефт|ханты|этнограф/i, 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg'],
+  [/океан|аква|морск|галактик|подвод|экскурс/i, 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg'],
   [/метро|молод/i, 'images/events/fallback-event.jpg']
 ];
 
@@ -221,6 +224,13 @@ function todayIso() {
   return isoDate(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
+
+function isNotOldManualEvent(event) {
+  const text = `${event.title || ''} ${event.description || ''}`.toLowerCase().replace(/ё/g, 'е');
+  if (/подводная экскурсия/.test(text)) return false;
+  return true;
+}
+
 function isRelevant(event) {
   const today = todayIso();
   const end = event.endDate || event.startDate;
@@ -254,6 +264,16 @@ function pickImage(event) {
   return found ? found[1] : 'images/events/fallback-event.jpg';
 }
 
+
+function capRuText(value = '') {
+  const text = String(value || '').trim();
+  if (!text) return text;
+  if (/^(https?:|mailto:)/i.test(text)) return text;
+  if (/^г\.\s/i.test(text)) return text;
+  return text.replace(/[A-Za-zА-Яа-яЁё]/, ch => ch.toLocaleUpperCase('ru-RU'));
+}
+
+
 function normalizeEvent(event) {
   const [category, categoryKey] = getCategory(event.title, event.category);
   const normalized = {
@@ -262,22 +282,25 @@ function normalizeEvent(event) {
     categoryKey,
     startDate: event.startDate,
     endDate: event.endDate || event.startDate,
-    time: event.time || '',
+    time: capRuText(event.time || ''),
     venue: cleanHtml(event.venue || 'Место уточняется'),
     description: cleanHtml(event.description || 'Подробности смотрите в источнике события.'),
     image: event.image || '',
     url: event.url || '',
     sourceUrl: event.sourceUrl || '',
-    schedule: event.schedule || '',
-    scheduleShort: event.scheduleShort || '',
-    format: event.format || '',
+    schedule: capRuText(event.schedule || ''),
+    scheduleShort: capRuText(event.scheduleShort || ''),
+    sessions: Array.isArray(event.sessions) ? event.sessions : [],
+    format: capRuText(event.format || ''),
     address: cleanHtml(event.address || ''),
-    price: event.price || '',
-    priceDisplay: event.priceDisplay || '',
+    price: capRuText(event.price || ''),
+    priceDisplay: capRuText(event.priceDisplay || ''),
     age: event.age || '',
-    refundPolicy: event.refundPolicy || '',
+    refundPolicy: capRuText(event.refundPolicy || ''),
     refundUrl: event.refundUrl || '',
     trailerUrl: event.trailerUrl || '',
+    trailerEmbedUrl: event.trailerEmbedUrl || '',
+    trailerSourceName: event.trailerSourceName || '',
     sourceName: event.sourceName || 'Источник'
   };
   normalized.image = normalized.image || pickImage(normalized);
@@ -288,14 +311,29 @@ function normalizeEvent(event) {
 }
 
 function dedupe(events) {
-  const seen = new Set();
-  return events.filter(event => {
-    if (!event.title || !event.startDate) return false;
-    const key = `${event.title.toLowerCase().replace(/ё/g, 'е')}|${event.startDate}|${event.time}|${event.venue.toLowerCase()}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const map = new Map();
+
+  for (const event of events) {
+    if (!event.title || !event.startDate) continue;
+    const normalizedTitle = event.title.toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
+    const normalizedVenue = String(event.venue || '').toLowerCase().replace(/ё/g, 'е').trim();
+    const isCinema = event.categoryKey === 'cinema' || /кино|фильм/.test(`${event.title} ${event.category}`);
+    const key = isCinema
+      ? `${normalizedTitle}|${event.startDate}|${normalizedVenue}`
+      : `${normalizedTitle}|${event.startDate}|${event.time}|${normalizedVenue}`;
+
+    const prev = map.get(key);
+    if (!prev) {
+      map.set(key, event);
+      continue;
+    }
+
+    const prevScore = (Array.isArray(prev.sessions) && prev.sessions.length ? 10 : 0) + (prev.priceDisplay ? 5 : 0) + (prev.schedule ? 2 : 0);
+    const nextScore = (Array.isArray(event.sessions) && event.sessions.length ? 10 : 0) + (event.priceDisplay ? 5 : 0) + (event.schedule ? 2 : 0);
+    if (nextScore > prevScore) map.set(key, event);
+  }
+
+  return [...map.values()];
 }
 
 async function fetchText(url) {
@@ -428,21 +466,46 @@ function stripCinemaPrefix(value = '') {
   return String(value || '').replace(/^\s*Кино:\s*/i, '').trim();
 }
 
-function youtubeTrailerSearch(title = '') {
-  return `https://www.youtube.com/results?search_query=${encodeURIComponent(`${stripCinemaPrefix(title)} трейлер`)}`;
+function rutubeTrailerSearch(title = '') {
+  return `https://rutube.ru/search/?query=${encodeURIComponent(`${stripCinemaPrefix(title)} трейлер`)}`;
 }
 
+
+function trailerEmbedFromUrl(url = '') {
+  const value = String(url || '').trim();
+  if (!value) return '';
+
+  const rutube = value.match(/rutube\.ru\/(?:video|play\/embed)\/([A-Za-z0-9_-]+)/i);
+  if (rutube) return `https://rutube.ru/play/embed/${rutube[1]}`;
+
+  const vk = value.match(/vk\.com\/video(-?\d+)_(\d+)/i) || value.match(/vkvideo\.ru\/video(-?\d+)_(\d+)/i);
+  if (vk) return `https://vk.com/video_ext.php?oid=${vk[1]}&id=${vk[2]}&hd=2`;
+
+  if (/rutube\.ru\/search/i.test(value) || /vkvideo\.ru/i.test(value)) return value;
+  return '';
+}
+
+
 function extractTrailerUrlFromHtml(html = '', base = '') {
-  const iframe = html.match(/<iframe[^>]+src=["']([^"']*(?:youtube\.com|youtu\.be|rutube\.ru|vk\.com\/video_ext)[^"']*)["']/i);
-  if (iframe) return absUrl(iframe[1], base);
+  const candidates = [];
 
-  const video = html.match(/<video[^>]+src=["']([^"']+)["']/i) || html.match(/<source[^>]+src=["']([^"']+)["'][^>]*type=["']video/i);
-  if (video) return absUrl(video[1], base);
+  for (const match of html.matchAll(/<iframe[^>]+src=["']([^"']+)["']/gi)) {
+    candidates.push(absUrl(match[1], base));
+  }
+  for (const match of html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const href = absUrl(match[1], base);
+    const text = cleanHtml(match[2]);
+    if (/трейлер|trailer|rutube|vk\s*видео|vkvideo/i.test(text + ' ' + href)) candidates.push(href);
+  }
+  for (const match of html.matchAll(/<video[^>]+src=["']([^"']+)["']/gi)) {
+    candidates.push(absUrl(match[1], base));
+  }
+  for (const match of html.matchAll(/<source[^>]+src=["']([^"']+)["'][^>]*type=["']video/i)) {
+    candidates.push(absUrl(match[1], base));
+  }
 
-  const link = [...html.matchAll(/<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
-    .find(match => /трейлер|trailer/i.test(cleanHtml(match[2])) || /trailer|youtube|youtu\.be|rutube|vk\.com\/video/i.test(match[1]));
-  if (link) return absUrl(link[1], base);
-
+  const ru = candidates.find(url => /rutube\.ru|vk\.com\/video|vkvideo\.ru/i.test(url));
+  if (ru) return ru;
   return '';
 }
 
@@ -463,86 +526,128 @@ async function fetchCinemaDetailMeta(detailUrl = '') {
   if (!detailUrl) return {};
   let html = '';
   try { html = await fetchText(detailUrl); } catch { return {}; }
+
+  const trailerUrl = extractTrailerUrlFromHtml(html, detailUrl);
   return {
     image: extractImageFromHtml(html, detailUrl, ''),
-    trailerUrl: extractTrailerUrlFromHtml(html, detailUrl),
+    trailerUrl,
+    trailerEmbedUrl: trailerEmbedFromUrl(trailerUrl),
+    trailerSourceName: /vk\.com|vkvideo/i.test(trailerUrl) ? 'VK Видео' : (/rutube/i.test(trailerUrl) ? 'RuTube' : ''),
     refundPolicy: extractRefundPolicyFromHtml(html)
   };
 }
 
 
-async function parseGalaxyKino() {
-  const baseUrl = 'https://galaxykino.ru/schedule/';
-  const now = new Date();
+function formatIsoDate(date) {
+  return isoDate(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function normalizeMovieTitle(value = '') {
+  return cleanHtml(value)
+    .replace(/\s*\(в\s+рамках\s+Киноклуба\)\s*/i, ' (Киноклуб)')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function parseVizitMovieBlocks(html = '', pageUrl = '', dateIso = '') {
   const events = [];
-  const seen = new Set();
+  const headingRegex = /###\s*(?:<[^>]+>[\s\S]*?<\/[^>]+>|)([\s\S]*?)(?=\n|2026\s+г\.)/gi;
+  const headings = [...html.matchAll(/###\s*(?:<a[^>]+href=["']([^"']+)["'][^>]*>)?\s*([^<\n]+?)(?:\s*<\/a>)?\s*(?:\n|$)/gi)];
 
-  for (let offset = 0; offset < 14; offset += 1) {
-    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
-    const dateIso = isoDate(day.getFullYear(), day.getMonth(), day.getDate());
-    const url = `${baseUrl}?date=${formatDottedDate(day)}`;
-    let html = '';
+  // Fallback for raw/clean text returned by servers.
+  const text = cleanHtml(html);
+  const parts = text.split(/(?=###\s*)/g).filter(Boolean);
 
-    try { html = await fetchText(url); } catch { continue; }
-
-    const beforeSoon = html.split(/Скоро\s+в\s+кино|<h[1-4][^>]*>\s*Скоро\s+в\s+кино/i)[0] || html;
-    const movieLinks = [...beforeSoon.matchAll(/<a\b[^>]+href=["']([^"']*\/filmbase\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)];
-
-    for (let index = 0; index < movieLinks.length; index += 1) {
-      const match = movieLinks[index];
-      const detailUrl = absUrl(match[1], url);
-      const rawTitle = cleanHtml(match[2]).replace(/\s*\(в рамках Киноклуба\)\s*/i, ' (Киноклуб)');
-      if (!rawTitle || rawTitle.length < 3 || /билеты|расписание|сегодня|завтра/i.test(rawTitle)) continue;
-
-      const cleanTitle = rawTitle.replace(/\s+/g, ' ').trim();
-      const lowerKey = `${cleanTitle.toLowerCase().replace(/ё/g,'е')}|${dateIso}`;
-      if (seen.has(lowerKey)) continue;
-      seen.add(lowerKey);
-
-      const blockStart = Math.max(0, match.index - 450);
-      const blockEnd = index + 1 < movieLinks.length ? movieLinks[index + 1].index : Math.min(beforeSoon.length, match.index + 2500);
-      const block = beforeSoon.slice(blockStart, blockEnd);
-
-      const age = (cleanHtml(block).match(/\b\d{1,2}\+/) || [''])[0];
-      const sessions = extractCinemaSessions(block);
-      const scheduleShort = sessions.length ? sessions.join(', ') : 'уточняйте на сайте';
-      const schedule = sessions.length ? `Сеансы: ${scheduleShort}` : 'Точное расписание уточняйте на сайте кинотеатра';
-      const format = extractCinemaFormat(block);
-      const rawPrice = extractCinemaPrice(block);
-      const price = rawPrice ? `${format} · ${rawPrice}` : (format || '');
-      const priceDisplay = cleanCinemaPrice(price) || 'уточняйте при покупке';
-      const detailMeta = await fetchCinemaDetailMeta(detailUrl);
-      let image = extractImageFromHtml(block, url, cleanTitle) || detailMeta.image || await fetchDetailImage(detailUrl, cleanTitle);
-
-      const detailText = cleanHtml(block);
-      const genre = (detailText.match(/\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b(?:,\s*\b(?:мультфильм|комедия|семейный|боевик|триллер|драма|фантастика|фэнтези|приключения|ужасы|биография|музыка)\b)*/i) || [''])[0];
-
-      events.push(normalizeEvent({
-        title: `Кино: ${cleanTitle}`,
-        category: 'Кино',
-        startDate: dateIso,
-        time: scheduleShort,
-        schedule,
-        scheduleShort,
-        format,
-        venue: 'Кинотеатр «Галактика»',
-        address: 'г. Когалым, ул. Дружбы Народов, 60',
-        description: `Показ фильма «${cleanTitle}» в кинотеатре «Галактика»${genre ? `. Жанр: ${genre}.` : '.'}`,
-        url: detailUrl,
-        sourceUrl: url,
-        image,
-        price,
-        priceDisplay,
-        age,
-        refundPolicy: detailMeta.refundPolicy || 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.',
-        refundUrl: detailUrl,
-        trailerUrl: detailMeta.trailerUrl || youtubeTrailerSearch(cleanTitle),
-        sourceName: 'Кинотеатр «Галактика»'
-      }));
+  const rawBlocks = [];
+  if (headings.length) {
+    for (let i = 0; i < headings.length; i += 1) {
+      const start = headings[i].index;
+      const end = i + 1 < headings.length ? headings[i + 1].index : html.length;
+      rawBlocks.push(html.slice(start, end));
     }
+  } else {
+    for (const part of parts) rawBlocks.push(part);
+  }
+
+  for (const block of rawBlocks) {
+    const blockText = cleanHtml(block);
+    const titleMatch = blockText.match(/(?:###\s*)?([^#]+?)\s*\((\d{1,2}\+)\)/);
+    if (!titleMatch) continue;
+
+    const title = normalizeMovieTitle(titleMatch[1]);
+    const age = titleMatch[2] || '';
+    if (!title || /фильмы на|кинотеатр|расписание/i.test(title)) continue;
+
+    const sessionMatches = [...blockText.matchAll(/(\d{1,2}):([0-5]\d):?00?\s+(2D|3D|IMAX|ATMOS)\s+(\d{2,4})\s*руб/gi)];
+    if (!sessionMatches.length) continue;
+
+    const sessions = sessionMatches.map(match => ({
+      time: `${match[1].padStart(2, '0')}:${match[2]}`,
+      format: match[3].toUpperCase(),
+      price: `${match[4]} ₽`
+    }));
+
+    const times = sessions.map(s => s.time).join(', ');
+    const schedule = `Сеансы: ${sessions.map(s => `${s.time} · ${s.format} · ${s.price}`).join('; ')}`;
+    const uniquePrices = [...new Set(sessions.map(s => s.price))];
+    const priceDisplay = uniquePrices.length === 1 ? uniquePrices[0] : `${uniquePrices[0].replace(' ₽', '')}–${uniquePrices[uniquePrices.length - 1]}`;
+    const format = [...new Set(sessions.map(s => s.format))].join(', ');
+
+    const image = extractImageFromHtml(block, pageUrl, title) || 'images/events/fallback-cinema.jpg';
+    const detailUrlMatch = block.match(/<a[^>]+href=["']([^"']+)["'][^>]*>\s*Подробнее/gi);
+    const detailUrl = pageUrl;
+
+    events.push(normalizeEvent({
+      title: `Кино: ${title}`,
+      category: 'Кино',
+      startDate: dateIso,
+      time: times,
+      schedule,
+      scheduleShort: times,
+      sessions,
+      format,
+      venue: 'Кинотеатр «Галактика»',
+      address: 'г. Когалым, ул. Дружбы Народов, 60',
+      description: `Показ фильма «${title}» в кинотеатре «Галактика».`,
+      url: pageUrl,
+      sourceUrl: pageUrl,
+      image,
+      price: `${format} · ${priceDisplay}`,
+      priceDisplay,
+      age,
+      refundPolicy: 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.',
+      refundUrl: pageUrl,
+      trailerUrl: rutubeTrailerSearch(title),
+      trailerEmbedUrl: rutubeTrailerSearch(title),
+      trailerSourceName: 'RuTube',
+      sourceName: 'VizitKogalym / Кинотеатр «Галактика»'
+    }));
   }
 
   return events;
+}
+
+async function parseVizitKogalymMovies() {
+  const now = new Date();
+  const events = [];
+
+  for (let offset = 0; offset < 14; offset += 1) {
+    const day = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    const dateIso = formatIsoDate(day);
+    const url = `https://vizitkogalym.ru/movies/index.php?date=${dateIso}`;
+    let html = '';
+    try { html = await fetchText(url); } catch { continue; }
+
+    const parsed = parseVizitMovieBlocks(html, url, dateIso);
+    events.push(...parsed);
+  }
+
+  return events;
+}
+
+
+async function parseGalaxyKino() {
+  return [];
 }
 
 async function parseGalaxy() {
@@ -650,10 +755,12 @@ function cinemaSeedEvents() {
       url,
       sourceUrl: url,
       image: 'images/events/fallback-cinema.jpg',
-      priceDisplay: 'уточняйте при покупке',
+      priceDisplay: 'Уточняйте при покупке',
       refundPolicy: 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.',
       refundUrl: url,
-      trailerUrl: youtubeTrailerSearch(title),
+      trailerUrl: rutubeTrailerSearch(title),
+      trailerEmbedUrl: rutubeTrailerSearch(title),
+      trailerSourceName: 'RuTube',
       age,
       sourceName: 'Кинотеатр «Галактика»'
     });
@@ -724,6 +831,15 @@ function verifiedSeedEvents() {
   ]);
 }
 
+
+function isStaleOceanariumEvent(event) {
+  const text = `${event.title || ''} ${event.venue || ''} ${event.description || ''}`.toLowerCase().replace(/ё/g, 'е');
+  return text.includes('подводная экскурсия')
+    || text.includes('мастер-классы от морского клуба')
+    || (text.includes('океанариум') && (text.includes('мастер-класс') || text.includes('морского клуба') || text.includes('июньское расписание')));
+}
+
+
 async function main() {
   const status = [];
   const parsed = [];
@@ -743,6 +859,7 @@ async function main() {
   const seedEvents = hasCinemaFromSources ? verifiedSeedEvents() : [...verifiedSeedEvents(), ...cinemaSeedEvents()];
   const events = await downloadExternalImages(dedupe([...parsed, ...seedEvents])
     .filter(isRelevant)
+    .filter(isNotOldManualEvent)
     .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)) || (a.time || '').localeCompare(b.time || '') || a.title.localeCompare(b.title, 'ru')));
 
   const payload = {

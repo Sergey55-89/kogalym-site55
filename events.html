@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=cinema_details_modal_20260604">
+<link rel="stylesheet" href="style.v7-hard.css?v=final_expired_events_fix_20260605">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1016,6 +1016,130 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 }
 
+
+
+/* ===== EXHIBITION PHOTO + OLD EVENTS FIX 2026-06-04 ===== */
+.event-card[data-filter="exhibition"] .event-photo{
+  object-fit:cover!important;
+  object-position:center!important;
+}
+.event-card[data-filter="exhibition"] .event-img{
+  background:#07111f!important;
+}
+.date-badge small{
+  letter-spacing:.04em!important;
+}
+
+
+/* ===== INLINE RUSSIAN TRAILER PLAYER FIX 2026-06-04 ===== */
+.trailer-modal{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,5,14,.82);
+  backdrop-filter:blur(10px);
+}
+.trailer-modal.show{display:flex;}
+.trailer-modal-box{
+  position:relative;
+  width:min(980px,96vw);
+  max-height:92vh;
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(180deg,#101827,#07111d);
+  box-shadow:0 34px 100px rgba(0,0,0,.72);
+  color:#fff;
+}
+.trailer-modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+  z-index:5;
+}
+.trailer-modal-head{padding:24px 28px 16px;}
+.trailer-modal-head span{
+  display:inline-flex;
+  margin-bottom:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  color:#08111f;
+  font-weight:950;
+  font-size:13px;
+}
+.trailer-modal-head h2{
+  margin:0;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:32px;
+  line-height:1.1;
+}
+.trailer-frame-wrap{
+  position:relative;
+  aspect-ratio:16/9;
+  background:#020814;
+}
+.trailer-frame-wrap iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#020814;
+}
+.trailer-fallback{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:calc(100% - 36px);
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(2,8,20,.72);
+  border:1px solid rgba(255,255,255,.14);
+  color:#dbe6f8;
+  font-size:13px;
+  z-index:2;
+}
+.trailer-fallback b{color:#fff;}
+.trailer-fallback a{
+  color:#08111f;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  padding:8px 10px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:900;
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .trailer-modal{padding:12px;}
+  .trailer-modal-head{padding:20px 18px 14px;}
+  .trailer-modal-head h2{font-size:24px;}
+  .trailer-fallback{
+    position:static;
+    flex-direction:column;
+    align-items:flex-start;
+    max-width:none;
+    margin:0;
+    border-radius:0;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1119,6 +1243,25 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   </div>
 </div>
 
+
+<div class="trailer-modal" id="trailerModal" aria-hidden="true">
+  <div class="trailer-modal-box" role="dialog" aria-modal="true" aria-labelledby="trailerTitle">
+    <button class="trailer-modal-close" id="trailerModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="trailer-modal-head">
+      <span id="trailerSource">RuTube</span>
+      <h2 id="trailerTitle">Трейлер</h2>
+    </div>
+    <div class="trailer-frame-wrap">
+      <iframe id="trailerFrame" title="Трейлер фильма" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="trailer-fallback" id="trailerFallback">
+        <b>Если плеер не открылся</b>
+        <span>Откройте трейлер в доступном российском источнике.</span>
+        <a id="trailerExternalLink" href="#" target="_blank" rel="noopener">Открыть источник</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <a href="about.html">О проекте</a>
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
@@ -1156,6 +1299,12 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   const modalSourceBtn = document.getElementById('modalSourceBtn');
   const modalTrailerBtn = document.getElementById('modalTrailerBtn');
   const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const trailerModal = document.getElementById('trailerModal');
+  const trailerModalClose = document.getElementById('trailerModalClose');
+  const trailerFrame = document.getElementById('trailerFrame');
+  const trailerTitle = document.getElementById('trailerTitle');
+  const trailerSource = document.getElementById('trailerSource');
+  const trailerExternalLink = document.getElementById('trailerExternalLink');
   const eventModalClose = document.getElementById('eventModalClose');
 
   const fallbackEvents = [
@@ -1257,7 +1406,10 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     if (/дет|парк|мастер|kids/.test(text)) return 'images/events/fallback-kids.jpg';
     if (/спорт|турнир|футбол|лед|йог|sport/.test(text)) return 'images/events/fallback-sport.jpg';
     if (/концерт|музык|concert/.test(text)) return 'images/events/fallback-concert.jpg';
-    if (/музей|выстав|экскурс|океан|аква|морск|галактик|подвод|exhibition/.test(text)) return 'images/events/fallback-exhibition.jpg';
+    if (/русск|русский музей|широка страна/.test(text)) return 'images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg';
+    if (/музейно|мвц|нить времени|швейн/.test(text)) return 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg';
+    if (/музей|выстав|экспозиц|exhibition/.test(text)) return 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg';
+    if (/экскурс|океан|аква|морск|галактик|подвод/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
     return 'images/events/fallback-event.jpg';
   }
 
@@ -1283,7 +1435,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const start = eventStart(event);
     const end = eventEnd(event);
     const multi = start.getTime() !== end.getTime();
-    const displayDate = multi && start < weekStart && end >= weekStart ? weekStart : start;
+    const displayDate = multi ? end : (start < weekStart && end >= weekStart ? weekStart : start);
+    const dateBadgeSmall = multi ? 'ДО' : DAYS[displayDate.getDay()];
     const exactToday = start.getTime() === today.getTime() && !multi;
     const category = event.category || 'Событие';
     const time = event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется');
@@ -1295,13 +1448,13 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
       <div class="event-img">
         <img class="event-photo" src="${escapeHtml(image)}" data-fallback="${escapeHtml(fallback)}" alt="${escapeHtml(event.title || 'Событие')}" loading="lazy">
         ${exactToday ? '<div class="today-label">Сегодня</div>' : ''}
-        <div class="date-badge"><strong>${displayDate.getDate()}</strong><span>${MONTHS_UPPER[displayDate.getMonth()]}</span><small>${DAYS[displayDate.getDay()]}</small></div>
+        <div class="date-badge"><strong>${displayDate.getDate()}</strong><span>${MONTHS_UPPER[displayDate.getMonth()]}</span><small>${dateBadgeSmall}</small></div>
       </div>
       <div class="event-body">
-        <div class="event-cat">${escapeHtml(category)}</div>
+        <div class="event-cat">${escapeHtml(ruCapSentence(category))}</div>
         <h2>${escapeHtml(event.title)}</h2>
-        <div class="event-meta"><span>◴ ${escapeHtml(time)}</span><span>⌖ ${escapeHtml(event.venue || 'Место уточняется')}</span></div>
-        <p>${escapeHtml(desc)}</p>
+        <div class="event-meta"><span>◴ ${escapeHtml(ruCapSentence(time))}</span><span>⌖ ${escapeHtml(ruCapSentence(event.venue || 'Место уточняется'))}</span></div>
+        <p>${escapeHtml(ruCapSentence(desc))}</p>
         <div class="event-source">Источник: ${sourceLink}${event.price ? ` · ${escapeHtml(event.price)}` : ''}${event.age ? ` · ${escapeHtml(event.age)}` : ''}</div>
         <div class="event-actions"><button class="more-btn" type="button" data-index="${index}">Подробнее</button><span class="heart">♡</span></div>
       </div>
@@ -1330,7 +1483,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 
   function render(){
     const monthStart = addMonths(baseMonthStart, monthOffset);
-    visibleEvents = allEvents.filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
+    visibleEvents = allEvents.filter(event => eventEnd(event) >= today).filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
     const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, monthStart)).join('');
     grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
     const empty = document.getElementById('noEventsDynamic');
@@ -1378,6 +1531,20 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   weekNext.addEventListener('click', () => { if (monthOffset < maxOffset) { monthOffset += 1; render(); } });
 
 
+
+  function ruCap(value){
+    const text = String(value || '').trim();
+    if (!text) return '';
+    if (/^(https?:|mailto:)/i.test(text)) return text;
+    if (/^г\.\s/i.test(text)) return text;
+    return text.replace(/[A-Za-zА-Яа-яЁё]/, ch => ch.toLocaleUpperCase('ru-RU'));
+  }
+
+  function ruCapSentence(value){
+    return ruCap(value);
+  }
+
+
   function stripCinemaPrefix(value){
     return String(value || '').replace(/^\s*Кино:\s*/i, '').trim();
   }
@@ -1390,16 +1557,54 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   function displayPrice(item){
     let text = String(item.priceDisplay || item.price || '').trim();
     text = text.replace(/^\s*(2D|3D|IMAX|ATMOS)(\s*,\s*(2D|3D|IMAX|ATMOS))*\s*[·-]\s*/i, '').trim();
-    if (!text || /^(2D|3D|IMAX|ATMOS)$/i.test(text)) return 'уточняйте при покупке';
+    if (!text || /^(2D|3D|IMAX|ATMOS)$/i.test(text)) return 'Уточняйте при покупке';
     return text;
   }
 
   function displayAge(item){
-    return item.age || 'уточняйте';
+    return item.age || 'Уточняйте';
   }
 
   function displayRefund(item){
     return item.refundPolicy || 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.';
+  }
+
+
+
+  function rutubeSearchUrl(item){
+    const title = stripCinemaPrefix(item.title || 'трейлер');
+    return 'https://rutube.ru/search/?query=' + encodeURIComponent(title + ' трейлер');
+  }
+
+  function trailerPlayableUrl(item){
+    const url = String(item.trailerEmbedUrl || item.trailerUrl || '').trim();
+    if (url) return url;
+    return rutubeSearchUrl(item);
+  }
+
+  function trailerSourceLabel(item){
+    const url = String(item.trailerEmbedUrl || item.trailerUrl || '').toLowerCase();
+    if (url.includes('vk.com') || url.includes('vkvideo')) return 'VK Видео';
+    if (url.includes('rutube')) return 'RuTube';
+    return item.trailerSourceName || 'RuTube';
+  }
+
+  function openTrailerModal(item){
+    const src = trailerPlayableUrl(item);
+    trailerTitle.textContent = 'Трейлер: ' + stripCinemaPrefix(item.title || 'фильм');
+    trailerSource.textContent = trailerSourceLabel(item);
+    trailerExternalLink.href = src || rutubeSearchUrl(item);
+    trailerFrame.removeAttribute('src');
+    trailerFrame.src = src || rutubeSearchUrl(item);
+    trailerModal.classList.add('show');
+    trailerModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeTrailerModal(){
+    trailerModal.classList.remove('show');
+    trailerModal.setAttribute('aria-hidden', 'true');
+    trailerFrame.removeAttribute('src');
   }
 
 
@@ -1428,26 +1633,28 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
       }, { once: false });
     }
 
-    modalRating.textContent = item.category || 'Событие';
+    modalRating.textContent = ruCapSentence(item.category || 'Событие');
     modalTitle.textContent = item.title || 'Событие';
-    modalText.textContent = item.description || 'Подробности смотрите в источнике события.';
+    modalText.textContent = ruCapSentence(item.description || 'Подробности смотрите в источнике события.');
     const isCinema = normalizeCategory(item) === 'cinema';
     modalDate.textContent = formatEventDate(item);
-    modalTime.textContent = item.schedule || item.scheduleShort || item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется');
-    modalPrice.textContent = isCinema ? displayPrice(item) : (item.price || 'уточняйте');
-    modalAge.textContent = isCinema ? displayAge(item) : (item.age || 'без ограничения');
-    modalRefund.textContent = isCinema ? displayRefund(item) : 'не применяется';
-    modalVenue.textContent = item.address || item.venue || 'Место уточняется';
+    modalTime.textContent = ruCapSentence(item.schedule || item.scheduleShort || item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется'));
+    modalPrice.textContent = ruCapSentence(isCinema ? displayPrice(item) : (item.price || 'Уточняйте'));
+    modalAge.textContent = ruCapSentence(isCinema ? displayAge(item) : (item.age || 'Без ограничения'));
+    modalRefund.textContent = ruCapSentence(isCinema ? displayRefund(item) : 'Не применяется');
+    modalVenue.textContent = ruCapSentence(item.address || item.venue || 'Место уточняется');
     modalSourceBtn.textContent = isCinema ? 'Купить / расписание' : (item.url ? 'Открыть источник' : 'Уточнить участие');
     modalSourceBtn.href = sourceHref;
     modalSourceBtn.target = sourceTarget;
 
-    const trailerUrl = isCinema ? (item.trailerUrl || fallbackTrailerUrl(item)) : '';
+    const trailerUrl = isCinema ? trailerPlayableUrl(item) : '';
     if (trailerUrl) {
-      modalTrailerBtn.href = trailerUrl;
+      modalTrailerBtn.href = '#trailer';
+      modalTrailerBtn.dataset.index = button.dataset.index;
       modalTrailerBtn.style.display = 'flex';
     } else {
       modalTrailerBtn.removeAttribute('href');
+      modalTrailerBtn.removeAttribute('data-index');
       modalTrailerBtn.style.display = 'none';
     }
     if (sourceTarget) {
@@ -1462,6 +1669,16 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     document.body.classList.add('modal-open');
   });
 
+
+  modalTrailerBtn.addEventListener('click', event => {
+    event.preventDefault();
+    const item = visibleEvents[Number(modalTrailerBtn.dataset.index)];
+    if (item) openTrailerModal(item);
+  });
+  trailerModalClose.addEventListener('click', closeTrailerModal);
+  trailerModal.addEventListener('click', event => { if (event.target === trailerModal) closeTrailerModal(); });
+
+
   const closeModal = () => {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden','true');
@@ -1470,7 +1687,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   eventModalClose.addEventListener('click', closeModal);
   modalCloseBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
-  window.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+  window.addEventListener('keydown', event => { if (event.key === 'Escape') { closeTrailerModal(); closeModal(); } });
 
   loadEvents();
 })();
