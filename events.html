@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260608_v6">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260608_v8">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1415,6 +1415,71 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   .place-modal-close{font-size:28px!important;}
 }
 
+
+
+/* ===== V8 EVENT DETAIL CLOSE FIX ===== */
+.event-detail-modal .place-modal-box{
+  position:relative!important;
+}
+.event-detail-close{
+  position:absolute!important;
+  top:16px!important;
+  right:16px!important;
+  left:auto!important;
+  bottom:auto!important;
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  border-radius:14px!important;
+  background:rgba(10,16,26,.72)!important;
+  color:#fff!important;
+  font-size:32px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  font-family:Arial, Helvetica, sans-serif!important;
+  text-align:center!important;
+  text-indent:0!important;
+  letter-spacing:0!important;
+  text-decoration:none!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.25)!important;
+  cursor:pointer!important;
+  z-index:50!important;
+  transform:none!important;
+  overflow:hidden!important;
+}
+.event-detail-close::before,
+.event-detail-close::after{
+  content:none!important;
+  display:none!important;
+}
+.event-detail-close:hover{
+  background:rgba(241,199,91,.18)!important;
+  border-color:rgba(241,199,91,.42)!important;
+  color:#fff!important;
+  transform:none!important;
+}
+.event-detail-close:active{
+  transform:none!important;
+}
+@media(max-width:700px){
+  .event-detail-close{
+    top:12px!important;
+    right:12px!important;
+    width:40px!important;
+    height:40px!important;
+    min-width:40px!important;
+    min-height:40px!important;
+    font-size:28px!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1495,7 +1560,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 
 <div class="place-modal event-detail-modal" id="eventModal" aria-hidden="true">
   <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="place-modal-close" id="eventModalClose" type="button" aria-label="Закрыть">×</button>
+    <button class="event-detail-close" id="eventModalClose" type="button" aria-label="Закрыть">×</button>
     <div class="place-modal-image" id="modalImage"></div>
     <div class="place-modal-content">
       <div class="place-modal-rating" id="modalRating">Событие</div>
