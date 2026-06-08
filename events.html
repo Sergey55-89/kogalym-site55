@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=final_expired_events_fix_20260605">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260608_v5">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1303,6 +1303,84 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   .event-body h2,.event-meta,.event-body p{min-height:0!important;max-height:none!important;}
 }
 
+
+/* ===== V5 CONSISTENCY + REAL CINEMA POSTERS 2026-06-08 ===== */
+.events-toolbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:start!important;
+  gap:16px!important;
+  overflow:visible!important;
+}
+.filter-row{min-width:0!important;}
+.week-switch{
+  position:static!important;
+  justify-self:end!important;
+  align-self:start!important;
+  margin-left:0!important;
+}
+.week-switch button{position:static!important;}
+.event-card[data-filter="cinema"] .event-photo{
+  object-fit:cover!important;
+  object-position:center top!important;
+  background:#050d19!important;
+}
+.modal-close,
+.trailer-modal-close{
+  position:absolute!important;
+  top:16px!important;
+  right:16px!important;
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  padding:0!important;
+  border-radius:14px!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(10,16,26,.72)!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.25)!important;
+}
+.modal-close::before,
+.modal-close::after,
+.trailer-modal-close::before,
+.trailer-modal-close::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:20px!important;
+  height:2px!important;
+  margin:0!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  transform-origin:center!important;
+}
+.modal-close::before,
+.trailer-modal-close::before{transform:translate(-50%,-50%) rotate(45deg)!important;}
+.modal-close::after,
+.trailer-modal-close::after{transform:translate(-50%,-50%) rotate(-45deg)!important;}
+.modal-close:hover,
+.trailer-modal-close:hover{
+  background:rgba(241,199,91,.18)!important;
+  border-color:rgba(241,199,91,.42)!important;
+}
+.modal-close:hover::before,
+.modal-close:hover::after,
+.trailer-modal-close:hover::before,
+.trailer-modal-close:hover::after{
+  background:#07101f!important;
+}
+@media (max-width:980px){
+  .events-toolbar{grid-template-columns:1fr!important;}
+  .week-switch{justify-self:start!important;width:max-content!important;}
+}
+
 </style>
 </head>
 <body>
@@ -1556,6 +1634,24 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
   function compareEvents(a,b){ return eventStart(a) - eventStart(b) || String(a.title).localeCompare(String(b.title),'ru'); }
 
+  const CINEMA_POSTERS = {
+    "Кино: Тролли возвращаются!": "images/events/3f870e965f9b790285.jpg",
+    "Кино: Закулисье реальности": "images/events/0b740c305d9fe16847.jpg",
+    "Кино: Дени и Мэни в кино": "images/events/0675000671573fa911.jpg",
+    "Кино: Майкл": "images/events/1a79c341f4c97f5965.jpg",
+    "Кино: Грязные деньги": "images/events/306da19aba8813b85a.jpg",
+    "Кино: В чужой шкуре": "images/events/0818b5a1431cb8fee0.jpg",
+    "Кино: Побег из волшебного измерения": "images/events/0c3ca0068e7e2a06fb.jpg",
+    "Кино: Кощей. Тайна живой воды": "images/events/00e28aea99e5b45f2e.jpg",
+    "Кино: Не одна дома 3. Выпускной": "images/events/176691f5868f92cd6e.jpg",
+    "Кино: Богатыри": "images/events/4000645472f1796b52.jpg"
+  };
+
+  function cinemaPosterByTitle(event){
+    const title = String((event && event.title) || '').trim();
+    return CINEMA_POSTERS[title] || '';
+  }
+
   function localFallbackImage(event){
     const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''} ${event.categoryKey || ''}`.toLowerCase().replace(/ё/g,'е');
     if (/подвод|океанариум|аквариум/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
@@ -1564,6 +1660,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     if (/мудрец|простоты/.test(text)) return 'images/events/mudrets.jpg';
     if (/беззабот/.test(text)) return 'images/events/bezzabotnye.jpg';
     if (/расстроенная\s+семья/.test(text)) return 'images/events/rasstroennaya-semya.jpg';
+    const cinemaPoster = cinemaPosterByTitle(event);
+    if (cinemaPoster) return cinemaPoster;
     if (/кино|фильм|сеанс|cinema/.test(text)) return 'images/events/fallback-cinema.jpg';
     if (/театр|спектак|theater/.test(text)) return 'images/events/fallback-theater.jpg';
     if (/дет|парк|мастер|kids/.test(text)) return 'images/events/fallback-kids.jpg';
@@ -1582,9 +1680,11 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''} ${event.description || ''}`.toLowerCase().replace(/ё/g,'е');
     if (/подвод|океанариум|аквариум|морск/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
     let image = String(event.image || '').trim();
+    const cinemaPoster = cinemaPosterByTitle(event);
+    if (category === 'cinema' && cinemaPoster && (!image || /fallback-cinema\.jpg|places-v7\/29-15-kinoteatr/i.test(image))) return cinemaPoster;
     if (!image) return fallback;
     if (category !== 'cinema' && /magnit|магнит|family|semey|семейн/i.test(image)) return fallback;
-    if (category === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(image)) return 'images/events/fallback-cinema.jpg';
+    if (category === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(image)) return cinemaPoster || 'images/events/fallback-cinema.jpg';
     if (category === 'theater' && /places-v7\/34-43-filial/i.test(image)) return fallback;
     return image;
   }

@@ -305,7 +305,11 @@ function normalizeEvent(event) {
   };
   normalized.image = normalized.image || pickImage(normalized);
   if (/подвод|океанариум|аквариум|морск/i.test(`${normalized.title} ${normalized.venue} ${normalized.category}`)) normalized.image = 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
-  if (normalized.categoryKey === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(normalized.image)) normalized.image = 'images/events/fallback-cinema.jpg';
+  if (normalized.categoryKey === 'cinema') {
+    const poster = cinemaPosterByTitle(normalized.title);
+    if (poster && (!normalized.image || /places-v7\/29-15-kinoteatr|fallback-cinema\.jpg/i.test(normalized.image))) normalized.image = poster;
+    else if (/places-v7\/29-15-kinoteatr/i.test(normalized.image)) normalized.image = 'images/events/fallback-cinema.jpg';
+  }
   if (normalized.categoryKey === 'theater' && /places-v7\/34-43-filial/i.test(normalized.image)) normalized.image = pickImage(normalized);
   return normalized;
 }
