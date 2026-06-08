@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Афиша — Открой Когалым</title>
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260608_v6">
+<style>
+:root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
+html{scroll-behavior:smooth}
+body{margin:0;background:#020814;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(2,8,20,.92),rgba(2,8,20,.58) 45%,rgba(2,8,20,.30)),linear-gradient(180deg,rgba(2,8,20,.12),#020814 72%),url('images/night.jpg') center top/cover fixed;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 62% 8%,rgba(28,178,111,.23),transparent 32%),radial-gradient(circle at 18% 24%,rgba(241,199,91,.10),transparent 30%);pointer-events:none}
+.events-page{min-height:100vh;padding:94px 28px 58px;background:transparent}
+.events-shell{max-width:1450px;margin:0 auto}
+.events-hero{position:relative;overflow:hidden;border-bottom-left-radius:28px;border-bottom-right-radius:28px;padding:34px 0 30px;margin-bottom:24px;background:linear-gradient(90deg,rgba(2,8,20,.84),rgba(2,8,20,.45)),linear-gradient(180deg,rgba(2,8,20,.10),rgba(2,8,20,.88)),url('images/hero.jpg') center 38%/cover;border:1px solid rgba(255,255,255,.07);border-top:0;box-shadow:0 32px 80px rgba(0,0,0,.24)}
+.events-hero::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:240px;background:radial-gradient(ellipse at center,rgba(82,222,135,.32),transparent 62%);filter:blur(18px);transform:rotate(-4deg);opacity:.85}
+.events-hero-inner{position:relative;z-index:1;padding:0 40px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:26px;align-items:end}
+.events-kicker{display:inline-flex;align-items:center;gap:9px;width:max-content;margin-bottom:15px;padding:8px 15px;border-radius:9px;border:1px solid var(--af-line2);background:rgba(214,162,75,.10);color:var(--af-gold);font-weight:900;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.events-kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--af-gold);box-shadow:0 0 18px var(--af-gold)}
+.events-hero h1{font-family:Georgia,'Times New Roman',serif!important;text-transform:none!important;letter-spacing:-.055em!important;font-size:clamp(48px,5.2vw,78px)!important;line-height:.98!important;font-weight:500!important;margin:0 0 14px!important;color:#fff!important;text-shadow:0 16px 44px rgba(0,0,0,.55)!important}
+.events-lead{max-width:640px;font-size:20px;line-height:1.45;color:#e9f1ff;margin:0}
+.events-summary{border:1px solid rgba(255,255,255,.10);border-radius:22px;background:rgba(4,14,27,.62);backdrop-filter:blur(14px);padding:20px 22px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+.events-summary b{display:block;font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:500;margin-bottom:10px;color:#fff}
+.events-summary span{display:block;color:#dce8f8;line-height:1.5;font-size:15px}
+.events-toolbar{position:sticky;top:92px;z-index:80;margin:0 0 18px;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(2,8,20,.78);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap}
+.filter-btn{appearance:none;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);color:#fff;border-radius:11px;padding:11px 18px;font-weight:850;cursor:pointer;transition:.2s;white-space:nowrap}
+.filter-btn:hover{border-color:rgba(241,199,91,.45);transform:translateY(-1px)}
+.filter-btn.active{background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;border-color:transparent;box-shadow:0 10px 28px rgba(214,162,75,.22)}
+.week-switch{display:flex;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.10);border-radius:13px;background:rgba(255,255,255,.04);padding:8px 10px;color:#e8f0ff;font-weight:800;white-space:nowrap;flex-shrink:0}
+.week-switch button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;font-size:22px;line-height:1;padding:0;transition:background .2s,border-color .2s,transform .2s,opacity .2s}
+.week-switch button:hover{background:rgba(241,199,91,.12);border-color:rgba(241,199,91,.45);transform:translateY(-1px)}
+.week-switch button:disabled{opacity:.42;cursor:default;transform:none}
+.week-switch span{display:inline-flex;align-items:center;gap:8px;padding:0 4px;font-size:16px}
+.events-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:18px;align-items:start}
+.events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.event-card{position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(180deg,rgba(8,23,43,.92),rgba(4,14,27,.92));border:1px solid rgba(255,255,255,.10);box-shadow:0 16px 52px rgba(0,0,0,.20);transition:transform .24s,border-color .24s,box-shadow .24s;min-height:430px;display:flex;flex-direction:column}
+.event-card:hover{transform:translateY(-7px);border-color:rgba(241,199,91,.38);box-shadow:0 26px 70px rgba(0,0,0,.36)}
+.event-img{position:relative;height:168px;background:linear-gradient(135deg,rgba(9,24,45,.95),rgba(4,14,27,.95));overflow:hidden}
+.event-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;filter:saturate(1.06) contrast(1.04);opacity:.96}
+.event-img::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.36))}
+.today-label{position:absolute;left:12px;top:12px;z-index:2;padding:6px 10px;border-radius:999px;background:#d94343;color:#fff;font-size:12px;font-weight:900;text-transform:uppercase;box-shadow:0 8px 20px rgba(217,67,67,.24)}
+.date-badge{position:absolute;left:14px;bottom:12px;z-index:2;width:62px;border-radius:14px;overflow:hidden;text-align:center;background:rgba(3,10,20,.82);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 26px rgba(0,0,0,.26)}
+.date-badge strong{display:block;font-size:26px;line-height:1;padding-top:10px;color:#fff}.date-badge span{display:block;padding:2px 0 7px;font-size:12px;font-weight:900;color:#fff}.date-badge small{display:block;background:rgba(255,255,255,.08);padding:6px 0;color:#dce7f8;font-size:11px;font-weight:900}
+.event-body{padding:18px 18px 16px;display:flex;flex-direction:column;flex:1}
+.event-cat{display:flex;align-items:center;gap:8px;color:var(--af-gold);font-weight:950;font-size:12px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px}.event-cat::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--af-gold);opacity:.85}
+.event-body h2{font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.08;font-weight:500;margin:0 0 10px;color:#fff}
+.event-meta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 10px;color:#d9e5f7;font-size:14px}.event-meta span{display:inline-flex;align-items:center;gap:5px}
+.event-body p{margin:0 0 16px;color:#b9c8dc;font-size:15px;line-height:1.42;flex:1}
+.event-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}.more-btn{border:1px solid var(--af-line2);background:rgba(214,162,75,.08);color:var(--af-gold);border-radius:10px;padding:10px 19px;font-weight:900;cursor:pointer}.more-btn:hover{background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f}.heart{width:38px;height:38px;border:1px solid rgba(255,255,255,.13);border-radius:50%;display:grid;place-items:center;color:#fff;opacity:.84}.event-card.is-hidden{display:none}
+.side-panel{position:sticky;top:184px;border:1px solid rgba(255,255,255,.10);border-radius:22px;background:rgba(5,18,34,.80);backdrop-filter:blur(14px);padding:18px;box-shadow:0 16px 48px rgba(0,0,0,.20)}
+.side-panel h2{font-size:22px;margin:0 0 14px;font-weight:900;color:#fff}.mini-event{display:grid;grid-template-columns:62px 1fr;gap:12px;align-items:center;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:11px;margin-bottom:10px;background:rgba(255,255,255,.035)}.mini-date{text-align:center;color:#dce7f8;font-size:11px;font-weight:900;border-right:1px solid rgba(255,255,255,.08);padding-right:10px}.mini-date strong{display:block;color:#fff;font-size:16px}.mini-event b{display:block;color:#fff;font-size:14px;margin-bottom:5px}.mini-event span{display:block;color:#b7c4d8;font-size:12px;line-height:1.25}.all-events{display:flex;align-items:center;justify-content:center;width:100%;margin-top:14px;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:13px;background:rgba(255,255,255,.04);color:#fff;font-weight:900;text-decoration:none}.all-events:hover{border-color:rgba(241,199,91,.45);color:var(--af-gold)}
+.no-events{display:none;grid-column:1/-1;border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:28px;text-align:center;background:rgba(255,255,255,.04);color:#dce8f8;font-weight:800}.no-events.show{display:block}
+.events-source-note{display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:#b9c8dc;font-size:13px;font-weight:800}
+.events-source-note::before{content:"";width:7px;height:7px;border-radius:50%;background:#52de87;box-shadow:0 0 14px rgba(82,222,135,.75)}
+.events-loading{grid-column:1/-1;border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:28px;text-align:center;background:rgba(255,255,255,.04);color:#dce8f8;font-weight:800}
+.event-source{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:#8fa1ba;font-size:12px;font-weight:800}.event-source a{color:#c9d7ea;text-decoration:none}.event-source a:hover{color:var(--af-gold)}
+.status-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 14px;color:#aebcd0;font-size:13px;font-weight:800}.status-row a{color:var(--af-gold);text-decoration:none}.status-row a:hover{text-decoration:underline}
+
+.event-modal{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;padding:26px;background:rgba(0,5,14,.78);backdrop-filter:blur(12px)}.event-modal.show{display:flex}.modal-card{position:relative;width:min(820px,calc(100vw - 38px));max-height:calc(100vh - 52px);display:grid;grid-template-columns:minmax(280px,43%) minmax(0,1fr);border-radius:26px;border:1px solid rgba(255,255,255,.16);background:linear-gradient(145deg,rgba(8,22,40,.98),rgba(4,13,26,.98));box-shadow:0 38px 120px rgba(0,0,0,.62);overflow:hidden}.modal-media{position:relative;min-height:420px;background:linear-gradient(135deg,rgba(9,24,45,.96),rgba(3,10,20,.98));overflow:hidden}.modal-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.98;filter:saturate(1.06) contrast(1.04)}.modal-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.34))}.modal-fallback{position:absolute;inset:0;display:none;place-items:center;padding:28px;text-align:center;color:#dce8f8;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.08;background:radial-gradient(circle at 30% 25%,rgba(241,199,91,.16),transparent 30%),linear-gradient(135deg,#071526,#020814)}.modal-media.is-fallback .modal-photo{display:none}.modal-media.is-fallback .modal-fallback{display:grid}.modal-close{position:absolute;right:16px;top:16px;z-index:8;width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(4,12,24,.78);color:#fff;font-size:0;line-height:1;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.34);transition:.18s}.modal-close::before,.modal-close::after{content:"";position:absolute;width:16px;height:2px;border-radius:2px;background:#fff}.modal-close::before{transform:rotate(45deg)}.modal-close::after{transform:rotate(-45deg)}.modal-close:hover{background:linear-gradient(135deg,#ffd977,#be8227);border-color:transparent}.modal-close:hover::before,.modal-close:hover::after{background:#07101f}.modal-content{padding:34px 34px 30px;display:flex;flex-direction:column;justify-content:center}.modal-content small{display:inline-flex;margin-bottom:12px;color:var(--af-gold);font-weight:950;text-transform:uppercase;letter-spacing:.02em}.modal-content h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(30px,3vw,42px);line-height:1.02;font-weight:500;margin:0 0 16px;color:#fff}.modal-content p{color:#dce8f8;line-height:1.62;margin:0 0 22px;font-size:16px}.modal-content a{display:inline-flex;width:max-content;border-radius:12px;background:linear-gradient(135deg,#ffd977,#be8227);color:#07101f;padding:13px 20px;font-weight:950;text-decoration:none}.modal-content a:hover{filter:brightness(1.06)}@media(max-width:760px){.modal-card{display:block;overflow:auto}.modal-media{min-height:230px}.modal-content{padding:24px 20px 22px}.modal-close{right:12px;top:12px}}
+footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px 44px!important;border-top:1px solid rgba(255,255,255,.08)!important;display:flex!important;gap:34px!important;color:#aebcd0!important}
+@media(max-width:1240px){.events-hero-inner{grid-template-columns:1fr}.events-summary{max-width:560px}.events-layout{grid-template-columns:1fr}.side-panel{position:relative;top:auto}.events-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.events-toolbar{top:0}}
+@media(max-width:860px){.events-page{padding:0 14px 44px}.events-hero{border-radius:0 0 22px 22px}.events-hero-inner{padding:0 18px}.events-lead{font-size:17px}.events-toolbar{position:relative;top:auto;align-items:flex-start;flex-direction:column}.filter-row{flex-wrap:nowrap;overflow-x:auto;width:100%;padding-bottom:2px}.filter-btn{flex:0 0 auto}.week-switch{width:100%;justify-content:space-between}.events-grid{grid-template-columns:1fr}.event-card{min-height:0}.event-img{height:190px}.side-panel{padding:15px}.events-hero h1{font-size:44px!important}footer{flex-wrap:wrap!important;padding:22px 14px 38px!important}}
+
+/* Visual hard fix: compact cards, guaranteed photos, clean modal */
+.events-grid{align-items:stretch!important}.event-card{height:430px!important;min-height:0!important;display:flex!important;flex-direction:column!important;border-radius:20px!important;background:linear-gradient(180deg,rgba(7,20,38,.94),rgba(3,12,25,.96))!important}.event-img{height:176px!important;min-height:176px!important;background:#071526!important}.event-photo{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;filter:saturate(1.06) contrast(1.04)!important}.event-img::after{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.22))!important}.event-body{padding:15px 16px 15px!important;min-height:0!important;overflow:hidden!important}.event-body h2{font-size:22px!important;line-height:1.08!important;margin:0 0 9px!important;min-height:48px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}.event-meta{font-size:13px!important;gap:6px!important;margin:0 0 9px!important;display:grid!important;grid-template-columns:1fr!important}.event-meta span{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.event-body p{font-size:14px!important;line-height:1.42!important;margin:0 0 10px!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important;min-height:60px!important;flex:0 0 auto!important}.event-source{font-size:12px!important;line-height:1.25!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0 0 10px!important}.event-actions{margin-top:auto!important}.more-btn{padding:9px 17px!important;border-radius:11px!important}.date-badge{width:58px!important}.date-badge strong{font-size:24px!important}.today-label{font-size:11px!important;padding:6px 9px!important}.event-cat{font-size:12px!important;margin-bottom:8px!important}.modal-card{width:min(940px,calc(100vw - 42px))!important;min-height:430px!important;grid-template-columns:minmax(310px,45%) minmax(0,55%)!important;border-radius:26px!important;background:linear-gradient(145deg,rgba(7,20,38,.98),rgba(3,12,25,.98))!important}.modal-media{min-height:430px!important;background:#071526!important}.modal-photo{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:1!important;filter:saturate(1.08) contrast(1.04)!important}.modal-media::after{background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.04))!important}.modal-fallback{display:none!important}.modal-media.is-fallback .modal-photo{display:block!important}.modal-close{right:18px!important;top:18px!important;width:42px!important;height:42px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:rgba(2,8,20,.74)!important}.modal-close::before,.modal-close::after{width:17px!important;height:2px!important;left:50%!important;top:50%!important;margin-left:-8.5px!important;margin-top:-1px!important}.modal-content{padding:32px 34px!important}.modal-content h2{font-size:clamp(30px,3vw,40px)!important}.modal-content p{font-size:16px!important;line-height:1.58!important}@media(max-width:760px){.modal-card{display:block!important;min-height:0!important}.modal-media{min-height:240px!important}.event-card{height:auto!important}.event-body h2{min-height:0!important}}
+
+
+/* FINAL_COMPACT_CARD_FIX_20260603 */
+.events-grid{grid-template-columns:repeat(3,minmax(280px,1fr))!important;gap:16px!important}
+.event-card{height:382px!important;min-height:382px!important;max-height:382px!important;border-radius:20px!important;overflow:hidden!important}
+.event-img{height:138px!important;min-height:138px!important;max-height:138px!important}
+.event-photo{object-fit:cover!important;object-position:center!important}
+.event-body{padding:13px 15px 14px!important;display:flex!important;flex-direction:column!important;height:244px!important;overflow:hidden!important}
+.event-cat{font-size:11px!important;margin-bottom:6px!important}
+.event-body h2{font-size:20px!important;line-height:1.08!important;min-height:43px!important;max-height:43px!important;margin-bottom:8px!important;-webkit-line-clamp:2!important}
+.event-meta{font-size:12px!important;line-height:1.24!important;margin-bottom:8px!important;gap:4px!important}
+.event-meta span{min-width:0!important}
+.event-body p{font-size:13px!important;line-height:1.34!important;min-height:36px!important;max-height:36px!important;margin-bottom:8px!important;-webkit-line-clamp:2!important;flex:0 0 auto!important}
+.event-source{font-size:11px!important;line-height:1.2!important;height:14px!important;max-height:14px!important;margin-bottom:8px!important;display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.event-actions{height:38px!important;min-height:38px!important;margin-top:auto!important;display:flex!important;align-items:center!important}
+.more-btn{height:36px!important;padding:0 16px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.heart{width:34px!important;height:34px!important;min-width:34px!important}
+.date-badge{width:54px!important;border-radius:12px!important}.date-badge strong{font-size:21px!important;padding-top:8px!important}.date-badge span{font-size:10px!important;padding:2px 0 5px!important}.date-badge small{font-size:10px!important;padding:5px 0!important}
+.today-label{font-size:10px!important;padding:5px 8px!important}
+.modal-card{width:min(880px,calc(100vw - 46px))!important;min-height:0!important;grid-template-columns:minmax(300px,42%) minmax(0,58%)!important}
+.modal-media{min-height:360px!important}
+.modal-content{padding:28px 30px!important}
+.modal-content h2{font-size:clamp(28px,2.7vw,38px)!important}
+@media(max-width:1240px){.events-grid{grid-template-columns:repeat(2,minmax(280px,1fr))!important}}
+@media(max-width:860px){.events-grid{grid-template-columns:1fr!important}.event-card{height:auto!important;max-height:none!important}.event-body{height:auto!important}.event-img{height:170px!important;min-height:170px!important}}
+
+
+/* AFISHA_TEXT_VISIBLE_FIX_20260603: compact cards, smaller photos, visible button */
+.events-grid{grid-template-columns:repeat(3,minmax(255px,1fr))!important;gap:15px!important;align-items:start!important}
+.event-card{height:365px!important;min-height:365px!important;max-height:365px!important;border-radius:18px!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+.event-img{height:116px!important;min-height:116px!important;max-height:116px!important;flex:0 0 116px!important;background:#071526!important}
+.event-photo{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;opacity:.98!important}
+.today-label{left:10px!important;top:10px!important;font-size:10px!important;padding:5px 8px!important;line-height:1!important}
+.date-badge{left:12px!important;bottom:10px!important;width:52px!important;border-radius:12px!important}
+.date-badge strong{font-size:21px!important;padding-top:8px!important}.date-badge span{font-size:10px!important;padding:1px 0 5px!important}.date-badge small{font-size:10px!important;padding:5px 0!important}
+.event-body{height:auto!important;min-height:0!important;flex:1 1 auto!important;padding:11px 13px 12px!important;display:flex!important;flex-direction:column!important;overflow:hidden!important}
+.event-cat{font-size:11px!important;margin:0 0 6px!important;line-height:1.1!important}.event-cat::before{width:6px!important;height:6px!important}
+.event-body h2{font-size:18px!important;line-height:1.08!important;min-height:39px!important;max-height:39px!important;margin:0 0 7px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important}
+.event-meta{display:block!important;font-size:12px!important;line-height:1.25!important;margin:0 0 7px!important;min-height:32px!important;max-height:32px!important;overflow:hidden!important;color:#d8e4f6!important}
+.event-meta span{display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;margin:0 0 2px!important}
+.event-body p{font-size:12.5px!important;line-height:1.32!important;min-height:33px!important;max-height:33px!important;margin:0 0 7px!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;flex:0 0 auto!important;color:#c2d0e2!important}
+.event-source{display:none!important}
+.event-actions{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin-top:auto!important;min-height:36px!important;flex:0 0 36px!important}
+.more-btn{height:34px!important;padding:0 15px!important;border-radius:10px!important;font-size:13px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important}
+.heart{width:34px!important;height:34px!important;min-width:34px!important}
+@media(max-width:1240px){.events-grid{grid-template-columns:repeat(2,minmax(255px,1fr))!important}.event-card{height:365px!important}}
+@media(max-width:860px){.events-grid{grid-template-columns:1fr!important}.event-card{height:auto!important;min-height:0!important;max-height:none!important}.event-img{height:140px!important;min-height:140px!important;max-height:140px!important;flex-basis:140px!important}.event-body{height:auto!important}.event-body h2{min-height:0!important;max-height:none!important}.event-meta{min-height:0!important;max-height:none!important}.event-body p{min-height:0!important;max-height:none!important}}
+
+
+/* AFISHA_MATCH_LOCATIONS_CARDS_20260604: карточки афиши приведены к сетке и стилю локаций */
+.events-page{
+  padding:132px 0 70px!important;
+}
+.events-shell{
+  width:min(1180px, calc(100vw - 72px))!important;
+  max-width:min(1180px, calc(100vw - 72px))!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  box-sizing:border-box!important;
+}
+.events-hero{
+  border-radius:28px!important;
+  margin-bottom:18px!important;
+}
+.events-toolbar{
+  position:relative!important;
+  top:auto!important;
+  z-index:10!important;
+  margin:0 0 18px!important;
+  border-radius:22px!important;
+}
+.events-layout{
+  display:block!important;
+}
+.side-panel{
+  display:none!important;
+}
+.events-grid{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.event-card{
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  border-radius:18px!important;
+  background:rgba(7,17,29,.72)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  backdrop-filter:blur(14px)!important;
+  box-shadow:0 24px 60px rgba(0,0,0,.24)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+.event-card:hover{
+  transform:translateY(-8px)!important;
+  border-color:rgba(242,208,138,.26)!important;
+  box-shadow:0 34px 80px rgba(0,0,0,.34)!important;
+}
+.event-img{
+  position:relative!important;
+  height:150px!important;
+  min-height:150px!important;
+  max-height:150px!important;
+  flex:0 0 150px!important;
+  background:#07111f!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.event-photo{
+  position:static!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+  transform:none!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.event-img::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  pointer-events:none!important;
+  background:linear-gradient(to top,rgba(2,8,20,.72),transparent 72%)!important;
+  z-index:1!important;
+}
+.today-label{
+  left:12px!important;
+  top:12px!important;
+  z-index:2!important;
+  font-size:10px!important;
+  padding:5px 8px!important;
+}
+.date-badge{
+  left:12px!important;
+  bottom:12px!important;
+  z-index:2!important;
+  width:52px!important;
+  border-radius:12px!important;
+}
+.date-badge strong{font-size:21px!important;padding-top:8px!important;}
+.date-badge span{font-size:10px!important;padding:1px 0 5px!important;}
+.date-badge small{font-size:10px!important;padding:5px 0!important;}
+.event-body{
+  padding:20px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  gap:12px!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+.event-cat,
+.event-body h2,
+.event-meta,
+.event-body p,
+.event-actions{
+  margin:0!important;
+}
+.event-cat{
+  width:max-content!important;
+  max-width:100%!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  padding:7px 11px!important;
+  border-radius:999px!important;
+  background:rgba(214,162,75,.13)!important;
+  color:#f2d08a!important;
+  font-size:11px!important;
+  line-height:1!important;
+  font-weight:900!important;
+  letter-spacing:.02em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-cat::before{
+  display:none!important;
+}
+.event-body h2{
+  display:block!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+  font-size:20px!important;
+  line-height:1.15!important;
+  font-weight:500!important;
+  color:#fff!important;
+}
+.event-meta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  color:#dbe6f8!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+.event-meta span{
+  display:block!important;
+  max-width:100%!important;
+  min-width:0!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+}
+.event-body p{
+  display:block!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+  color:#dbe6f8!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+  flex:0 0 auto!important;
+}
+.event-source{
+  display:none!important;
+}
+.event-actions{
+  margin-top:auto!important;
+  display:block!important;
+  min-height:50px!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  width:100%!important;
+  min-height:50px!important;
+  height:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:14px!important;
+  border:1px solid rgba(214,162,75,.38)!important;
+  background:rgba(214,162,75,.12)!important;
+  color:#f2d08a!important;
+  font-size:14px!important;
+  font-weight:900!important;
+}
+.heart{
+  display:none!important;
+}
+.modal-card{
+  width:min(780px,calc(100vw - 46px))!important;
+  min-height:0!important;
+  grid-template-columns:minmax(260px,40%) minmax(0,60%)!important;
+}
+.modal-media{
+  min-height:300px!important;
+  background:#07111f!important;
+}
+.modal-photo{
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+@media(max-width:1120px){
+  .events-page{padding-top:108px!important;}
+  .events-shell{width:calc(100vw - 40px)!important;max-width:calc(100vw - 40px)!important;}
+  .events-hero-inner{grid-template-columns:1fr!important;padding:0 24px!important;}
+  .events-toolbar{align-items:flex-start!important;flex-direction:column!important;}
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .event-img{height:150px!important;min-height:150px!important;max-height:150px!important;flex-basis:150px!important;}
+}
+@media(max-width:700px){
+  .events-page{padding-top:96px!important;}
+  .events-shell{width:calc(100vw - 24px)!important;max-width:calc(100vw - 24px)!important;}
+  .events-hero{border-radius:24px!important;}
+  .events-hero-inner{padding:0 18px!important;}
+  .events-hero h1{font-size:clamp(40px,12vw,56px)!important;}
+  .events-lead{font-size:16px!important;}
+  .filter-row{flex-wrap:nowrap!important;overflow-x:auto!important;width:100%!important;padding-bottom:4px!important;scrollbar-width:none!important;}
+  .filter-row::-webkit-scrollbar{display:none!important;}
+  .filter-btn{flex:0 0 auto!important;}
+  .week-switch{width:100%!important;justify-content:space-between!important;}
+  .events-grid{grid-template-columns:1fr!important;}
+  .event-img{height:140px!important;min-height:140px!important;max-height:140px!important;flex-basis:140px!important;}
+  .modal-card{display:block!important;width:calc(100vw - 28px)!important;}
+  .modal-media{min-height:220px!important;}
+}
+
+
+/* ===== RECHECK 2026-06-04: Afisha cards exactly match Locations catalog cards ===== */
+.events-shell{
+  max-width:1240px!important;
+}
+.events-layout{
+  display:block!important;
+}
+.side-panel{
+  display:none!important;
+}
+.events-grid{
+  width:min(1240px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+}
+.event-card{
+  min-height:610px!important;
+  height:auto!important;
+  max-height:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  background:linear-gradient(180deg,rgba(21,31,47,.90),rgba(10,18,31,.95))!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.28)!important;
+  transform:translateZ(0)!important;
+}
+.event-card:hover{
+  transform:translateY(-6px)!important;
+  border-color:rgba(242,208,138,.42)!important;
+  box-shadow:0 30px 74px rgba(0,0,0,.38),0 0 0 1px rgba(242,208,138,.08) inset!important;
+}
+.event-img{
+  position:relative!important;
+  height:240px!important;
+  min-height:240px!important;
+  max-height:240px!important;
+  flex:0 0 240px!important;
+  background:#07111f!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.event-photo{
+  position:static!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+  transform:none!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.event-body{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  gap:12px!important;
+  padding:20px!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+.event-cat,
+.event-body h2,
+.event-meta,
+.event-body p,
+.event-actions{
+  margin:0!important;
+}
+.event-body h2{
+  display:block!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+  font-size:22px!important;
+  line-height:1.15!important;
+  font-weight:500!important;
+  color:#fff!important;
+}
+.event-body p{
+  display:block!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  -webkit-line-clamp:unset!important;
+  -webkit-box-orient:initial!important;
+  color:#e5edf9!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+  flex:0 0 auto!important;
+}
+.event-meta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  color:#dbe6f8!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+.event-meta span{
+  display:block!important;
+  max-width:100%!important;
+  min-width:0!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  background:rgba(255,255,255,.075)!important;
+  border-radius:999px!important;
+  padding:7px 10px!important;
+}
+.event-actions{
+  margin-top:auto!important;
+  display:block!important;
+  min-height:52px!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  width:100%!important;
+  min-height:52px!important;
+  height:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:14px!important;
+  border:0!important;
+  background:linear-gradient(135deg,rgba(242,208,138,.95),rgba(214,162,75,.95))!important;
+  color:#08111f!important;
+  box-shadow:0 10px 24px rgba(214,162,75,.18)!important;
+  font-size:14px!important;
+  font-weight:900!important;
+}
+.more-btn:hover{
+  filter:brightness(1.04)!important;
+  color:#08111f!important;
+}
+@media(max-width:900px){
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .event-img{height:220px!important;min-height:220px!important;max-height:220px!important;flex-basis:220px!important;}
+}
+@media(max-width:700px){
+  .events-grid{grid-template-columns:1fr!important;gap:18px!important;}
+  .event-card{min-height:0!important;}
+  .event-img{height:215px!important;min-height:215px!important;max-height:215px!important;flex-basis:215px!important;}
+}
+
+
+
+/* ===== FINAL AFISHA UNIFY FIX 2026-06-04 ===== */
+.events-grid{
+  width:min(1240px,100%)!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+}
+.event-card{
+  display:flex!important;
+  flex-direction:column!important;
+  min-height:610px!important;
+  height:610px!important;
+  max-height:610px!important;
+  overflow:hidden!important;
+  border-radius:18px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  background:rgba(7,17,29,.72)!important;
+  backdrop-filter:blur(14px)!important;
+  box-shadow:0 24px 60px rgba(0,0,0,.24)!important;
+}
+.event-img{
+  height:240px!important;
+  min-height:240px!important;
+  max-height:240px!important;
+  flex:0 0 240px!important;
+  background:#07111f!important;
+}
+.event-photo{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+.event-body{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding:20px!important;
+  overflow:hidden!important;
+}
+.event-cat,
+.event-body h2,
+.event-meta,
+.event-body p,
+.event-actions{
+  margin:0!important;
+}
+.event-cat{
+  width:max-content!important;
+  max-width:100%!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  padding:8px 14px!important;
+  border-radius:999px!important;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b)!important;
+  color:#08111f!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-cat::before{display:none!important;}
+.event-body h2{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  font-size:22px!important;
+  line-height:1.15!important;
+  min-height:50px!important;
+  max-height:50px!important;
+  color:#fff!important;
+}
+.event-meta{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+  min-height:76px!important;
+  max-height:76px!important;
+  overflow:hidden!important;
+  color:#dbe6f8!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+}
+.event-meta span{
+  display:block!important;
+  padding:7px 10px!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.075)!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-body p{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:4!important;
+  overflow:hidden!important;
+  min-height:90px!important;
+  max-height:90px!important;
+  color:#e5edf9!important;
+  font-size:16px!important;
+  line-height:1.45!important;
+}
+.event-source{display:none!important;}
+.event-actions{
+  display:block!important;
+  margin-top:auto!important;
+  min-height:52px!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  width:100%!important;
+  min-height:52px!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b)!important;
+  color:#08111f!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  box-shadow:0 10px 24px rgba(214,162,75,.18)!important;
+}
+.heart{display:none!important;}
+.event-detail-modal .place-modal-image{
+  background:#07111f!important;
+  overflow:hidden!important;
+}
+.event-detail-modal .place-modal-image img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+.event-detail-modal .place-modal-rating{
+  text-transform:none!important;
+}
+.event-detail-modal .place-modal-info b{
+  text-transform:none!important;
+}
+@media(max-width:900px){
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .event-card{height:610px!important;max-height:610px!important;}
+  .event-img{height:220px!important;min-height:220px!important;max-height:220px!important;flex-basis:220px!important;}
+}
+@media(max-width:700px){
+  .events-grid{grid-template-columns:1fr!important;gap:18px!important;}
+  .event-card{height:auto!important;min-height:0!important;max-height:none!important;}
+  .event-img{height:215px!important;min-height:215px!important;max-height:215px!important;flex-basis:215px!important;}
+  .event-body h2,.event-meta,.event-body p{min-height:0!important;max-height:none!important;}
+}
+
+
+/* ===== FINAL CLEAN HEADER FIX 2026-06-04: убрать лишние блоки справа ===== */
+.events-hero-inner{
+  grid-template-columns:1fr!important;
+}
+.events-summary{
+  display:none!important;
+}
+.events-toolbar{
+  justify-content:flex-start!important;
+  align-items:flex-start!important;
+}
+.week-switch{
+  display:none!important;
+}
+.filter-row{
+  width:100%!important;
+}
+@media(max-width:700px){
+  .events-toolbar{
+    padding:12px!important;
+  }
+}
+
+
+/* ===== FINAL EQUAL WIDTH CARDS FIX 2026-06-04 =====
+   Причина: auto-fit растягивал карточки, когда в фильтре 1 или 2 события.
+   Теперь карточки всегда занимают одинаковую колонку: 3 колонки на десктопе,
+   2 на среднем экране, 1 на мобильном.
+*/
+.events-grid{
+  width:100%!important;
+  max-width:1240px!important;
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+  justify-content:start!important;
+}
+.event-card{
+  width:100%!important;
+  min-width:0!important;
+  height:560px!important;
+  min-height:560px!important;
+  max-height:560px!important;
+}
+.event-img{
+  height:210px!important;
+  min-height:210px!important;
+  max-height:210px!important;
+  flex:0 0 210px!important;
+}
+.event-body{
+  overflow:hidden!important;
+}
+.event-body h2{
+  min-height:50px!important;
+  max-height:50px!important;
+}
+.event-meta{
+  min-height:76px!important;
+  max-height:76px!important;
+}
+.event-body p{
+  min-height:90px!important;
+  max-height:90px!important;
+}
+@media(max-width:1000px){
+  .events-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:640px){
+  .events-grid{
+    grid-template-columns:1fr!important;
+  }
+  .event-card{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+  }
+  .event-img{
+    height:210px!important;
+    min-height:210px!important;
+    max-height:210px!important;
+    flex-basis:210px!important;
+  }
+  .event-body h2,
+  .event-meta,
+  .event-body p{
+    min-height:0!important;
+    max-height:none!important;
+  }
+}
+
+
+/* ===== FINAL MONTH SWITCH FIX 2026-06-04 =====
+   Переключатель возвращён справа от фильтров и теперь листает месяцы.
+*/
+.events-toolbar{
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:16px!important;
+}
+.filter-row{
+  width:auto!important;
+  flex:1 1 auto!important;
+}
+.week-switch{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  flex:0 0 auto!important;
+}
+.week-switch span{
+  min-width:142px!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+@media(max-width:900px){
+  .events-toolbar{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+  .filter-row{
+    width:100%!important;
+  }
+  .week-switch{
+    width:100%!important;
+    justify-content:space-between!important;
+  }
+}
+
+
+/* ===== PRECISE SCHEDULE MODAL FIX 2026-06-04 ===== */
+.event-detail-modal .place-modal-info{
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+}
+.event-detail-modal .place-modal-info div{
+  min-height:74px!important;
+}
+.event-detail-modal .place-modal-info span{
+  font-size:13px!important;
+  letter-spacing:.01em!important;
+}
+.event-detail-modal .place-modal-info b{
+  font-size:16px!important;
+  line-height:1.35!important;
+  white-space:normal!important;
+}
+.event-detail-modal .place-modal-content p{
+  margin-bottom:18px!important;
+}
+@media(max-width:700px){
+  .event-detail-modal .place-modal-info{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+
+/* ===== FINAL CARD CLIP + BADGE FIX 2026-06-04 ===== */
+.events-toolbar{
+  align-items:flex-start!important;
+}
+.filter-row{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+}
+.week-switch{
+  align-self:flex-start!important;
+}
+.events-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:24px!important;
+  align-items:stretch!important;
+}
+.event-card{
+  display:flex!important;
+  flex-direction:column!important;
+  height:600px!important;
+  min-height:600px!important;
+  max-height:600px!important;
+  overflow:hidden!important;
+  border-radius:20px!important;
+}
+.event-img{
+  position:relative!important;
+  height:220px!important;
+  min-height:220px!important;
+  max-height:220px!important;
+  flex:0 0 220px!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.event-photo{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  background:#07111f!important;
+}
+.today-label{
+  top:12px!important;
+  left:12px!important;
+  z-index:3!important;
+}
+.date-badge{
+  position:absolute!important;
+  left:12px!important;
+  bottom:12px!important;
+  top:auto!important;
+  right:auto!important;
+  z-index:3!important;
+  width:54px!important;
+  margin:0!important;
+}
+.event-body{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  padding:18px 18px 18px!important;
+  gap:10px!important;
+  overflow:hidden!important;
+}
+.event-cat{margin:0!important;}
+.event-body h2{
+  margin:0!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  min-height:48px!important;
+  max-height:48px!important;
+  font-size:20px!important;
+  line-height:1.18!important;
+}
+.event-meta{
+  margin:0!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+  min-height:72px!important;
+  max-height:72px!important;
+  overflow:hidden!important;
+}
+.event-meta span{
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.event-body p{
+  margin:0!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:3!important;
+  overflow:hidden!important;
+  min-height:60px!important;
+  max-height:60px!important;
+  line-height:1.42!important;
+}
+.event-source{display:none!important;}
+.event-actions{
+  margin-top:auto!important;
+  padding-top:8px!important;
+  min-height:56px!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  display:flex!important;
+  width:100%!important;
+  height:52px!important;
+  min-height:52px!important;
+  max-height:52px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 18px!important;
+  border-radius:14px!important;
+  box-sizing:border-box!important;
+}
+@media (max-width:1240px){
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media (max-width:860px){
+  .events-grid{grid-template-columns:1fr!important;}
+  .event-card{height:auto!important;min-height:0!important;max-height:none!important;}
+  .event-img{height:210px!important;min-height:210px!important;max-height:210px!important;flex-basis:210px!important;}
+  .event-body h2,.event-meta,.event-body p{min-height:0!important;max-height:none!important;}
+  .filter-row{flex-wrap:nowrap!important;overflow-x:auto!important;padding-bottom:2px!important;}
+  .week-switch{width:100%!important;justify-content:space-between!important;}
+}
+
+
+/* ===== CINEMA DETAILS MODAL FIX 2026-06-04 ===== */
+.event-detail-modal .cinema-modal-info{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
+}
+.event-detail-modal .cinema-modal-info div{
+  min-height:76px!important;
+}
+.event-detail-modal .cinema-modal-info span{
+  font-size:13px!important;
+}
+.event-detail-modal .cinema-modal-info b{
+  font-size:16px!important;
+  line-height:1.34!important;
+  white-space:normal!important;
+}
+.event-detail-modal .cinema-modal-info b#modalTime{
+  white-space:pre-line!important;
+  max-height:190px!important;
+  overflow:auto!important;
+}
+.event-detail-modal .cinema-modal-actions{
+  grid-template-columns:1fr 1fr 1fr!important;
+}
+.event-detail-modal .cinema-modal-actions a,
+.event-detail-modal .cinema-modal-actions button{
+  min-height:54px!important;
+}
+@media(max-width:760px){
+  .event-detail-modal .cinema-modal-info,
+  .event-detail-modal .cinema-modal-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+
+/* ===== EXHIBITION PHOTO + OLD EVENTS FIX 2026-06-04 ===== */
+.event-card[data-filter="exhibition"] .event-photo{
+  object-fit:cover!important;
+  object-position:center!important;
+}
+.event-card[data-filter="exhibition"] .event-img{
+  background:#07111f!important;
+}
+.date-badge small{
+  letter-spacing:.04em!important;
+}
+
+
+/* ===== INLINE RUSSIAN TRAILER PLAYER FIX 2026-06-04 ===== */
+.trailer-modal{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,5,14,.82);
+  backdrop-filter:blur(10px);
+}
+.trailer-modal.show{display:flex;}
+.trailer-modal-box{
+  position:relative;
+  width:min(980px,96vw);
+  max-height:92vh;
+  overflow:hidden;
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(180deg,#101827,#07111d);
+  box-shadow:0 34px 100px rgba(0,0,0,.72);
+  color:#fff;
+}
+.trailer-modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
+  z-index:5;
+}
+.trailer-modal-head{padding:24px 28px 16px;}
+.trailer-modal-head span{
+  display:inline-flex;
+  margin-bottom:8px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  color:#08111f;
+  font-weight:950;
+  font-size:13px;
+}
+.trailer-modal-head h2{
+  margin:0;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:32px;
+  line-height:1.1;
+}
+.trailer-frame-wrap{
+  position:relative;
+  aspect-ratio:16/9;
+  background:#020814;
+}
+.trailer-frame-wrap iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  background:#020814;
+}
+.trailer-fallback{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:calc(100% - 36px);
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(2,8,20,.72);
+  border:1px solid rgba(255,255,255,.14);
+  color:#dbe6f8;
+  font-size:13px;
+  z-index:2;
+}
+.trailer-fallback b{color:#fff;}
+.trailer-fallback a{
+  color:#08111f;
+  background:linear-gradient(135deg,#f2d08a,#d6a24b);
+  padding:8px 10px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:900;
+  white-space:nowrap;
+}
+@media(max-width:700px){
+  .trailer-modal{padding:12px;}
+  .trailer-modal-head{padding:20px 18px 14px;}
+  .trailer-modal-head h2{font-size:24px;}
+  .trailer-fallback{
+    position:static;
+    flex-direction:column;
+    align-items:flex-start;
+    max-width:none;
+    margin:0;
+    border-radius:0;
+  }
+}
+
+
+
+/* ===== STABILITY FIX 2026-06-08 ===== */
+/* Карточки: вернуть фото, убрать обрезание текста, выровнять крестик трейлера */
+.events-grid{
+  align-items:stretch!important;
+}
+.event-card{
+  display:flex!important;
+  flex-direction:column!important;
+  height:auto!important;
+  min-height:640px!important;
+  max-height:none!important;
+  overflow:hidden!important;
+}
+.event-img{
+  position:relative!important;
+  height:240px!important;
+  min-height:240px!important;
+  max-height:240px!important;
+  flex:0 0 240px!important;
+  overflow:hidden!important;
+  background:#071526!important;
+}
+.event-photo{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:0!important;
+  background:#071526!important;
+}
+.event-body{
+  height:auto!important;
+  min-height:0!important;
+  flex:1 1 auto!important;
+  padding:18px 18px 18px!important;
+  overflow:visible!important;
+}
+.event-cat{margin-bottom:10px!important;}
+.event-body h2{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:3!important;
+  overflow:hidden!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0 0 10px!important;
+  font-size:24px!important;
+  line-height:1.12!important;
+}
+.event-meta{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:8px!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  margin:0 0 12px!important;
+}
+.event-meta span{
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  line-height:1.35!important;
+}
+.event-body p{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:5!important;
+  overflow:hidden!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0 0 12px!important;
+  font-size:14px!important;
+  line-height:1.45!important;
+  color:#c7d5e7!important;
+}
+.event-source{
+  display:block!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  margin:0 0 14px!important;
+  font-size:12px!important;
+  line-height:1.35!important;
+}
+.event-actions{
+  margin-top:auto!important;
+  padding-top:0!important;
+  min-height:0!important;
+  flex:0 0 auto!important;
+}
+.more-btn{
+  width:100%!important;
+  min-height:52px!important;
+}
+.date-badge{
+  left:14px!important;
+  bottom:14px!important;
+  width:62px!important;
+}
+.date-badge strong{font-size:24px!important;}
+.date-badge span{font-size:11px!important;}
+.date-badge small{font-size:10px!important;}
+
+.trailer-modal-close,
+.place-modal-close{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-size:0!important;
+  line-height:1!important;
+  padding:0!important;
+}
+.trailer-modal-close::before,
+.trailer-modal-close::after,
+.place-modal-close::before,
+.place-modal-close::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:18px;
+  height:2px;
+  margin-left:-9px;
+  margin-top:-1px;
+  border-radius:2px;
+  background:#fff;
+}
+.trailer-modal-close::before,
+.place-modal-close::before{transform:rotate(45deg);}
+.trailer-modal-close::after,
+.place-modal-close::after{transform:rotate(-45deg);}
+.trailer-modal-close:hover::before,
+.trailer-modal-close:hover::after,
+.place-modal-close:hover::before,
+.place-modal-close:hover::after{
+  background:#07101f;
+}
+
+@media (max-width:1240px){
+  .events-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  .event-card{min-height:620px!important;}
+}
+@media (max-width:860px){
+  .events-grid{grid-template-columns:1fr!important;}
+  .event-card{min-height:0!important;height:auto!important;}
+  .event-img{height:220px!important;min-height:220px!important;max-height:220px!important;flex-basis:220px!important;}
+  .event-body h2,.event-meta,.event-body p{min-height:0!important;max-height:none!important;}
+}
+
+
+/* ===== V5 CONSISTENCY + REAL CINEMA POSTERS 2026-06-08 ===== */
+.events-toolbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:start!important;
+  gap:16px!important;
+  overflow:visible!important;
+}
+.filter-row{min-width:0!important;}
+.week-switch{
+  position:static!important;
+  justify-self:end!important;
+  align-self:start!important;
+  margin-left:0!important;
+}
+.week-switch button{position:static!important;}
+.event-card[data-filter="cinema"] .event-photo{
+  object-fit:cover!important;
+  object-position:center top!important;
+  background:#050d19!important;
+}
+.modal-close,
+.trailer-modal-close{
+  position:absolute!important;
+  top:16px!important;
+  right:16px!important;
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  padding:0!important;
+  border-radius:14px!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(10,16,26,.72)!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.25)!important;
+}
+.modal-close::before,
+.modal-close::after,
+.trailer-modal-close::before,
+.trailer-modal-close::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:20px!important;
+  height:2px!important;
+  margin:0!important;
+  border-radius:999px!important;
+  background:#fff!important;
+  transform-origin:center!important;
+}
+.modal-close::before,
+.trailer-modal-close::before{transform:translate(-50%,-50%) rotate(45deg)!important;}
+.modal-close::after,
+.trailer-modal-close::after{transform:translate(-50%,-50%) rotate(-45deg)!important;}
+.modal-close:hover,
+.trailer-modal-close:hover{
+  background:rgba(241,199,91,.18)!important;
+  border-color:rgba(241,199,91,.42)!important;
+}
+.modal-close:hover::before,
+.modal-close:hover::after,
+.trailer-modal-close:hover::before,
+.trailer-modal-close:hover::after{
+  background:#07101f!important;
+}
+@media (max-width:980px){
+  .events-toolbar{grid-template-columns:1fr!important;}
+  .week-switch{justify-self:start!important;width:max-content!important;}
+}
+
+
+
+/* ===== V6 EVENTS CLOSE BUTTON OVERRIDE ===== */
+.modal-close,
+.trailer-modal-close,
+.place-modal-close{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  color:#ffffff!important;
+  font-size:32px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  font-family:Arial, Helvetica, sans-serif!important;
+  text-indent:0!important;
+  letter-spacing:0!important;
+  overflow:hidden!important;
+  padding:0!important;
+}
+.modal-close::before,
+.modal-close::after,
+.trailer-modal-close::before,
+.trailer-modal-close::after,
+.place-modal-close::before,
+.place-modal-close::after{
+  content:none!important;
+  display:none!important;
+}
+@media(max-width:620px){
+  .modal-close,
+  .trailer-modal-close,
+  .place-modal-close{font-size:28px!important;}
+}
+
+</style>
+</head>
+<body>
+<header class="header">
+  <a class="brand" href="index.html">
+    <img src="images/logo.png" alt="Открой Когалым">
+    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
+  </a>
+
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="routes.html">Маршруты</a>
+    <a href="places.html">Локации</a>
+    <a class="active" href="events.html">Афиша</a>
+    <a href="announcements.html">Объявления</a>
+  </nav>
+
+  <div class="right-head">
+    <span class="icon">⌕</span>
+    <span class="icon">♡</span>
+  </div>
+</header>
+
+<main class="events-page">
+  <div class="events-shell">
+    <section class="events-hero">
+      <div class="events-hero-inner">
+        <div>
+          <div class="events-kicker">События города</div>
+          <h1>Афиша Когалыма</h1>
+          <p class="events-lead">Концерты, выставки, спортивные соревнования, семейные мероприятия и городские праздники — всё в одном месте.</p>
+          <div class="events-source-note" id="eventsUpdated">Загрузка актуальной афиши…</div>
+        </div>
+        <aside class="events-summary">
+          <b>25 мая — 1 июня</b>
+          <span>Подборка ближайших событий недели: куда сходить вечером, чем занять детей и что посмотреть в выходные.</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="events-toolbar" aria-label="Фильтры афиши">
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="today">Сегодня</button>
+        <button class="filter-btn" data-filter="weekend">Выходные</button>
+        <button class="filter-btn" data-filter="kids">Детям</button>
+        <button class="filter-btn" data-filter="concert">Концерты</button>
+        <button class="filter-btn" data-filter="theater">Театр</button>
+        <button class="filter-btn" data-filter="sport">Спорт</button>
+        <button class="filter-btn" data-filter="exhibition">Выставки</button>
+        <button class="filter-btn" data-filter="cinema">Кино</button>
+      </div>
+      <div class="week-switch" aria-label="Месяц событий">
+        <button type="button" id="weekPrev" aria-label="Предыдущий месяц">←</button>
+        <span id="weekLabel">▣ Июнь 2026</span>
+        <button type="button" id="weekNext" aria-label="Следующий месяц">→</button>
+      </div>
+    </section>
+
+    <section class="events-layout">
+      <div class="events-grid" id="eventsGrid">
+        <div class="events-loading">Загружаем реальные события из городских источников…</div>
+        <div class="no-events" id="noEvents">В этой категории пока нет событий.</div>
+      </div>
+
+      <aside class="side-panel">
+        <h2>Ближайшие события</h2>
+        <div id="miniEvents">
+          <div class="mini-event"><div class="mini-date"><strong>2 июня</strong>ПН</div><div><b>Открытая тренировка по йоге</b><span>09:00 · Парк «Северный»</span></div></div>
+          <div class="mini-event"><div class="mini-date"><strong>2 июня</strong>ПН</div><div><b>Лекция «История Когалыма»</b><span>18:00 · Музейно-выставочный центр</span></div></div>
+          <div class="mini-event"><div class="mini-date"><strong>5 июня</strong>ЧТ</div><div><b>Концерт «Северный ветер»</b><span>19:00 · СКК «Галактика»</span></div></div>
+        </div>
+        <a class="all-events" href="#eventsGrid">Посмотреть все</a>
+      </aside>
+    </section>
+  </div>
+</main>
+
+<div class="place-modal event-detail-modal" id="eventModal" aria-hidden="true">
+  <div class="place-modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="place-modal-close" id="eventModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="place-modal-image" id="modalImage"></div>
+    <div class="place-modal-content">
+      <div class="place-modal-rating" id="modalRating">Событие</div>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <div class="place-modal-info cinema-modal-info">
+        <div><span>Дата</span><b id="modalDate"></b></div>
+        <div><span>Сеансы</span><b id="modalTime"></b></div>
+        <div><span>Цена</span><b id="modalPrice"></b></div>
+        <div><span>Возраст</span><b id="modalAge"></b></div>
+        <div><span>Возврат</span><b id="modalRefund"></b></div>
+        <div><span>Адрес</span><b id="modalVenue"></b></div>
+      </div>
+      <div class="place-modal-actions event-modal-actions cinema-modal-actions">
+        <a id="modalSourceBtn" href="mailto:info@kogalym-portal.ru">Купить / расписание</a>
+        <a id="modalTrailerBtn" href="#" target="_blank" rel="noopener">Смотреть трейлер</a>
+        <button type="button" id="modalCloseBtn">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="trailer-modal" id="trailerModal" aria-hidden="true">
+  <div class="trailer-modal-box" role="dialog" aria-modal="true" aria-labelledby="trailerTitle">
+    <button class="trailer-modal-close" id="trailerModalClose" type="button" aria-label="Закрыть">×</button>
+    <div class="trailer-modal-head">
+      <span id="trailerSource">RuTube</span>
+      <h2 id="trailerTitle">Трейлер</h2>
+    </div>
+    <div class="trailer-frame-wrap">
+      <iframe id="trailerFrame" title="Трейлер фильма" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      <div class="trailer-fallback" id="trailerFallback">
+        <b>Если плеер не открылся</b>
+        <span>Откройте трейлер в доступном российском источнике.</span>
+        <a id="trailerExternalLink" href="#" target="_blank" rel="noopener">Открыть источник</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <a href="about.html">О проекте</a>
+  <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+  <a href="admin.html">Админка</a>
+</footer>
+
+<script src="weather.js?v=v7_20260522_nocrop"></script>
+<script>
+(function(){
+  const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+  const MONTHS_UPPER = ['ЯНВАРЯ','ФЕВРАЛЯ','МАРТА','АПРЕЛЯ','МАЯ','ИЮНЯ','ИЮЛЯ','АВГУСТА','СЕНТЯБРЯ','ОКТЯБРЯ','НОЯБРЯ','ДЕКАБРЯ'];
+  const MONTHS_NOM = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  const DAYS = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
+  const buttons = document.querySelectorAll('.filter-btn');
+  const grid = document.getElementById('eventsGrid');
+  const noEvents = document.getElementById('noEvents');
+  const weekPrev = document.getElementById('weekPrev');
+  const weekNext = document.getElementById('weekNext');
+  const weekLabel = document.getElementById('weekLabel');
+  const summaryTitle = document.querySelector('.events-summary b');
+  const summaryText = document.querySelector('.events-summary span');
+  const miniEvents = document.getElementById('miniEvents');
+  const updatedLabel = document.getElementById('eventsUpdated');
+  const modal = document.getElementById('eventModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalText = document.getElementById('modalText');
+  const modalRating = document.getElementById('modalRating');
+  const modalDate = document.getElementById('modalDate');
+  const modalTime = document.getElementById('modalTime');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalAge = document.getElementById('modalAge');
+  const modalRefund = document.getElementById('modalRefund');
+  const modalVenue = document.getElementById('modalVenue');
+  const modalSourceBtn = document.getElementById('modalSourceBtn');
+  const modalTrailerBtn = document.getElementById('modalTrailerBtn');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const trailerModal = document.getElementById('trailerModal');
+  const trailerModalClose = document.getElementById('trailerModalClose');
+  const trailerFrame = document.getElementById('trailerFrame');
+  const trailerTitle = document.getElementById('trailerTitle');
+  const trailerSource = document.getElementById('trailerSource');
+  const trailerExternalLink = document.getElementById('trailerExternalLink');
+  const eventModalClose = document.getElementById('eventModalClose');
+
+  const fallbackEvents = [
+    {"title": "Подводная экскурсия", "category": "Экскурсия", "categoryKey": "exhibition", "startDate": "2026-06-01", "endDate": "2026-06-30", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Июньское расписание подводных экскурсий в океанариуме СКК «Галактика».", "image": "images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
+    {"title": "Мастер-классы от Морского клуба", "category": "Детям", "categoryKey": "kids", "startDate": "2026-06-05", "endDate": "2026-06-05", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Тематические мастер-классы Морского клуба в СКК «Галактика».", "image": "images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
+    {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-05", "endDate": "2026-06-05", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/events/petr-i.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Мастер-классы от Морского клуба", "category": "Детям", "categoryKey": "kids", "startDate": "2026-06-06", "endDate": "2026-06-06", "time": "", "venue": "Океанариум СКК «Галактика»", "description": "Тематические мастер-классы Морского клуба в СКК «Галактика».", "image": "images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg", "url": "https://www.skk-galaxy.ru/", "price": "", "age": "0+", "sourceName": "СКК «Галактика»"},
+    {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-06", "endDate": "2026-06-06", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Пётр I»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-06-07", "endDate": "2026-06-07", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «На всякого мудреца довольно простоты»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-08-28", "endDate": "2026-08-28", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «На всякого мудреца довольно простоты»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-08-29", "endDate": "2026-08-29", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «На всякого мудреца довольно простоты»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-08-30", "endDate": "2026-08-30", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Беззаботные»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-10-08", "endDate": "2026-10-08", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "18+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Беззаботные»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-10-09", "endDate": "2026-10-09", "time": "19:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "18+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Расстроенная семья»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-10-10", "endDate": "2026-10-10", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"},
+    {"title": "Спектакль «Расстроенная семья»", "category": "Театр", "categoryKey": "theater", "startDate": "2026-10-11", "endDate": "2026-10-11", "time": "18:00", "venue": "Филиал Малого театра в Когалыме", "description": "Спектакль в филиале Государственного академического Малого театра России в Когалыме.", "image": "images/places-v7/34-43-filial-gosudarstvennogo-akademicheskogo-malogo-teatra-rossii-fbce84fa-v7-d4aa869cb1.jpg", "url": "https://www.maly.ru/kogalym/events", "price": "билеты в продаже", "age": "12+", "sourceName": "Малый театр"}
+  ];
+
+  let allEvents = [];
+  let visibleEvents = [];
+  let activeFilter = 'all';
+  let monthOffset = 0;
+  const today = stripTime(new Date());
+  const baseMonthStart = getMonthStart(today);
+  const minOffset = -12;
+  const maxOffset = 18;
+
+  function stripTime(date){ return new Date(date.getFullYear(), date.getMonth(), date.getDate()); }
+  function parseDate(value){
+    if (!value) return null;
+    const parts = String(value).slice(0,10).split('-').map(Number);
+    if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+    return new Date(parts[0], parts[1]-1, parts[2]);
+  }
+  function addDays(date, days){ const copy = new Date(date); copy.setDate(copy.getDate() + days); return copy; }
+  function getWeekStart(date){ const d = stripTime(date); const day = d.getDay() || 7; d.setDate(d.getDate() - day + 1); return d; }
+  function getMonthStart(date){ return new Date(date.getFullYear(), date.getMonth(), 1); }
+  function addMonths(date, months){ return new Date(date.getFullYear(), date.getMonth() + months, 1); }
+  function getMonthEnd(date){ return new Date(date.getFullYear(), date.getMonth() + 1, 0); }
+  function eventStart(event){ return parseDate(event.startDate) || today; }
+  function eventEnd(event){ return parseDate(event.endDate) || eventStart(event); }
+  function intersectsWeek(event, weekStart){
+    const weekEnd = addDays(weekStart, 6);
+    return eventStart(event) <= weekEnd && eventEnd(event) >= weekStart;
+  }
+  function intersectsMonth(event, monthStart){
+    const monthEnd = getMonthEnd(monthStart);
+    return eventStart(event) <= monthEnd && eventEnd(event) >= monthStart;
+  }
+  function formatDate(date){ return `${date.getDate()} ${MONTHS[date.getMonth()]}`; }
+  function formatRange(start, end){
+    if (start.getMonth() === end.getMonth()) return `${start.getDate()}—${end.getDate()} ${MONTHS[end.getMonth()]}`;
+    return `${formatDate(start)} — ${formatDate(end)}`;
+  }
+  function formatEventDate(event){
+    const start = eventStart(event);
+    const end = eventEnd(event);
+    if (start.getTime() !== end.getTime()) return `${formatDate(start)} — ${formatDate(end)}`;
+    return formatDate(start);
+  }
+  function escapeHtml(value){
+    return String(value || '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]));
+  }
+  function normalizeCategory(event){
+    const raw = `${event.categoryKey || ''} ${event.category || ''} ${event.title || ''}`.toLowerCase();
+    if (raw.includes('театр') || raw.includes('спектак')) return 'theater';
+    if (raw.includes('кино')) return 'cinema';
+    if (raw.includes('спорт')) return 'sport';
+    if (raw.includes('концерт')) return 'concert';
+    if (raw.includes('выстав') || raw.includes('музей') || raw.includes('экспозиц')) return 'exhibition';
+    if (raw.includes('дет') || raw.includes('квест') || raw.includes('мастер') || raw.includes('викторин') || raw.includes('молод')) return 'kids';
+    return event.categoryKey || 'other';
+  }
+  function isToday(event){ return eventStart(event) <= today && eventEnd(event) >= today; }
+  function isWeekend(event){
+    let d = eventStart(event);
+    const end = eventEnd(event);
+    while (d <= end) { if (d.getDay() === 0 || d.getDay() === 6) return true; d = addDays(d, 1); }
+    return false;
+  }
+  function filterMatch(event){
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'today') return isToday(event);
+    if (activeFilter === 'weekend') return isWeekend(event);
+    return normalizeCategory(event) === activeFilter;
+  }
+  function compareEvents(a,b){ return eventStart(a) - eventStart(b) || String(a.title).localeCompare(String(b.title),'ru'); }
+
+  const CINEMA_POSTERS = {
+    "Кино: Тролли возвращаются!": "images/events/3f870e965f9b790285.jpg",
+    "Кино: Закулисье реальности": "images/events/0b740c305d9fe16847.jpg",
+    "Кино: Дени и Мэни в кино": "images/events/0675000671573fa911.jpg",
+    "Кино: Майкл": "images/events/1a79c341f4c97f5965.jpg",
+    "Кино: Грязные деньги": "images/events/306da19aba8813b85a.jpg",
+    "Кино: В чужой шкуре": "images/events/0818b5a1431cb8fee0.jpg",
+    "Кино: Побег из волшебного измерения": "images/events/0c3ca0068e7e2a06fb.jpg",
+    "Кино: Кощей. Тайна живой воды": "images/events/00e28aea99e5b45f2e.jpg",
+    "Кино: Не одна дома 3. Выпускной": "images/events/176691f5868f92cd6e.jpg",
+    "Кино: Богатыри": "images/events/4000645472f1796b52.jpg"
+  };
+
+  function cinemaPosterByTitle(event){
+    const title = String((event && event.title) || '').trim();
+    return CINEMA_POSTERS[title] || '';
+  }
+
+  function localFallbackImage(event){
+    const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''} ${event.categoryKey || ''}`.toLowerCase().replace(/ё/g,'е');
+    if (/подвод|океанариум|аквариум/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    if (/морск/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    if (/петр\s*i|петр\s*1/.test(text)) return 'images/events/petr-i.jpg';
+    if (/мудрец|простоты/.test(text)) return 'images/events/mudrets.jpg';
+    if (/беззабот/.test(text)) return 'images/events/bezzabotnye.jpg';
+    if (/расстроенная\s+семья/.test(text)) return 'images/events/rasstroennaya-semya.jpg';
+    const cinemaPoster = cinemaPosterByTitle(event);
+    if (cinemaPoster) return cinemaPoster;
+    if (/кино|фильм|сеанс|cinema/.test(text)) return 'images/events/fallback-cinema.jpg';
+    if (/театр|спектак|theater/.test(text)) return 'images/events/fallback-theater.jpg';
+    if (/дет|парк|мастер|kids/.test(text)) return 'images/events/fallback-kids.jpg';
+    if (/спорт|турнир|футбол|лед|йог|sport/.test(text)) return 'images/events/fallback-sport.jpg';
+    if (/концерт|музык|concert/.test(text)) return 'images/events/fallback-concert.jpg';
+    if (/русск|русский музей|широка страна/.test(text)) return 'images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg';
+    if (/музейно|мвц|нить времени|швейн/.test(text)) return 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg';
+    if (/музей|выстав|экспозиц|exhibition/.test(text)) return 'images/places-v7/36-22-muzeyno-vystavochnyy-tsentr-kogalyma-c33bd5bd-v7-bb88a093c1.jpg';
+    if (/экскурс|океан|аква|морск|галактик|подвод/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    return 'images/events/fallback-event.jpg';
+  }
+
+  function eventImage(event){
+    const fallback = localFallbackImage(event);
+    const category = normalizeCategory(event);
+    const text = `${event.title || ''} ${event.venue || ''} ${event.category || ''} ${event.description || ''}`.toLowerCase().replace(/ё/g,'е');
+    if (/подвод|океанариум|аквариум|морск/.test(text)) return 'images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg';
+    let image = String(event.image || '').trim();
+    const cinemaPoster = cinemaPosterByTitle(event);
+    if (category === 'cinema' && cinemaPoster && (!image || /fallback-cinema\.jpg|places-v7\/29-15-kinoteatr/i.test(image))) return cinemaPoster;
+    if (!image) return fallback;
+    if (category !== 'cinema' && /magnit|магнит|family|semey|семейн/i.test(image)) return fallback;
+    if (category === 'cinema' && /places-v7\/29-15-kinoteatr/i.test(image)) return cinemaPoster || 'images/events/fallback-cinema.jpg';
+    if (category === 'theater' && /places-v7\/34-43-filial/i.test(image)) return fallback;
+    return image;
+  }
+
+  function shortText(value, limit = 132){
+    const text = String(value || '').replace(/\s+/g, ' ').trim();
+    return text.length > limit ? text.slice(0, limit - 1).trim() + '…' : text;
+  }
+
+  function eventCard(event, index, weekStart){
+    const start = eventStart(event);
+    const end = eventEnd(event);
+    const multi = start.getTime() !== end.getTime();
+    const isCinemaCard = normalizeCategory(event) === 'cinema';
+    // Для долгих событий показываем месяц выбранной вкладки, а не дату окончания.
+    // Например, в июле выставка до 23 августа должна иметь бейдж «1 июля / ИДЁТ», а не «23 августа / ДО».
+    const isOngoingInViewedMonth = start < weekStart && end >= weekStart;
+    const displayDate = isOngoingInViewedMonth ? weekStart : start;
+    const dateBadgeSmall = multi ? (isOngoingInViewedMonth ? 'ИДЁТ' : 'С') : DAYS[displayDate.getDay()];
+    const exactToday = start.getTime() === today.getTime() && !multi;
+    const category = event.category || 'Событие';
+    const time = isCinemaCard ? formatSessionsShort(event) : (event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется'));
+    const image = eventImage(event);
+    const fallback = localFallbackImage(event);
+    const desc = shortText(event.description || 'Подробности смотрите в источнике события.', 92);
+    const sourceLink = event.url ? `<a href="${escapeHtml(event.url)}" target="_blank" rel="noopener">${escapeHtml(event.sourceName || 'Источник')}</a>` : escapeHtml(event.sourceName || 'Источник');
+    return `<article class="event-card" data-index="${index}" data-filter="${escapeHtml(normalizeCategory(event))}">
+      <div class="event-img">
+        <img class="event-photo" src="${escapeHtml(image)}" data-fallback="${escapeHtml(fallback)}" alt="${escapeHtml(event.title || 'Событие')}" loading="lazy">
+        ${exactToday ? '<div class="today-label">Сегодня</div>' : ''}
+        <div class="date-badge"><strong>${displayDate.getDate()}</strong><span>${MONTHS_UPPER[displayDate.getMonth()]}</span><small>${dateBadgeSmall}</small></div>
+      </div>
+      <div class="event-body">
+        <div class="event-cat">${escapeHtml(ruCapSentence(category))}</div>
+        <h2>${escapeHtml(event.title)}</h2>
+        <div class="event-meta"><span>◴ ${escapeHtml(ruCapSentence(time))}</span><span>⌖ ${escapeHtml(ruCapSentence(event.venue || 'Место уточняется'))}</span></div>
+        <p>${escapeHtml(ruCapSentence(desc))}</p>
+        <div class="event-source">Источник: ${sourceLink}${event.price ? ` · ${escapeHtml(event.price)}` : ''}${event.age ? ` · ${escapeHtml(event.age)}` : ''}</div>
+        <div class="event-actions"><button class="more-btn" type="button" data-index="${index}">Подробнее</button><span class="heart">♡</span></div>
+      </div>
+    </article>`;
+  }
+
+  function updateSummary(monthStart){
+    const label = `${MONTHS_NOM[monthStart.getMonth()]} ${monthStart.getFullYear()}`;
+    weekLabel.textContent = `▣ ${label}`;
+    summaryTitle.textContent = label;
+    const countText = visibleEvents.length === 1 ? 'событие' : visibleEvents.length > 1 && visibleEvents.length < 5 ? 'события' : 'событий';
+    summaryText.textContent = visibleEvents.length ? `Найдено ${visibleEvents.length} ${countText} за выбранный месяц.` : 'На этот месяц событий пока не найдено. Попробуйте другую категорию или следующий месяц.';
+    weekPrev.disabled = monthOffset <= minOffset;
+    weekNext.disabled = monthOffset >= maxOffset;
+  }
+
+  function renderMiniEvents(weekStart){
+    const list = visibleEvents.slice(0, 3);
+    miniEvents.innerHTML = list.map(event => {
+      const start = eventStart(event);
+      const end = eventEnd(event);
+      const displayDate = start < weekStart && end >= weekStart ? weekStart : start;
+      return `<div class="mini-event"><div class="mini-date"><strong>${formatDate(displayDate)}</strong>${DAYS[displayDate.getDay()]}</div><div><b>${escapeHtml(event.title)}</b><span>${escapeHtml(event.time || 'Время уточняется')} · ${escapeHtml(event.venue || 'Место уточняется')}</span></div></div>`;
+    }).join('') || '<div class="mini-event"><div><b>Событий пока нет</b><span>Данные обновятся автоматически</span></div></div>';
+  }
+
+  function render(){
+    const monthStart = addMonths(baseMonthStart, monthOffset);
+    visibleEvents = allEvents.filter(event => eventEnd(event) >= today).filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
+    const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, monthStart)).join('');
+    grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
+    const empty = document.getElementById('noEventsDynamic');
+    empty.classList.toggle('show', visibleEvents.length === 0);
+    grid.querySelectorAll('.event-photo').forEach(img => {
+      img.addEventListener('error', () => {
+        const fallback = img.dataset.fallback || 'images/hero.jpg';
+        if (!img.dataset.usedFallback && img.getAttribute('src') !== fallback) {
+          img.dataset.usedFallback = '1';
+          img.setAttribute('src', fallback);
+        } else if (img.getAttribute('src') !== 'images/hero.jpg') {
+          img.setAttribute('src', 'images/hero.jpg');
+        }
+      }, {once:false});
+    });
+    updateSummary(monthStart);
+    renderMiniEvents(monthStart);
+  }
+
+  async function loadEvents(){
+    try{
+      const response = await fetch('events-data.json?v=' + Date.now(), {cache:'no-store'});
+      if(!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      allEvents = Array.isArray(data.events) && data.events.length ? data.events : fallbackEvents;
+      allEvents = allEvents.map(event => ({...event, categoryKey: normalizeCategory(event)})).filter(event => event.title && event.startDate);
+      const updated = data.updatedAt ? new Date(data.updatedAt) : null;
+      updatedLabel.textContent = updated && !Number.isNaN(updated.getTime()) ? `Афиша обновлена автоматически: ${updated.toLocaleDateString('ru-RU')}` : 'Афиша загружена из городских источников';
+    } catch(error){
+      allEvents = fallbackEvents.map(event => ({...event, categoryKey: normalizeCategory(event)}));
+      updatedLabel.textContent = 'Показана резервная афиша. Автообновление подключится после загрузки на GitHub.';
+    }
+    render();
+  }
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      buttons.forEach(item => item.classList.remove('active'));
+      button.classList.add('active');
+      activeFilter = button.dataset.filter;
+      render();
+    });
+  });
+  weekPrev.addEventListener('click', () => { if (monthOffset > minOffset) { monthOffset -= 1; render(); } });
+  weekNext.addEventListener('click', () => { if (monthOffset < maxOffset) { monthOffset += 1; render(); } });
+
+
+
+  function ruCap(value){
+    const text = String(value || '').trim();
+    if (!text) return '';
+    if (/^(https?:|mailto:)/i.test(text)) return text;
+    if (/^г\.\s/i.test(text)) return text;
+    return /^[A-Za-zА-Яа-яЁё]/.test(text) ? text.charAt(0).toLocaleUpperCase('ru-RU') + text.slice(1) : text;
+  }
+
+  function ruCapSentence(value){
+    return ruCap(value);
+  }
+
+
+  function stripCinemaPrefix(value){
+    return String(value || '').replace(/^\s*Кино:\s*/i, '').trim();
+  }
+
+  function fallbackTrailerUrl(item){
+    const title = stripCinemaPrefix(item.title || 'трейлер');
+    return 'https://rutube.ru/search/?query=' + encodeURIComponent(title + ' трейлер');
+  }
+
+  function displayPrice(item){
+    let text = String(item.priceDisplay || item.price || '').trim();
+    text = text.replace(/^\s*(2D|3D|IMAX|ATMOS)(\s*,\s*(2D|3D|IMAX|ATMOS))*\s*[·-]\s*/i, '').trim();
+    if (!text || /^(2D|3D|IMAX|ATMOS)$/i.test(text)) return 'Уточняйте при покупке';
+    return text;
+  }
+
+  function displayAge(item){
+    return item.age || 'Уточняйте';
+  }
+
+  function displayRefund(item){
+    return item.refundPolicy || 'Возврат билета — по правилам кинотеатра/билетного сервиса; точные условия уточняйте при покупке.';
+  }
+
+  function sessionDateLabel(dateValue){
+    const date = new Date(String(dateValue || '') + 'T00:00:00');
+    if (Number.isNaN(date.getTime())) return String(dateValue || '').trim();
+    return `${date.getDate()} ${MONTHS[date.getMonth()]}`;
+  }
+
+  function groupSessions(item){
+    const sessions = Array.isArray(item.sessions) ? item.sessions : [];
+    const byDate = new Map();
+    sessions.forEach(session => {
+      const date = String(session.date || item.startDate || '').trim();
+      if (!date) return;
+      if (!byDate.has(date)) byDate.set(date, []);
+      byDate.get(date).push(session);
+    });
+    return [...byDate.entries()].sort((a,b) => a[0].localeCompare(b[0])).map(([date, rows]) => {
+      rows.sort((a,b) => String(a.time || '').localeCompare(String(b.time || '')));
+      return [date, rows];
+    });
+  }
+
+  function formatSessionsShort(item){
+    const groups = groupSessions(item).slice(0, 2);
+    if (!groups.length) return item.scheduleShort || item.time || 'Сеансы уточняются';
+    return groups.map(([date, rows]) => `${sessionDateLabel(date)} — ${rows.map(row => row.time).filter(Boolean).join(', ')}`).join('; ');
+  }
+
+  function formatSessionsFull(item){
+    const groups = groupSessions(item);
+    if (!groups.length) return item.schedule || item.scheduleShort || item.time || 'Сеансы уточняются';
+    return groups.map(([date, rows]) => {
+      const details = rows.map(row => [row.time, row.hall, row.format, row.price].filter(Boolean).join(' · ')).join('; ');
+      return `${sessionDateLabel(date)}: ${details}`;
+    }).join('\n');
+  }
+
+
+
+  function rutubeSearchUrl(item){
+    const title = stripCinemaPrefix(item.title || 'трейлер');
+    return 'https://rutube.ru/search/?query=' + encodeURIComponent(title + ' трейлер');
+  }
+
+  function toTrailerEmbed(url){
+    const value = String(url || '').trim();
+    if (!value) return '';
+    const rutube = value.match(/rutube\.ru\/(?:video|play\/embed)\/([A-Za-z0-9_-]+)/i);
+    if (rutube) return 'https://rutube.ru/play/embed/' + rutube[1];
+    const vk = value.match(/vk\.com\/video(-?\d+)_(\d+)/i) || value.match(/vkvideo\.ru\/video(-?\d+)_(\d+)/i);
+    if (vk) return `https://vk.com/video_ext.php?oid=${vk[1]}&id=${vk[2]}&hd=2`;
+    return '';
+  }
+
+  function trailerPlayableUrl(item){
+    return toTrailerEmbed(item.trailerEmbedUrl) || toTrailerEmbed(item.trailerUrl);
+  }
+
+  function trailerSourceLabel(item){
+    const url = String(item.trailerEmbedUrl || item.trailerUrl || '').toLowerCase();
+    if (url.includes('vk.com') || url.includes('vkvideo')) return 'VK Видео';
+    if (url.includes('rutube')) return 'RuTube';
+    return item.trailerSourceName || 'RuTube';
+  }
+
+  function openTrailerModal(item){
+    const src = trailerPlayableUrl(item);
+    trailerTitle.textContent = 'Трейлер: ' + stripCinemaPrefix(item.title || 'фильм');
+    trailerSource.textContent = trailerSourceLabel(item);
+    trailerExternalLink.href = item.trailerUrl || src;
+    trailerFrame.removeAttribute('src');
+    trailerFrame.src = src;
+    trailerModal.classList.add('show');
+    trailerModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  }
+
+  function closeTrailerModal(){
+    trailerModal.classList.remove('show');
+    trailerModal.setAttribute('aria-hidden', 'true');
+    trailerFrame.removeAttribute('src');
+  }
+
+
+  grid.addEventListener('click', event => {
+    const button = event.target.closest('.more-btn');
+    if (!button) return;
+    const item = visibleEvents[Number(button.dataset.index)];
+    if (!item) return;
+
+    const sourceLabel = item.sourceName || 'Источник события';
+    const sourceHref = item.sourceUrl || item.url || ('mailto:info@kogalym-portal.ru?subject=' + encodeURIComponent(item.title || 'Событие афиши'));
+    const sourceTarget = item.url ? '_blank' : '';
+    const imageHtml = '<img src="' + escapeHtml(eventImage(item)) + '" data-fallback="' + escapeHtml(localFallbackImage(item)) + '" alt="' + escapeHtml(item.title || 'Фото события') + '">';
+
+    modalImage.innerHTML = imageHtml;
+    const currentModalImg = modalImage.querySelector('img');
+    if (currentModalImg) {
+      currentModalImg.addEventListener('error', () => {
+        const fallback = currentModalImg.dataset.fallback || 'images/events/fallback-event.jpg';
+        if (!currentModalImg.dataset.usedFallback && currentModalImg.getAttribute('src') !== fallback) {
+          currentModalImg.dataset.usedFallback = '1';
+          currentModalImg.setAttribute('src', fallback);
+        } else if (currentModalImg.getAttribute('src') !== 'images/events/fallback-event.jpg') {
+          currentModalImg.setAttribute('src', 'images/events/fallback-event.jpg');
+        }
+      }, { once: false });
+    }
+
+    modalRating.textContent = ruCapSentence(item.category || 'Событие');
+    modalTitle.textContent = item.title || 'Событие';
+    modalText.textContent = ruCapSentence(item.description || 'Подробности смотрите в источнике события.');
+    const isCinema = normalizeCategory(item) === 'cinema';
+    modalDate.textContent = formatEventDate(item);
+    modalTime.textContent = ruCapSentence(isCinema ? formatSessionsFull(item) : (item.schedule || item.scheduleShort || item.time || (eventStart(item).getTime() !== eventEnd(item).getTime() ? 'В течение периода' : 'Время уточняется')));
+    modalPrice.textContent = ruCapSentence(isCinema ? displayPrice(item) : (item.price || 'Уточняйте'));
+    modalAge.textContent = ruCapSentence(isCinema ? displayAge(item) : (item.age || 'Без ограничения'));
+    modalRefund.textContent = ruCapSentence(isCinema ? displayRefund(item) : 'Не применяется');
+    modalVenue.textContent = ruCapSentence(item.address || item.venue || 'Место уточняется');
+    modalSourceBtn.textContent = isCinema ? 'Купить / расписание' : (item.url ? 'Открыть источник' : 'Уточнить участие');
+    modalSourceBtn.href = sourceHref;
+    modalSourceBtn.target = sourceTarget;
+
+    const trailerUrl = isCinema ? trailerPlayableUrl(item) : '';
+    if (trailerUrl) {
+      modalTrailerBtn.href = '#trailer';
+      modalTrailerBtn.dataset.index = button.dataset.index;
+      modalTrailerBtn.style.display = 'flex';
+    } else {
+      modalTrailerBtn.removeAttribute('href');
+      modalTrailerBtn.removeAttribute('data-index');
+      modalTrailerBtn.style.display = 'none';
+    }
+    if (sourceTarget) {
+      modalSourceBtn.setAttribute('rel', 'noopener');
+    } else {
+      modalSourceBtn.removeAttribute('target');
+      modalSourceBtn.removeAttribute('rel');
+    }
+
+    modal.classList.add('show');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+  });
+
+
+  modalTrailerBtn.addEventListener('click', event => {
+    event.preventDefault();
+    const item = visibleEvents[Number(modalTrailerBtn.dataset.index)];
+    if (item) openTrailerModal(item);
+  });
+  trailerModalClose.addEventListener('click', closeTrailerModal);
+  trailerModal.addEventListener('click', event => { if (event.target === trailerModal) closeTrailerModal(); });
+
+
+  const closeModal = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+  };
+  eventModalClose.addEventListener('click', closeModal);
+  modalCloseBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+  window.addEventListener('keydown', event => { if (event.key === 'Escape') { closeTrailerModal(); closeModal(); } });
+
+  loadEvents();
+})();
+</script>
+</body>
+</html>
