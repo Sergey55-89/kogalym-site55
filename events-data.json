@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-08T02:47:44.084Z",
+  "updatedAt": "2026-06-08T08:22:17.550Z",
   "source": "github-actions-auto-update-v3-with-event-images",
   "sources": [
     "https://vizitkogalym.ru/movies/index.php",
@@ -50,8 +50,8 @@
     {
       "name": "Визит Когалым",
       "url": "https://vizitkogalym.ru/event/events.php",
-      "ok": false,
-      "error": "fetch failed"
+      "ok": true,
+      "count": 0
     }
   ],
   "events": [
