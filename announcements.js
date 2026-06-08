@@ -1,7 +1,9 @@
 (function(){
   'use strict';
 
-  const STORAGE_KEY = 'kogalym_ads';
+  const LEGACY_STORAGE_KEY = 'kogalym_ads';
+  const STORAGE_KEY = 'kogalym_ads_v2_20260608';
+  try { localStorage.removeItem(LEGACY_STORAGE_KEY); } catch (error) {}
   const fallbackImage = 'images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg';
 
   const categoryMap = {

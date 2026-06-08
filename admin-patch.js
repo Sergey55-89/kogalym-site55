@@ -21,7 +21,9 @@
 
   const submitBtn = form.querySelector('.admin-submit') || form.querySelector('button[type="submit"]');
 
-  const key = 'kogalym_ads';
+  const legacyKey = 'kogalym_ads';
+  const key = 'kogalym_ads_v2_20260608';
+  try { localStorage.removeItem(legacyKey); } catch (error) {}
   let imageData = '';
   let editIndex = null;
 
