@@ -5671,3 +5671,27 @@ max-width:none;
     font-size:28px!important;
   }
 }
+
+
+/* ===== V13 REMOVE CARD CTA BUTTONS EXCEPT ANNOUNCEMENTS 2026-06-09 ===== */
+.place-more,
+.routes-v2-actions,
+.routes-v2-btn{
+  display:none!important;
+}
+.place-card,
+.routes-v2-card{
+  cursor:pointer!important;
+}
+.place-card:focus-visible,
+.routes-v2-card:focus-visible{
+  outline:2px solid rgba(241,199,91,.9)!important;
+  outline-offset:4px!important;
+}
+.place-card:hover h2,
+.routes-v2-card:hover .routes-v2-card-title{
+  color:#f2d08a!important;
+}
+.routes-v2-bottom{
+  grid-template-columns:1fr!important;
+}

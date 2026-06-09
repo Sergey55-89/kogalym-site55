@@ -861,14 +861,13 @@
 
   function cardTemplate(place, index){
     return `
-      <article class="place-card catalog-card" data-index="${index}" data-place-type="${esc(place.type)}">
+      <article class="place-card catalog-card" role="button" tabindex="0" aria-label="Открыть карточку: ${esc(place.title)}" data-index="${index}" data-place-type="${esc(place.type)}">
         <div class="place-image"><img src="${esc(imageUrl(place.image))}" alt="${esc(place.title)}" loading="lazy"></div>
         <div class="place-body">
           <div class="place-top"><span>${esc(categoryName(place.type))}</span><b>⌖</b></div>
           <h2>${esc(place.title)}</h2>
           <p>${esc(place.desc)}</p>
           <div class="place-meta"><span>${esc(capFirst(place.hours))}</span><span>${esc(capFirst(place.address))}</span></div>
-          <button class="place-more" type="button">Открыть карточку</button>
         </div>
       </article>`;
   }
@@ -972,8 +971,17 @@
   });
 
   grid.addEventListener('click', event => {
+    if(event.target.closest('a, button')) return;
     const card = event.target.closest('.place-card');
     if(card) openPlace(card);
+  });
+
+  grid.addEventListener('keydown', event => {
+    if(event.key !== 'Enter' && event.key !== ' ') return;
+    const card = event.target.closest('.place-card');
+    if(!card) return;
+    event.preventDefault();
+    openPlace(card);
   });
 
   close?.addEventListener('click', closePlace);

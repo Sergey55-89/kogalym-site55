@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260608_v8">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v13">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1480,6 +1480,78 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 }
 
+
+
+/* ===== V11 CLICKABLE EVENT CARDS 2026-06-09 ===== */
+.event-card{
+  cursor:pointer!important;
+}
+.event-card:focus-visible{
+  outline:2px solid rgba(241,199,91,.9)!important;
+  outline-offset:4px!important;
+}
+.event-card .event-actions,
+.event-card .more-btn,
+.event-card .heart{
+  display:none!important;
+}
+.event-body{
+  padding-bottom:18px!important;
+}
+.event-card:hover .event-body h2{
+  color:#f2d08a!important;
+}
+
+
+
+/* ===== V12 FULL EVENT PHOTOS 2026-06-09 ===== */
+.event-img{
+  height:230px!important;
+  min-height:230px!important;
+  max-height:230px!important;
+  flex:0 0 230px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:linear-gradient(180deg,#071526,#030a14)!important;
+  overflow:hidden!important;
+}
+.event-photo,
+.event-card[data-filter="cinema"] .event-photo,
+.event-card[data-filter="exhibition"] .event-photo{
+  position:relative!important;
+  inset:auto!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  background:linear-gradient(180deg,#071526,#030a14)!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.event-img::after{
+  pointer-events:none!important;
+  background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.12))!important;
+}
+@media(max-width:860px){
+  .event-img{
+    height:220px!important;
+    min-height:220px!important;
+    max-height:220px!important;
+    flex-basis:220px!important;
+  }
+}
+
+
+
+/* ===== V13 NO CARD CTA BUTTONS 2026-06-09 ===== */
+.event-card .event-actions,
+.event-card .more-btn,
+.event-card .heart{
+  display:none!important;
+}
+
 </style>
 </head>
 <body>
@@ -1686,6 +1758,30 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   function getMonthEnd(date){ return new Date(date.getFullYear(), date.getMonth() + 1, 0); }
   function eventStart(event){ return parseDate(event.startDate) || today; }
   function eventEnd(event){ return parseDate(event.endDate) || eventStart(event); }
+  function displayedDateForEvent(event, viewedMonthStart){
+    const start = eventStart(event);
+    const end = eventEnd(event);
+    if (normalizeCategory(event) === 'cinema') {
+      const groups = groupSessions(event);
+      if (groups.length) {
+        const next = parseDate(groups[0][0]);
+        if (next) return next;
+      }
+    }
+    const monthStart = viewedMonthStart || getMonthStart(today);
+    const inCurrentMonth = monthStart.getFullYear() === today.getFullYear() && monthStart.getMonth() === today.getMonth();
+    if (start < monthStart && end >= monthStart) {
+      if (inCurrentMonth && end >= today) return today;
+      return monthStart;
+    }
+    if (start < today && end >= today) return today;
+    return start;
+  }
+  function eventIsActuallyActive(event){
+    if (eventEnd(event) < today) return false;
+    if (normalizeCategory(event) === 'cinema') return groupSessions(event).length > 0;
+    return true;
+  }
   function intersectsWeek(event, weekStart){
     const weekEnd = addDays(weekStart, 6);
     return eventStart(event) <= weekEnd && eventEnd(event) >= weekStart;
@@ -1798,19 +1894,17 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const end = eventEnd(event);
     const multi = start.getTime() !== end.getTime();
     const isCinemaCard = normalizeCategory(event) === 'cinema';
-    // Для долгих событий показываем месяц выбранной вкладки, а не дату окончания.
-    // Например, в июле выставка до 23 августа должна иметь бейдж «1 июля / ИДЁТ», а не «23 августа / ДО».
-    const isOngoingInViewedMonth = start < weekStart && end >= weekStart;
-    const displayDate = isOngoingInViewedMonth ? weekStart : start;
-    const dateBadgeSmall = multi ? (isOngoingInViewedMonth ? 'ИДЁТ' : 'С') : DAYS[displayDate.getDay()];
-    const exactToday = start.getTime() === today.getTime() && !multi;
+    const displayDate = displayedDateForEvent(event, weekStart);
+    const isOngoing = start < displayDate && end >= displayDate;
+    const dateBadgeSmall = isCinemaCard ? 'СЕАНС' : (multi ? (isOngoing ? 'ИДЁТ' : 'С') : DAYS[displayDate.getDay()]);
+    const exactToday = displayDate.getTime() === today.getTime();
     const category = event.category || 'Событие';
     const time = isCinemaCard ? formatSessionsShort(event) : (event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется'));
     const image = eventImage(event);
     const fallback = localFallbackImage(event);
     const desc = shortText(event.description || 'Подробности смотрите в источнике события.', 92);
     const sourceLink = event.url ? `<a href="${escapeHtml(event.url)}" target="_blank" rel="noopener">${escapeHtml(event.sourceName || 'Источник')}</a>` : escapeHtml(event.sourceName || 'Источник');
-    return `<article class="event-card" data-index="${index}" data-filter="${escapeHtml(normalizeCategory(event))}">
+    return `<article class="event-card" role="button" tabindex="0" aria-label="Открыть событие: ${escapeHtml(event.title || 'Событие')}" data-index="${index}" data-filter="${escapeHtml(normalizeCategory(event))}">
       <div class="event-img">
         <img class="event-photo" src="${escapeHtml(image)}" data-fallback="${escapeHtml(fallback)}" alt="${escapeHtml(event.title || 'Событие')}" loading="lazy">
         ${exactToday ? '<div class="today-label">Сегодня</div>' : ''}
@@ -1822,7 +1916,6 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         <div class="event-meta"><span>◴ ${escapeHtml(ruCapSentence(time))}</span><span>⌖ ${escapeHtml(ruCapSentence(event.venue || 'Место уточняется'))}</span></div>
         <p>${escapeHtml(ruCapSentence(desc))}</p>
         <div class="event-source">Источник: ${sourceLink}${event.price ? ` · ${escapeHtml(event.price)}` : ''}${event.age ? ` · ${escapeHtml(event.age)}` : ''}</div>
-        <div class="event-actions"><button class="more-btn" type="button" data-index="${index}">Подробнее</button><span class="heart">♡</span></div>
       </div>
     </article>`;
   }
@@ -1840,16 +1933,15 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   function renderMiniEvents(weekStart){
     const list = visibleEvents.slice(0, 3);
     miniEvents.innerHTML = list.map(event => {
-      const start = eventStart(event);
-      const end = eventEnd(event);
-      const displayDate = start < weekStart && end >= weekStart ? weekStart : start;
-      return `<div class="mini-event"><div class="mini-date"><strong>${formatDate(displayDate)}</strong>${DAYS[displayDate.getDay()]}</div><div><b>${escapeHtml(event.title)}</b><span>${escapeHtml(event.time || 'Время уточняется')} · ${escapeHtml(event.venue || 'Место уточняется')}</span></div></div>`;
+      const displayDate = displayedDateForEvent(event, weekStart);
+      const miniTime = normalizeCategory(event) === 'cinema' ? formatSessionsShort(event) : (event.time || 'Время уточняется');
+      return `<div class="mini-event"><div class="mini-date"><strong>${formatDate(displayDate)}</strong>${DAYS[displayDate.getDay()]}</div><div><b>${escapeHtml(event.title)}</b><span>${escapeHtml(miniTime)} · ${escapeHtml(event.venue || 'Место уточняется')}</span></div></div>`;
     }).join('') || '<div class="mini-event"><div><b>Событий пока нет</b><span>Данные обновятся автоматически</span></div></div>';
   }
 
   function render(){
     const monthStart = addMonths(baseMonthStart, monthOffset);
-    visibleEvents = allEvents.filter(event => eventEnd(event) >= today).filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
+    visibleEvents = allEvents.filter(eventIsActuallyActive).filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
     const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, monthStart)).join('');
     grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
     const empty = document.getElementById('noEventsDynamic');
@@ -1944,16 +2036,25 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   function groupSessions(item){
     const sessions = Array.isArray(item.sessions) ? item.sessions : [];
     const byDate = new Map();
+    const now = new Date();
     sessions.forEach(session => {
       const date = String(session.date || item.startDate || '').trim();
       if (!date) return;
+      const sessionDate = parseDate(date);
+      if (sessionDate && sessionDate < today) return;
+      const timeValue = String(session.time || '').trim();
+      if (sessionDate && sessionDate.getTime() === today.getTime() && /^\d{1,2}:\d{2}/.test(timeValue)) {
+        const [hh, mm] = timeValue.split(':').map(Number);
+        const sessionTime = new Date(today.getFullYear(), today.getMonth(), today.getDate(), hh, mm || 0);
+        if (sessionTime < now) return;
+      }
       if (!byDate.has(date)) byDate.set(date, []);
       byDate.get(date).push(session);
     });
     return [...byDate.entries()].sort((a,b) => a[0].localeCompare(b[0])).map(([date, rows]) => {
       rows.sort((a,b) => String(a.time || '').localeCompare(String(b.time || '')));
       return [date, rows];
-    });
+    }).filter(([, rows]) => rows.length);
   }
 
   function formatSessionsShort(item){
@@ -2018,10 +2119,9 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 
 
-  grid.addEventListener('click', event => {
-    const button = event.target.closest('.more-btn');
-    if (!button) return;
-    const item = visibleEvents[Number(button.dataset.index)];
+  function openEventCard(card){
+    if (!card) return;
+    const item = visibleEvents[Number(card.dataset.index)];
     if (!item) return;
 
     const sourceLabel = item.sourceName || 'Источник события';
@@ -2060,7 +2160,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const trailerUrl = isCinema ? trailerPlayableUrl(item) : '';
     if (trailerUrl) {
       modalTrailerBtn.href = '#trailer';
-      modalTrailerBtn.dataset.index = button.dataset.index;
+      modalTrailerBtn.dataset.index = card.dataset.index;
       modalTrailerBtn.style.display = 'flex';
     } else {
       modalTrailerBtn.removeAttribute('href');
@@ -2077,6 +2177,21 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modal.classList.add('show');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('modal-open');
+  }
+
+  grid.addEventListener('click', event => {
+    if (event.target.closest('a, button')) return;
+    const card = event.target.closest('.event-card');
+    if (!card || !grid.contains(card)) return;
+    openEventCard(card);
+  });
+
+  grid.addEventListener('keydown', event => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    const card = event.target.closest('.event-card');
+    if (!card || !grid.contains(card)) return;
+    event.preventDefault();
+    openEventCard(card);
   });
 
 
