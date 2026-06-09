@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Что посмотреть в Когалыме — Открой Когалым</title>
   <meta name="description" content="Городской путеводитель по Когалыму: памятники, парки, культура, музеи, храмы, спорт, образование, адреса и карта.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v19">
+  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v23">
 
 
 <style>
@@ -91,6 +91,149 @@
 .routes-v2-card .card-info-btn.route-info-btn{margin-top:0!important;}
 </style>
 
+
+<style>
+/* ===== V20 FULL WIDTH INFO BUTTONS INLINE ===== */
+.event-card .event-actions,
+.routes-v2-card .routes-v2-actions{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+  margin-top:auto!important;
+  padding:14px 0 0!important;
+}
+.event-card .card-info-btn.event-info-btn,
+.place-card .card-info-btn.place-info-btn,
+.routes-v2-card .card-info-btn.route-info-btn,
+.card-info-btn{
+  display:flex!important;
+  width:100%!important;
+  min-width:100%!important;
+  max-width:none!important;
+  height:56px!important;
+  min-height:56px!important;
+  flex:0 0 auto!important;
+  align-self:stretch!important;
+  margin:0!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.event-card .event-body,
+.place-card .place-body,
+.routes-v2-card .routes-v2-content{
+  width:100%!important;
+  box-sizing:border-box!important;
+}
+.event-card .event-source{margin-bottom:0!important;}
+.event-card .event-body{padding-bottom:18px!important;}
+.routes-v2-card .routes-v2-bottom{
+  width:100%!important;
+  grid-template-columns:minmax(190px,240px) minmax(0,1fr)!important;
+}
+@media(max-width:900px){
+  .routes-v2-card .routes-v2-bottom{grid-template-columns:1fr!important;}
+}
+</style>
+
+
+<style>
+/* ===== V21 UNIFORM CARDS INLINE FINAL ===== */
+.events-grid,.places-grid,.places-cards,.catalog-grid,.routes-v2-list{align-items:stretch!important;}
+
+/* Афиша */
+.event-card{
+  display:flex!important;flex-direction:column!important;
+  height:680px!important;min-height:680px!important;max-height:680px!important;
+  overflow:hidden!important;border-radius:24px!important;box-sizing:border-box!important;
+}
+.event-img{
+  position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 238px!important;height:238px!important;min-height:238px!important;max-height:238px!important;
+  width:100%!important;overflow:hidden!important;background:linear-gradient(180deg,#08182b,#03101d)!important;
+}
+.event-photo,.event-card[data-filter="cinema"] .event-photo,.event-card[data-filter="exhibition"] .event-photo{
+  position:relative!important;inset:auto!important;display:block!important;width:100%!important;height:100%!important;
+  object-fit:contain!important;object-position:center center!important;background:linear-gradient(180deg,#08182b,#03101d)!important;
+}
+.today-label{position:absolute!important;top:14px!important;left:14px!important;z-index:4!important;transform:none!important;}
+.date-badge{position:absolute!important;left:14px!important;bottom:14px!important;z-index:4!important;transform:none!important;}
+.event-body{
+  display:flex!important;flex-direction:column!important;flex:1 1 auto!important;
+  width:100%!important;min-height:0!important;padding:18px 18px 20px!important;overflow:hidden!important;box-sizing:border-box!important;
+}
+.event-body h2{
+  min-height:54px!important;max-height:54px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-height:1.12!important;
+}
+.event-meta{min-height:70px!important;max-height:70px!important;overflow:hidden!important;}
+.event-meta span{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+.event-body p{
+  min-height:68px!important;max-height:68px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:3!important;
+}
+.event-source{
+  min-height:42px!important;max-height:42px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;white-space:normal!important;
+}
+.event-card .event-actions{display:block!important;width:100%!important;height:56px!important;min-height:56px!important;margin-top:auto!important;padding:0!important;overflow:hidden!important;}
+.event-card .card-info-btn.event-info-btn,.event-card .event-actions .card-info-btn{
+  display:flex!important;width:100%!important;min-width:100%!important;height:56px!important;min-height:56px!important;
+  margin:0!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;white-space:nowrap!important;
+}
+
+/* Локации */
+.place-card,.place-card.catalog-card{
+  display:flex!important;flex-direction:column!important;height:600px!important;min-height:600px!important;max-height:600px!important;
+  overflow:hidden!important;border-radius:24px!important;box-sizing:border-box!important;
+}
+.place-card .place-image{flex:0 0 230px!important;height:230px!important;min-height:230px!important;max-height:230px!important;overflow:hidden!important;}
+.place-card .place-image img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important;}
+.place-card .place-body{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;width:100%!important;min-height:0!important;padding:18px 18px 20px!important;overflow:hidden!important;}
+.place-card h2{
+  min-height:62px!important;max-height:62px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;line-height:1.1!important;
+}
+.place-card p{
+  min-height:88px!important;max-height:88px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-line-clamp:4!important;-webkit-box-orient:vertical!important;
+}
+.place-card .place-meta{min-height:76px!important;max-height:76px!important;overflow:hidden!important;margin:0 0 14px!important;}
+.place-card .card-info-btn.place-info-btn{
+  display:flex!important;width:100%!important;min-width:100%!important;height:56px!important;min-height:56px!important;
+  margin:auto 0 0!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;white-space:nowrap!important;
+}
+
+/* Маршруты */
+.routes-v2-card{
+  display:grid!important;grid-template-columns:minmax(260px,34%) minmax(0,1fr)!important;
+  min-height:430px!important;height:430px!important;max-height:430px!important;overflow:hidden!important;border-radius:26px!important;
+}
+.routes-v2-media{height:100%!important;overflow:hidden!important;}
+.routes-v2-media img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center center!important;display:block!important;}
+.routes-v2-content{display:flex!important;flex-direction:column!important;height:100%!important;overflow:hidden!important;padding:24px!important;}
+.routes-v2-card-title{min-height:68px!important;max-height:68px!important;overflow:hidden!important;display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;}
+.routes-v2-meta{min-height:38px!important;max-height:38px!important;overflow:hidden!important;}
+.routes-v2-desc{min-height:68px!important;max-height:68px!important;overflow:hidden!important;display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;}
+.routes-v2-bottom{display:grid!important;grid-template-columns:minmax(190px,240px) minmax(0,1fr)!important;width:100%!important;gap:14px!important;margin-top:auto!important;overflow:hidden!important;}
+.routes-v2-actions{display:block!important;width:100%!important;overflow:hidden!important;}
+.routes-v2-card .card-info-btn.route-info-btn{
+  display:flex!important;width:100%!important;min-width:100%!important;height:58px!important;min-height:58px!important;
+  margin:0!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;white-space:nowrap!important;
+}
+.routes-v2-info{min-height:58px!important;max-height:78px!important;overflow:hidden!important;}
+
+@media(max-width:980px){
+  .event-card,.place-card,.place-card.catalog-card,.routes-v2-card{height:auto!important;min-height:0!important;max-height:none!important;}
+  .routes-v2-card{display:block!important;}
+  .routes-v2-media{height:auto!important;}
+  .routes-v2-media img{height:auto!important;aspect-ratio:16/9!important;}
+}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -114,11 +257,11 @@
 <main class="places-page catalog-page places-page--lively">
   <section class="places-showcase" aria-label="Локации Когалыма">
     <div class="places-showcase__text">
-      <span class="places-eyebrow">Городской путеводитель</span>
-      <h1>Что посмотреть в Когалыме</h1>
-      <h2>Маршрут по характеру северного города</h2>
-      <p>Когалым — северный город с нефтяным характером и живой городской памятью. Здесь история освоения Западной Сибири соседствует с парками, скверами, культурными центрами, храмами и местами для спокойных прогулок.</p>
-      <p>Этот раздел — не сухой список точек. Это быстрый путеводитель по объектам, через которые читается город: от памятников первопроходцам до новых общественных пространств.</p>
+      <span class="places-eyebrow">Места, по которым узнают город</span>
+      <h1>Локации Когалыма</h1>
+      <h2>От памятников до новых городских пространств</h2>
+      <p>Здесь собраны точки, которые реально помогают почувствовать город: памятники, площади, парки, культурные места и спокойные зоны для прогулки.</p>
+      <p>Без канцелярита и случайных адресов: только локации, у которых есть понятный смысл, история или польза для прогулки.</p>
     </div>
 
     <div class="places-postcard places-postcard--collage" aria-label="Коллаж мест Когалыма">
@@ -172,7 +315,7 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
-<script src="places.v7-hard.js?v=site_20260609_v19"></script>
+<script src="places.v7-hard.js?v=site_20260609_v23"></script>
 <script src="weather.js?v=v7_20260522_nocrop"></script>
 </body>
 </html>
