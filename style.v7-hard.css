@@ -5695,3 +5695,38 @@ max-width:none;
 .routes-v2-bottom{
   grid-template-columns:1fr!important;
 }
+
+
+/* ===== V14 INFO BUTTONS RESTORED EXCEPT ANNOUNCEMENTS 2026-06-09 ===== */
+.place-card .place-more.info-btn,
+.routes-v2-card .routes-v2-btn.info-btn{
+  display:flex!important;
+  width:100%!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font-weight:950!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+}
+.place-card .place-more.info-btn{
+  min-height:52px!important;
+  margin-top:18px!important;
+}
+.routes-v2-card .routes-v2-actions{
+  display:flex!important;
+}
+.routes-v2-card .routes-v2-btn.info-btn{
+  min-height:64px!important;
+}
+.routes-v2-card .routes-v2-btn.info-btn::before{
+  content:""!important;
+  margin:0!important;
+}
+.place-card .place-more.info-btn:hover,
+.routes-v2-card .routes-v2-btn.info-btn:hover{
+  filter:brightness(1.06)!important;
+}

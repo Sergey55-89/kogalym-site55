@@ -7,7 +7,7 @@
   <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Маршруты — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v13">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v14">
 <style>
 /* ===== ROUTES V2 FINAL: scoped, no overlap, no fixed broken widths ===== */
 .routes-v2-page{
@@ -551,6 +551,30 @@
   color:#f2d08a!important;
 }
 
+
+
+/* ===== V14 ROUTE INFO BUTTONS 2026-06-09 ===== */
+.routes-v2-actions{
+  display:flex!important;
+}
+.routes-v2-btn.info-btn{
+  display:flex!important;
+  width:100%!important;
+  min-height:64px!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.routes-v2-btn.info-btn::before{
+  content:""!important;
+  margin:0!important;
+}
+.routes-v2-bottom{
+  grid-template-columns:minmax(190px,240px) minmax(0,1fr)!important;
+}
+@media(max-width:620px){
+  .routes-v2-bottom{grid-template-columns:1fr!important;}
+}
+
 </style>
 </head>
 <body>
@@ -591,7 +615,7 @@
           <h2 class="routes-v2-card-title">Центр и СКК «Галактика»</h2>
           <div class="routes-v2-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div>
           <p class="routes-v2-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
         </div>
       </article>
 
@@ -603,7 +627,7 @@
           <h2 class="routes-v2-card-title">Парк 50-летия и набережная</h2>
           <div class="routes-v2-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div>
           <p class="routes-v2-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
         </div>
       </article>
 
@@ -743,6 +767,12 @@
   }
   document.querySelectorAll('.routes-v2-card[data-route]').forEach(card => {
     card.addEventListener('click', event => {
+      const infoButton = event.target.closest('.info-btn');
+      if(infoButton){
+        event.preventDefault();
+        openRoute(card.dataset.route);
+        return;
+      }
       if(event.target.closest('a, button')) return;
       openRoute(card.dataset.route);
     });

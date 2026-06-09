@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v13">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v14">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1552,6 +1552,34 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   display:none!important;
 }
 
+
+
+/* ===== V14 WEEKEND FILTER + INFO BUTTONS 2026-06-09 ===== */
+.event-card .event-actions{
+  display:flex!important;
+  margin-top:auto!important;
+  padding-top:10px!important;
+}
+.event-card .more-btn.info-btn{
+  display:flex!important;
+  width:100%!important;
+  min-height:52px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font-weight:950!important;
+  cursor:pointer!important;
+}
+.event-card .more-btn.info-btn:hover{
+  filter:brightness(1.06)!important;
+}
+.event-card .heart{
+  display:none!important;
+}
+
 </style>
 </head>
 <body>
@@ -1758,11 +1786,51 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   function getMonthEnd(date){ return new Date(date.getFullYear(), date.getMonth() + 1, 0); }
   function eventStart(event){ return parseDate(event.startDate) || today; }
   function eventEnd(event){ return parseDate(event.endDate) || eventStart(event); }
+  function isWeekendDate(date){ return date && (date.getDay() === 0 || date.getDay() === 6); }
+  function nextWeekendDateInRange(event, viewedMonthStart){
+    const monthStart = viewedMonthStart || getMonthStart(today);
+    const monthEnd = getMonthEnd(monthStart);
+    const start = eventStart(event) > monthStart ? eventStart(event) : monthStart;
+    const realStart = start > today ? start : today;
+    const end = eventEnd(event) < monthEnd ? eventEnd(event) : monthEnd;
+    let d = stripTime(realStart);
+    while (d <= end) {
+      if (isWeekendDate(d)) return d;
+      d = addDays(d, 1);
+    }
+    return null;
+  }
+  function sessionGroupsForView(item, viewedMonthStart){
+    let groups = groupSessions(item);
+    if (viewedMonthStart) {
+      const monthStart = getMonthStart(viewedMonthStart);
+      const monthEnd = getMonthEnd(monthStart);
+      groups = groups.filter(([date]) => {
+        const d = parseDate(date);
+        return d && d >= monthStart && d <= monthEnd;
+      });
+    }
+    if (activeFilter === 'weekend') {
+      groups = groups.filter(([date]) => isWeekendDate(parseDate(date)));
+    }
+    return groups;
+  }
   function displayedDateForEvent(event, viewedMonthStart){
     const start = eventStart(event);
     const end = eventEnd(event);
+    if (activeFilter === 'weekend') {
+      if (normalizeCategory(event) === 'cinema') {
+        const groups = sessionGroupsForView(event, viewedMonthStart);
+        if (groups.length) {
+          const next = parseDate(groups[0][0]);
+          if (next) return next;
+        }
+      }
+      const weekend = nextWeekendDateInRange(event, viewedMonthStart);
+      if (weekend) return weekend;
+    }
     if (normalizeCategory(event) === 'cinema') {
-      const groups = groupSessions(event);
+      const groups = sessionGroupsForView(event, viewedMonthStart);
       if (groups.length) {
         const next = parseDate(groups[0][0]);
         if (next) return next;
@@ -1815,16 +1883,16 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     return event.categoryKey || 'other';
   }
   function isToday(event){ return eventStart(event) <= today && eventEnd(event) >= today; }
-  function isWeekend(event){
-    let d = eventStart(event);
-    const end = eventEnd(event);
-    while (d <= end) { if (d.getDay() === 0 || d.getDay() === 6) return true; d = addDays(d, 1); }
-    return false;
+  function isWeekend(event, viewedMonthStart){
+    if (normalizeCategory(event) === 'cinema') {
+      return sessionGroupsForView(event, viewedMonthStart).some(([date]) => isWeekendDate(parseDate(date)));
+    }
+    return Boolean(nextWeekendDateInRange(event, viewedMonthStart));
   }
-  function filterMatch(event){
+  function filterMatch(event, viewedMonthStart){
     if (activeFilter === 'all') return true;
     if (activeFilter === 'today') return isToday(event);
-    if (activeFilter === 'weekend') return isWeekend(event);
+    if (activeFilter === 'weekend') return isWeekend(event, viewedMonthStart);
     return normalizeCategory(event) === activeFilter;
   }
   function compareEvents(a,b){ return eventStart(a) - eventStart(b) || String(a.title).localeCompare(String(b.title),'ru'); }
@@ -1899,7 +1967,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const dateBadgeSmall = isCinemaCard ? 'СЕАНС' : (multi ? (isOngoing ? 'ИДЁТ' : 'С') : DAYS[displayDate.getDay()]);
     const exactToday = displayDate.getTime() === today.getTime();
     const category = event.category || 'Событие';
-    const time = isCinemaCard ? formatSessionsShort(event) : (event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется'));
+    const time = isCinemaCard ? formatSessionsShort(event, weekStart) : (event.scheduleShort || event.time || (multi ? 'В течение периода' : 'Время уточняется'));
     const image = eventImage(event);
     const fallback = localFallbackImage(event);
     const desc = shortText(event.description || 'Подробности смотрите в источнике события.', 92);
@@ -1916,6 +1984,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         <div class="event-meta"><span>◴ ${escapeHtml(ruCapSentence(time))}</span><span>⌖ ${escapeHtml(ruCapSentence(event.venue || 'Место уточняется'))}</span></div>
         <p>${escapeHtml(ruCapSentence(desc))}</p>
         <div class="event-source">Источник: ${sourceLink}${event.price ? ` · ${escapeHtml(event.price)}` : ''}${event.age ? ` · ${escapeHtml(event.age)}` : ''}</div>
+        <div class="event-actions"><button class="more-btn info-btn" type="button" data-index="${index}">Информация</button></div>
       </div>
     </article>`;
   }
@@ -1934,14 +2003,14 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     const list = visibleEvents.slice(0, 3);
     miniEvents.innerHTML = list.map(event => {
       const displayDate = displayedDateForEvent(event, weekStart);
-      const miniTime = normalizeCategory(event) === 'cinema' ? formatSessionsShort(event) : (event.time || 'Время уточняется');
+      const miniTime = normalizeCategory(event) === 'cinema' ? formatSessionsShort(event, weekStart) : (event.time || 'Время уточняется');
       return `<div class="mini-event"><div class="mini-date"><strong>${formatDate(displayDate)}</strong>${DAYS[displayDate.getDay()]}</div><div><b>${escapeHtml(event.title)}</b><span>${escapeHtml(miniTime)} · ${escapeHtml(event.venue || 'Место уточняется')}</span></div></div>`;
     }).join('') || '<div class="mini-event"><div><b>Событий пока нет</b><span>Данные обновятся автоматически</span></div></div>';
   }
 
   function render(){
     const monthStart = addMonths(baseMonthStart, monthOffset);
-    visibleEvents = allEvents.filter(eventIsActuallyActive).filter(event => intersectsMonth(event, monthStart)).filter(filterMatch).sort(compareEvents);
+    visibleEvents = allEvents.filter(eventIsActuallyActive).filter(event => intersectsMonth(event, monthStart)).filter(event => filterMatch(event, monthStart)).sort(compareEvents);
     const cardsHtml = visibleEvents.map((event, index) => eventCard(event, index, monthStart)).join('');
     grid.innerHTML = cardsHtml + '<div class="no-events" id="noEventsDynamic">В этой категории пока нет событий.</div>';
     const empty = document.getElementById('noEventsDynamic');
@@ -2057,9 +2126,9 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     }).filter(([, rows]) => rows.length);
   }
 
-  function formatSessionsShort(item){
-    const groups = groupSessions(item).slice(0, 2);
-    if (!groups.length) return item.scheduleShort || item.time || 'Сеансы уточняются';
+  function formatSessionsShort(item, viewedMonthStart){
+    const groups = sessionGroupsForView(item, viewedMonthStart).slice(0, 2);
+    if (!groups.length) return 'Сеансы уточняются';
     return groups.map(([date, rows]) => `${sessionDateLabel(date)} — ${rows.map(row => row.time).filter(Boolean).join(', ')}`).join('; ');
   }
 
@@ -2180,6 +2249,13 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 
   grid.addEventListener('click', event => {
+    const infoButton = event.target.closest('.info-btn');
+    if (infoButton) {
+      event.preventDefault();
+      const card = infoButton.closest('.event-card');
+      openEventCard(card);
+      return;
+    }
     if (event.target.closest('a, button')) return;
     const card = event.target.closest('.event-card');
     if (!card || !grid.contains(card)) return;
