@@ -5760,3 +5760,144 @@ max-width:none;
   border-radius:18px!important;
 }
 .card-info-btn:hover{filter:brightness(1.06)!important;}
+
+
+/* ===== V18 LOCATION INFO BUTTON ALIGNMENT 2026-06-09 ===== */
+.places-grid,
+.places-cards,
+.catalog-grid{
+  align-items:stretch!important;
+}
+.place-card,
+.place-card.catalog-card{
+  height:100%!important;
+  min-height:560px!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+.place-card .place-image{
+  flex:0 0 auto!important;
+}
+.place-card .place-body{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+}
+.place-card .place-top{
+  flex:0 0 auto!important;
+}
+.place-card h2{
+  flex:0 0 auto!important;
+  min-height:68px!important;
+}
+.place-card p{
+  flex:0 0 auto!important;
+  min-height:104px!important;
+}
+.place-card .place-meta{
+  flex:0 0 auto!important;
+  min-height:92px!important;
+  margin-bottom:16px!important;
+}
+.place-card .card-info-btn.place-info-btn{
+  margin-top:auto!important;
+  flex:0 0 52px!important;
+  height:52px!important;
+  min-height:52px!important;
+  align-self:stretch!important;
+}
+@media(max-width:900px){
+  .place-card,
+  .place-card.catalog-card{
+    min-height:0!important;
+  }
+  .place-card h2,
+  .place-card p,
+  .place-card .place-meta{
+    min-height:0!important;
+  }
+}
+
+
+/* ===== V19 INFO BUTTON NO CLIP FINAL 2026-06-09 ===== */
+.card-info-btn,
+.event-card .card-info-btn.event-info-btn,
+.place-card .card-info-btn.place-info-btn,
+.routes-v2-card .card-info-btn.route-info-btn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:58px!important;
+  height:58px!important;
+  flex:0 0 58px!important;
+  padding:0 18px!important;
+  margin:18px 0 0!important;
+  box-sizing:border-box!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font:950 15px/1.15 Arial,Helvetica,sans-serif!important;
+  text-align:center!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  cursor:pointer!important;
+  position:relative!important;
+  z-index:5!important;
+}
+
+.event-card,
+.place-card,
+.place-card.catalog-card,
+.routes-v2-card{
+  overflow:visible!important;
+}
+
+.event-card .event-body,
+.place-card .place-body,
+.routes-v2-card .routes-v2-content{
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:visible!important;
+  padding-bottom:24px!important;
+  min-height:0!important;
+}
+
+.event-card .event-actions,
+.routes-v2-card .routes-v2-actions{
+  display:flex!important;
+  flex:0 0 auto!important;
+  min-height:58px!important;
+  overflow:visible!important;
+  margin-top:auto!important;
+  padding-top:12px!important;
+  padding-bottom:0!important;
+}
+
+.place-card .card-info-btn.place-info-btn{
+  margin-top:auto!important;
+}
+
+.event-card .card-info-btn.event-info-btn{
+  margin-top:0!important;
+}
+
+.routes-v2-card .card-info-btn.route-info-btn{
+  margin-top:0!important;
+  border-radius:18px!important;
+}
+
+@media(max-width:900px){
+  .card-info-btn,
+  .event-card .card-info-btn.event-info-btn,
+  .place-card .card-info-btn.place-info-btn,
+  .routes-v2-card .card-info-btn.route-info-btn{
+    min-height:56px!important;
+    height:56px!important;
+    flex-basis:56px!important;
+  }
+}

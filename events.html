@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v16">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v19">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1638,7 +1638,120 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 }
 
+
+
+/* ===== V17 NO WEEKEND FILTER + INFO BUTTON CLIP FIX 2026-06-09 ===== */
+.filter-btn[data-filter="weekend"]{
+  display:none!important;
+}
+.events-grid{
+  align-items:stretch!important;
+}
+.event-card{
+  height:auto!important;
+  min-height:650px!important;
+  max-height:none!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+.event-body{
+  display:flex!important;
+  flex-direction:column!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding-bottom:22px!important;
+}
+.event-body h2{
+  min-height:0!important;
+  max-height:none!important;
+}
+.event-meta{
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+.event-body p{
+  min-height:0!important;
+  max-height:none!important;
+}
+.event-source{
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  margin-bottom:12px!important;
+}
+.event-card .event-actions{
+  display:flex!important;
+  margin-top:auto!important;
+  padding-top:12px!important;
+  padding-bottom:0!important;
+  flex:0 0 auto!important;
+  min-height:56px!important;
+}
+.event-card .card-info-btn.event-info-btn{
+  display:flex!important;
+  min-height:54px!important;
+  height:54px!important;
+  flex:0 0 54px!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  line-height:1!important;
+}
+@media(max-width:860px){
+  .event-card{
+    min-height:0!important;
+  }
+}
+
 </style>
+
+<style>
+/* ===== V19 INFO BUTTON NO CLIP INLINE ===== */
+.card-info-btn,
+.event-card .card-info-btn.event-info-btn,
+.place-card .card-info-btn.place-info-btn,
+.routes-v2-card .card-info-btn.route-info-btn{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  min-height:58px!important;
+  height:58px!important;
+  flex:0 0 58px!important;
+  padding:0 18px!important;
+  box-sizing:border-box!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  line-height:1.15!important;
+  position:relative!important;
+  z-index:5!important;
+}
+.event-card,
+.place-card,
+.place-card.catalog-card,
+.routes-v2-card{overflow:visible!important;}
+.event-card .event-body,
+.place-card .place-body,
+.routes-v2-card .routes-v2-content{
+  overflow:visible!important;
+  padding-bottom:24px!important;
+}
+.event-card .event-actions,
+.routes-v2-card .routes-v2-actions{
+  display:flex!important;
+  min-height:58px!important;
+  overflow:visible!important;
+  margin-top:auto!important;
+}
+.place-card .card-info-btn.place-info-btn{margin-top:auto!important;}
+.event-card .card-info-btn.event-info-btn,
+.routes-v2-card .card-info-btn.route-info-btn{margin-top:0!important;}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -1682,7 +1795,6 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
       <div class="filter-row">
         <button class="filter-btn active" data-filter="all">Все</button>
         <button class="filter-btn" data-filter="today">Сегодня</button>
-        <button class="filter-btn" data-filter="weekend">Выходные</button>
         <button class="filter-btn" data-filter="kids">Детям</button>
         <button class="filter-btn" data-filter="concert">Концерты</button>
         <button class="filter-btn" data-filter="theater">Театр</button>
