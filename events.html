@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v14">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v16">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1580,6 +1580,64 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   display:none!important;
 }
 
+
+
+/* ===== V15 HARD INFO BUTTON FIX 2026-06-09 ===== */
+.card-info-btn{
+  display:flex!important;
+  width:100%!important;
+  min-height:52px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font:950 15px/1 Arial,Helvetica,sans-serif!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+  box-sizing:border-box!important;
+}
+.card-info-btn:hover{filter:brightness(1.06)!important;}
+.event-card .event-actions{
+  display:flex!important;
+  margin-top:auto!important;
+  padding-top:10px!important;
+}
+.event-card .card-info-btn.event-info-btn{
+  display:flex!important;
+}
+.event-card .more-btn,
+.event-card .heart{
+  display:none!important;
+}
+
+
+
+/* ===== V16 CINEMA MODAL BUTTONS 2026-06-09 ===== */
+.event-detail-modal .cinema-modal-actions,
+.event-detail-modal .event-modal-actions{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+.event-detail-modal .cinema-modal-actions #modalSourceBtn,
+.event-detail-modal .cinema-modal-actions #modalTrailerBtn{
+  display:flex!important;
+  width:100%!important;
+  min-height:56px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  text-align:center!important;
+}@media(max-width:760px){
+  .event-detail-modal .cinema-modal-actions,
+  .event-detail-modal .event-modal-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1675,9 +1733,8 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         <div><span>Адрес</span><b id="modalVenue"></b></div>
       </div>
       <div class="place-modal-actions event-modal-actions cinema-modal-actions">
-        <a id="modalSourceBtn" href="mailto:info@kogalym-portal.ru">Купить / расписание</a>
+        <a id="modalSourceBtn" href="mailto:info@kogalym-portal.ru">Купить билет</a>
         <a id="modalTrailerBtn" href="#" target="_blank" rel="noopener">Смотреть трейлер</a>
-        <button type="button" id="modalCloseBtn">Закрыть</button>
       </div>
     </div>
   </div>
@@ -1738,7 +1795,6 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   const modalVenue = document.getElementById('modalVenue');
   const modalSourceBtn = document.getElementById('modalSourceBtn');
   const modalTrailerBtn = document.getElementById('modalTrailerBtn');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
   const trailerModal = document.getElementById('trailerModal');
   const trailerModalClose = document.getElementById('trailerModalClose');
   const trailerFrame = document.getElementById('trailerFrame');
@@ -1984,7 +2040,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
         <div class="event-meta"><span>◴ ${escapeHtml(ruCapSentence(time))}</span><span>⌖ ${escapeHtml(ruCapSentence(event.venue || 'Место уточняется'))}</span></div>
         <p>${escapeHtml(ruCapSentence(desc))}</p>
         <div class="event-source">Источник: ${sourceLink}${event.price ? ` · ${escapeHtml(event.price)}` : ''}${event.age ? ` · ${escapeHtml(event.age)}` : ''}</div>
-        <div class="event-actions"><button class="more-btn info-btn" type="button" data-index="${index}">Информация</button></div>
+        <div class="event-actions"><button class="card-info-btn event-info-btn" type="button" data-index="${index}">Информация</button></div>
       </div>
     </article>`;
   }
@@ -2222,7 +2278,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     modalAge.textContent = ruCapSentence(isCinema ? displayAge(item) : (item.age || 'Без ограничения'));
     modalRefund.textContent = ruCapSentence(isCinema ? displayRefund(item) : 'Не применяется');
     modalVenue.textContent = ruCapSentence(item.address || item.venue || 'Место уточняется');
-    modalSourceBtn.textContent = isCinema ? 'Купить / расписание' : (item.url ? 'Открыть источник' : 'Уточнить участие');
+    modalSourceBtn.textContent = isCinema ? 'Купить билет' : (item.url ? 'Информация' : 'Информация');
     modalSourceBtn.href = sourceHref;
     modalSourceBtn.target = sourceTarget;
 
@@ -2249,7 +2305,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   }
 
   grid.addEventListener('click', event => {
-    const infoButton = event.target.closest('.info-btn');
+    const infoButton = event.target.closest('.event-info-btn');
     if (infoButton) {
       event.preventDefault();
       const card = infoButton.closest('.event-card');
@@ -2286,7 +2342,6 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
     document.body.classList.remove('modal-open');
   };
   eventModalClose.addEventListener('click', closeModal);
-  modalCloseBtn.addEventListener('click', closeModal);
   modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
   window.addEventListener('keydown', event => { if (event.key === 'Escape') { closeTrailerModal(); closeModal(); } });
 

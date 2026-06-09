@@ -5730,3 +5730,33 @@ max-width:none;
 .routes-v2-card .routes-v2-btn.info-btn:hover{
   filter:brightness(1.06)!important;
 }
+
+
+/* ===== V15 HARD INFO BUTTONS GLOBAL 2026-06-09 ===== */
+.card-info-btn,
+.place-card .card-info-btn.place-info-btn,
+.routes-v2-card .card-info-btn.route-info-btn,
+.event-card .card-info-btn.event-info-btn{
+  display:flex!important;
+  width:100%!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:14px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font:950 15px/1 Arial,Helvetica,sans-serif!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+  box-sizing:border-box!important;
+}
+.place-card .card-info-btn.place-info-btn,
+.event-card .card-info-btn.event-info-btn{
+  min-height:52px!important;
+  margin-top:18px!important;
+}
+.routes-v2-card .card-info-btn.route-info-btn{
+  min-height:64px!important;
+  border-radius:18px!important;
+}
+.card-info-btn:hover{filter:brightness(1.06)!important;}

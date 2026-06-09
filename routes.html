@@ -7,7 +7,7 @@
   <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Маршруты — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v14">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v16">
 <style>
 /* ===== ROUTES V2 FINAL: scoped, no overlap, no fixed broken widths ===== */
 .routes-v2-page{
@@ -575,6 +575,38 @@
   .routes-v2-bottom{grid-template-columns:1fr!important;}
 }
 
+
+
+/* ===== V15 HARD ROUTE INFO BUTTON FIX 2026-06-09 ===== */
+.routes-v2-card .routes-v2-actions{
+  display:flex!important;
+  min-width:0!important;
+}
+.routes-v2-card .card-info-btn.route-info-btn{
+  display:flex!important;
+  width:100%!important;
+  min-height:64px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:linear-gradient(135deg,#ffd977,#be8227)!important;
+  color:#07101f!important;
+  font:950 16px/1.1 Arial,Helvetica,sans-serif!important;
+  cursor:pointer!important;
+  text-decoration:none!important;
+  box-sizing:border-box!important;
+}
+.routes-v2-card .card-info-btn.route-info-btn:hover{
+  filter:brightness(1.06)!important;
+}
+.routes-v2-bottom{
+  grid-template-columns:minmax(190px,240px) minmax(0,1fr)!important;
+}
+@media(max-width:620px){
+  .routes-v2-bottom{grid-template-columns:1fr!important;}
+}
+
 </style>
 </head>
 <body>
@@ -615,7 +647,7 @@
           <h2 class="routes-v2-card-title">Центр и СКК «Галактика»</h2>
           <div class="routes-v2-meta"><span>1–1.5 часа</span><span>семейный отдых</span><span>вечерний маршрут</span></div>
           <p class="routes-v2-desc">Маршрут для первого знакомства с городом: СКК «Галактика», центральные улицы, вечерняя подсветка и точки для отдыха после прогулки.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="card-info-btn route-info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>центр, подсветка, городские точки</span></div></div></div>
         </div>
       </article>
 
@@ -627,7 +659,7 @@
           <h2 class="routes-v2-card-title">Парк 50-летия и набережная</h2>
           <div class="routes-v2-meta"><span>1 час</span><span>спокойная прогулка</span><span>фото-точки</span></div>
           <p class="routes-v2-desc">Маршрут для неспешной прогулки: зелёная зона, городской парк, набережная и места, где Когалым выглядит особенно атмосферно.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="routes-v2-btn routes-v2-btn--gold info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="card-info-btn route-info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>парк, набережная, спокойные виды</span></div></div></div>
         </div>
       </article>
 
@@ -639,7 +671,7 @@
           <h2 class="routes-v2-card-title">Ночной Когалым</h2>
           <div class="routes-v2-meta"><span>1.5–2 часа</span><span>ночной город</span><span>лучшие виды</span></div>
           <p class="routes-v2-desc">Самый атмосферный маршрут: подсвеченные улицы, ночные виды, городские огни и северное настроение. Хорош для фото и вечерней прогулки.</p>
-          <div class="routes-v2-bottom"><div class="routes-v2-info"><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div></div>
+          <div class="routes-v2-bottom"><div class="routes-v2-actions"><button class="card-info-btn route-info-btn" type="button">Информация</button></div><div class="routes-v2-info"><div><b>Что посмотреть</b><span>ночные улицы, огни, вечерние виды</span></div></div></div>
         </div>
       </article>
     </section>
@@ -767,7 +799,7 @@
   }
   document.querySelectorAll('.routes-v2-card[data-route]').forEach(card => {
     card.addEventListener('click', event => {
-      const infoButton = event.target.closest('.info-btn');
+      const infoButton = event.target.closest('.route-info-btn');
       if(infoButton){
         event.preventDefault();
         openRoute(card.dataset.route);

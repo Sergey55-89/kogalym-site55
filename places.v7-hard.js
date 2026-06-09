@@ -868,7 +868,7 @@
           <h2>${esc(place.title)}</h2>
           <p>${esc(place.desc)}</p>
           <div class="place-meta"><span>${esc(capFirst(place.hours))}</span><span>${esc(capFirst(place.address))}</span></div>
-          <button class="place-more info-btn" type="button">Информация</button>
+          <button class="card-info-btn place-info-btn" type="button">Информация</button>
         </div>
       </article>`;
   }
@@ -972,7 +972,7 @@
   });
 
   grid.addEventListener('click', event => {
-    const infoButton = event.target.closest('.info-btn');
+    const infoButton = event.target.closest('.place-info-btn');
     if(infoButton){
       event.preventDefault();
       const card = infoButton.closest('.place-card');
