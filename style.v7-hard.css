@@ -7789,48 +7789,52 @@ max-width:none;
 
 
 
-/* ===== V40 REPLACE HERO FILE / EXACT CLEAN AFISHA 2026-06-10 ===== */
-.events-page{
-  position:relative!important;
-  overflow:hidden!important;
-  background:
-    linear-gradient(180deg, rgba(1,7,16,.08) 0%, rgba(1,7,16,.80) 620px, rgba(1,7,16,.98) 1000px),
-    url("images/hero.jpg") center top/cover no-repeat!important;
+
+
+/* ===== V41 TRUE FULL-BLEED AFISHA HERO 2026-06-10 ===== */
+html,
+body{
+  overflow-x:hidden!important;
 }
-.events-page::before,
-.events-page::after{
+main.events-page{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow-x:hidden!important;
+  background:#010712!important;
+}
+main.events-page::before,
+main.events-page::after{
   content:none!important;
 }
-.events-hero-v40{
+.events-hero-v41{
   position:relative!important;
-  width:100vw!important;
+  width:100%!important;
   max-width:none!important;
   height:534px!important;
-  margin:0 0 0 calc(50% - 50vw)!important;
+  margin:0!important;
   padding:0!important;
-  overflow:hidden!important;
   border:0!important;
   border-radius:0!important;
   box-shadow:none!important;
-  background-image:url("images/events/afisha-hero-v40-clean.jpg")!important;
-  background-repeat:no-repeat!important;
-  background-position:center top!important;
-  background-size:cover!important;
+  overflow:hidden!important;
+  background:url("images/events/afisha-hero-v41-full.jpg") center top/cover no-repeat!important;
 }
-.events-hero-v40::before{
+.events-hero-v41::before{
   content:""!important;
   position:absolute!important;
   left:0!important;
   right:0!important;
   bottom:0!important;
-  height:110px!important;
-  background:linear-gradient(180deg, rgba(1,7,16,0), rgba(1,7,16,.82) 94%)!important;
+  height:118px!important;
+  background:linear-gradient(180deg, rgba(1,7,16,0), rgba(1,7,16,.88) 94%)!important;
   pointer-events:none!important;
 }
-.events-hero-v40::after{
+.events-hero-v41::after{
   content:none!important;
 }
-.events-hero-v40__updated{
+.events-hero-v41__updated{
   display:none!important;
 }
 .events-toolbar{
@@ -7839,10 +7843,10 @@ max-width:none;
   max-width:1160px!important;
   width:min(1160px, calc(100% - 56px))!important;
   margin:-38px auto 18px!important;
-  background:rgba(7,17,32,.78)!important;
-  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(7,17,32,.80)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
   border-radius:22px!important;
-  box-shadow:0 18px 52px rgba(0,0,0,.32)!important;
+  box-shadow:0 18px 52px rgba(0,0,0,.34)!important;
   backdrop-filter:blur(14px)!important;
   -webkit-backdrop-filter:blur(14px)!important;
 }
@@ -7855,17 +7859,13 @@ max-width:none;
   margin-right:auto!important;
 }
 @media(max-width:1100px){
-  .events-hero-v40{
+  .events-hero-v41{
     height:500px!important;
-    background-size:cover!important;
     background-position:center top!important;
-  }
-  .events-toolbar{
-    margin-top:-32px!important;
   }
 }
 @media(max-width:700px){
-  .events-hero-v40{
+  .events-hero-v41{
     height:360px!important;
     background-position:center top!important;
   }
