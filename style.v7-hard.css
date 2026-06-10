@@ -7786,183 +7786,88 @@ max-width:none;
 
 
 
-/* ===== V37 REAL LAYOUT AFISHA HERO / NO PASTED BANNER 2026-06-10 ===== */
+
+
+
+/* ===== V40 REPLACE HERO FILE / EXACT CLEAN AFISHA 2026-06-10 ===== */
 .events-page{
   position:relative!important;
   overflow:hidden!important;
   background:
-    linear-gradient(180deg, rgba(1,7,16,.18) 0%, rgba(1,7,16,.82) 520px, rgba(1,7,16,.98) 980px),
+    linear-gradient(180deg, rgba(1,7,16,.08) 0%, rgba(1,7,16,.80) 620px, rgba(1,7,16,.98) 1000px),
     url("images/hero.jpg") center top/cover no-repeat!important;
 }
-.events-page::before{
-  content:""!important;
-  position:absolute!important;
-  inset:0 0 auto 0!important;
-  height:720px!important;
-  pointer-events:none!important;
-  background:
-    radial-gradient(circle at 18% 26%, rgba(224,181,92,.10), transparent 24%),
-    radial-gradient(circle at 82% 20%, rgba(83,255,164,.12), transparent 28%),
-    linear-gradient(180deg, rgba(1,7,16,.10) 0%, rgba(1,7,16,.0) 48%, rgba(1,7,16,.72) 100%)!important;
-  z-index:0!important;
+.events-page::before,
+.events-page::after{
+  content:none!important;
 }
-.events-page > *{
+.events-hero-v40{
   position:relative!important;
-  z-index:1!important;
-}
-.events-hero-live{
-  position:relative!important;
-  width:min(1240px, calc(100% - 56px))!important;
-  min-height:500px!important;
-  margin:8px auto 0!important;
+  width:100vw!important;
+  max-width:none!important;
+  height:534px!important;
+  margin:0 0 0 calc(50% - 50vw)!important;
   padding:0!important;
-  overflow:visible!important;
+  overflow:hidden!important;
   border:0!important;
   border-radius:0!important;
   box-shadow:none!important;
-  background:transparent!important;
-  isolation:isolate!important;
+  background-image:url("images/events/afisha-hero-v40-clean.jpg")!important;
+  background-repeat:no-repeat!important;
+  background-position:center top!important;
+  background-size:cover!important;
 }
-.events-hero-live::before{
-  content:""!important;
-  position:absolute!important;
-  left:-120px!important;
-  top:16px!important;
-  width:440px!important;
-  height:440px!important;
-  border-radius:50%!important;
-  border:1px solid rgba(204,153,68,.22)!important;
-  box-shadow:
-    28px 0 0 -1px rgba(204,153,68,.10),
-    56px 0 0 -2px rgba(204,153,68,.08),
-    84px 0 0 -3px rgba(204,153,68,.06)!important;
-  opacity:.8!important;
-  pointer-events:none!important;
-  z-index:0!important;
-}
-.events-hero-live::after{
+.events-hero-v40::before{
   content:""!important;
   position:absolute!important;
   left:0!important;
   right:0!important;
-  bottom:-1px!important;
-  height:165px!important;
-  background:linear-gradient(180deg, rgba(1,7,16,0), rgba(1,7,16,.86) 86%, rgba(1,7,16,.96))!important;
-  pointer-events:none!important;
-  z-index:2!important;
-}
-.events-hero-live__content{
-  position:absolute!important;
-  left:64px!important;
-  top:50%!important;
-  transform:translateY(-48%)!important;
-  z-index:3!important;
-  max-width:620px!important;
-}
-.events-hero-live__content h1{
-  margin:0!important;
-  color:#f4ddba!important;
-  font-family:Georgia, "Times New Roman", serif!important;
-  font-size:clamp(72px, 7.4vw, 110px)!important;
-  line-height:.89!important;
-  letter-spacing:-.055em!important;
-  text-transform:none!important;
-  text-shadow:0 14px 46px rgba(0,0,0,.46)!important;
-}
-.events-hero-live__updated{
-  margin-top:36px!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  gap:10px!important;
-  min-height:32px!important;
-  padding:0!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  color:#f3e2bb!important;
-  font:700 15px/1.2 Arial,Helvetica,sans-serif!important;
-  text-shadow:0 2px 12px rgba(0,0,0,.72)!important;
-}
-.events-hero-live__updated::before{
-  content:""!important;
-  width:8px!important;
-  height:8px!important;
-  border-radius:50%!important;
-  background:#9ee06f!important;
-  box-shadow:0 0 12px rgba(158,224,111,.78)!important;
-}
-.events-hero-live__stela{
-  position:absolute!important;
-  right:42px!important;
   bottom:0!important;
-  z-index:2!important;
-  width:min(390px, 34vw)!important;
-  height:auto!important;
-  max-width:none!important;
-  filter:drop-shadow(0 28px 54px rgba(0,0,0,.52)) saturate(1.05) contrast(1.02)!important;
+  height:110px!important;
+  background:linear-gradient(180deg, rgba(1,7,16,0), rgba(1,7,16,.82) 94%)!important;
   pointer-events:none!important;
-  user-select:none!important;
+}
+.events-hero-v40::after{
+  content:none!important;
+}
+.events-hero-v40__updated{
+  display:none!important;
 }
 .events-toolbar{
   position:relative!important;
-  z-index:4!important;
-  max-width:1240px!important;
-  width:min(1240px, calc(100% - 56px))!important;
-  margin:-38px auto 20px!important;
+  z-index:5!important;
+  max-width:1160px!important;
+  width:min(1160px, calc(100% - 56px))!important;
+  margin:-38px auto 18px!important;
   background:rgba(7,17,32,.78)!important;
-  border:1px solid rgba(255,255,255,.08)!important;
-  border-radius:24px!important;
-  box-shadow:0 18px 48px rgba(0,0,0,.30)!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  border-radius:22px!important;
+  box-shadow:0 18px 52px rgba(0,0,0,.32)!important;
   backdrop-filter:blur(14px)!important;
   -webkit-backdrop-filter:blur(14px)!important;
 }
 .events-layout{
   position:relative!important;
-  z-index:3!important;
-  max-width:1240px!important;
-  width:min(1240px, calc(100% - 56px))!important;
+  z-index:4!important;
+  max-width:1160px!important;
+  width:min(1160px, calc(100% - 56px))!important;
   margin-left:auto!important;
   margin-right:auto!important;
 }
 @media(max-width:1100px){
-  .events-hero-live{
-    min-height:440px!important;
+  .events-hero-v40{
+    height:500px!important;
+    background-size:cover!important;
+    background-position:center top!important;
   }
-  .events-hero-live__content{
-    left:34px!important;
-  }
-  .events-hero-live__content h1{
-    font-size:64px!important;
-  }
-  .events-hero-live__stela{
-    right:8px!important;
-    width:min(320px, 38vw)!important;
+  .events-toolbar{
+    margin-top:-32px!important;
   }
 }
-@media(max-width:780px){
-  .events-hero-live{
-    width:calc(100% - 28px)!important;
-    min-height:470px!important;
-  }
-  .events-hero-live__content{
-    left:18px!important;
-    top:56px!important;
-    transform:none!important;
-  }
-  .events-hero-live__content h1{
-    font-size:46px!important;
-  }
-  .events-hero-live__updated{
-    margin-top:18px!important;
-    font-size:13px!important;
-  }
-  .events-hero-live__stela{
-    right:50%!important;
-    transform:translateX(50%)!important;
-    bottom:6px!important;
-    width:250px!important;
-    opacity:.95!important;
+@media(max-width:700px){
+  .events-hero-v40{
+    height:360px!important;
+    background-position:center top!important;
   }
   .events-toolbar,
   .events-layout{
@@ -7970,42 +7875,5 @@ max-width:none;
   }
   .events-toolbar{
     margin-top:-20px!important;
-  }
-}
-
-
-/* ===== V38 CLEAN STELA / NO HALO BACKGROUND 2026-06-10 ===== */
-.events-hero-live__stela{
-  right:68px!important;
-  bottom:2px!important;
-  width:min(360px, 31vw)!important;
-  filter:drop-shadow(0 26px 46px rgba(0,0,0,.56)) saturate(1.04) contrast(1.03)!important;
-}
-.events-hero-live{
-  min-height:500px!important;
-  background:transparent!important;
-}
-.events-page{
-  background:
-    linear-gradient(180deg, rgba(1,7,16,.10) 0%, rgba(1,7,16,.72) 540px, rgba(1,7,16,.98) 1000px),
-    url("images/hero.jpg") center top/cover no-repeat!important;
-}
-.events-page::before{
-  background:
-    radial-gradient(circle at 18% 26%, rgba(224,181,92,.08), transparent 24%),
-    radial-gradient(circle at 82% 18%, rgba(83,255,164,.07), transparent 28%),
-    linear-gradient(180deg, rgba(1,7,16,.05) 0%, rgba(1,7,16,0) 52%, rgba(1,7,16,.70) 100%)!important;
-}
-@media(max-width:1100px){
-  .events-hero-live__stela{
-    right:24px!important;
-    width:min(310px, 36vw)!important;
-  }
-}
-@media(max-width:780px){
-  .events-hero-live__stela{
-    right:50%!important;
-    transform:translateX(50%)!important;
-    width:240px!important;
   }
 }
