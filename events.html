@@ -7,7 +7,7 @@
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Афиша — Открой Когалым</title>
-<link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v29">
+<link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v31_premium">
 <style>
 :root{--af-bg:#020814;--af-panel:rgba(5,18,34,.82);--af-panel2:rgba(7,22,40,.92);--af-line:rgba(194,220,255,.16);--af-line2:rgba(241,199,91,.38);--af-gold:#f1c75b;--af-gold2:#d6a24b;--af-text:#f7fbff;--af-muted:#aebcd0;--af-blue:#0a1628}
 html{scroll-behavior:smooth}
@@ -1978,19 +1978,14 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
 
 <main class="events-page">
   <div class="events-shell">
-    <section class="events-hero events-hero-clean">
-      <div class="events-hero-inner">
-        <div class="events-hero-copy">
-          <div class="events-kicker">Куда сходить сегодня</div>
-          <h1>Афиша Когалыма</h1>
-          <p class="events-lead">Кино, выставки, концерты и городские события с датами, временем и ссылкой на источник.</p>
-          <div class="events-hero-pills">
-            <span>Кино</span>
-            <span>Выставки</span>
-            <span>Концерты</span>
-            <span>События города</span>
-          </div>
-          <div class="events-source-note" id="eventsUpdated">Загрузка актуальной афиши…</div>
+    <section class="events-hero-premium" aria-label="Афиша Когалыма">
+      <div class="events-hero-premium__inner">
+        <div class="events-hero-premium__copy">
+          <h1>Афиша<br>Когалыма</h1>
+          <div class="events-source-note events-hero-premium__updated" id="eventsUpdated">Афиша обновлена автоматически: 08.06.2026</div>
+        </div>
+        <div class="events-hero-premium__visual" aria-hidden="true">
+          <img src="images/events/plamya-premium.png" alt="">
         </div>
       </div>
     </section>
@@ -2081,7 +2076,7 @@ footer{max-width:1450px!important;margin:34px auto 0!important;padding:22px 28px
   <a href="admin.html">Админка</a>
 </footer>
 
-<script src="weather.js?v=site_20260610_v29"></script>
+<script src="weather.js?v=site_20260610_v31_premium"></script>
 <script>
 (function(){
   const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
