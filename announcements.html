@@ -7,7 +7,31 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Объявления — Открой Когалым</title>
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v23">
+  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v27">
+
+<style>
+/* ===== V27 ANN HERO PREMIUM ===== */
+.ann-badge{display:inline-flex!important;align-items:center!important;gap:10px!important;padding:10px 16px!important;border-radius:999px!important;background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.10)!important;color:#f1d289!important;}
+.ann-top{display:grid!important;grid-template-columns:minmax(0,1fr) 360px!important;gap:26px!important;align-items:stretch!important;margin-bottom:30px!important;}
+.ann-top-main,.ann-top-side{border-radius:30px!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:0 24px 74px rgba(0,0,0,.24)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;}
+.ann-top-main{padding:32px 34px!important;background:linear-gradient(180deg,rgba(7,18,34,.82),rgba(7,18,34,.62))!important;}
+.ann-top-side{padding:26px 24px!important;background:linear-gradient(180deg,rgba(7,20,38,.80),rgba(7,20,38,.64))!important;display:flex!important;flex-direction:column!important;justify-content:center!important;}
+.ann-top h1{text-transform:none!important;font-size:clamp(48px,5.2vw,74px)!important;line-height:.94!important;margin:0 0 16px!important;}
+.ann-lead{max-width:760px!important;font-size:20px!important;line-height:1.58!important;color:#dce7f8!important;}
+.ann-top-tags{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-top:22px!important;}
+.ann-top-tags span{display:inline-flex!important;align-items:center!important;min-height:38px!important;padding:0 14px!important;border-radius:999px!important;background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.08)!important;color:#fff!important;font-size:14px!important;font-weight:800!important;}
+.ann-top-side strong{display:block!important;margin:0 0 12px!important;color:#fff!important;font:500 32px/1.02 Georgia,'Times New Roman',serif!important;letter-spacing:-.03em!important;}
+.ann-top-side p{margin:0 0 18px!important;color:#d9e5f6!important;font-size:15px!important;line-height:1.58!important;}
+.ann-top-facts{display:grid!important;gap:12px!important;margin-bottom:18px!important;}
+.ann-top-facts div{padding:14px 15px!important;border-radius:18px!important;background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.08)!important;}
+.ann-top-facts b{display:block!important;color:#fff!important;font-size:18px!important;line-height:1.1!important;margin-bottom:6px!important;}
+.ann-top-facts span{display:block!important;color:#d7e2f5!important;font-size:13px!important;line-height:1.4!important;}
+.ann-add-btn{min-height:54px!important;border-radius:14px!important;padding:0 22px!important;align-self:flex-start!important;}
+.ann-search-panel{padding:14px!important;border-radius:22px!important;background:rgba(7,18,34,.70)!important;border:1px solid rgba(255,255,255,.08)!important;box-shadow:0 18px 44px rgba(0,0,0,.18)!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;}
+.ann-categories{padding:0!important;}
+@media (max-width:980px){.ann-top{grid-template-columns:1fr!important;}.ann-top-main,.ann-top-side{padding:24px 20px!important;}.ann-lead{font-size:16px!important;}.ann-top-side strong{font-size:28px!important;}}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -35,11 +59,25 @@
     <div class="ann-badge">Городские предложения</div>
 
     <section class="ann-top">
-      <div>
-        <h1>ОБЪЯВЛЕНИЯ<br>КОГАЛЫМА</h1>
+      <div class="ann-top-main">
+        <h1>Объявления<br>Когалыма</h1>
         <p class="ann-lead">Работа, услуги, аренда и продажи от жителей города. Поиск и фильтры — без лишней возни.</p>
+        <div class="ann-top-tags">
+          <span>Работа</span>
+          <span>Услуги</span>
+          <span>Аренда</span>
+          <span>Продажа</span>
+        </div>
       </div>
-      <a class="ann-add-btn" href="admin.html">Подать объявление</a>
+      <aside class="ann-top-side" aria-label="О разделе объявлений">
+        <strong>Городская доска без лишнего шума</strong>
+        <p>Всё собрано по категориям: удобно искать объявления, смотреть актуальные карточки и быстро переходить к контакту.</p>
+        <div class="ann-top-facts">
+          <div><b>Поиск</b><span>по ключевым словам</span></div>
+          <div><b>Фильтры</b><span>категория, цена, сортировка</span></div>
+        </div>
+        <a class="ann-add-btn" href="admin.html">Подать объявление</a>
+      </aside>
     </section>
 
     <section class="ann-search-panel" aria-label="Фильтры объявлений">

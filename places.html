@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Что посмотреть в Когалыме — Открой Когалым</title>
   <meta name="description" content="Городской путеводитель по Когалыму: памятники, парки, культура, музеи, храмы, спорт, образование, адреса и карта.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260609_v23">
+  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v27">
 
 
 <style>
@@ -234,6 +234,71 @@
 }
 </style>
 
+
+<style>
+/* ===== V24 PLACES CARDS HARD FIX INLINE ===== */
+.places-grid,.places-cards,.catalog-grid{align-items:stretch!important;}
+.place-card,.place-card.catalog-card{
+  display:grid!important;
+  grid-template-rows:230px minmax(0,1fr)!important;
+  height:640px!important;min-height:640px!important;max-height:640px!important;
+  overflow:hidden!important;border-radius:24px!important;box-sizing:border-box!important;
+}
+.place-card .place-image{
+  width:100%!important;height:230px!important;min-height:230px!important;max-height:230px!important;
+  overflow:hidden!important;background:#08182b!important;
+}
+.place-card .place-image img{
+  width:100%!important;height:100%!important;display:block!important;
+  object-fit:cover!important;object-position:center center!important;
+}
+.place-card .place-body{
+  display:grid!important;
+  grid-template-rows:auto 72px 88px 78px 56px!important;
+  gap:12px!important;align-content:start!important;
+  width:100%!important;min-height:0!important;padding:18px!important;box-sizing:border-box!important;overflow:hidden!important;
+}
+.place-card .place-body>*{min-width:0!important;}
+.place-card .place-top{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;
+  margin:0!important;min-height:24px!important;
+}
+.place-card h2{
+  margin:0!important;min-height:72px!important;max-height:72px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;line-height:1.12!important;
+}
+.place-card p{
+  margin:0!important;min-height:88px!important;max-height:88px!important;overflow:hidden!important;
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:4!important;line-height:1.4!important;
+}
+.place-card .place-meta{
+  display:flex!important;flex-direction:column!important;gap:10px!important;
+  min-height:78px!important;max-height:78px!important;margin:0!important;overflow:hidden!important;
+}
+.place-card .place-meta span{
+  display:flex!important;align-items:center!important;min-height:34px!important;
+  padding:0 12px!important;border-radius:999px!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+.place-card .card-info-btn.place-info-btn{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;min-width:100%!important;max-width:none!important;
+  height:56px!important;min-height:56px!important;max-height:56px!important;
+  margin:0!important;padding:0 18px!important;border-radius:14px!important;box-sizing:border-box!important;
+  overflow:hidden!important;white-space:nowrap!important;text-overflow:ellipsis!important;align-self:end!important;
+}
+@media (max-width:980px){
+  .place-card,.place-card.catalog-card{
+    height:auto!important;min-height:0!important;max-height:none!important;grid-template-rows:auto auto!important;
+  }
+  .place-card .place-image{
+    height:auto!important;min-height:0!important;max-height:none!important;aspect-ratio:16/10!important;
+  }
+  .place-card .place-body{grid-template-rows:auto auto auto auto 56px!important;}
+  .place-card h2,.place-card p,.place-card .place-meta{min-height:0!important;max-height:none!important;}
+}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -256,24 +321,40 @@
 
 <main class="places-page catalog-page places-page--lively">
   <section class="places-showcase" aria-label="Локации Когалыма">
-    <div class="places-showcase__text">
-      <span class="places-eyebrow">Места, по которым узнают город</span>
-      <h1>Локации Когалыма</h1>
-      <h2>От памятников до новых городских пространств</h2>
-      <p>Здесь собраны точки, которые реально помогают почувствовать город: памятники, площади, парки, культурные места и спокойные зоны для прогулки.</p>
-      <p>Без канцелярита и случайных адресов: только локации, у которых есть понятный смысл, история или польза для прогулки.</p>
+  <div class="places-showcase__text">
+    <span class="places-eyebrow"><i></i>Локации Когалыма</span>
+    <h1>Локации Когалыма</h1>
+    <h2>Где гулять, что посмотреть и с чего начать знакомство с городом</h2>
+    <p class="places-showcase__lead">Собрали места, по которым действительно читается Когалым: памятники, парки, музеи, городские пространства и спокойные точки для прогулки.</p>
+    <div class="places-showcase__stats" aria-label="Подборка локаций">
+      <article>
+        <strong>Памятники</strong>
+        <span>знаковые точки города</span>
+      </article>
+      <article>
+        <strong>Парки</strong>
+        <span>маршруты для прогулки</span>
+      </article>
+      <article>
+        <strong>Музеи</strong>
+        <span>культура и история</span>
+      </article>
     </div>
+    <p class="places-showcase__sub">Без перегруженных описаний и случайных адресов — только понятные и красивые места, которые стоит увидеть.</p>
+  </div>
 
-    <div class="places-postcard places-postcard--collage" aria-label="Коллаж мест Когалыма">
-      <div class="places-postcard__tape places-postcard__tape--top"></div>
-      <img src="images/places-collage-kogalym.png" alt="Коллаж достопримечательностей Когалыма">
-      <div class="places-postcard__tape places-postcard__tape--bottom"></div>
-      <div class="places-postcard__note">
-        <span>Любимый город</span>
-        <b>с северным характером</b>
+  <div class="places-showcase__visual" aria-label="Подборка мест Когалыма">
+    <div class="places-showcase__frame">
+      <img src="images/places-collage-kogalym.png" alt="Подборка достопримечательностей Когалыма">
+      <span class="places-showcase__badge places-showcase__badge--top">Подборка мест</span>
+      <span class="places-showcase__badge places-showcase__badge--bottom">Для прогулки и знакомства с городом</span>
+      <div class="places-showcase__caption">
+        <strong>Город, который приятно пройти пешком</strong>
+        <span>Памятники, площади, парки и культурные точки — в одной аккуратной подборке</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="places-control-panel places-control-panel--simple" aria-label="Категории мест">
     <section class="places-filter-row catalog-filter-row" id="catalogFilters"></section>
@@ -315,7 +396,7 @@
   <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
   <a href="admin.html">Админка</a>
 </footer>
-<script src="places.v7-hard.js?v=site_20260609_v23"></script>
+<script src="places.v7-hard.js?v=site_20260610_v27"></script>
 <script src="weather.js?v=v7_20260522_nocrop"></script>
 </body>
 </html>
