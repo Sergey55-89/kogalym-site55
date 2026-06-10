@@ -7783,261 +7783,229 @@ max-width:none;
 }
 
 
-/* ===== V33 EXACT AFISHA HERO FIX 2026-06-10 ===== */
-.events-hero-final{
-  position:relative!important;
-  width:min(1240px, calc(100% - 56px))!important;
-  height:clamp(390px, 34vw, 490px)!important;
-  margin:8px auto 18px!important;
-  padding:0!important;
-  overflow:hidden!important;
-  border-radius:0!important;
-  border:0!important;
-  box-shadow:none!important;
-  background-image:url("images/events/afisha-premium-hero-final.jpg")!important;
-  background-size:100% 100%!important;
-  background-repeat:no-repeat!important;
-  background-position:center center!important;
-  isolation:isolate!important;
-}
-.events-hero-final::before,
-.events-hero-final::after{
-  content:none!important;
-}
-.events-hero-final__status{
-  position:absolute!important;
-  left:15.2%!important;
-  bottom:8.5%!important;
-  z-index:2!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  gap:8px!important;
-  min-height:28px!important;
-  padding:0!important;
-  margin:0!important;
-  background:transparent!important;
-  border:0!important;
-  box-shadow:none!important;
-  color:transparent!important;
-  font-size:0!important;
-  pointer-events:none!important;
-  opacity:0!important;
-}
-.events-hero-final .events-hero-premium__inner,
-.events-hero-final .events-hero-premium__copy,
-.events-hero-final .events-hero-premium__visual,
-.events-hero-final .events-hero-copy,
-.events-hero-final .events-kicker,
-.events-hero-final .events-lead,
-.events-hero-final .events-hero-pills{
-  display:none!important;
-}
-.events-toolbar{
-  max-width:1240px!important;
-  width:min(1240px, calc(100% - 56px))!important;
-  margin:0 auto 18px!important;
-}
-.events-layout{
-  max-width:1240px!important;
-  width:min(1240px, calc(100% - 56px))!important;
-  margin-left:auto!important;
-  margin-right:auto!important;
-}
-@media(max-width:980px){
-  .events-hero-final{
-    width:calc(100% - 28px)!important;
-    height:clamp(280px, 58vw, 410px)!important;
-    margin-top:8px!important;
-    background-size:cover!important;
-    background-position:center center!important;
-  }
-  .events-toolbar,
-  .events-layout{
-    width:calc(100% - 28px)!important;
-  }
-}
-@media(max-width:640px){
-  .events-hero-final{
-    height:260px!important;
-    background-position:center center!important;
-  }
-}
 
 
-/* ===== V34 NO FRAME AFISHA HERO 2026-06-10 ===== */
-.events-hero-final{
-  background-size:cover!important;
-  background-position:center center!important;
-  height:clamp(360px, 33vw, 460px)!important;
-}
-.events-hero-final__status{
-  left:92px!important;
-  bottom:16px!important;
-  display:inline-flex!important;
-  align-items:center!important;
-  gap:10px!important;
-  color:#f0dfb0!important;
-  font-size:17px!important;
-  font-weight:600!important;
-  line-height:1!important;
-  letter-spacing:.02em!important;
-  text-shadow:0 2px 10px rgba(0,0,0,.55)!important;
-  opacity:1!important;
-}
-.events-hero-final__status::before{
-  content:""!important;
-  width:8px!important;
-  height:8px!important;
-  border-radius:50%!important;
-  background:#9ee06f!important;
-  box-shadow:0 0 10px rgba(158,224,111,.75)!important;
-  flex:0 0 8px!important;
-}
-@media(max-width:980px){
-  .events-hero-final{
-    height:clamp(260px, 56vw, 380px)!important;
-  }
-  .events-hero-final__status{
-    left:28px!important;
-    right:28px!important;
-    bottom:12px!important;
-    font-size:14px!important;
-  }
-}
 
-
-/* ===== V35 AFISHA NO CROP / NO FRAME 2026-06-10 ===== */
-.events-hero-final{
-  width:min(1240px, calc(100% - 56px))!important;
-  height:465px!important;
-  background-image:url("images/events/afisha-premium-hero-final.jpg")!important;
-  background-size:100% 100%!important;
-  background-repeat:no-repeat!important;
-  background-position:center center!important;
-  border:0!important;
-  border-radius:0!important;
-  box-shadow:none!important;
-  overflow:visible!important;
-}
-.events-hero-final__status{
-  display:none!important;
-}
-@media(max-width:980px){
-  .events-hero-final{
-    width:calc(100% - 28px)!important;
-    height:calc((100vw - 28px) * 0.3745)!important;
-    min-height:250px!important;
-    max-height:465px!important;
-    background-size:100% 100%!important;
-  }
-}
-@media(max-width:640px){
-  .events-hero-final{
-    min-height:220px!important;
-  }
-}
-
-
-/* ===== V36 AFISHA HERO INTEGRATED / NOT A SEPARATE PICTURE 2026-06-10 ===== */
+/* ===== V37 REAL LAYOUT AFISHA HERO / NO PASTED BANNER 2026-06-10 ===== */
 .events-page{
   position:relative!important;
   overflow:hidden!important;
+  background:
+    linear-gradient(180deg, rgba(1,7,16,.18) 0%, rgba(1,7,16,.82) 520px, rgba(1,7,16,.98) 980px),
+    url("images/hero.jpg") center top/cover no-repeat!important;
 }
 .events-page::before{
   content:""!important;
-  position:fixed!important;
-  inset:0!important;
-  z-index:-2!important;
-  background:
-    linear-gradient(180deg, rgba(1,7,16,.38) 0%, rgba(1,7,16,.82) 42%, rgba(1,7,16,.96) 100%),
-    url("images/hero.jpg") center top/cover no-repeat!important;
-  pointer-events:none!important;
-}
-.events-page::after{
-  content:""!important;
   position:absolute!important;
-  left:0!important;
-  right:0!important;
-  top:0!important;
-  height:620px!important;
-  z-index:-1!important;
-  background:linear-gradient(180deg, rgba(1,7,16,0) 0%, rgba(1,7,16,.22) 70%, rgba(1,7,16,.92) 100%)!important;
+  inset:0 0 auto 0!important;
+  height:720px!important;
   pointer-events:none!important;
+  background:
+    radial-gradient(circle at 18% 26%, rgba(224,181,92,.10), transparent 24%),
+    radial-gradient(circle at 82% 20%, rgba(83,255,164,.12), transparent 28%),
+    linear-gradient(180deg, rgba(1,7,16,.10) 0%, rgba(1,7,16,.0) 48%, rgba(1,7,16,.72) 100%)!important;
+  z-index:0!important;
 }
-.events-hero-final{
+.events-page > *{
   position:relative!important;
-  width:100vw!important;
-  max-width:none!important;
-  height:500px!important;
-  margin:0 0 0 calc(50% - 50vw)!important;
+  z-index:1!important;
+}
+.events-hero-live{
+  position:relative!important;
+  width:min(1240px, calc(100% - 56px))!important;
+  min-height:500px!important;
+  margin:8px auto 0!important;
   padding:0!important;
+  overflow:visible!important;
   border:0!important;
   border-radius:0!important;
   box-shadow:none!important;
-  overflow:hidden!important;
-  background:
-    linear-gradient(180deg, rgba(1,7,16,.08) 0%, rgba(1,7,16,0) 70%, rgba(1,7,16,.38) 100%),
-    url("images/events/afisha-premium-hero-final.jpg") center center/100% 100% no-repeat!important;
+  background:transparent!important;
   isolation:isolate!important;
 }
-.events-hero-final::before{
+.events-hero-live::before{
+  content:""!important;
+  position:absolute!important;
+  left:-120px!important;
+  top:16px!important;
+  width:440px!important;
+  height:440px!important;
+  border-radius:50%!important;
+  border:1px solid rgba(204,153,68,.22)!important;
+  box-shadow:
+    28px 0 0 -1px rgba(204,153,68,.10),
+    56px 0 0 -2px rgba(204,153,68,.08),
+    84px 0 0 -3px rgba(204,153,68,.06)!important;
+  opacity:.8!important;
+  pointer-events:none!important;
+  z-index:0!important;
+}
+.events-hero-live::after{
   content:""!important;
   position:absolute!important;
   left:0!important;
   right:0!important;
   bottom:-1px!important;
-  height:130px!important;
-  background:linear-gradient(180deg, rgba(1,7,16,0) 0%, rgba(1,7,16,.82) 92%, rgba(1,7,16,.94) 100%)!important;
-  z-index:1!important;
+  height:165px!important;
+  background:linear-gradient(180deg, rgba(1,7,16,0), rgba(1,7,16,.86) 86%, rgba(1,7,16,.96))!important;
   pointer-events:none!important;
+  z-index:2!important;
 }
-.events-hero-final::after{
-  content:none!important;
+.events-hero-live__content{
+  position:absolute!important;
+  left:64px!important;
+  top:50%!important;
+  transform:translateY(-48%)!important;
+  z-index:3!important;
+  max-width:620px!important;
 }
-.events-hero-final__status{
-  display:none!important;
+.events-hero-live__content h1{
+  margin:0!important;
+  color:#f4ddba!important;
+  font-family:Georgia, "Times New Roman", serif!important;
+  font-size:clamp(72px, 7.4vw, 110px)!important;
+  line-height:.89!important;
+  letter-spacing:-.055em!important;
+  text-transform:none!important;
+  text-shadow:0 14px 46px rgba(0,0,0,.46)!important;
+}
+.events-hero-live__updated{
+  margin-top:36px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-height:32px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#f3e2bb!important;
+  font:700 15px/1.2 Arial,Helvetica,sans-serif!important;
+  text-shadow:0 2px 12px rgba(0,0,0,.72)!important;
+}
+.events-hero-live__updated::before{
+  content:""!important;
+  width:8px!important;
+  height:8px!important;
+  border-radius:50%!important;
+  background:#9ee06f!important;
+  box-shadow:0 0 12px rgba(158,224,111,.78)!important;
+}
+.events-hero-live__stela{
+  position:absolute!important;
+  right:42px!important;
+  bottom:0!important;
+  z-index:2!important;
+  width:min(390px, 34vw)!important;
+  height:auto!important;
+  max-width:none!important;
+  filter:drop-shadow(0 28px 54px rgba(0,0,0,.52)) saturate(1.05) contrast(1.02)!important;
+  pointer-events:none!important;
+  user-select:none!important;
 }
 .events-toolbar{
   position:relative!important;
-  z-index:3!important;
+  z-index:4!important;
   max-width:1240px!important;
   width:min(1240px, calc(100% - 56px))!important;
-  margin:-34px auto 20px!important;
-  background:rgba(7,17,32,.76)!important;
+  margin:-38px auto 20px!important;
+  background:rgba(7,17,32,.78)!important;
   border:1px solid rgba(255,255,255,.08)!important;
-  box-shadow:0 18px 48px rgba(0,0,0,.28)!important;
+  border-radius:24px!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.30)!important;
   backdrop-filter:blur(14px)!important;
   -webkit-backdrop-filter:blur(14px)!important;
 }
 .events-layout{
   position:relative!important;
-  z-index:2!important;
+  z-index:3!important;
   max-width:1240px!important;
   width:min(1240px, calc(100% - 56px))!important;
   margin-left:auto!important;
   margin-right:auto!important;
 }
 @media(max-width:1100px){
-  .events-hero-final{
-    height:430px!important;
-    background-size:cover!important;
-    background-position:center center!important;
+  .events-hero-live{
+    min-height:440px!important;
   }
-  .events-toolbar{
-    margin-top:-26px!important;
+  .events-hero-live__content{
+    left:34px!important;
+  }
+  .events-hero-live__content h1{
+    font-size:64px!important;
+  }
+  .events-hero-live__stela{
+    right:8px!important;
+    width:min(320px, 38vw)!important;
   }
 }
-@media(max-width:700px){
-  .events-hero-final{
-    height:320px!important;
-    background-size:cover!important;
-    background-position:center center!important;
+@media(max-width:780px){
+  .events-hero-live{
+    width:calc(100% - 28px)!important;
+    min-height:470px!important;
+  }
+  .events-hero-live__content{
+    left:18px!important;
+    top:56px!important;
+    transform:none!important;
+  }
+  .events-hero-live__content h1{
+    font-size:46px!important;
+  }
+  .events-hero-live__updated{
+    margin-top:18px!important;
+    font-size:13px!important;
+  }
+  .events-hero-live__stela{
+    right:50%!important;
+    transform:translateX(50%)!important;
+    bottom:6px!important;
+    width:250px!important;
+    opacity:.95!important;
   }
   .events-toolbar,
   .events-layout{
     width:calc(100% - 28px)!important;
   }
   .events-toolbar{
-    margin-top:-18px!important;
+    margin-top:-20px!important;
+  }
+}
+
+
+/* ===== V38 CLEAN STELA / NO HALO BACKGROUND 2026-06-10 ===== */
+.events-hero-live__stela{
+  right:68px!important;
+  bottom:2px!important;
+  width:min(360px, 31vw)!important;
+  filter:drop-shadow(0 26px 46px rgba(0,0,0,.56)) saturate(1.04) contrast(1.03)!important;
+}
+.events-hero-live{
+  min-height:500px!important;
+  background:transparent!important;
+}
+.events-page{
+  background:
+    linear-gradient(180deg, rgba(1,7,16,.10) 0%, rgba(1,7,16,.72) 540px, rgba(1,7,16,.98) 1000px),
+    url("images/hero.jpg") center top/cover no-repeat!important;
+}
+.events-page::before{
+  background:
+    radial-gradient(circle at 18% 26%, rgba(224,181,92,.08), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(83,255,164,.07), transparent 28%),
+    linear-gradient(180deg, rgba(1,7,16,.05) 0%, rgba(1,7,16,0) 52%, rgba(1,7,16,.70) 100%)!important;
+}
+@media(max-width:1100px){
+  .events-hero-live__stela{
+    right:24px!important;
+    width:min(310px, 36vw)!important;
+  }
+}
+@media(max-width:780px){
+  .events-hero-live__stela{
+    right:50%!important;
+    transform:translateX(50%)!important;
+    width:240px!important;
   }
 }
