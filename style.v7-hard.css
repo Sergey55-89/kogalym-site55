@@ -7936,3 +7936,108 @@ max-width:none;
     min-height:220px!important;
   }
 }
+
+
+/* ===== V36 AFISHA HERO INTEGRATED / NOT A SEPARATE PICTURE 2026-06-10 ===== */
+.events-page{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.events-page::before{
+  content:""!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:-2!important;
+  background:
+    linear-gradient(180deg, rgba(1,7,16,.38) 0%, rgba(1,7,16,.82) 42%, rgba(1,7,16,.96) 100%),
+    url("images/hero.jpg") center top/cover no-repeat!important;
+  pointer-events:none!important;
+}
+.events-page::after{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:0!important;
+  height:620px!important;
+  z-index:-1!important;
+  background:linear-gradient(180deg, rgba(1,7,16,0) 0%, rgba(1,7,16,.22) 70%, rgba(1,7,16,.92) 100%)!important;
+  pointer-events:none!important;
+}
+.events-hero-final{
+  position:relative!important;
+  width:100vw!important;
+  max-width:none!important;
+  height:500px!important;
+  margin:0 0 0 calc(50% - 50vw)!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+  background:
+    linear-gradient(180deg, rgba(1,7,16,.08) 0%, rgba(1,7,16,0) 70%, rgba(1,7,16,.38) 100%),
+    url("images/events/afisha-premium-hero-final.jpg") center center/100% 100% no-repeat!important;
+  isolation:isolate!important;
+}
+.events-hero-final::before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:-1px!important;
+  height:130px!important;
+  background:linear-gradient(180deg, rgba(1,7,16,0) 0%, rgba(1,7,16,.82) 92%, rgba(1,7,16,.94) 100%)!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+.events-hero-final::after{
+  content:none!important;
+}
+.events-hero-final__status{
+  display:none!important;
+}
+.events-toolbar{
+  position:relative!important;
+  z-index:3!important;
+  max-width:1240px!important;
+  width:min(1240px, calc(100% - 56px))!important;
+  margin:-34px auto 20px!important;
+  background:rgba(7,17,32,.76)!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:0 18px 48px rgba(0,0,0,.28)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.events-layout{
+  position:relative!important;
+  z-index:2!important;
+  max-width:1240px!important;
+  width:min(1240px, calc(100% - 56px))!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+@media(max-width:1100px){
+  .events-hero-final{
+    height:430px!important;
+    background-size:cover!important;
+    background-position:center center!important;
+  }
+  .events-toolbar{
+    margin-top:-26px!important;
+  }
+}
+@media(max-width:700px){
+  .events-hero-final{
+    height:320px!important;
+    background-size:cover!important;
+    background-position:center center!important;
+  }
+  .events-toolbar,
+  .events-layout{
+    width:calc(100% - 28px)!important;
+  }
+  .events-toolbar{
+    margin-top:-18px!important;
+  }
+}
