@@ -4,27 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Открой Когалым</title>
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v27" />
+  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260610_v29" />
 
 <style>
-/* ===== V27 INDEX HERO PREMIUM ===== */
-.hero{min-height:auto!important;padding:118px 34px 40px!important;display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(320px,.68fr)!important;gap:34px!important;align-items:stretch!important;background:linear-gradient(90deg, rgba(2,8,20,.88) 0%, rgba(2,8,20,.58) 38%, rgba(2,8,20,.18) 100%),linear-gradient(180deg, rgba(2,8,20,.08) 0%, #020814 100%),url("images/hero.jpg") center/cover fixed!important;}
-.hero-content{max-width:none!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:column!important;justify-content:center!important;background:linear-gradient(180deg,rgba(7,18,34,.80),rgba(7,18,34,.58))!important;border:1px solid rgba(255,255,255,.08)!important;border-radius:32px!important;box-shadow:0 30px 90px rgba(0,0,0,.30)!important;padding:38px 40px!important;backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;}
-.kicker{display:inline-flex!important;align-items:center!important;gap:10px!important;width:max-content!important;margin:0 0 18px!important;padding:0!important;color:#f1d289!important;font:900 13px/1 Arial,Helvetica,sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important;}
-.kicker i{display:block!important;width:8px!important;height:8px!important;border-radius:50%!important;background:#f1d289!important;box-shadow:0 0 12px rgba(241,210,137,.46)!important;}
-.hero h1{margin:0 0 16px!important;text-transform:none!important;font-size:clamp(52px,5.6vw,84px)!important;line-height:.94!important;letter-spacing:-.05em!important;}
-.hero .lead{max-width:700px!important;margin:0!important;font-size:20px!important;line-height:1.58!important;color:#dde8f7!important;}
-.hero-actions{display:flex!important;flex-wrap:wrap!important;gap:14px!important;margin:24px 0 22px!important;}
-.hero-actions .btn{min-height:54px!important;padding:0 24px!important;border-radius:14px!important;box-shadow:none!important;}
-.hero-stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;margin:0 0 22px!important;}
-.hero-stats article{padding:16px 18px!important;border-radius:20px!important;background:rgba(255,255,255,.05)!important;border:1px solid rgba(255,255,255,.08)!important;min-width:0!important;}
-.hero-stats strong{display:block!important;margin:0 0 6px!important;color:#fff!important;font-size:18px!important;line-height:1.1!important;}
-.hero-stats span{display:block!important;color:#d4e1f2!important;font-size:13px!important;line-height:1.4!important;}
-.features{max-width:none!important;margin-top:0!important;border-radius:20px!important;background:rgba(6,18,35,.56)!important;}
-.features div{padding:18px 20px!important;}
-.cinematic-weather{margin:0!important;align-self:stretch!important;border-radius:32px!important;min-height:100%!important;display:flex!important;flex-direction:column!important;justify-content:center!important;}
-@media (max-width:980px){.hero{grid-template-columns:1fr!important;padding:108px 18px 26px!important;}.hero-content{padding:26px 20px!important;}.hero h1{font-size:42px!important;}.hero .lead{font-size:16px!important;}.hero-stats{grid-template-columns:1fr!important;}.features{grid-template-columns:1fr 1fr!important;}.cinematic-weather{min-height:0!important;}}
-@media (max-width:640px){.features{grid-template-columns:1fr!important;}}
+/* ===== V28 CLEAN REPAIR INLINE ===== */
+.hero-clean,.routes-v2-hero-clean,.events-hero-clean,.places-showcase-clean,.ann-top-clean{
+  max-width:1240px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;
+}
+.hero-clean{
+  min-height:auto!important;padding:118px 28px 36px!important;display:block!important;
+}
+.hero-clean__wrap{
+  width:min(1240px,100%)!important;margin:0 auto!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr) 320px!important;gap:24px!important;align-items:stretch!important;
+}
+.hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{
+  border-radius:28px!important;border:1px solid rgba(255,255,255,.08)!important;
+  background:linear-gradient(180deg,rgba(7,18,34,.78),rgba(7,18,34,.56))!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;
+}
+.hero-clean__content{max-width:none!important;margin:0!important;padding:34px 36px!important;}
+.hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{
+  text-transform:none!important;font-size:clamp(44px,5vw,72px)!important;line-height:.96!important;margin:0 0 14px!important;
+}
+.hero-clean .lead,.routes-v2-hero-clean .routes-v2-lead,.places-showcase-clean .places-showcase__lead,.events-hero-clean .events-lead,.ann-top-clean .ann-lead{
+  max-width:760px!important;margin:0!important;color:#dbe6f8!important;font-size:18px!important;line-height:1.58!important;
+}
+.hero-actions{display:flex!important;gap:12px!important;flex-wrap:wrap!important;margin:22px 0!important;}
+.hero-clean .features{max-width:none!important;margin:0!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;border-radius:18px!important;}
+.places-showcase-clean{display:block!important;margin-top:8px!important;margin-bottom:24px!important;}
+.places-showcase-clean::before,.events-hero-clean::before{content:none!important;}
+.places-showcase-clean .places-showcase__text,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.ann-top-clean .ann-top-main{padding:30px 32px!important;}
+.places-showcase-clean .places-eyebrow,.routes-v2-hero-clean .routes-v2-kicker,.events-hero-clean .events-kicker{
+  display:inline-flex!important;background:rgba(242,208,138,.12)!important;border:1px solid rgba(242,208,138,.24)!important;
+  color:#f2d08a!important;border-radius:999px!important;padding:10px 14px!important;margin:0 0 14px!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important;
+}
+.places-showcase-clean .places-showcase__chips,.routes-v2-hero-clean .routes-v2-hero__chips,.events-hero-clean .events-hero-pills,.ann-top-clean .ann-top-tags{
+  display:flex!important;gap:10px!important;flex-wrap:wrap!important;margin:20px 0 0!important;
+}
+.places-showcase-clean .places-showcase__chips span,.routes-v2-hero-clean .routes-v2-hero__chips span,.events-hero-clean .events-hero-pills span,.ann-top-clean .ann-top-tags span{
+  display:inline-flex!important;align-items:center!important;min-height:36px!important;padding:0 13px!important;border-radius:999px!important;
+  background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.08)!important;color:#fff!important;font:800 14px/1 Arial,Helvetica,sans-serif!important;
+}
+.events-hero-clean{margin:8px auto 24px!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;}
+.events-hero-clean .events-hero-inner{display:block!important;padding:0!important;}
+.ann-top-clean{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:18px!important;align-items:end!important;margin-bottom:24px!important;}
+.places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:640px!important;min-height:640px!important;max-height:640px!important;overflow:hidden!important;}
+@media(max-width:980px){
+  .hero-clean{padding:106px 18px 28px!important;}
+  .hero-clean__wrap{grid-template-columns:1fr!important;}
+  .hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{padding:24px 20px!important;border-radius:24px!important;}
+  .hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{font-size:40px!important;}
+  .hero-clean .features{grid-template-columns:1fr 1fr!important;}
+  .ann-top-clean{grid-template-columns:1fr!important;}
+  .places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:auto!important;min-height:0!important;max-height:none!important;}
+}
+@media(max-width:640px){.hero-clean .features{grid-template-columns:1fr!important;}}
 </style>
 
 </head>
@@ -51,58 +88,54 @@
 </header>
 
 <main>
-  <section class="hero">
-    <div class="hero-content">
-      <p class="kicker"><i></i>Когалым без туристической мишуры</p>
+  <section class="hero hero-clean">
+    <div class="hero-clean__wrap">
+      <div class="hero-content hero-clean__content">
+        <p class="kicker">Когалым без туристической мишуры</p>
 
-      <h1>Когалым —<br>северный город<br><strong>с характером</strong></h1>
+        <h1>Когалым —<br>северный город<br><strong>с характером</strong></h1>
 
-      <p class="lead">
-        Места, маршруты, афиша и городские объявления — в аккуратной
-        подборке, чтобы быстро понять, куда пойти сегодня и что посмотреть.
-      </p>
+        <p class="lead">
+          Места, маршруты, афиша и городские объявления — в одной аккуратной подборке.
+          Быстро понятно, куда пойти и что посмотреть.
+        </p>
 
-      <div class="hero-actions">
-        <a class="btn gold" href="places.html">Открыть локации</a>
-        <a class="btn dark" href="events.html">Смотреть афишу</a>
-      </div>
-
-      <div class="hero-stats" aria-label="Быстрые разделы">
-        <article><strong>Локации</strong><span>памятники, парки и музеи</span></article>
-        <article><strong>Маршруты</strong><span>готовые прогулки без лишних кругов</span></article>
-        <article><strong>Афиша</strong><span>кино, выставки и события города</span></article>
-      </div>
-
-      <div class="features">
-        <div><b>⌖</b><span>Где погулять<br>и что увидеть</span></div>
-        <div><b>▦</b><span>Кино, выставки<br>и городские события</span></div>
-        <div><b>☆</b><span>Без случайных<br>и пустых подборок</span></div>
-        <div><b>▱</b><span>Маршруты<br>без лишних кругов</span></div>
-      </div>
-    </div>
-
-    <aside class="cinematic-weather live-weather-card" aria-label="Живая погода в Когалыме">
-      <div class="cinematic-weather__aurora" aria-hidden="true"></div>
-      <div class="cinematic-weather__head">
-        <span class="cinematic-weather__label">Сейчас в Когалыме</span>
-        <span class="cinematic-weather__dot" aria-hidden="true"></span>
-      </div>
-      <div class="cinematic-weather__main">
-        <div>
-          <div class="cinematic-weather__temp" data-weather-temp>—</div>
-          <div class="cinematic-weather__status" data-weather-status>Загрузка погоды</div>
-          <div class="cinematic-weather__feels" data-weather-feels>Ощущается как —</div>
+        <div class="hero-actions">
+          <a class="btn gold" href="places.html">Открыть локации</a>
+          <a class="btn dark" href="events.html">Смотреть афишу</a>
         </div>
-        <div class="cinematic-weather__icon" data-weather-icon>☁️</div>
+
+        <div class="features">
+          <div><b>⌖</b><span>Где погулять<br>и что увидеть</span></div>
+          <div><b>▦</b><span>Кино, выставки<br>и события</span></div>
+          <div><b>☆</b><span>Без случайных<br>подборок</span></div>
+          <div><b>▱</b><span>Маршруты<br>без лишних кругов</span></div>
+        </div>
       </div>
-      <div class="cinematic-weather__line"></div>
-      <div class="cinematic-weather__footer">
-        <span><b data-weather-wind>—</b><small>ветер</small></span>
-        <span><b data-weather-humidity>—</b><small>влажность</small></span>
-        <span><b data-weather-pressure>—</b><small>давление</small></span>
-      </div>
-      <div class="cinematic-weather__updated" data-weather-updated>Обновление…</div>
-    </aside>
+
+      <aside class="cinematic-weather live-weather-card" aria-label="Живая погода в Когалыме">
+        <div class="cinematic-weather__aurora" aria-hidden="true"></div>
+        <div class="cinematic-weather__head">
+          <span class="cinematic-weather__label">Сейчас в Когалыме</span>
+          <span class="cinematic-weather__dot" aria-hidden="true"></span>
+        </div>
+        <div class="cinematic-weather__main">
+          <div>
+            <div class="cinematic-weather__temp" data-weather-temp>—</div>
+            <div class="cinematic-weather__status" data-weather-status>Загрузка погоды</div>
+            <div class="cinematic-weather__feels" data-weather-feels>Ощущается как —</div>
+          </div>
+          <div class="cinematic-weather__icon" data-weather-icon>☁️</div>
+        </div>
+        <div class="cinematic-weather__line"></div>
+        <div class="cinematic-weather__footer">
+          <span><b data-weather-wind>—</b><small>ветер</small></span>
+          <span><b data-weather-humidity>—</b><small>влажность</small></span>
+          <span><b data-weather-pressure>—</b><small>давление</small></span>
+        </div>
+        <div class="cinematic-weather__updated" data-weather-updated>Обновление…</div>
+      </aside>
+    </div>
   </section>
 
   <section class="home-highlights">
@@ -230,6 +263,6 @@
   </nav>
 </footer>
 
-<script src="weather.js?v=v7_20260522_nocrop"></script>
+<script src="weather.js?v=site_20260610_v29"></script>
 </body>
 </html>
