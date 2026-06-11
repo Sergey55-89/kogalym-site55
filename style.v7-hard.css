@@ -7813,3 +7813,260 @@ max-width:none;
     min-height:260px!important;
   }
 }
+
+
+/* ===== V45 RICH HISTORY PAGE 2026-06-11 ===== */
+.history-page-rich .history-hero-rich{
+  grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr)!important;
+}
+.history-page-rich .history-hero__content{
+  min-height:500px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  background:
+    linear-gradient(90deg,rgba(4,11,22,.96) 0%,rgba(4,11,22,.74) 46%,rgba(4,11,22,.28) 100%),
+    linear-gradient(180deg,rgba(2,8,20,.06),rgba(2,8,20,.86)),
+    url("images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg") center/cover!important;
+}
+.history-page-rich .history-hero h1{
+  font-size:clamp(58px,7vw,104px)!important;
+  color:#f7e3bf!important;
+}
+.history-jubilee-card{
+  background:
+    radial-gradient(circle at 70% 16%,rgba(242,208,138,.18),transparent 34%),
+    linear-gradient(180deg,rgba(13,24,40,.94),rgba(7,16,30,.96))!important;
+}
+.history-jubilee-card b{
+  font-size:clamp(42px,4vw,66px)!important;
+  line-height:.9!important;
+}
+.history-fast-facts{
+  width:min(1240px,100%)!important;
+  margin:0 auto 28px!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:16px!important;
+}
+.history-fast-facts article{
+  min-height:178px!important;
+  padding:24px!important;
+  border-radius:24px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  background:linear-gradient(180deg,rgba(13,24,40,.88),rgba(7,16,30,.94))!important;
+  box-shadow:0 20px 54px rgba(0,0,0,.24)!important;
+}
+.history-fast-facts b{
+  display:block!important;
+  margin:0 0 10px!important;
+  color:#f2d08a!important;
+  font:900 42px/.92 Georgia,"Times New Roman",serif!important;
+  letter-spacing:-.04em!important;
+}
+.history-fast-facts span{
+  display:block!important;
+  margin:0 0 10px!important;
+  color:#fff!important;
+  font:900 16px/1.2 Arial,Helvetica,sans-serif!important;
+}
+.history-fast-facts p{
+  margin:0!important;
+  color:#cdd8e8!important;
+  font:700 14px/1.5 Arial,Helvetica,sans-serif!important;
+}
+.history-story,
+.history-jubilee,
+.history-symbols{
+  width:min(1240px,100%)!important;
+  margin:0 auto 28px!important;
+}
+.history-story-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:20px!important;
+}
+.history-story-grid article{
+  min-height:270px!important;
+  padding:28px!important;
+  border-radius:26px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  background:
+    radial-gradient(circle at 20% 0%,rgba(242,208,138,.10),transparent 30%),
+    linear-gradient(180deg,rgba(13,24,40,.88),rgba(7,16,30,.94))!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.24)!important;
+}
+.history-story-grid h3{
+  margin:0 0 14px!important;
+  color:#fff!important;
+  font:900 30px/1.05 Georgia,"Times New Roman",serif!important;
+}
+.history-story-grid p{
+  margin:0!important;
+  color:#dbe6f8!important;
+  font:700 16px/1.6 Arial,Helvetica,sans-serif!important;
+}
+.timeline-list-rich{
+  position:relative!important;
+  gap:14px!important;
+}
+.timeline-list-rich article{
+  grid-template-columns:160px minmax(0,1fr)!important;
+  border-radius:24px!important;
+  padding:26px!important;
+}
+.timeline-list-rich article.timeline-featured{
+  border-color:rgba(242,208,138,.42)!important;
+  background:
+    radial-gradient(circle at 88% 12%,rgba(242,208,138,.18),transparent 34%),
+    linear-gradient(180deg,rgba(29,27,18,.94),rgba(9,18,30,.96))!important;
+}
+.timeline-list-rich time{
+  font-size:36px!important;
+}
+.timeline-list-rich h3{
+  font-size:23px!important;
+}
+.timeline-list-rich p{
+  font-size:15.5px!important;
+}
+.history-jubilee{
+  display:grid!important;
+  grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)!important;
+  gap:22px!important;
+  align-items:stretch!important;
+}
+.history-jubilee__main,
+.history-jubilee__cards article{
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.26)!important;
+}
+.history-jubilee__main{
+  min-height:420px!important;
+  padding:36px!important;
+  border-radius:30px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  background:
+    linear-gradient(90deg,rgba(4,11,22,.94),rgba(4,11,22,.52)),
+    url("images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg") center/cover!important;
+}
+.history-jubilee__main h2{
+  margin:0 0 16px!important;
+  color:#f7e3bf!important;
+  font:900 clamp(42px,4.6vw,68px)/.95 Georgia,"Times New Roman",serif!important;
+  letter-spacing:-.04em!important;
+}
+.history-jubilee__main p{
+  margin:0!important;
+  color:#e7edf7!important;
+  font:800 17px/1.58 Arial,Helvetica,sans-serif!important;
+}
+.history-jubilee__tags{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  margin-top:22px!important;
+}
+.history-jubilee__tags span{
+  display:inline-flex!important;
+  padding:10px 13px!important;
+  border-radius:999px!important;
+  background:rgba(242,208,138,.13)!important;
+  border:1px solid rgba(242,208,138,.28)!important;
+  color:#f2d08a!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;
+}
+.history-jubilee__cards{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:16px!important;
+}
+.history-jubilee__cards article{
+  min-height:200px!important;
+  padding:24px!important;
+  border-radius:24px!important;
+  background:linear-gradient(180deg,rgba(13,24,40,.90),rgba(7,16,30,.96))!important;
+}
+.history-jubilee__cards b{
+  display:block!important;
+  margin:0 0 12px!important;
+  color:#f2d08a!important;
+  font:900 22px/1.15 Arial,Helvetica,sans-serif!important;
+}
+.history-jubilee__cards p{
+  margin:0!important;
+  color:#dbe6f8!important;
+  font:700 15px/1.55 Arial,Helvetica,sans-serif!important;
+}
+.history-symbols-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+.history-symbols-grid article{
+  min-height:300px!important;
+  position:relative!important;
+  overflow:hidden!important;
+  border-radius:26px!important;
+  padding:24px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  background-size:cover!important;
+  background-position:center!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.24)!important;
+}
+.history-symbols-grid article::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:linear-gradient(180deg,rgba(2,8,20,.08),rgba(2,8,20,.82))!important;
+}
+.history-symbols-grid article > *{
+  position:relative!important;
+  z-index:1!important;
+}
+.history-symbols-grid span{
+  color:#f2d08a!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+}
+.history-symbols-grid h3{
+  margin:8px 0 0!important;
+  color:#fff!important;
+  font:900 24px/1.1 Georgia,"Times New Roman",serif!important;
+}
+@media(max-width:1180px){
+  .history-fast-facts,
+  .history-symbols-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .history-story-grid,
+  .history-jubilee{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:760px){
+  .history-page-rich .history-hero__content{
+    min-height:420px!important;
+  }
+  .history-fast-facts,
+  .history-symbols-grid,
+  .history-jubilee__cards{
+    grid-template-columns:1fr!important;
+  }
+  .history-story-grid{
+    grid-template-columns:1fr!important;
+  }
+  .timeline-list-rich article{
+    grid-template-columns:1fr!important;
+  }
+  .history-jubilee__main{
+    min-height:360px!important;
+    padding:26px!important;
+  }
+}
