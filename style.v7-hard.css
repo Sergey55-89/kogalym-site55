@@ -7371,3 +7371,445 @@ max-width:none;
     grid-template-columns:1fr!important;
   }
 }
+
+
+/* ===== V43 HISTORY + GALLERY FROM V29 2026-06-11 ===== */
+.header nav{
+  gap:clamp(14px,2.2vw,28px)!important;
+}
+.header nav a{
+  white-space:nowrap!important;
+}
+.history-page,
+.gallery-page{
+  min-height:100vh!important;
+  padding:128px 28px 76px!important;
+  box-sizing:border-box!important;
+  color:#fff!important;
+  background:
+    radial-gradient(circle at 78% 8%,rgba(74,212,139,.16),transparent 32%),
+    radial-gradient(circle at 16% 22%,rgba(242,208,138,.10),transparent 30%),
+    linear-gradient(180deg,rgba(2,8,20,.22),rgba(2,8,20,.88) 62%,#020814 100%),
+    url("images/night.jpg") center top/cover fixed!important;
+}
+.history-hero,
+.gallery-hero{
+  width:min(1240px,100%)!important;
+  margin:0 auto 28px!important;
+  box-sizing:border-box!important;
+}
+.history-hero{
+  position:relative!important;
+  min-height:430px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(280px,380px)!important;
+  gap:28px!important;
+  align-items:stretch!important;
+}
+.history-hero__content,
+.history-hero__card,
+.gallery-hero{
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:30px!important;
+  background:linear-gradient(180deg,rgba(7,18,34,.82),rgba(7,18,34,.56))!important;
+  box-shadow:0 28px 78px rgba(0,0,0,.30)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+}
+.history-hero__content{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:44px 46px!important;
+  background:
+    linear-gradient(90deg,rgba(7,18,34,.92),rgba(7,18,34,.58)),
+    url("images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg") center/cover!important;
+}
+.history-hero__content::before{
+  content:""!important;
+  position:absolute!important;
+  inset:-120px auto auto -140px!important;
+  width:440px!important;
+  height:440px!important;
+  border-radius:50%!important;
+  border:1px solid rgba(242,208,138,.22)!important;
+  box-shadow:34px 0 0 -1px rgba(242,208,138,.08),68px 0 0 -2px rgba(242,208,138,.06)!important;
+  pointer-events:none!important;
+}
+.history-hero__content > *,
+.history-hero__card > *{
+  position:relative!important;
+  z-index:1!important;
+}
+.history-kicker,
+.gallery-kicker{
+  display:inline-flex!important;
+  align-items:center!important;
+  width:max-content!important;
+  margin:0 0 18px!important;
+  padding:10px 15px!important;
+  border-radius:999px!important;
+  background:rgba(242,208,138,.12)!important;
+  border:1px solid rgba(242,208,138,.28)!important;
+  color:#f2d08a!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+}
+.history-hero h1,
+.gallery-hero h1{
+  margin:0 0 18px!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:clamp(48px,6vw,86px)!important;
+  line-height:.92!important;
+  letter-spacing:-.05em!important;
+  text-transform:none!important;
+  color:#f7e3bf!important;
+  text-shadow:0 18px 44px rgba(0,0,0,.38)!important;
+}
+.history-hero p,
+.gallery-hero p{
+  max-width:760px!important;
+  margin:0!important;
+  color:#dbe6f8!important;
+  font:800 18px/1.6 Arial,Helvetica,sans-serif!important;
+}
+.history-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:12px!important;
+  margin-top:28px!important;
+}
+.history-hero__card{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  padding:34px!important;
+}
+.history-hero__card b{
+  color:#f2d08a!important;
+  font:900 76px/.9 Georgia,"Times New Roman",serif!important;
+  letter-spacing:-.06em!important;
+}
+.history-hero__card span{
+  margin:10px 0 16px!important;
+  color:#fff!important;
+  font:900 20px/1.2 Arial,Helvetica,sans-serif!important;
+}
+.history-hero__card p{
+  color:#cdd8e8!important;
+  font:700 15px/1.55 Arial,Helvetica,sans-serif!important;
+}
+.history-intro,
+.history-timeline,
+.history-photo-band,
+.history-sources,
+.gallery-grid{
+  width:min(1240px,100%)!important;
+  margin:0 auto 28px!important;
+}
+.history-intro{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:20px!important;
+}
+.history-intro article,
+.timeline-list article,
+.history-sources,
+.gallery-card{
+  border:1px solid rgba(255,255,255,.10)!important;
+  background:linear-gradient(180deg,rgba(13,24,40,.88),rgba(7,16,30,.94))!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.25)!important;
+}
+.history-intro article{
+  border-radius:24px!important;
+  padding:26px!important;
+}
+.history-intro span{
+  color:#f2d08a!important;
+  font:900 13px/1 Arial,Helvetica,sans-serif!important;
+  letter-spacing:.10em!important;
+}
+.history-intro h2{
+  margin:12px 0 10px!important;
+  color:#fff!important;
+  font:800 28px/1.05 Georgia,"Times New Roman",serif!important;
+}
+.history-intro p{
+  margin:0!important;
+  color:#cdd8e8!important;
+  font:700 15px/1.55 Arial,Helvetica,sans-serif!important;
+}
+.history-section-head{
+  margin-bottom:18px!important;
+}
+.history-section-head h2{
+  margin:0 0 8px!important;
+  color:#fff!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-size:42px!important;
+  line-height:1!important;
+}
+.history-section-head p{
+  margin:0!important;
+  color:#aebcd0!important;
+}
+.timeline-list{
+  display:grid!important;
+  gap:16px!important;
+}
+.timeline-list article{
+  display:grid!important;
+  grid-template-columns:140px minmax(0,1fr)!important;
+  gap:22px!important;
+  border-radius:22px!important;
+  padding:24px!important;
+}
+.timeline-list time{
+  color:#f2d08a!important;
+  font:900 32px/.95 Georgia,"Times New Roman",serif!important;
+}
+.timeline-list h3{
+  margin:0 0 8px!important;
+  color:#fff!important;
+  font:900 22px/1.18 Arial,Helvetica,sans-serif!important;
+}
+.timeline-list p{
+  margin:0!important;
+  color:#cdd8e8!important;
+  font:700 15px/1.55 Arial,Helvetica,sans-serif!important;
+}
+.history-photo-band{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:20px!important;
+}
+.history-photo-band article{
+  min-height:250px!important;
+  position:relative!important;
+  overflow:hidden!important;
+  border-radius:26px!important;
+  padding:24px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+  background-size:cover!important;
+  background-position:center!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 22px 60px rgba(0,0,0,.24)!important;
+}
+.history-photo-band article::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:linear-gradient(180deg,rgba(2,8,20,.10),rgba(2,8,20,.82))!important;
+}
+.history-photo-band article > *{
+  position:relative!important;
+  z-index:1!important;
+}
+.history-photo-band span{
+  color:#f2d08a!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+}
+.history-photo-band h3{
+  margin:8px 0 0!important;
+  color:#fff!important;
+  font:900 25px/1.1 Georgia,"Times New Roman",serif!important;
+}
+.history-sources{
+  border-radius:24px!important;
+  padding:28px!important;
+}
+.history-sources h2{
+  margin:0 0 8px!important;
+  color:#fff!important;
+  font:800 30px/1 Georgia,"Times New Roman",serif!important;
+}
+.history-sources p{
+  margin:0 0 16px!important;
+  color:#cdd8e8!important;
+}
+.history-sources div{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+}
+.history-sources a{
+  display:inline-flex!important;
+  padding:12px 14px!important;
+  border-radius:999px!important;
+  background:rgba(242,208,138,.12)!important;
+  border:1px solid rgba(242,208,138,.24)!important;
+  color:#f2d08a!important;
+  text-decoration:none!important;
+  font-weight:900!important;
+}
+.gallery-hero{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:360px!important;
+  padding:52px!important;
+  background:
+    linear-gradient(90deg,rgba(7,18,34,.94),rgba(7,18,34,.50)),
+    url("images/places-collage-kogalym.png") center/cover!important;
+}
+.gallery-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+.gallery-card{
+  position:relative!important;
+  min-height:300px!important;
+  padding:0!important;
+  border-radius:24px!important;
+  overflow:hidden!important;
+  cursor:pointer!important;
+  text-align:left!important;
+  color:#fff!important;
+  appearance:none!important;
+  font:inherit!important;
+}
+.gallery-card img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transition:transform .28s ease!important;
+}
+.gallery-card::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:linear-gradient(180deg,rgba(2,8,20,0),rgba(2,8,20,.80))!important;
+}
+.gallery-card:hover img{
+  transform:scale(1.045)!important;
+}
+.gallery-card span,
+.gallery-card h3{
+  position:absolute!important;
+  z-index:2!important;
+  left:18px!important;
+  right:18px!important;
+}
+.gallery-card span{
+  bottom:58px!important;
+  width:max-content!important;
+  max-width:calc(100% - 36px)!important;
+  padding:8px 12px!important;
+  border-radius:999px!important;
+  color:#151007!important;
+  background:#f2d08a!important;
+  font:900 12px/1 Arial,Helvetica,sans-serif!important;
+}
+.gallery-card h3{
+  bottom:18px!important;
+  margin:0!important;
+  color:#fff!important;
+  font:900 22px/1.08 Georgia,"Times New Roman",serif!important;
+  text-shadow:0 2px 18px rgba(0,0,0,.55)!important;
+}
+.gallery-lightbox{
+  position:fixed!important;
+  inset:0!important;
+  z-index:99999!important;
+  display:none!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:32px!important;
+  background:rgba(1,7,16,.88)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+}
+.gallery-lightbox.open{
+  display:flex!important;
+}
+.gallery-lightbox img{
+  max-width:min(1100px,92vw)!important;
+  max-height:78vh!important;
+  object-fit:contain!important;
+  border-radius:22px!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.55)!important;
+}
+.gallery-lightbox > div{
+  position:absolute!important;
+  left:50%!important;
+  bottom:30px!important;
+  transform:translateX(-50%)!important;
+  display:flex!important;
+  gap:12px!important;
+  align-items:center!important;
+  padding:12px 16px!important;
+  border-radius:999px!important;
+  background:rgba(7,18,34,.82)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  color:#fff!important;
+}
+.gallery-lightbox > div span{
+  color:#f2d08a!important;
+  font-weight:900!important;
+}
+.gallery-lightbox__close{
+  position:absolute!important;
+  right:24px!important;
+  top:24px!important;
+  width:48px!important;
+  height:48px!important;
+  border-radius:16px!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  background:rgba(7,18,34,.78)!important;
+  color:#fff!important;
+  font-size:34px!important;
+  line-height:1!important;
+  cursor:pointer!important;
+}
+.home-highlights{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+.route-redirect-page .history-hero{
+  min-height:360px!important;
+}
+@media(max-width:1180px){
+  .gallery-grid,
+  .home-highlights{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .history-hero,
+  .history-intro,
+  .history-photo-band{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:760px){
+  .history-page,
+  .gallery-page{
+    padding:110px 16px 52px!important;
+  }
+  .history-hero__content,
+  .history-hero__card,
+  .gallery-hero{
+    padding:26px!important;
+    border-radius:24px!important;
+  }
+  .history-hero{
+    min-height:0!important;
+  }
+  .history-hero__card b{
+    font-size:58px!important;
+  }
+  .timeline-list article{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .gallery-grid,
+  .home-highlights{
+    grid-template-columns:1fr!important;
+  }
+  .gallery-card{
+    min-height:260px!important;
+  }
+}
