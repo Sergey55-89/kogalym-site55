@@ -1,257 +1,153 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Объявления — Открой Когалым</title>
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260616_v63_hard_nav_bg">
-
-<style>
-/* ===== V28 CLEAN REPAIR INLINE ===== */
-.hero-clean,.routes-v2-hero-clean,.events-hero-clean,.places-showcase-clean,.ann-top-clean{
-  max-width:1240px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;
-}
-.hero-clean{
-  min-height:auto!important;padding:118px 28px 36px!important;display:block!important;
-}
-.hero-clean__wrap{
-  width:min(1240px,100%)!important;margin:0 auto!important;display:grid!important;
-  grid-template-columns:minmax(0,1fr) 320px!important;gap:24px!important;align-items:stretch!important;
-}
-.hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{
-  border-radius:28px!important;border:1px solid rgba(255,255,255,.08)!important;
-  background:linear-gradient(180deg,rgba(7,18,34,.78),rgba(7,18,34,.56))!important;
-  box-shadow:0 24px 70px rgba(0,0,0,.22)!important;
-  backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;
-}
-.hero-clean__content{max-width:none!important;margin:0!important;padding:34px 36px!important;}
-.hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{
-  text-transform:none!important;font-size:clamp(44px,5vw,72px)!important;line-height:.96!important;margin:0 0 14px!important;
-}
-.hero-clean .lead,.routes-v2-hero-clean .routes-v2-lead,.places-showcase-clean .places-showcase__lead,.events-hero-clean .events-lead,.ann-top-clean .ann-lead{
-  max-width:760px!important;margin:0!important;color:#dbe6f8!important;font-size:18px!important;line-height:1.58!important;
-}
-.hero-actions{display:flex!important;gap:12px!important;flex-wrap:wrap!important;margin:22px 0!important;}
-.hero-clean .features{max-width:none!important;margin:0!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;border-radius:18px!important;}
-.places-showcase-clean{display:block!important;margin-top:8px!important;margin-bottom:24px!important;}
-.places-showcase-clean::before,.events-hero-clean::before{content:none!important;}
-.places-showcase-clean .places-showcase__text,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.ann-top-clean .ann-top-main{padding:30px 32px!important;}
-.places-showcase-clean .places-eyebrow,.routes-v2-hero-clean .routes-v2-kicker,.events-hero-clean .events-kicker{
-  display:inline-flex!important;background:rgba(242,208,138,.12)!important;border:1px solid rgba(242,208,138,.24)!important;
-  color:#f2d08a!important;border-radius:999px!important;padding:10px 14px!important;margin:0 0 14px!important;
-  font:900 12px/1 Arial,Helvetica,sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important;
-}
-.places-showcase-clean .places-showcase__chips,.routes-v2-hero-clean .routes-v2-hero__chips,.events-hero-clean .events-hero-pills,.ann-top-clean .ann-top-tags{
-  display:flex!important;gap:10px!important;flex-wrap:wrap!important;margin:20px 0 0!important;
-}
-.places-showcase-clean .places-showcase__chips span,.routes-v2-hero-clean .routes-v2-hero__chips span,.events-hero-clean .events-hero-pills span,.ann-top-clean .ann-top-tags span{
-  display:inline-flex!important;align-items:center!important;min-height:36px!important;padding:0 13px!important;border-radius:999px!important;
-  background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.08)!important;color:#fff!important;font:800 14px/1 Arial,Helvetica,sans-serif!important;
-}
-.events-hero-clean{margin:8px auto 24px!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;}
-.events-hero-clean .events-hero-inner{display:block!important;padding:0!important;}
-.ann-top-clean{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:18px!important;align-items:end!important;margin-bottom:24px!important;}
-.places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:640px!important;min-height:640px!important;max-height:640px!important;overflow:hidden!important;}
-@media(max-width:980px){
-  .hero-clean{padding:106px 18px 28px!important;}
-  .hero-clean__wrap{grid-template-columns:1fr!important;}
-  .hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{padding:24px 20px!important;border-radius:24px!important;}
-  .hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{font-size:40px!important;}
-  .hero-clean .features{grid-template-columns:1fr 1fr!important;}
-  .ann-top-clean{grid-template-columns:1fr!important;}
-  .places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:auto!important;min-height:0!important;max-height:none!important;}
-}
-@media(max-width:640px){.hero-clean .features{grid-template-columns:1fr!important;}}
-</style>
+<meta charset="utf-8"/>
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Объявления — Открой Когалым</title>
+<link href="style.v7-hard.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 
 
-<style id="v59-typography-fix">
-/* v59: final typography guard — removes leftover forced uppercase from older inline patches */
-.places-showcase-clean .places-eyebrow,
-.routes-v2-hero-clean .routes-v2-kicker,
-.events-hero-clean .events-kicker,
-.ann-top-clean .ann-kicker,
-.events-kicker,
-.today-label,
-.event-cat,
-.modal-content small,
-.guide-card span,
-.route-tag,
-.pulse-card b,
-.history-meaning article b,
-.map-point span,
-.event time small {
-  text-transform:none!important;
-  letter-spacing:.01em!important;
-  font-size:13px!important;
-}
-.event time small{
-  color:var(--site-gold,#f2d08a)!important;
-  font-weight:850!important;
-}
-</style>
-
-  <link rel="stylesheet" href="repair-v63.css?v=site_20260616_v63_hard_nav_bg" />
-</head>
+<link href="repair-v65.css?v=site_20260616_v65_final_clean" rel="stylesheet">
+</link></head>
 <body>
 <header class="header">
-  <a class="brand" href="index.html" aria-label="Открой Когалым">
-    <img src="images/logo.png" alt="Открой Когалым">
-    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
-  </a>
-
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="history.html">История</a>
-    <a href="places.html">Локации</a>
-    <a href="routes.html">Гиды</a>
-    <a href="events.html">Афиша</a>
-    <a href="gallery.html">Галерея</a>
-    <a class="active" href="announcements.html">Объявления</a>
-  </nav>
-
-  <div class="right-head">
-    <span class="icon">⌕</span>
-    <span class="icon">♡</span>
-  </div>
-</header>
-
-<main class="ann-page">
-  <div class="ann-container">
-    <div class="ann-badge">Городские предложения</div>
-
-    <section class="ann-top ann-top-clean">
-      <div class="ann-top-main">
-        <h1>Объявления<br>Когалыма</h1>
-        <p class="ann-lead">Работа, услуги, аренда и продажи от жителей города. Поиск и фильтры — без лишней возни.</p>
-        <div class="ann-top-tags">
-          <span>Работа</span>
-          <span>Услуги</span>
-          <span>Аренда</span>
-          <span>Продажа</span>
-        </div>
-      </div>
-      <a class="ann-add-btn" href="admin.html">Подать объявление</a>
-    </section>
-
-    <section class="ann-search-panel" aria-label="Фильтры объявлений">
-      <input id="searchInput" type="search" placeholder="Поиск по объявлениям" autocomplete="off">
-      <select id="categorySelect">
-        <option value="all">Все категории</option>
-        <option value="work">Работа</option>
-        <option value="service">Услуги</option>
-        <option value="rent">Аренда</option>
-        <option value="sale">Продажа</option>
-        <option value="lost">Находки</option>
-      </select>
-      <select id="priceSelect" aria-label="Цена">
-        <option value="all">Любая цена</option>
-        <option value="5000">До 5 000 ₽</option>
-        <option value="50000">До 50 000 ₽</option>
-      </select>
-      <select id="sortSelect" aria-label="Сортировка">
-        <option value="new">Сначала новые</option>
-        <option value="cheap">Сначала дешевые</option>
-        <option value="vip">VIP сверху</option>
-      </select>
-    </section>
-
-    <section class="ann-categories" aria-label="Категории">
-      <button class="ann-cat active" type="button" data-filter="all">Все</button>
-      <button class="ann-cat" type="button" data-filter="work">Работа</button>
-      <button class="ann-cat" type="button" data-filter="service">Услуги</button>
-      <button class="ann-cat" type="button" data-filter="rent">Аренда</button>
-      <button class="ann-cat" type="button" data-filter="sale">Продажа</button>
-    </section>
-
-    <section class="ann-board">
-      <div>
-        <div class="ann-list" id="annList">
-        </div>
-
-        <div class="ann-empty" id="empty">Активных объявлений пока нет. Добавьте новое через админку.</div>
-      </div>
-
-      <aside class="ann-side">
-        <h2>Разместить объявление</h2>
-        <p>Добавьте объявление через админку: категория, описание, цена, фото и контакт. После сохранения оно появится на сайте.</p>
-        <div class="ann-side-box"><b>VIP-размещение</b><span>Выделение объявления вверху списка.</span></div>
-        <div class="ann-side-box"><b>Фото</b><span>Карточки с фото получают больше внимания.</span></div>
-        <div class="ann-side-box"><b>Фильтры</b><span>Поиск по цене, категории и дате.</span></div>
-        <a class="ann-add-btn" href="admin.html">Перейти в админку</a>
-      </aside>
-    </section>
-  </div>
-</main>
-
-<div class="ad-modal" id="adModal" aria-hidden="true">
-  <div class="ad-modal-box" role="dialog" aria-modal="true" aria-labelledby="adModalTitle">
-    <button class="ad-close" id="adClose" type="button" aria-label="Закрыть">×</button>
-    <div class="ad-modal-image" id="adModalImage"></div>
-    <div class="ad-modal-content">
-      <div class="ad-modal-category" id="adModalCategory">Объявление</div>
-      <h2 id="adModalTitle"></h2>
-      <p id="adModalDescription"></p>
-      <div class="ad-modal-info">
-        <div><span>Цена</span><b id="adModalPrice"></b></div>
-        <div><span>Город</span><b id="adModalLocation"></b></div>
-        <div><span>Дата</span><b id="adModalDate"></b></div>
-        <div><span>Контакт</span><b>Открыт</b></div>
-      </div>
-      <button class="ad-modal-phone" type="button">☎ Показать телефон</button>
-    </div>
-  </div>
+<a aria-label="Открой Когалым" class="brand" href="index.html">
+<img alt="Открой Когалым" src="images/logo.png"/>
+<span>ОТКРОЙ<br/>КОГАЛЫМ</span>
+</a>
+<nav>
+<a href="index.html">Главная</a>
+<a href="history.html">История</a>
+<a href="places.html">Локации</a>
+<a href="routes.html">Гиды</a>
+<a href="events.html">Афиша</a>
+<a href="gallery.html">Галерея</a>
+<a class="active" href="announcements.html">Объявления</a>
+</nav>
+<div class="right-head">
+<span class="icon">⌕</span>
+<span class="icon">♡</span>
 </div>
-
-
-<div class="submit-contact-modal" id="submitContactModal" aria-hidden="true">
-  <div class="submit-contact-modal__box" role="dialog" aria-modal="true" aria-labelledby="submitContactTitle">
-    <button class="submit-contact-modal__close" id="submitContactClose" type="button" aria-label="Закрыть">×</button>
-
-    <div class="submit-contact-modal__badge">Подать объявление</div>
-
-    <h2 id="submitContactTitle">Информация для связи</h2>
-
-    <p class="submit-contact-modal__text">
+</header>
+<main class="ann-page">
+<div class="ann-container">
+<div class="ann-badge">Городские предложения</div>
+<section class="ann-top ann-top-clean">
+<div class="ann-top-main">
+<h1>Объявления<br/>Когалыма</h1>
+<p class="ann-lead">Работа, услуги, аренда и продажи от жителей города. Поиск и фильтры — без лишней возни.</p>
+<div class="ann-top-tags">
+<span>Работа</span>
+<span>Услуги</span>
+<span>Аренда</span>
+<span>Продажа</span>
+</div>
+</div>
+<a class="ann-add-btn" href="admin.html">Подать объявление</a>
+</section>
+<section aria-label="Фильтры объявлений" class="ann-search-panel">
+<input autocomplete="off" id="searchInput" placeholder="Поиск по объявлениям" type="search"/>
+<select id="categorySelect">
+<option value="all">Все категории</option>
+<option value="work">Работа</option>
+<option value="service">Услуги</option>
+<option value="rent">Аренда</option>
+<option value="sale">Продажа</option>
+<option value="lost">Находки</option>
+</select>
+<select aria-label="Цена" id="priceSelect">
+<option value="all">Любая цена</option>
+<option value="5000">До 5 000 ₽</option>
+<option value="50000">До 50 000 ₽</option>
+</select>
+<select aria-label="Сортировка" id="sortSelect">
+<option value="new">Сначала новые</option>
+<option value="cheap">Сначала дешевые</option>
+<option value="vip">VIP сверху</option>
+</select>
+</section>
+<section aria-label="Категории" class="ann-categories">
+<button class="ann-cat active" data-filter="all" type="button">Все</button>
+<button class="ann-cat" data-filter="work" type="button">Работа</button>
+<button class="ann-cat" data-filter="service" type="button">Услуги</button>
+<button class="ann-cat" data-filter="rent" type="button">Аренда</button>
+<button class="ann-cat" data-filter="sale" type="button">Продажа</button>
+</section>
+<section class="ann-board">
+<div>
+<div class="ann-list" id="annList">
+</div>
+<div class="ann-empty" id="empty">Активных объявлений пока нет. Добавьте новое через админку.</div>
+</div>
+<aside class="ann-side">
+<h2>Разместить объявление</h2>
+<p>Добавьте объявление через админку: категория, описание, цена, фото и контакт. После сохранения оно появится на сайте.</p>
+<div class="ann-side-box"><b>VIP-размещение</b><span>Выделение объявления вверху списка.</span></div>
+<div class="ann-side-box"><b>Фото</b><span>Карточки с фото получают больше внимания.</span></div>
+<div class="ann-side-box"><b>Фильтры</b><span>Поиск по цене, категории и дате.</span></div>
+<a class="ann-add-btn" href="admin.html">Перейти в админку</a>
+</aside>
+</section>
+</div>
+</main>
+<div aria-hidden="true" class="ad-modal" id="adModal">
+<div aria-labelledby="adModalTitle" aria-modal="true" class="ad-modal-box" role="dialog">
+<button aria-label="Закрыть" class="ad-close" id="adClose" type="button">×</button>
+<div class="ad-modal-image" id="adModalImage"></div>
+<div class="ad-modal-content">
+<div class="ad-modal-category" id="adModalCategory">Объявление</div>
+<h2 id="adModalTitle"></h2>
+<p id="adModalDescription"></p>
+<div class="ad-modal-info">
+<div><span>Цена</span><b id="adModalPrice"></b></div>
+<div><span>Город</span><b id="adModalLocation"></b></div>
+<div><span>Дата</span><b id="adModalDate"></b></div>
+<div><span>Контакт</span><b>Открыт</b></div>
+</div>
+<button class="ad-modal-phone" type="button">☎ Показать телефон</button>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="submit-contact-modal" id="submitContactModal">
+<div aria-labelledby="submitContactTitle" aria-modal="true" class="submit-contact-modal__box" role="dialog">
+<button aria-label="Закрыть" class="submit-contact-modal__close" id="submitContactClose" type="button">×</button>
+<div class="submit-contact-modal__badge">Подать объявление</div>
+<h2 id="submitContactTitle">Информация для связи</h2>
+<p class="submit-contact-modal__text">
       Чтобы разместить объявление, свяжитесь с администратором сайта.
     </p>
-
-    <div class="submit-contact-modal__info">
-      <div>
-        <span>Контакт</span>
-        <strong>Польшаков Сергей Владимирович</strong>
-      </div>
-
-      <div>
-        <span>Телефон</span>
-        <a href="tel:+79044774746">+7 (904) 477-47-46</a>
-      </div>
-
-      <div>
-        <span>Email</span>
-        <a href="mailto:Sergey55.89@mail.ru">Sergey55.89@mail.ru</a>
-      </div>
-    </div>
-
-    <div class="submit-contact-modal__actions">
-      <a class="submit-contact-modal__call" href="tel:+79044774746">Позвонить</a>
-      <a class="submit-contact-modal__mail" href="mailto:Sergey55.89@mail.ru">Написать на Email</a>
-    </div>
-  </div>
+<div class="submit-contact-modal__info">
+<div>
+<span>Контакт</span>
+<strong>Польшаков Сергей Владимирович</strong>
 </div>
-
-
+<div>
+<span>Телефон</span>
+<a href="tel:+79044774746">+7 (904) 477-47-46</a>
+</div>
+<div>
+<span>Email</span>
+<a href="mailto:Sergey55.89@mail.ru">Sergey55.89@mail.ru</a>
+</div>
+</div>
+<div class="submit-contact-modal__actions">
+<a class="submit-contact-modal__call" href="tel:+79044774746">Позвонить</a>
+<a class="submit-contact-modal__mail" href="mailto:Sergey55.89@mail.ru">Написать на Email</a>
+</div>
+</div>
+</div>
 <footer>
-  <a href="about.html">О проекте</a>
-  <a href="routes.html">Гиды</a>
-  <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
-  <a href="admin.html">Админка</a>
+<a href="about.html">О проекте</a>
+<a href="routes.html">Гиды</a>
+<a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+<a href="admin.html">Админка</a>
 </footer>
-<script src="announcements.js?v=site_20260615_v60_hard_visual_fix"></script>
-<script src="contact-popup.js?v=site_20260615_v60_hard_visual_fix"></script>
-<script src="weather.js?v=site_20260615_v60_hard_visual_fix"></script>
+<script src="announcements.js?v=site_20260616_v65_final_clean"></script>
+<script src="contact-popup.js?v=site_20260616_v65_final_clean"></script>
+<script src="weather.js?v=site_20260616_v65_final_clean"></script>
 </body>
 </html>

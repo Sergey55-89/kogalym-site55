@@ -1,369 +1,253 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Открой Когалым</title>
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260616_v63_hard_nav_bg" />
-
-<style>
-/* ===== V28 CLEAN REPAIR INLINE ===== */
-.hero-clean,.routes-v2-hero-clean,.events-hero-clean,.places-showcase-clean,.ann-top-clean{
-  max-width:1240px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;
-}
-.hero-clean{
-  min-height:auto!important;padding:118px 28px 36px!important;display:block!important;
-}
-.hero-clean__wrap{
-  width:min(1240px,100%)!important;margin:0 auto!important;display:grid!important;
-  grid-template-columns:minmax(0,1fr) 320px!important;gap:24px!important;align-items:stretch!important;
-}
-.hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{
-  border-radius:28px!important;border:1px solid rgba(255,255,255,.08)!important;
-  background:linear-gradient(180deg,rgba(7,18,34,.78),rgba(7,18,34,.56))!important;
-  box-shadow:0 24px 70px rgba(0,0,0,.22)!important;
-  backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important;
-}
-.hero-clean__content{max-width:none!important;margin:0!important;padding:34px 36px!important;}
-.hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{
-  text-transform:none!important;font-size:clamp(44px,5vw,72px)!important;line-height:.96!important;margin:0 0 14px!important;
-}
-.hero-clean .lead,.routes-v2-hero-clean .routes-v2-lead,.places-showcase-clean .places-showcase__lead,.events-hero-clean .events-lead,.ann-top-clean .ann-lead{
-  max-width:760px!important;margin:0!important;color:#dbe6f8!important;font-size:18px!important;line-height:1.58!important;
-}
-.hero-actions{display:flex!important;gap:12px!important;flex-wrap:wrap!important;margin:22px 0!important;}
-.hero-clean .features{max-width:none!important;margin:0!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;border-radius:18px!important;}
-.places-showcase-clean{display:block!important;margin-top:8px!important;margin-bottom:24px!important;}
-.places-showcase-clean::before,.events-hero-clean::before{content:none!important;}
-.places-showcase-clean .places-showcase__text,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.ann-top-clean .ann-top-main{padding:30px 32px!important;}
-.places-showcase-clean .places-eyebrow,.routes-v2-hero-clean .routes-v2-kicker,.events-hero-clean .events-kicker{
-  display:inline-flex!important;background:rgba(242,208,138,.12)!important;border:1px solid rgba(242,208,138,.24)!important;
-  color:#f2d08a!important;border-radius:999px!important;padding:10px 14px!important;margin:0 0 14px!important;
-  font:900 12px/1 Arial,Helvetica,sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase!important;
-}
-.places-showcase-clean .places-showcase__chips,.routes-v2-hero-clean .routes-v2-hero__chips,.events-hero-clean .events-hero-pills,.ann-top-clean .ann-top-tags{
-  display:flex!important;gap:10px!important;flex-wrap:wrap!important;margin:20px 0 0!important;
-}
-.places-showcase-clean .places-showcase__chips span,.routes-v2-hero-clean .routes-v2-hero__chips span,.events-hero-clean .events-hero-pills span,.ann-top-clean .ann-top-tags span{
-  display:inline-flex!important;align-items:center!important;min-height:36px!important;padding:0 13px!important;border-radius:999px!important;
-  background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.08)!important;color:#fff!important;font:800 14px/1 Arial,Helvetica,sans-serif!important;
-}
-.events-hero-clean{margin:8px auto 24px!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;}
-.events-hero-clean .events-hero-inner{display:block!important;padding:0!important;}
-.ann-top-clean{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:18px!important;align-items:end!important;margin-bottom:24px!important;}
-.places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:640px!important;min-height:640px!important;max-height:640px!important;overflow:hidden!important;}
-@media(max-width:980px){
-  .hero-clean{padding:106px 18px 28px!important;}
-  .hero-clean__wrap{grid-template-columns:1fr!important;}
-  .hero-clean__content,.hero-clean .cinematic-weather,.routes-v2-hero-clean,.events-hero-clean .events-hero-copy,.places-showcase-clean .places-showcase__text,.ann-top-clean .ann-top-main{padding:24px 20px!important;border-radius:24px!important;}
-  .hero-clean h1,.routes-v2-hero-clean .routes-v2-title-main,.places-showcase-clean h1,.events-hero-clean h1,.ann-top-clean h1{font-size:40px!important;}
-  .hero-clean .features{grid-template-columns:1fr 1fr!important;}
-  .ann-top-clean{grid-template-columns:1fr!important;}
-  .places-grid.catalog-grid .place-card.catalog-card,.place-card.catalog-card{height:auto!important;min-height:0!important;max-height:none!important;}
-}
-@media(max-width:640px){.hero-clean .features{grid-template-columns:1fr!important;}}
-</style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Открой Когалым</title>
+<link href="style.v7-hard.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 
 
-<style id="v59-typography-fix">
-/* v59: final typography guard — removes leftover forced uppercase from older inline patches */
-.places-showcase-clean .places-eyebrow,
-.routes-v2-hero-clean .routes-v2-kicker,
-.events-hero-clean .events-kicker,
-.ann-top-clean .ann-kicker,
-.events-kicker,
-.today-label,
-.event-cat,
-.modal-content small,
-.guide-card span,
-.route-tag,
-.pulse-card b,
-.history-meaning article b,
-.map-point span,
-.event time small {
-  text-transform:none!important;
-  letter-spacing:.01em!important;
-  font-size:13px!important;
-}
-.event time small{
-  color:var(--site-gold,#f2d08a)!important;
-  font-weight:850!important;
-}
-</style>
-
-  <link rel="stylesheet" href="repair-v63.css?v=site_20260616_v63_hard_nav_bg" />
+<link href="repair-v65.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 </head>
 <body>
-
 <header class="header">
-  <a class="brand" href="index.html">
-    <img src="images/logo.png" alt="Открой Когалым">
-    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
-  </a>
-
-  <nav>
-    <a class="active" href="index.html">Главная</a>
-    <a href="history.html">История</a>
-    <a href="places.html">Локации</a>
-    <a href="routes.html">Гиды</a>
-    <a href="events.html">Афиша</a>
-    <a href="gallery.html">Галерея</a>
-    <a href="announcements.html">Объявления</a>
-  </nav>
-
-  <div class="right-head">
-    <span class="icon">⌕</span>
-    <span class="icon">♡</span>
-  </div>
+<a class="brand" href="index.html">
+<img alt="Открой Когалым" src="images/logo.png"/>
+<span>ОТКРОЙ<br/>КОГАЛЫМ</span>
+</a>
+<nav>
+<a class="active" href="index.html">Главная</a>
+<a href="history.html">История</a>
+<a href="places.html">Локации</a>
+<a href="routes.html">Гиды</a>
+<a href="events.html">Афиша</a>
+<a href="gallery.html">Галерея</a>
+<a href="announcements.html">Объявления</a>
+</nav>
+<div class="right-head">
+<span class="icon">⌕</span>
+<span class="icon">♡</span>
+</div>
 </header>
-
 <main>
-  <section class="hero hero-clean">
-    <div class="hero-clean__wrap">
-      <div class="hero-content hero-clean__content">
-        <p class="kicker">Когалым без туристической мишуры</p>
-
-        <h1>Когалым —<br>северный город<br><strong>с характером</strong></h1>
-
-        <p class="lead">
+<section class="hero hero-clean">
+<div class="hero-clean__wrap">
+<div class="hero-content hero-clean__content">
+<p class="kicker">Когалым без туристической мишуры</p>
+<h1>Когалым —<br/>северный город<br/><strong>с характером</strong></h1>
+<p class="lead">
           Места, готовые городские сценарии, афиша и объявления — в одной подборке.
           Не просто список карточек, а нормальный путеводитель: что посмотреть, куда сходить и как собрать прогулку.
         </p>
-
-        <div class="hero-actions">
-          <a class="btn gold" href="places.html">Открыть локации</a>
-          <a class="btn dark" href="events.html">Смотреть афишу</a>
-        </div>
-
-        <div class="features">
-          <div><b>⌖</b><span>Где погулять<br>и что увидеть</span></div>
-          <div><b>▦</b><span>Кино, выставки<br>и события</span></div>
-          <div><b>☆</b><span>Без случайных<br>подборок</span></div>
-          <div><b>▱</b><span>История<br>без лишних кругов</span></div>
-        </div>
-      </div>
-
-      <aside class="cinematic-weather live-weather-card" aria-label="Живая погода в Когалыме">
-        <div class="cinematic-weather__aurora" aria-hidden="true"></div>
-        <div class="cinematic-weather__head">
-          <span class="cinematic-weather__label">Сейчас в Когалыме</span>
-          <span class="cinematic-weather__dot" aria-hidden="true"></span>
-        </div>
-        <div class="cinematic-weather__main">
-          <div>
-            <div class="cinematic-weather__temp" data-weather-temp>—</div>
-            <div class="cinematic-weather__status" data-weather-status>Загрузка погоды</div>
-            <div class="cinematic-weather__feels" data-weather-feels>Ощущается как —</div>
-          </div>
-          <div class="cinematic-weather__icon" data-weather-icon>☁️</div>
-        </div>
-        <div class="cinematic-weather__line"></div>
-        <div class="cinematic-weather__footer">
-          <span><b data-weather-wind>—</b><small>ветер</small></span>
-          <span><b data-weather-humidity>—</b><small>влажность</small></span>
-          <span><b data-weather-pressure>—</b><small>давление</small></span>
-        </div>
-        <div class="cinematic-weather__updated" data-weather-updated>Обновление…</div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="home-highlights">
-    <article class="highlight-card" style="background-image:url('images/night.jpg')">
-      <span>Популярное сегодня</span>
-      <h3>Ночной Когалым</h3>
-      <p>Лучшие места для вечерних прогулок и северной атмосферы.</p>
-      <a class="btn gold" href="places.html">Смотреть места</a>
-    </article>
-
-    <article class="highlight-card" style="background-image:url('images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg')">
-      <span>События недели</span>
-      <h3>Афиша города</h3>
-      <p>Концерты, выставки, фестивали и события Когалыма.</p>
-      <a class="btn gold" href="events.html">Открыть афишу</a>
-    </article>
-
-    <article class="highlight-card" style="background-image:url('images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg')">
-      <span>История</span>
-      <h3>Как появился город</h3>
-      <p>Короткая хронология Когалыма: первые строители, нефтяная история и современный город.</p>
-      <a class="btn gold" href="history.html">Открыть историю</a>
-    </article>
-
-    <article class="highlight-card" style="background-image:url('images/places-collage-kogalym.png')">
-      <span>Галерея</span>
-      <h3>Город в кадре</h3>
-      <p>Фото Когалыма: памятники, парки, культура, северный свет и городские детали.</p>
-      <a class="btn gold" href="gallery.html">Смотреть фото</a>
-    </article>
-  </section>
-
-  <section class="city-guide-section">
-    <div class="section-head guide-head">
-      <div>
-        <span class="section-kicker">Городские сценарии</span>
-        <h2>Не знаешь, с чего начать — выбирай готовый план</h2>
-        <p>Сайт стал не просто каталогом мест: теперь есть короткие сценарии для прогулки, семьи, вечернего города и знакомства с историей.</p>
-      </div>
-      <a href="routes.html">Все гиды →</a>
-    </div>
-
-    <div class="guide-cards">
-      <article class="guide-card">
-        <img src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg" alt="Набережная Ингу-Ягуна">
-        <div>
-          <span>2–3 часа</span>
-          <h3>Первое знакомство</h3>
-          <p>Набережная, городские часы, центральные точки и несколько мест для фото без лишней беготни.</p>
-          <a href="routes.html#first-look">Открыть сценарий</a>
-        </div>
-      </article>
-      <article class="guide-card">
-        <img src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" alt="СКК Галактика">
-        <div>
-          <span>Полдня</span>
-          <h3>С детьми</h3>
-          <p>Галактика, океанариум, прогулочные зоны и спокойный темп, чтобы день не превратился в марафон.</p>
-          <a href="routes.html#family-day">Открыть сценарий</a>
-        </div>
-      </article>
-      <article class="guide-card">
-        <img src="images/night.jpg" alt="Ночной Когалым">
-        <div>
-          <span>Вечер</span>
-          <h3>Ночной Когалым</h3>
-          <p>Маршрут для атмосферы: подсветка, спокойные улицы, набережная и северный городской вайб.</p>
-          <a href="routes.html#evening">Открыть сценарий</a>
-        </div>
-      </article>
-      <article class="guide-card">
-        <img src="images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg" alt="Покорителям Западной Сибири">
-        <div>
-          <span>История</span>
-          <h3>Символы города</h3>
-          <p>Памятники, нефтяная история, Парк Победы и точки, которые объясняют характер Когалыма.</p>
-          <a href="routes.html#symbols">Открыть сценарий</a>
-        </div>
-      </article>
-    </div>
-  </section>
-
-
-  <section class="main-grid">
-    <div class="places panel">
-      <div class="section-head">
-        <h2>Места города</h2>
-        <a href="places.html">Открыть места →</a>
-      </div>
-
-      <div class="cards">
-        <article><img src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg" alt="Парк Победы в Когалыме"><h3>Парк Победы</h3><p>Место памяти и гордости</p><i>⌖</i></article>
-        <article><img src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" alt="СКК Галактика в Когалыме"><h3>СКК «Галактика»</h3><p>События, концерты, творчество</p><i>▣</i></article>
-        <article><img src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg" alt="Набережная реки Ингу-Ягун"><h3>Набережная</h3><p>Прогулки и красивый вид</p><i>≋</i></article>
-        <article><img src="images/lukoil.webp" alt="Нефтяная символика Когалыма"><h3>Символ города</h3><p>Север, нефть и характер</p><i>⌾</i></article>
-        <article><img src="images/night.jpg" alt="Ночной Когалым"><h3>Ночной Когалым</h3><p>Атмосфера северного города</p><i>✦</i></article>
-      </div>
-    </div>
-
-    <aside class="events panel">
-      <div class="section-head">
-        <h2>Афиша событий</h2>
-        <a href="events.html">Все события →</a>
-      </div>
-      <div class="event"><time>🎬<small>Кино</small></time><div><b>Киносеансы и премьеры</b><p>Актуальное расписание — в разделе афиши</p></div></div>
-      <div class="event"><time>🎭<small>Культура</small></time><div><b>Театр, выставки и встречи</b><p>Малый театр, КВЦ Русского музея и городские площадки</p></div></div>
-      <div class="event"><time>📍<small>Город</small></time><div><b>Городские события</b><p>Праздники, семейные активности и события выходного дня</p></div></div>
-    </aside>
-
-    <div class="stats panel">
-      <div><i>👥</i><b>67 000+</b><span>Жителей города</span></div>
-      <div><i>📍</i><b>15+</b><span>Популярных мест</span></div>
-      <div><i>🎫</i><b>200+</b><span>Событий в год</span></div>
-      <div><i>⭐</i><b>1</b><span>Любимый город</span></div>
-    </div>
-
-    <div class="city panel">
-      <h2>Открой свой Когалым</h2>
-      <p>Собрали маршруты, места, афишу и объявления в одном городском портале. Быстро, понятно, без лишнего шума.</p>
-      <a class="btn gold" href="about.html">Подробнее о городе</a>
-    </div>
-  </section>
-
-
-  <section class="today-grid">
-    <div class="today-card">
-      <div class="section-head">
-        <h2>Сегодня в городе</h2>
-        <a href="events.html">Все события →</a>
-      </div>
-
-      <div class="today-list">
-        <div class="today-item">
-          <div>
-            <b>Проверить ближайшие события</b>
-            <p>Кино, выставки, концерты и городские активности</p>
-          </div>
-          <a class="today-badge" href="events.html">Афиша</a>
-        </div>
-
-        <div class="today-item">
-          <div>
-            <b>Выбрать место для прогулки</b>
-            <p>Парки, памятники, культура, спорт и семейные локации</p>
-          </div>
-          <a class="today-badge" href="places.html">Места</a>
-        </div>
-
-        <div class="today-item">
-          <div>
-            <b>Собрать готовый маршрут</b>
-            <p>Короткие планы: вечер, семья, история, первое знакомство</p>
-          </div>
-          <a class="today-badge" href="routes.html">Гиды</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="today-card">
-      <div class="section-head">
-        <h2>Быстрый доступ</h2>
-      </div>
-
-      <div class="quick-links">
-        <a href="places.html"><span>Лучшие места города</span><b>→</b></a>
-        <a href="routes.html"><span>Готовые городские гиды</span><b>→</b></a>
-        <a href="announcements.html"><span>Новые объявления</span><b>→</b></a>
-        <a href="history.html"><span>История города</span><b>→</b></a>
-        <a href="gallery.html"><span>Галерея Когалыма</span><b>→</b></a>
-        <a href="admin.html"><span>Панель управления</span><b>→</b></a>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="city-pulse-section">
-    <div class="pulse-card pulse-main">
-      <span class="section-kicker">Почему не скучно</span>
-      <h2>Когалым держится не на одной красивой фотке</h2>
-      <p>Сильная сторона города — контраст: северная природа, нефтяная история, современные культурные площадки, семейные места и спокойные прогулочные зоны. Это надо показывать слоями, а не одной строкой «город с характером».</p>
-    </div>
-    <div class="pulse-card"><b>01</b><h3>Нефтяная основа</h3><p>Город вырос вокруг большой промышленной истории Западной Сибири.</p></div>
-    <div class="pulse-card"><b>02</b><h3>Культура</h3><p>Театр, музейные проекты и выставочные пространства дают сайту живой повод возвращаться.</p></div>
-    <div class="pulse-card"><b>03</b><h3>Семейный город</h3><p>Галактика, парки, прогулочные зоны и спокойная городская среда — нормальная база для подборок.</p></div>
-  </section>
-
+<div class="hero-actions">
+<a class="btn gold" href="places.html">Открыть локации</a>
+<a class="btn dark" href="events.html">Смотреть афишу</a>
+</div>
+<div class="features">
+<div><b>⌖</b><span>Где погулять<br/>и что увидеть</span></div>
+<div><b>▦</b><span>Кино, выставки<br/>и события</span></div>
+<div><b>☆</b><span>Без случайных<br/>подборок</span></div>
+<div><b>▱</b><span>История<br/>без лишних кругов</span></div>
+</div>
+</div>
+<aside aria-label="Живая погода в Когалыме" class="cinematic-weather live-weather-card">
+<div aria-hidden="true" class="cinematic-weather__aurora"></div>
+<div class="cinematic-weather__head">
+<span class="cinematic-weather__label">Сейчас в Когалыме</span>
+<span aria-hidden="true" class="cinematic-weather__dot"></span>
+</div>
+<div class="cinematic-weather__main">
+<div>
+<div class="cinematic-weather__temp" data-weather-temp="">—</div>
+<div class="cinematic-weather__status" data-weather-status="">Загрузка погоды</div>
+<div class="cinematic-weather__feels" data-weather-feels="">Ощущается как —</div>
+</div>
+<div class="cinematic-weather__icon" data-weather-icon="">☁️</div>
+</div>
+<div class="cinematic-weather__line"></div>
+<div class="cinematic-weather__footer">
+<span><b data-weather-wind="">—</b><small>ветер</small></span>
+<span><b data-weather-humidity="">—</b><small>влажность</small></span>
+<span><b data-weather-pressure="">—</b><small>давление</small></span>
+</div>
+<div class="cinematic-weather__updated" data-weather-updated="">Обновление…</div>
+</aside>
+</div>
+</section>
+<section class="home-highlights">
+<article class="highlight-card" style="background-image:url('images/night.jpg')">
+<span>Популярное сегодня</span>
+<h3>Ночной Когалым</h3>
+<p>Лучшие места для вечерних прогулок и северной атмосферы.</p>
+<a class="btn gold" href="places.html">Смотреть места</a>
+</article>
+<article class="highlight-card" style="background-image:url('images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg')">
+<span>События недели</span>
+<h3>Афиша города</h3>
+<p>Концерты, выставки, фестивали и события Когалыма.</p>
+<a class="btn gold" href="events.html">Открыть афишу</a>
+</article>
+<article class="highlight-card" style="background-image:url('images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg')">
+<span>История</span>
+<h3>Как появился город</h3>
+<p>Короткая хронология Когалыма: первые строители, нефтяная история и современный город.</p>
+<a class="btn gold" href="history.html">Открыть историю</a>
+</article>
+<article class="highlight-card" style="background-image:url('images/places-collage-kogalym.png')">
+<span>Галерея</span>
+<h3>Город в кадре</h3>
+<p>Фото Когалыма: памятники, парки, культура, северный свет и городские детали.</p>
+<a class="btn gold" href="gallery.html">Смотреть фото</a>
+</article>
+</section>
+<section class="city-guide-section">
+<div class="section-head guide-head">
+<div>
+<span class="section-kicker">Городские сценарии</span>
+<h2>Не знаешь, с чего начать — выбирай готовый план</h2>
+<p>Сайт стал не просто каталогом мест: теперь есть короткие сценарии для прогулки, семьи, вечернего города и знакомства с историей.</p>
+</div>
+<a href="routes.html">Все гиды →</a>
+</div>
+<div class="guide-cards">
+<article class="guide-card">
+<img alt="Набережная Ингу-Ягуна" src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg"/>
+<div>
+<span>2–3 часа</span>
+<h3>Первое знакомство</h3>
+<p>Набережная, городские часы, центральные точки и несколько мест для фото без лишней беготни.</p>
+<a href="routes.html#first-look">Открыть сценарий</a>
+</div>
+</article>
+<article class="guide-card">
+<img alt="СКК Галактика" src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg"/>
+<div>
+<span>Полдня</span>
+<h3>С детьми</h3>
+<p>Галактика, океанариум, прогулочные зоны и спокойный темп, чтобы день не превратился в марафон.</p>
+<a href="routes.html#family-day">Открыть сценарий</a>
+</div>
+</article>
+<article class="guide-card">
+<img alt="Ночной Когалым" src="images/night.jpg"/>
+<div>
+<span>Вечер</span>
+<h3>Ночной Когалым</h3>
+<p>Маршрут для атмосферы: подсветка, спокойные улицы, набережная и северный городской вайб.</p>
+<a href="routes.html#evening">Открыть сценарий</a>
+</div>
+</article>
+<article class="guide-card">
+<img alt="Покорителям Западной Сибири" src="images/places-v7/15-31-pokoritelyam-zapadnoy-sibiri-0088b2a4-v7-7f79ff9af4.jpg"/>
+<div>
+<span>История</span>
+<h3>Символы города</h3>
+<p>Памятники, нефтяная история, Парк Победы и точки, которые объясняют характер Когалыма.</p>
+<a href="routes.html#symbols">Открыть сценарий</a>
+</div>
+</article>
+</div>
+</section>
+<section class="main-grid">
+<div class="places panel">
+<div class="section-head">
+<h2>Места города</h2>
+<a href="places.html">Открыть места →</a>
+</div>
+<div class="cards">
+<article><img alt="Парк Победы в Когалыме" src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg"/><h3>Парк Победы</h3><p>Место памяти и гордости</p><i>⌖</i></article>
+<article><img alt="СКК Галактика в Когалыме" src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg"/><h3>СКК «Галактика»</h3><p>События, концерты, творчество</p><i>▣</i></article>
+<article><img alt="Набережная реки Ингу-Ягун" src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg"/><h3>Набережная</h3><p>Прогулки и красивый вид</p><i>≋</i></article>
+<article><img alt="Нефтяная символика Когалыма" src="images/lukoil.webp"/><h3>Символ города</h3><p>Север, нефть и характер</p><i>⌾</i></article>
+<article><img alt="Ночной Когалым" src="images/night.jpg"/><h3>Ночной Когалым</h3><p>Атмосфера северного города</p><i>✦</i></article>
+</div>
+</div>
+<aside class="events panel">
+<div class="section-head">
+<h2>Афиша событий</h2>
+<a href="events.html">Все события →</a>
+</div>
+<div class="event"><time>🎬<small>Кино</small></time><div><b>Киносеансы и премьеры</b><p>Актуальное расписание — в разделе афиши</p></div></div>
+<div class="event"><time>🎭<small>Культура</small></time><div><b>Театр, выставки и встречи</b><p>Малый театр, КВЦ Русского музея и городские площадки</p></div></div>
+<div class="event"><time>📍<small>Город</small></time><div><b>Городские события</b><p>Праздники, семейные активности и события выходного дня</p></div></div>
+</aside>
+<div class="stats panel">
+<div><i>👥</i><b>67 000+</b><span>Жителей города</span></div>
+<div><i>📍</i><b>15+</b><span>Популярных мест</span></div>
+<div><i>🎫</i><b>200+</b><span>Событий в год</span></div>
+<div><i>⭐</i><b>1</b><span>Любимый город</span></div>
+</div>
+<div class="city panel">
+<h2>Открой свой Когалым</h2>
+<p>Собрали маршруты, места, афишу и объявления в одном городском портале. Быстро, понятно, без лишнего шума.</p>
+<a class="btn gold" href="about.html">Подробнее о городе</a>
+</div>
+</section>
+<section class="today-grid">
+<div class="today-card">
+<div class="section-head">
+<h2>Сегодня в городе</h2>
+<a href="events.html">Все события →</a>
+</div>
+<div class="today-list">
+<div class="today-item">
+<div>
+<b>Проверить ближайшие события</b>
+<p>Кино, выставки, концерты и городские активности</p>
+</div>
+<a class="today-badge" href="events.html">Афиша</a>
+</div>
+<div class="today-item">
+<div>
+<b>Выбрать место для прогулки</b>
+<p>Парки, памятники, культура, спорт и семейные локации</p>
+</div>
+<a class="today-badge" href="places.html">Места</a>
+</div>
+<div class="today-item">
+<div>
+<b>Собрать готовый маршрут</b>
+<p>Короткие планы: вечер, семья, история, первое знакомство</p>
+</div>
+<a class="today-badge" href="routes.html">Гиды</a>
+</div>
+</div>
+</div>
+<div class="today-card">
+<div class="section-head">
+<h2>Быстрый доступ</h2>
+</div>
+<div class="quick-links">
+<a href="places.html"><span>Лучшие места города</span><b>→</b></a>
+<a href="routes.html"><span>Готовые городские гиды</span><b>→</b></a>
+<a href="announcements.html"><span>Новые объявления</span><b>→</b></a>
+<a href="history.html"><span>История города</span><b>→</b></a>
+<a href="gallery.html"><span>Галерея Когалыма</span><b>→</b></a>
+<a href="admin.html"><span>Панель управления</span><b>→</b></a>
+</div>
+</div>
+</section>
+<section class="city-pulse-section">
+<div class="pulse-card pulse-main">
+<span class="section-kicker">Почему не скучно</span>
+<h2>Когалым держится не на одной красивой фотке</h2>
+<p>Сильная сторона города — контраст: северная природа, нефтяная история, современные культурные площадки, семейные места и спокойные прогулочные зоны. Это надо показывать слоями, а не одной строкой «город с характером».</p>
+</div>
+<div class="pulse-card"><b>01</b><h3>Нефтяная основа</h3><p>Город вырос вокруг большой промышленной истории Западной Сибири.</p></div>
+<div class="pulse-card"><b>02</b><h3>Культура</h3><p>Театр, музейные проекты и выставочные пространства дают сайту живой повод возвращаться.</p></div>
+<div class="pulse-card"><b>03</b><h3>Семейный город</h3><p>Галактика, парки, прогулочные зоны и спокойная городская среда — нормальная база для подборок.</p></div>
+</section>
 </main>
-
 <footer>
-  <span>© 2026 Открой Когалым</span>
-  <nav class="footer-links">
-    <a href="about.html">О проекте</a>
-    <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
-    <a href="admin.html">Админка</a>
-    <a href="announcements.html">Реклама</a>
-  </nav>
+<span>© 2026 Открой Когалым</span>
+<nav class="footer-links">
+<a href="about.html">О проекте</a>
+<a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+<a href="admin.html">Админка</a>
+<a href="announcements.html">Реклама</a>
+</nav>
 </footer>
-
-<script src="weather.js?v=site_20260615_v60_hard_visual_fix"></script>
+<script src="weather.js?v=site_20260616_v65_final_clean"></script>
 </body>
 </html>

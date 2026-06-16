@@ -1,165 +1,133 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Галерея Когалыма — Открой Когалым</title>
-  <meta name="description" content="Галерея Когалыма: город, памятники, парки, культура и северная атмосфера.">
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260616_v63_hard_nav_bg">
+<meta charset="utf-8"/>
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Галерея Когалыма — Открой Когалым</title>
+<meta content="Галерея Когалыма: город, памятники, парки, культура и северная атмосфера." name="description"/>
+<link href="style.v7-hard.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 
-<style id="v59-typography-fix">
-/* v59: final typography guard — removes leftover forced uppercase from older inline patches */
-.places-showcase-clean .places-eyebrow,
-.routes-v2-hero-clean .routes-v2-kicker,
-.events-hero-clean .events-kicker,
-.ann-top-clean .ann-kicker,
-.events-kicker,
-.today-label,
-.event-cat,
-.modal-content small,
-.guide-card span,
-.route-tag,
-.pulse-card b,
-.history-meaning article b,
-.map-point span,
-.event time small {
-  text-transform:none!important;
-  letter-spacing:.01em!important;
-  font-size:13px!important;
-}
-.event time small{
-  color:var(--site-gold,#f2d08a)!important;
-  font-weight:850!important;
-}
-</style>
-
-  <link rel="stylesheet" href="repair-v63.css?v=site_20260616_v63_hard_nav_bg" />
-</head>
+<link href="repair-v65.css?v=site_20260616_v65_final_clean" rel="stylesheet">
+</link></head>
 <body>
 <header class="header">
-  <a class="brand" href="index.html" aria-label="Открой Когалым">
-    <img src="images/logo.png" alt="Открой Когалым">
-    <span>ОТКРОЙ<br>КОГАЛЫМ</span>
-  </a>
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="history.html">История</a>
-    <a href="places.html">Локации</a>
-    <a href="routes.html">Гиды</a>
-    <a href="events.html">Афиша</a>
-    <a class="active" href="gallery.html">Галерея</a>
-    <a href="announcements.html">Объявления</a>
-  </nav>
-  <div class="right-head">
-    <span class="icon">⌕</span>
-    <span class="icon">♡</span>
-  </div>
-</header>
-
-<main class="gallery-page">
-  <section class="gallery-hero">
-    <span class="gallery-kicker">Фото города</span>
-    <h1>Галерея<br>Когалыма</h1>
-    <p>Визуальный раздел: город, памятники, парки, культура и северная атмосфера.</p>
-  </section>
-
-  <section class="gallery-grid" aria-label="Фотографии Когалыма">
-      <button class="gallery-card" data-src="images/night.jpg" data-title="Ночной Когалым" data-tag="Город" aria-label="Открыть фото: Ночной Когалым">
-        <img src="images/night.jpg" alt="Ночной Когалым">
-        <span>Город</span>
-        <h3>Ночной Когалым</h3>
-      </button>
-      <button class="gallery-card" data-src="images/hero.jpg" data-title="Северный город" data-tag="Панорама" aria-label="Открыть фото: Северный город">
-        <img src="images/hero.jpg" alt="Северный город">
-        <span>Панорама</span>
-        <h3>Северный город</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-collage-kogalym.png" data-title="Городские места" data-tag="Коллаж" aria-label="Открыть фото: Городские места">
-        <img src="images/places-collage-kogalym.png" alt="Городские места">
-        <span>Коллаж</span>
-        <h3>Городские места</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/20-41-stela-plamya-195d4781-v7-7255bd0312.jpg" data-title="Стела «Пламя»" data-tag="Памятники" aria-label="Открыть фото: Стела «Пламя»">
-        <img src="images/places-v7/20-41-stela-plamya-195d4781-v7-7255bd0312.jpg" alt="Стела «Пламя»">
-        <span>Памятники</span>
-        <h3>Стела «Пламя»</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg" data-title="Набережная Ингу-Ягуна" data-tag="Прогулки" aria-label="Открыть фото: Набережная Ингу-Ягуна">
-        <img src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg" alt="Набережная Ингу-Ягуна">
-        <span>Прогулки</span>
-        <h3>Набережная Ингу-Ягуна</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/24-28-park-pervoprokhodtsev-7599f17d-v7-9a46019c2e.jpg" data-title="Парк первопроходцев" data-tag="Парки" aria-label="Открыть фото: Парк первопроходцев">
-        <img src="images/places-v7/24-28-park-pervoprokhodtsev-7599f17d-v7-9a46019c2e.jpg" alt="Парк первопроходцев">
-        <span>Парки</span>
-        <h3>Парк первопроходцев</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg" data-title="Парк Победы" data-tag="Парки" aria-label="Открыть фото: Парк Победы">
-        <img src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg" alt="Парк Победы">
-        <span>Парки</span>
-        <h3>Парк Победы</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg" data-title="КВЦ Русского музея" data-tag="Культура" aria-label="Открыть фото: КВЦ Русского музея">
-        <img src="images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg" alt="КВЦ Русского музея">
-        <span>Культура</span>
-        <h3>КВЦ Русского музея</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg" data-title="Океанариум" data-tag="Семья" aria-label="Открыть фото: Океанариум">
-        <img src="images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg" alt="Океанариум">
-        <span>Семья</span>
-        <h3>Океанариум</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" data-title="Галактика" data-tag="Культура" aria-label="Открыть фото: Галактика">
-        <img src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" alt="Галактика">
-        <span>Культура</span>
-        <h3>Галактика</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/21-45-tsvetochnye-chasy-132f6ce5-v7-40f7eccd0a.jpg" data-title="Цветочные часы" data-tag="Город" aria-label="Открыть фото: Цветочные часы">
-        <img src="images/places-v7/21-45-tsvetochnye-chasy-132f6ce5-v7-40f7eccd0a.jpg" alt="Цветочные часы">
-        <span>Город</span>
-        <h3>Цветочные часы</h3>
-      </button>
-      <button class="gallery-card" data-src="images/places-v7/11-13-zhemchuzhina-8979945e-v7-815487b745.jpg" data-title="«Жемчужина»" data-tag="Памятники" aria-label="Открыть фото: «Жемчужина»">
-        <img src="images/places-v7/11-13-zhemchuzhina-8979945e-v7-815487b745.jpg" alt="«Жемчужина»">
-        <span>Памятники</span>
-        <h3>«Жемчужина»</h3>
-      </button>
-  </section>
-
-  <section class="gallery-story-section">
-    <article>
-      <span class="section-kicker">Как смотреть</span>
-      <h2>Галерея стала не просто набором картинок</h2>
-      <p>Фото лучше работают, когда у них есть смысл: ночной город, памятники, семейные места, культура и северная атмосфера. Поэтому галерея теперь связана с гидами и локациями.</p>
-    </article>
-    <a class="btn gold" href="routes.html">Открыть городские гиды</a>
-  </section>
-
-</main>
-
-<div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
-  <button class="gallery-lightbox__close" type="button" aria-label="Закрыть">×</button>
-  <img src="" alt="">
-  <div>
-    <b></b>
-    <span></span>
-  </div>
+<a aria-label="Открой Когалым" class="brand" href="index.html">
+<img alt="Открой Когалым" src="images/logo.png"/>
+<span>ОТКРОЙ<br/>КОГАЛЫМ</span>
+</a>
+<nav>
+<a href="index.html">Главная</a>
+<a href="history.html">История</a>
+<a href="places.html">Локации</a>
+<a href="routes.html">Гиды</a>
+<a href="events.html">Афиша</a>
+<a class="active" href="gallery.html">Галерея</a>
+<a href="announcements.html">Объявления</a>
+</nav>
+<div class="right-head">
+<span class="icon">⌕</span>
+<span class="icon">♡</span>
 </div>
-
+</header>
+<main class="gallery-page">
+<section class="gallery-hero">
+<span class="gallery-kicker">Фото города</span>
+<h1>Галерея<br/>Когалыма</h1>
+<p>Визуальный раздел: город, памятники, парки, культура и северная атмосфера.</p>
+</section>
+<section aria-label="Фотографии Когалыма" class="gallery-grid">
+<button aria-label="Открыть фото: Ночной Когалым" class="gallery-card" data-src="images/night.jpg" data-tag="Город" data-title="Ночной Когалым">
+<img alt="Ночной Когалым" src="images/night.jpg"/>
+<span>Город</span>
+<h3>Ночной Когалым</h3>
+</button>
+<button aria-label="Открыть фото: Северный город" class="gallery-card" data-src="images/hero.jpg" data-tag="Панорама" data-title="Северный город">
+<img alt="Северный город" src="images/hero.jpg"/>
+<span>Панорама</span>
+<h3>Северный город</h3>
+</button>
+<button aria-label="Открыть фото: Городские места" class="gallery-card" data-src="images/places-collage-kogalym.png" data-tag="Коллаж" data-title="Городские места">
+<img alt="Городские места" src="images/places-collage-kogalym.png"/>
+<span>Коллаж</span>
+<h3>Городские места</h3>
+</button>
+<button aria-label="Открыть фото: Стела «Пламя»" class="gallery-card" data-src="images/places-v7/20-41-stela-plamya-195d4781-v7-7255bd0312.jpg" data-tag="Памятники" data-title="Стела «Пламя»">
+<img alt="Стела «Пламя»" src="images/places-v7/20-41-stela-plamya-195d4781-v7-7255bd0312.jpg"/>
+<span>Памятники</span>
+<h3>Стела «Пламя»</h3>
+</button>
+<button aria-label="Открыть фото: Набережная Ингу-Ягуна" class="gallery-card" data-src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg" data-tag="Прогулки" data-title="Набережная Ингу-Ягуна">
+<img alt="Набережная Ингу-Ягуна" src="images/places-v7/23-23-naberezhnaya-reki-ingu-yagun-6c998331-v7-8d6ebba43d.jpg"/>
+<span>Прогулки</span>
+<h3>Набережная Ингу-Ягуна</h3>
+</button>
+<button aria-label="Открыть фото: Парк первопроходцев" class="gallery-card" data-src="images/places-v7/24-28-park-pervoprokhodtsev-7599f17d-v7-9a46019c2e.jpg" data-tag="Парки" data-title="Парк первопроходцев">
+<img alt="Парк первопроходцев" src="images/places-v7/24-28-park-pervoprokhodtsev-7599f17d-v7-9a46019c2e.jpg"/>
+<span>Парки</span>
+<h3>Парк первопроходцев</h3>
+</button>
+<button aria-label="Открыть фото: Парк Победы" class="gallery-card" data-src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg" data-tag="Парки" data-title="Парк Победы">
+<img alt="Парк Победы" src="images/places-v7/25-29-park-pobedy-b1130a2f-v7-13200ce5c9.jpg"/>
+<span>Парки</span>
+<h3>Парк Победы</h3>
+</button>
+<button aria-label="Открыть фото: КВЦ Русского музея" class="gallery-card" data-src="images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg" data-tag="Культура" data-title="КВЦ Русского музея">
+<img alt="КВЦ Русского музея" src="images/places-v7/35-32-russkiy-muzey-9e4059cf-v7-f06a79c8c5.jpg"/>
+<span>Культура</span>
+<h3>КВЦ Русского музея</h3>
+</button>
+<button aria-label="Открыть фото: Океанариум" class="gallery-card" data-src="images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg" data-tag="Семья" data-title="Океанариум">
+<img alt="Океанариум" src="images/places-v7/30-25-okeanarium-14369988-v7-e241de6c8d.jpg"/>
+<span>Семья</span>
+<h3>Океанариум</h3>
+</button>
+<button aria-label="Открыть фото: Галактика" class="gallery-card" data-src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg" data-tag="Культура" data-title="Галактика">
+<img alt="Галактика" src="images/places-v7/32-10-galaktika-7d0f47f0-v7-7323927a6f.jpg"/>
+<span>Культура</span>
+<h3>Галактика</h3>
+</button>
+<button aria-label="Открыть фото: Цветочные часы" class="gallery-card" data-src="images/places-v7/21-45-tsvetochnye-chasy-132f6ce5-v7-40f7eccd0a.jpg" data-tag="Город" data-title="Цветочные часы">
+<img alt="Цветочные часы" src="images/places-v7/21-45-tsvetochnye-chasy-132f6ce5-v7-40f7eccd0a.jpg"/>
+<span>Город</span>
+<h3>Цветочные часы</h3>
+</button>
+<button aria-label="Открыть фото: «Жемчужина»" class="gallery-card" data-src="images/places-v7/11-13-zhemchuzhina-8979945e-v7-815487b745.jpg" data-tag="Памятники" data-title="«Жемчужина»">
+<img alt="«Жемчужина»" src="images/places-v7/11-13-zhemchuzhina-8979945e-v7-815487b745.jpg"/>
+<span>Памятники</span>
+<h3>«Жемчужина»</h3>
+</button>
+</section>
+<section class="gallery-story-section">
+<article>
+<span class="section-kicker">Как смотреть</span>
+<h2>Галерея стала не просто набором картинок</h2>
+<p>Фото лучше работают, когда у них есть смысл: ночной город, памятники, семейные места, культура и северная атмосфера. Поэтому галерея теперь связана с гидами и локациями.</p>
+</article>
+<a class="btn gold" href="routes.html">Открыть городские гиды</a>
+</section>
+</main>
+<div aria-hidden="true" class="gallery-lightbox" id="galleryLightbox">
+<button aria-label="Закрыть" class="gallery-lightbox__close" type="button">×</button>
+<img alt="" src=""/>
+<div>
+<b></b>
+<span></span>
+</div>
+</div>
 <footer>
-  <span>© 2026 Открой Когалым</span>
-  <nav class="footer-links">
-    <a href="about.html">О проекте</a>
-    <a href="history.html">История</a>
-    <a href="routes.html">Гиды</a>
-    <a href="gallery.html">Галерея</a>
-    <a href="admin.html">Админка</a>
-  </nav>
+<span>© 2026 Открой Когалым</span>
+<nav class="footer-links">
+<a href="about.html">О проекте</a>
+<a href="history.html">История</a>
+<a href="routes.html">Гиды</a>
+<a href="gallery.html">Галерея</a>
+<a href="admin.html">Админка</a>
+</nav>
 </footer>
-
 <script>
 (() => {
   const box = document.getElementById('galleryLightbox');

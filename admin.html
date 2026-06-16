@@ -1,187 +1,138 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Админка | Открой Когалым</title>
-  <link rel="stylesheet" href="style.v7-hard.css?v=site_20260616_v63_hard_nav_bg" />
-  <link rel="stylesheet" href="admin-patch-final.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Админка | Открой Когалым</title>
+<link href="style.v7-hard.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
+<link href="admin-patch-final.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 
-<style id="v59-typography-fix">
-/* v59: final typography guard — removes leftover forced uppercase from older inline patches */
-.places-showcase-clean .places-eyebrow,
-.routes-v2-hero-clean .routes-v2-kicker,
-.events-hero-clean .events-kicker,
-.ann-top-clean .ann-kicker,
-.events-kicker,
-.today-label,
-.event-cat,
-.modal-content small,
-.guide-card span,
-.route-tag,
-.pulse-card b,
-.history-meaning article b,
-.map-point span,
-.event time small {
-  text-transform:none!important;
-  letter-spacing:.01em!important;
-  font-size:13px!important;
-}
-.event time small{
-  color:var(--site-gold,#f2d08a)!important;
-  font-weight:850!important;
-}
-</style>
-
-  <link rel="stylesheet" href="repair-v63.css?v=site_20260616_v63_hard_nav_bg" />
+<link href="repair-v65.css?v=site_20260616_v65_final_clean" rel="stylesheet"/>
 </head>
 <body>
-  <div class="page-bg"></div>
-
-  <header class="header">
-    <a class="brand" href="index.html" aria-label="Открой Когалым">
-      <img src="images/logo.png" alt="Открой Когалым" />
-      <span>ОТКРОЙ<br>КОГАЛЫМ</span>
-    </a>
-
-    <nav>
-    <a href="index.html">Главная</a>
-    <a href="history.html">История</a>
-    <a href="places.html">Локации</a>
-    <a href="routes.html">Гиды</a>
-    <a href="events.html">Афиша</a>
-    <a href="gallery.html">Галерея</a>
-    <a href="announcements.html">Объявления</a>
-  </nav>
-
-    <div class="right-head">
-      <span class="icon">⌕</span>
-      <span class="icon">♡</span>
-        </div>
-  </header>
-
-  <div class="admin-wrap">
-    <main class="admin-page">
-      <section class="admin-hero">
-        <span class="admin-eyebrow">ADMIN PANEL</span>
-        <h1>Панель управления</h1>
-        <p>Добавляй объявления без ручного редактирования HTML. Пока данные сохраняются в браузере через LocalStorage.</p>
-        <p class="es">Управление объявлениями без ручной правки кода.</p>
-      </section>
-
-      <section class="admin-grid">
-        <form class="admin-card admin-form admin-form-fixed" id="adminForm">
-          <div class="admin-card-head">
-            <div>
-              <h2>Добавить объявление</h2>
-              <span>Новая публикация</span>
-            </div>
-          </div>
-
-          <label>
+<div class="page-bg"></div>
+<header class="header">
+<a aria-label="Открой Когалым" class="brand" href="index.html">
+<img alt="Открой Когалым" src="images/logo.png"/>
+<span>ОТКРОЙ<br/>КОГАЛЫМ</span>
+</a>
+<nav>
+<a href="index.html">Главная</a>
+<a href="history.html">История</a>
+<a href="places.html">Локации</a>
+<a href="routes.html">Гиды</a>
+<a href="events.html">Афиша</a>
+<a href="gallery.html">Галерея</a>
+<a href="announcements.html">Объявления</a>
+</nav>
+<div class="right-head">
+<span class="icon">⌕</span>
+<span class="icon">♡</span>
+</div>
+</header>
+<div class="admin-wrap">
+<main class="admin-page">
+<section class="admin-hero">
+<span class="admin-eyebrow">ADMIN PANEL</span>
+<h1>Панель управления</h1>
+<p>Добавляй объявления без ручного редактирования HTML. Пока данные сохраняются в браузере через LocalStorage.</p>
+<p class="es">Управление объявлениями без ручной правки кода.</p>
+</section>
+<section class="admin-grid">
+<form class="admin-card admin-form admin-form-fixed" id="adminForm">
+<div class="admin-card-head">
+<div>
+<h2>Добавить объявление</h2>
+<span>Новая публикация</span>
+</div>
+</div>
+<label>
             Заголовок
-            <input id="adTitle" type="text" placeholder="Например: Требуется водитель" required />
-          </label>
-
-          <label>
+            <input id="adTitle" placeholder="Например: Требуется водитель" required="" type="text"/>
+</label>
+<label>
             Категория
             <select id="adCategory">
-              <option value="Работа">Работа</option>
-              <option value="Услуги">Услуги</option>
-              <option value="Аренда">Аренда</option>
-              <option value="Продажа">Продажа</option>
-              <option value="Другое">Другое</option>
-            </select>
-          </label>
-
-          <label>
+<option value="Работа">Работа</option>
+<option value="Услуги">Услуги</option>
+<option value="Аренда">Аренда</option>
+<option value="Продажа">Продажа</option>
+<option value="Другое">Другое</option>
+</select>
+</label>
+<label>
             Цена / зарплата
-            <input id="adPrice" type="text" placeholder="Например: от 80 000 ₽" />
-          </label>
-
-          <label>
+            <input id="adPrice" placeholder="Например: от 80 000 ₽" type="text"/>
+</label>
+<label>
             Описание
-            <textarea id="adDescription" placeholder="Коротко и по делу" rows="5" required></textarea>
-          </label>
-
-
-          <label>
+            <textarea id="adDescription" placeholder="Коротко и по делу" required="" rows="5"></textarea>
+</label>
+<label>
             Телефон
-            <input id="adPhone" type="tel" placeholder="+7 (___) ___-__-__" />
-          </label>
-
-          <label class="admin-vip-row">
-            <input id="adVip" type="checkbox" />
-            <span>VIP объявление</span>
-          </label>
-
-          <label>
+            <input id="adPhone" placeholder="+7 (___) ___-__-__" type="tel"/>
+</label>
+<label class="admin-vip-row">
+<input id="adVip" type="checkbox"/>
+<span>VIP объявление</span>
+</label>
+<label>
             Фото
-            <input id="adPhoto" type="file" accept="image/*" />
-          </label>
-
-          <button class="admin-submit" type="submit">Опубликовать</button>
-        </form>
-
+            <input accept="image/*" id="adPhoto" type="file"/>
+</label>
+<button class="admin-submit" type="submit">Опубликовать</button>
+</form>
 <div class="contact-owner-box">
-  <h3>Информация для связи</h3>
-
-  <div class="contact-owner-item">
-    <span>Контакт:</span>
-    <strong>Польшаков Сергей Владимирович</strong>
-  </div>
-
-  <div class="contact-owner-item">
-    <span>Телефон:</span>
-    <a href="tel:+79044774746">+7 (904) 477-47-46</a>
-  </div>
-
-  <div class="contact-owner-item">
-    <span>Email:</span>
-    <a href="mailto:Sergey55.89@mail.ru">Sergey55.89@mail.ru</a>
-  </div>
+<h3>Информация для связи</h3>
+<div class="contact-owner-item">
+<span>Контакт:</span>
+<strong>Польшаков Сергей Владимирович</strong>
 </div>
-
-
-        <aside class="admin-card admin-preview">
-          <div class="admin-card-head">
-            <div>
-              <h2>Предпросмотр</h2>
-              <span>Как объявление будет выглядеть</span>
-            </div>
-          </div>
-
-          <article class="preview-card">
-            <div class="preview-image" id="previewImage">Фото</div>
-            <div class="preview-body">
-              <span class="preview-category" id="previewCategory">Работа</span>
-              <h3 id="previewTitle">Заголовок объявления</h3>
-              <p id="previewDescription">Описание появится здесь.</p>
-              <strong id="previewPrice">Цена не указана</strong>
-            </div>
-          </article>
-        </aside>
-      </section>
-
-      <section class="admin-card saved-list">
-        <div class="admin-card-head">
-          <h2>Сохранённые объявления</h2>
-          <span>Локально сохранённые записи</span>
-        </div>
-        <div id="savedAds" class="saved-ads"></div>
-      </section>
-    </main>
-  </div>
-
-  
+<div class="contact-owner-item">
+<span>Телефон:</span>
+<a href="tel:+79044774746">+7 (904) 477-47-46</a>
+</div>
+<div class="contact-owner-item">
+<span>Email:</span>
+<a href="mailto:Sergey55.89@mail.ru">Sergey55.89@mail.ru</a>
+</div>
+</div>
+<aside class="admin-card admin-preview">
+<div class="admin-card-head">
+<div>
+<h2>Предпросмотр</h2>
+<span>Как объявление будет выглядеть</span>
+</div>
+</div>
+<article class="preview-card">
+<div class="preview-image" id="previewImage">Фото</div>
+<div class="preview-body">
+<span class="preview-category" id="previewCategory">Работа</span>
+<h3 id="previewTitle">Заголовок объявления</h3>
+<p id="previewDescription">Описание появится здесь.</p>
+<strong id="previewPrice">Цена не указана</strong>
+</div>
+</article>
+</aside>
+</section>
+<section class="admin-card saved-list">
+<div class="admin-card-head">
+<h2>Сохранённые объявления</h2>
+<span>Локально сохранённые записи</span>
+</div>
+<div class="saved-ads" id="savedAds"></div>
+</section>
+</main>
+</div>
 <footer>
-  <a href="about.html">О проекте</a>
-  <a href="routes.html">Гиды</a>
-  <a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
-  <a href="admin.html">Админка</a>
+<a href="about.html">О проекте</a>
+<a href="routes.html">Гиды</a>
+<a href="mailto:info@kogalym-portal.ru">Обратная связь</a>
+<a href="admin.html">Админка</a>
 </footer>
-<script src="main.js?v=site_20260615_v60_hard_visual_fix"></script>
-  <script src="admin-patch.js?v=site_20260615_v60_hard_visual_fix"></script>
-<script src="weather.js?v=site_20260615_v60_hard_visual_fix"></script>
+<script src="main.js?v=site_20260616_v65_final_clean"></script>
+<script src="admin-patch.js?v=site_20260616_v65_final_clean"></script>
+<script src="weather.js?v=site_20260616_v65_final_clean"></script>
 </body>
 </html>
